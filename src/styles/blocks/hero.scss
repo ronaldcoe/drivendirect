@@ -1,0 +1,52 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+
+
+.hero {
+    @include wrapper;
+    @include space;
+    display:flex;
+    gap: 30px;
+    justify-content: center;
+
+    @media screen and (max-width: $breakpoint-medium) {
+        margin-top: 20px;
+        flex-direction: column;
+        align-items: center;
+       
+    }
+
+    @media screen and (max-width: $breakpoint-small) {
+        align-items: normal;
+    }
+
+    .hero__call_to_action {
+        align-self: center;
+        h1 {
+            font-family: $title-font;
+            color: $title-color;
+            max-width: 500px;
+            font-size: 4.8rem;
+            @media screen and (max-width: $breakpoint-medium) {
+                font-size: 3rem;
+            }
+           
+        }
+        button {
+            @include buttons;
+            background-color: $button-color;
+            color: white;
+        }
+    }
+    
+    img {
+        max-width: 500px;
+        max-height: 500px;
+        min-width: 300px;
+        object-fit: contain;
+
+        @media screen and (max-width: $breakpoint-medium) {
+            
+        }
+    }
+}

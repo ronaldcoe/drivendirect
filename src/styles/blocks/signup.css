@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.signup .signup__wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.signup .signup__wrapper .signup__wrapper__content {
+  border-radius: 5px;
+  background-color: #eff3f5;
+  padding: 50px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+.signup .signup__wrapper .signup__wrapper__content h1 {
+  color: #36454F;
+}
+.signup .signup__wrapper .signup__wrapper__content form {
+  display: flex;
+  flex-direction: column;
+}
+.signup .signup__wrapper .signup__wrapper__content form .login__wrapper__content__eyeicon {
+  color: #B6B6B6;
+  position: absolute;
+  transform: translateY(10px);
+  right: 60px;
+}
+.signup .signup__wrapper .signup__wrapper__content form label {
+  margin-top: 20px;
+}
+.signup .signup__wrapper .signup__wrapper__content form label p {
+  font-size: 1.3rem;
+  color: #636363;
+}
+.signup .signup__wrapper .signup__wrapper__content form label input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.signup .signup__wrapper .signup__wrapper__content form label input:focus {
+  border: 1px solid #0B57D0;
+  outline: none;
+  transition: 0.5s;
+}
+.signup .signup__wrapper .signup__wrapper__content form label select {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.signup .signup__wrapper .signup__wrapper__content form label select:focus {
+  border: 1px solid #0B57D0;
+  outline: none;
+  transition: 0.5s;
+}
+.signup .signup__wrapper .signup__wrapper__content form label select option:hover {
+  background-color: #0B57D0;
+  color: "Rubik", sans-serif;
+}
+.signup .signup__wrapper .signup__wrapper__content form button {
+  padding: 10px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #0B57D0;
+  color: white;
+}
+.signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox {
+  display: flex;
+  font-family: "Rubik", sans-serif;
+  align-items: center;
+  gap: 10px;
+}
+.signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox a {
+  color: inherit;
+}
+.signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox input {
+  height: 13px;
+  width: 13px;
+}/*# sourceMappingURL=signup.css.map */

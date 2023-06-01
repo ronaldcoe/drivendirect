@@ -1,0 +1,18 @@
+@import '../variables/variables';
+nav {
+    ul {
+        display: flex;
+        gap: 20px;
+        li {
+            list-style: none;
+            font-family: $paragraph-font;
+            font-size: 1.3rem;
+            font-weight: bold;
+            
+            a {
+                color: $primary-color;
+            }
+
+        }
+    }
+}

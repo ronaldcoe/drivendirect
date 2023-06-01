@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.cardContainer__card {
+  border: 1px solid #B6B6B6;
+  width: 350px;
+  height: 150px;
+  border-radius: 5px;
+  padding: 20px;
+}
+@media screen and (max-width: 505px) {
+  .cardContainer__card {
+    width: 100%;
+    border-radius: 0px;
+    border-bottom: 0;
+  }
+  .cardContainer__card:nth-child(1) {
+    border-radius: 5px 5px 0px 0px;
+  }
+  .cardContainer__card:last-child {
+    border-radius: 0px 0px 5px 5px;
+    border-bottom: 1px solid #B6B6B6;
+  }
+}
+.cardContainer__card .cardContainer__card__title h3 {
+  font-family: "Rubik", sans-serif;
+  color: #0B57D0;
+}
+.cardContainer__card .cardContainer__card__title p {
+  font-family: "Rubik", sans-serif;
+  color: #0B57D0;
+  font-size: 1.2rem;
+  padding-top: 0.5rem;
+}
+.cardContainer__card .cardContainer__card__description {
+  font-family: "Rubik", sans-serif;
+  padding-top: 1rem;
+  color: #36454F;
+  line-height: 1.5;
+}
+
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+@media screen and (max-width: 505px) {
+  .cardContainer {
+    gap: 0px;
+  }
+}/*# sourceMappingURL=card.css.map */

@@ -1,0 +1,110 @@
+[
+  {
+    "make": "Toyota",
+    "model": "Corolla",
+    "year": 2021,
+    "description": "Compact sedan with advanced safety features.",
+    "status": true,
+    "inventory_id": "ABC123",
+    "account_id": "XYZ789",
+    "type": "Sedan",
+    "posted_date": "2022-01-15",
+    "location": "Rexburg, ID"
+  },
+  {
+    "make": "Honda",
+    "model": "Civic",
+    "year": 2020,
+    "description": "Reliable and fuel-efficient compact car.",
+    "status": true,
+    "inventory_id": "DEF456",
+    "account_id": "XYZ789",
+    "type": "Sedan",
+    "posted_date": "2022-02-20",
+    "location": "Los Angeles, CA"
+  },
+  {
+    "make": "Ford",
+    "model": "F-150",
+    "year": 2021,
+    "description": "Powerful and versatile pickup truck.",
+    "status": true,
+    "inventory_id": "GHI789",
+    "account_id": "PQR456",
+    "type": "Truck",
+    "posted_date": "2022-03-25",
+    "location": "Houston, TX"
+  },
+  {
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "year": 2022,
+    "description": "Muscle car with aggressive styling and powerful performance.",
+    "status": true,
+    "inventory_id": "JKL012",
+    "account_id": "XYZ789",
+    "type": "Coupe",
+    "posted_date": "2022-04-10",
+    "location": "Miami, FL"
+  },
+  {
+    "make": "BMW",
+    "model": "X5",
+    "year": 2020,
+    "description": "Luxury SUV with premium features and comfortable interior.",
+    "status": true,
+    "inventory_id": "MNO345",
+    "account_id": "PQR456",
+    "type": "SUV",
+    "posted_date": "2022-05-05",
+    "location": "New York City, NY"
+  },
+  {
+    "make": "Mercedes-Benz",
+    "model": "E-Class",
+    "year": 2021,
+    "description": "Elegant and sophisticated luxury sedan with advanced technology.",
+    "status": true,
+    "inventory_id": "PQR678",
+    "account_id": "XYZ789",
+    "type": "Sedan",
+    "posted_date": "2022-06-20",
+    "location": "Chicago, IL"
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2020,
+    "description": "Premium compact SUV with a stylish design and exceptional performance.",
+    "status": true,
+    "inventory_id": "STU901",
+    "account_id": "PQR456",
+    "type": "SUV",
+    "posted_date": "2022-07-15",
+    "location": "San Francisco, CA"
+  },
+  {
+    "make": "Audi",
+    "model": "Q5",
+    "year": 2020,
+    "description": "Premium compact SUV with a stylish design and exceptional performance.",
+    "status": true,
+    "inventory_id": "STU901",
+    "account_id": "PQR456",
+    "type": "SUV",
+    "posted_date": "2022-07-15",
+    "location": "San Francisco, CA"
+  },
+  {
+    "make": "Mercedes-Benz",
+    "model": "E-Class",
+    "year": 2021,
+    "description": "Elegant and sophisticated luxury sedan with advanced technology.",
+    "status": true,
+    "inventory_id": "PQR678",
+    "account_id": "XYZ789",
+    "type": "Sedan",
+    "posted_date": "2022-06-20",
+    "location": "Chicago, IL"
+  }
+]

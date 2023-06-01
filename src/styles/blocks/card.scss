@@ -1,0 +1,15 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+@import '../../styles/elements/_cardContainer__card.scss';
+
+.cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    @include wrapper;
+
+    @media screen and (max-width: $breakpoint-small) {
+        gap:0px;
+    }
+}

@@ -1,0 +1,87 @@
+@import '../variables/variables';
+@import '../variables/mixins';
+
+.signup {
+    .signup__wrapper {
+        @include wrapper;
+
+        .signup__wrapper__content {
+            @include container;
+            max-width: fit-content;
+            margin: 0 auto;
+            margin-top: 50px;
+
+            h1 {
+                color: $title-color;
+
+                
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+
+                .login__wrapper__content__eyeicon {
+                    color: $border-color;
+                    position: absolute;
+                    transform: translateY(10px);
+                    right: 60px;
+                }
+
+                label {
+                    margin-top: 20px;
+
+                    p {
+                        font-size: 1.3rem;
+                        color: $secondary-background-color-font
+                    }
+
+                    input {
+                        @include input;
+                        width: 100%;
+
+                        
+                    }
+
+                    select {
+                        @include input;
+                        width: 100%;
+
+                        option {
+                            
+                            &:hover {
+                                background-color: $primary-color;
+                                color: $paragraph-font
+                            }
+                        }
+                    }
+                }
+                
+
+                button {
+                    @include buttons;
+                    background-color: $button-color;
+                    color: white; 
+                }
+            }
+
+            .signup__wrapper__content__checkbox {
+                display: flex;
+                font-family: $paragraph-font;
+                align-items: center;
+                gap: 10px;
+
+                a {
+                    color: inherit;
+                }
+                
+                input {
+                    height: 13px;
+                    width: 13px;
+
+                }
+
+            }
+        }
+    }
+}

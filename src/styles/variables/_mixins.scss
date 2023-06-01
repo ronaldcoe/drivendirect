@@ -1,0 +1,47 @@
+@import './variables';
+
+@mixin wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+@mixin input {
+    border-radius: 5px;
+    padding:10px;
+    border: 1px solid $border-color;
+    font-family: $paragraph-font;
+    color: $primary-paragraph-font-color;
+
+    &:focus {
+        border: 1px solid $primary-color; 
+        outline: none;
+        transition: 0.5s;
+    }
+}
+@mixin buttons {
+    padding: 10px;
+    border: none;
+    font-family: $button-font;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+@mixin space {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+@mixin shadow {
+    -webkit-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    -moz-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@mixin container {
+    border-radius: 5px;
+    background-color: $secondary-background-color;
+    padding: 50px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}

@@ -1,0 +1,33 @@
+ 
+// ===========================================
+// VARIABLES TO BE USED IN THE APPLICATION 
+// ===========================================
+
+
+
+// Rubik Font import Regular 400, Medium 500, Bold 700
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+
+
+// Colors
+$primary-color: #0B57D0;
+$title-color: #36454F;
+$primary-paragraph-font-color: #36454F;
+$primary-background-color: #E5F7FF;
+$secondary-background-color: #eff3f5;
+$secondary-background-color-font: #636363;
+$border-color: #B6B6B6;
+$button-color: #0B57D0;
+
+// Fonts
+$title-font: 'Rubik', sans-serif;
+$sub-title-font: 'Rubik', sans-serif;
+$paragraph-font: 'Rubik', sans-serif;
+$button-font: 'Rubik', sans-serif;
+
+
+
+// Screen sizes
+$breakpoint-small: 505px;
+$breakpoint-medium: 820px;
