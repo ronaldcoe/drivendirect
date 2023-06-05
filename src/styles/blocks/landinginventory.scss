@@ -1,0 +1,15 @@
+@import '../variables/variables';
+@import '../variables/mixins';
+
+.landinginventory {
+
+    .landinginventory__wrapper {
+        @include wrapper;
+
+        h1 {
+            color: $primary-color;
+            margin-bottom: 50px;
+        }
+        
+    } 
+}

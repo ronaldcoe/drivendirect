@@ -19,7 +19,7 @@ export default function Footer() {
                     <li><a href='/privacy-policy'>Privacy Policy</a></li>
                 </ul>
             </div>
-            <p  className='footer__wrapper__copyright'>&#169;{footerDate.getFullYear()} | All rights reserved | CarSwapper</p>
+            <p  className='footer__wrapper__copyright'>&#169;{footerDate.getFullYear()} All rights reserved | DrivenDirect&trade;</p>
         </div>
     </div>
   )

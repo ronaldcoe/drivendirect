@@ -25,6 +25,26 @@ h1, h2, h3, h4 {
     font-family: $title-font;
 }
 
+h1 {
+    font-size: 4rem;
+
+    @media screen and (max-width: $breakpoint-medium) {
+        
+        font-size: 3rem;
+        
+    }
+}
+
+h2 {
+    font-size: 2.5rem;
+    @media screen and (max-width: $breakpoint-medium) {
+        
+        font-size: 2rem;
+        
+    }
+
+}
+
 p {
     font-family: $paragraph-font;
     line-height: 1.5;

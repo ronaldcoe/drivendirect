@@ -7,6 +7,10 @@ export default function Login() {
 
     const [showPassword, setShowPassword] = useState(false);
 
+    const [userName, setUserName] = useState()
+    const [password, setPassword] = useState()
+
+    // Handleres for show password
     const handleShowPassword = () =>{
         if (!showPassword) {
             setShowPassword(true)
@@ -14,6 +18,15 @@ export default function Login() {
         } else {
             setShowPassword(false)
         }
+    }
+
+    // Handleres for change the state of username and password
+    const handleSetUserName = (event) => {
+        setPassword(event.target.value)
+    }
+    
+    const handleSetPassword = (event) => {
+        setUserName(event.target.value)
     }
 
   return (
@@ -25,11 +38,11 @@ export default function Login() {
                 <form action="get">
                     <label>
                         <p>User Name</p>
-                        <input type="text" name="" id="" />
+                        <input type="text" name="" id="" onChange={handleSetUserName}/>
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type={showPassword?'text':'password'} name="" id="" />
+                        <input type={showPassword?'text':'password'} name="" id=""  onChange={handleSetPassword}/>
                         <FontAwesomeIcon className="login__wrapper__content__eyeicon" icon={showPassword?faEyeSlash:faEye} onClick={handleShowPassword}/>
                     </label>
                     <a className='login__wrapper__content__resetpassword' href='#'>Forgot Password?</a>

@@ -2,15 +2,12 @@
 @import '../variables/mixins';
 
 .about {
-    background-color: $secondary-background-color;
-    @include space;
+
+ 
 
 
     .about__wrapper {
         @include wrapper;
-        max-width: 1000px;
-        display: flex;
-        align-items: center;
         gap: 50px;
         padding-top: 100px;
         padding-bottom: 100px;
@@ -25,47 +22,60 @@
             flex-direction: column;
             gap: 30px;
          
-            h2 {
+            h1 {
                 font-family: $sub-title-font;
                 color: $primary-color;
+                margin-bottom: 50px;
             }
 
-            p {
-                font-family: $paragraph-font;
-                color: $primary-paragraph-font-color;
-                line-height: 1.5;
-            }
         }
 
         .about__wrapper__card__container{
             display: flex;
-            flex-direction: column;
-            gap: 20px;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 60px;
 
             .about__wrapper__card {
-                background-color: white;
+                
                 border-radius: 5px;
-                padding: 20px;
-                max-width: 600px;
+                
                 display: flex;
-                gap: 20px;
-                align-items: center;
-                @include shadow;
+                flex-direction: column;
+                
+                gap: 30px;
+                max-width: 500px;
+                padding: 20px;
 
-                h3 {
+                @media screen and (max-width: $breakpoint-medium) {
+        
+                    padding: 0;
+                    
+                }
+               
+
+                h2 {
                     font-family:  $sub-title-font;
                     color: $primary-color;
+                    margin-bottom: 30px;
                 }
 
                 p {
                     font-family: $paragraph-font;
                     color: $primary-paragraph-font-color;
                     margin-top: 10px;
+                    font-size: 1.6rem;
                 }
 
                 .about__wrapper__card__icon {
                     color: $primary-color;
                     font-size: 3rem;
+                    background-color: $secondary-background-color;
+                    padding: 20px;
+                    height: 40px;
+                    width: 40px;
+                    border-radius: 999px;
                 
                     
                 }

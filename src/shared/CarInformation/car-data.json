@@ -9,7 +9,7 @@
     "account_id": "XYZ789",
     "type": "Sedan",
     "posted_date": "2022-01-15",
-    "location": "Rexburg, ID"
+    "location": "Idaho"
   },
   {
     "make": "Honda",
@@ -21,7 +21,7 @@
     "account_id": "XYZ789",
     "type": "Sedan",
     "posted_date": "2022-02-20",
-    "location": "Los Angeles, CA"
+    "location": "California"
   },
   {
     "make": "Ford",
@@ -33,7 +33,7 @@
     "account_id": "PQR456",
     "type": "Truck",
     "posted_date": "2022-03-25",
-    "location": "Houston, TX"
+    "location": "Texas"
   },
   {
     "make": "Chevrolet",
@@ -45,7 +45,7 @@
     "account_id": "XYZ789",
     "type": "Coupe",
     "posted_date": "2022-04-10",
-    "location": "Miami, FL"
+    "location": "Florida"
   },
   {
     "make": "BMW",
@@ -57,7 +57,7 @@
     "account_id": "PQR456",
     "type": "SUV",
     "posted_date": "2022-05-05",
-    "location": "New York City, NY"
+    "location": "New York"
   },
   {
     "make": "Mercedes-Benz",
@@ -69,7 +69,7 @@
     "account_id": "XYZ789",
     "type": "Sedan",
     "posted_date": "2022-06-20",
-    "location": "Chicago, IL"
+    "location": "Illinois"
   },
   {
     "make": "Audi",
@@ -81,7 +81,7 @@
     "account_id": "PQR456",
     "type": "SUV",
     "posted_date": "2022-07-15",
-    "location": "San Francisco, CA"
+    "location": "California"
   },
   {
     "make": "Audi",
@@ -93,7 +93,7 @@
     "account_id": "PQR456",
     "type": "SUV",
     "posted_date": "2022-07-15",
-    "location": "San Francisco, CA"
+    "location": "California"
   },
   {
     "make": "Mercedes-Benz",
@@ -105,6 +105,6 @@
     "account_id": "XYZ789",
     "type": "Sedan",
     "posted_date": "2022-06-20",
-    "location": "Chicago, IL"
+    "location": "Illinois"
   }
 ]

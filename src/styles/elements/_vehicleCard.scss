@@ -1,0 +1,49 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+
+.vehiclecard {
+    border: 1px solid $border-color;
+    max-width: 350px;
+    
+    border-radius: 5px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    height: fit-content;
+
+    @media screen and (max-width:$breakpoint-small) {
+        width: 100%;     
+
+    }
+  
+
+    .vehiclecard__title {
+       display: flex;
+       justify-content: space-between;
+       width: 100%;
+       h3 {
+        font-family: $title-font;
+        color: $primary-paragraph-font-color;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 250px;
+       }
+
+       p {
+        font-family: $title-font;
+        color: $primary-paragraph-font-color;
+        font-size: 1.2rem;
+        padding-top: 0.5rem;
+       }
+    }
+
+    .vehiclecard__description {
+        font-family: $paragraph-font;
+        padding-top: 1rem;
+        color: $primary-paragraph-font-color;
+        line-height: 1.5;
+     
+    }
+}
