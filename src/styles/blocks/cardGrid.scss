@@ -3,18 +3,12 @@
 @import '../elements/vehicleCard';
 
 .cardGrid {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-auto-flow: row;
+    display: flex;
 
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
     
 
-    @media screen and (max-width:$breakpoint-medium) {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    @media screen and (max-width:$breakpoint-small) {
-        grid-template-columns: 1fr;
-    }
+    
 }

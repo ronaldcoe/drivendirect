@@ -17,12 +17,20 @@ export default function About() {
             </div>
             <div className='about__wrapper__card__container'>
                 <div className='about__wrapper__card'>
-                    <FontAwesomeIcon className="about__wrapper__card__icon" icon={faMagnifyingGlass} />
-                    <div>
-                        <h2>Find what you need now!</h2>
+                    <details>
+                        <summary>
+                            <div><FontAwesomeIcon className="about__wrapper__card__icon" icon={faMagnifyingGlass} /></div>
+                            <h2>Find what you need now!</h2>
+                        </summary>
                         <p>
                         It's like a used car dealer transfer. Your customer is looking for a specific vehicle you don't have. Registered Users can post their requests here to see if another dealer has or knows where to find one. It's a chance for dealers to move or trade vehicles. The vehicle you want might be out there, and you can be the one to find it for your customer while maintaining control.
                         </p>
+
+                    </details>
+                    
+                    <div>
+                        
+                       
                     </div>
                 </div>
                 <div className='about__wrapper__card'>

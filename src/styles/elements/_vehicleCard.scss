@@ -3,20 +3,19 @@
 
 .vehiclecard {
     border: 1px solid $border-color;
-    max-width: 350px;
-    
+    width: 350px;
     border-radius: 5px;
     padding: 10px 20px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
+
     height: fit-content;
-
-    @media screen and (max-width:$breakpoint-small) {
-        width: 100%;     
-
+    background-color: $secondary-background-color;
+    
+    @media screen and (max-width: $breakpoint-small) {
+        width: 100%;
     }
-  
 
     .vehiclecard__title {
        display: flex;
@@ -28,7 +27,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        width: 250px;
+        width: 235px;
        }
 
        p {
