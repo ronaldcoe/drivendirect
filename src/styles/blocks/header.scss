@@ -3,20 +3,43 @@
 @import '../elements/navBar';
 
 .header {
-    background-color: $primary-background-color;
+    background-color: white;
+    border-bottom: 1px solid $border-color;
 
     
     .header__wrapper {
         @include wrapper;
-        padding: 30px; 
+       
         display: flex;
+        align-items: center;
         justify-content: space-between;
+
+        nav {
+
+            ul {
+
+                li {
+
+                    a {
+                        color: white;
+                        background-color: $primary-color;
+                        text-decoration: none;
+                        padding: 10px;
+                        border-radius: 5px;
+                    }
+                }
+            }
+        }
 
         .header__logo {
             font-family: $title-font;
             color: $primary-color;
             font-size: 1.6rem;
             font-weight: 600;
+            a {
+                text-decoration: none;
+                color: $primary-color;
+            }
         }
     }
     

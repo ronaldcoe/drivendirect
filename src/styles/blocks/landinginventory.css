@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.landinginventory .landinginventory__wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 50px;
+  grid-template-columns: 1fr 2fr;
+}
+.landinginventory .landinginventory__wrapper h1 {
+  color: #063846;
+  margin-bottom: 50px;
+  max-width: 500px;
+}/*# sourceMappingURL=landinginventory.css.map */

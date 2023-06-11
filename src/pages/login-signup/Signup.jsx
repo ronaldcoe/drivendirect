@@ -22,6 +22,7 @@ export default function Signup() {
         'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
         'Quebec', 'Saskatchewan', 'Yukon'
       ];
+    
 
     const [countrySelected, setCountrySelected] = useState('USA')
 
@@ -61,6 +62,10 @@ export default function Signup() {
                         <input type='text'></input>  
                     </label>
                     <label>
+                        <p>Website</p>
+                        <input type='text'></input>  
+                    </label>
+                    <label>
                         <p>Country</p>
                         <select value={countrySelected} onChange={handleCountryChange}>
                             <option value='USA'>United States</option>
@@ -83,7 +88,7 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Phone Number</p>
-                        <input type='number'></input>  
+                        <input type='text'></input>  
                     </label>
                     <label>
                         <div className='signup__wrapper__content__checkbox'>

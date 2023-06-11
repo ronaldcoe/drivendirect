@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.testimonial .testimonial__wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  gap: 50px;
+}
+@media screen and (max-width: 820px) {
+  .testimonial .testimonial__wrapper {
+    flex-direction: column;
+    padding: 0;
+  }
+}
+.testimonial .testimonial__wrapper img {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 999px;
+  margin-bottom: 40px;
+}
+.testimonial .testimonial__wrapper .testimonial__wrapper__text {
+  background-color: #F3F3F3;
+  padding: 40px;
+}
+.testimonial .testimonial__wrapper .testimonial__wrapper__text h2 {
+  color: #063846;
+  margin-bottom: 20px;
+}
+.testimonial .testimonial__wrapper .testimonial__wrapper__text p {
+  color: #36454F;
+  padding-bottom: 20px;
+}/*# sourceMappingURL=testimonial.css.map */

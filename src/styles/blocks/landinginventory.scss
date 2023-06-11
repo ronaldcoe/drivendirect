@@ -1,0 +1,19 @@
+@import '../variables/variables';
+@import '../variables/mixins';
+
+.landinginventory {
+
+    .landinginventory__wrapper {
+        @include wrapper;
+        display: grid;
+        gap: 50px;
+        grid-template-columns: 1fr 2fr;
+
+        h1 {
+            color: $primary-color;
+            margin-bottom: 50px;
+            max-width: 500px;
+        }
+        
+    } 
+}

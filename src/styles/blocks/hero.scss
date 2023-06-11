@@ -3,50 +3,76 @@
 
 
 .hero {
-    @include wrapper;
-    @include space;
-    display:flex;
-    gap: 30px;
-    justify-content: center;
-
-    @media screen and (max-width: $breakpoint-medium) {
-        margin-top: 20px;
-        flex-direction: column;
-        align-items: center;
+   
+    background-image: url(../../images/banner.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    @media screen and (max-width:$breakpoint-medium){
+        padding-top: 30px;
+    }
+    .hero__wrapper {
+        @include wrapper;
+        display:flex;
+        padding-top: 0;
+        padding-bottom: 0;
+        gap: 30px;
        
-    }
-
-    @media screen and (max-width: $breakpoint-small) {
-        align-items: normal;
-    }
-
-    .hero__call_to_action {
-        align-self: center;
-        h1 {
-            font-family: $title-font;
-            color: $title-color;
-            max-width: 500px;
-            font-size: 4.8rem;
-            @media screen and (max-width: $breakpoint-medium) {
-                font-size: 3rem;
-            }
-           
-        }
-        button {
-            @include buttons;
-            background-color: $button-color;
-            color: white;
-        }
-    }
-    
-    img {
-        max-width: 500px;
-        max-height: 500px;
-        min-width: 300px;
-        object-fit: contain;
+        
 
         @media screen and (max-width: $breakpoint-medium) {
-            
+            margin-top: 20px;
+            flex-direction: column;
+            align-items: center;
+       
+        }
+
+        @media screen and (max-width: $breakpoint-small) {
+            align-items: normal;
+        }
+
+        .hero__call_to_action {
+            align-self: center;
+           
+            padding: 40px;
+            margin-top: -7px;
+            h1 {
+                font-family: $title-font;
+                color: white;
+                max-width: 500px;
+                font-size: 4.8rem;
+                @media screen and (max-width: $breakpoint-medium) {
+                    font-size: 3rem;
+                }
+           
+            }
+            .hero__call_to_action_primarybutton {
+                @include buttons;
+                background-color: $button-color;
+                color: white;
+                font-size: 1.8rem
+            }
+
+            .hero__call_to_action_secondarybutton {
+                @include buttons;
+                border: 1px solid white;
+                color: white;
+                background-color: transparent;
+                font-size: 1.8rem;
+                margin-left:20px;
+            }
+
+        }
+    
+        img {
+            max-width: 500px;
+            max-height: 500px;
+            min-width: 300px;
+            object-fit: contain;
+
+          
         }
     }
 }

@@ -1,7 +1,9 @@
 import  Hero from './pages/landing/Hero'
 import About from './pages/landing/About';
 import './styles/main.css';
-import Card from './pages/display-car/Card';
+
+import Testimonial from './pages/landing/Testimonial';
+import LandingInventory from './pages/landing/LandingInventory';
 
 
 
@@ -12,7 +14,8 @@ function App() {
       <main>
         <Hero></Hero>
         <About></About>
-        <Card></Card>
+   
+        <Testimonial></Testimonial>
       </main>
     </div>
   );

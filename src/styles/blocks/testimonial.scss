@@ -1,0 +1,40 @@
+@import '../variables/variables';
+@import '../variables/mixins';
+
+.testimonial {
+
+    .testimonial__wrapper {
+        @include wrapper;
+        display: flex;
+        gap: 50px;
+        @media screen and (max-width: $breakpoint-medium) {
+            flex-direction: column;
+            padding: 0;
+        }
+        img {
+            width:150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 999px;
+            margin-bottom: 40px;
+            
+        }
+
+        .testimonial__wrapper__text {
+            background-color: $secondary-background-color;
+            padding: 40px;
+            
+
+            h2 {
+                color: $primary-color;
+                margin-bottom: 20px;
+            }
+
+            p {
+                color: $primary-paragraph-font-color;
+                padding-bottom: 20px;
+            }
+        }
+
+    }
+}

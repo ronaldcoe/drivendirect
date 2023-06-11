@@ -1,0 +1,14 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+@import '../elements/vehicleCard';
+
+.cardGrid {
+    display: flex;
+
+    gap: 20px;
+    flex-wrap: wrap;
+  
+    
+
+    
+}
