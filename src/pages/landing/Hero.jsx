@@ -8,14 +8,13 @@ export default function Hero() {
         <div className='hero__wrapper'>
           <div className='hero__call_to_action'>
               <h1>
-                  A new way for dealers
-                  to sell and search for  
-                  cars and trucks
+              HELPING DEALERS
+              HELP EACHOTHER
               </h1>
               <button className='hero__call_to_action_primarybutton'>Start Today</button>
               <button className='hero__call_to_action_secondarybutton'>Learn More</button>
           </div>
-          <img src={carBanner} alt="Car banner" />
+          
         </div>
     </div>
   )

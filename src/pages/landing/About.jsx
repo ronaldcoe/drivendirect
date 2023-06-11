@@ -2,68 +2,139 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCar, faMagnifyingGlass, faVanShuttle, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/blocks/about.css'
+import carOne from '../../images/car_blue.jpg'
+import carTwo from '../../images/car_2.jpg'
+import carTree from '../../images/car_3.jpg'
+import carFour from '../../images/car_4.jpg'
+import carFive from '../../images/car_5.jpg'
+
 
 
 export default function About() {
   return (
     <div className='about'>
+        
         <div className='about__wrapper'>
-            <div className='about__wrapper__description'>
-                <h1>
-                    How does it work?
-                </h1>
-                
-                
-            </div>
+            
+           
             <div className='about__wrapper__card__container'>
                 <div className='about__wrapper__card'>
-                    <details>
-                        <summary>
-                            <div><FontAwesomeIcon className="about__wrapper__card__icon" icon={faMagnifyingGlass} /></div>
-                            <h2>Find what you need now!</h2>
-                        </summary>
+                    <div className='about__wrapper__card__text'>
+                        <h2>FIND WHAT YOU NEED NOW!</h2>
+                        <h3>DON'T EVER SAY "I DON'T HAVE ONE!</h3>
                         <p>
-                        It's like a used car dealer transfer. Your customer is looking for a specific vehicle you don't have. Registered Users can post their requests here to see if another dealer has or knows where to find one. It's a chance for dealers to move or trade vehicles. The vehicle you want might be out there, and you can be the one to find it for your customer while maintaining control.
+                            It's like a dealer transfer for new, except on this site it's for used!
+                            Your customer is looking for a specific vehicle you don't have on your
+                            lot.
                         </p>
-
-                    </details>
-                    
-                    <div>
-                        
-                       
+                        <p>
+                            Registered Users can show what they are looking for right here, to find
+                            out if another dealer has or knows where you might find one! Chances are
+                            that someone has what you are looking for and might be interested in
+                            moving it from their inventory, or trading it for something you might
+                            have!
+                        </p>
+                        <p>
+                            There is a good chance that the vehicle you want is out there, and most
+                            importantly, it is you who finds it for them! As well, your customer
+                            isn't checking around with other dealers and you maintain control!
+                        </p>
+                    </div>
+                    <div className='about__wrapper__card__img'>
+                        <img src={carOne} alt="Car picture" />
                     </div>
                 </div>
                 <div className='about__wrapper__card'>
-                    <FontAwesomeIcon className="about__wrapper__card__icon" icon={faCar} />
-                    <div>
-                        <h2>List a vehicle to trade!</h2>
-                        <p>
-                            
-                        List your vehicles here before sending them to an auction! Let other dealers know you want to move them at a lower cost than auction selling. Clear out over-age inventory and unwanted off-make trades. Keep in mind that valuations can vary across regions. There's a good chance another dealer may be interested in your vehicles or willing to trade. Plus, you save on freight charges by dealing directly with other dealers for free!
-                        </p>
-                    </div>
+                    <div className='about__wrapper__card__text'>
+                            <h2>LIST A VEHICLE TO TRADE!</h2>
+                            <h3>SAVE ON AUCTION FEES!</h3>
+                            <p>
+                                Before you send it to an auction! List it here and let
+                                other dealers know you want to move it and it costs far
+                                less than selling it through an auction!
+                            </p>
+                            <p>
+                                Get rid of over-age inventory and off-make trades that
+                                you don't want. Remember as well that valuations can
+                                differ from one region of the country to another!
+                            </p>
+                            <p>
+                                Chances are that another dealer might be interested in
+                                what you have, or in trading something with you. You
+                                also save on freight charges! Dealers deal directly with
+                                each other free of charge!
+                            </p>
+                        </div>
+                        <div className='about__wrapper__card__img'>
+                            <img src={carTwo} alt="Car picture" />
+                        </div>
                 </div>
-                <div className='about__wrapper__card'>
-                    <FontAwesomeIcon className="about__wrapper__card__icon" icon={faCommentsDollar} />
-                    <div>
-                        <h2>Forget the black book</h2>
-                        <p>
-                        List unfamiliar vehicles on the website to determine their value to other dealers. Whether it's a Beetle or an Audi Sport Convertible as a Ford dealer, or a Chevy Cargo Van with high mileage as a BMW dealer, avoid the risk of not knowing its worth or losing the deal. List it for free and receive quick responses from multiple dealers. Don't take chances on valuation or paying too much—let the website help you secure the best deal.
 
-                        </p>
-                    </div>
+                <div className='about__wrapper__card'>
+                    <div className='about__wrapper__card__text'>
+                            <h2>FORGET THE BLACK BOOK!</h2>
+                            <h3>FIND OUT WHAT A TRADE IS REALLY WORTH!</h3>
+                            <p>
+                                It might be a vehicle you are not familiar with but you 
+                                don't want to lose the deal! List the vehicle on the 
+                                website and find out what it might be worth to another
+                                dealer!
+                            </p>
+                            <p>
+                                Perhaps as a Ford dealer you have no idea what a
+                                Beetle or an Audi Sport Convertible is worth. Or
+                                maybe you're a BMW dealer and the customer wants to
+                                trade in a Chevy Cargo Van with high mileage.
+                            </p>
+                            <p>
+                                List it on the website for free and get responses
+                                from several other dealers right away. Don't take
+                                chances by risking what it might be worth, or by 
+                                losing the deal or by paying way too much!
+                            </p>
+                        </div>
+                        <div className='about__wrapper__card__img'>
+                            <img src={carTree} alt="Car picture" />
+                        </div>
                 </div>
 
                 <div className='about__wrapper__card'>
-                    <FontAwesomeIcon className="about__wrapper__card__icon" icon={faVanShuttle} />
-                    <div>
-                        <h2>Find commercial vehicles</h2>
-                        <p>
-                        Don't miss out on deals even if you don't have the specific vehicle like a cube van or a flat deck truck. Instead of saying you can't help, inform the prospect that you'll call them back. Then, list their enquiry on the website for free and await responses. We also collaborate with Leasing and Rental Companies, increasing the chances of finding the desired vehicle. Take control of the situation and be the one to find it for your customer, preventing them from searching elsewhere.
-                        </p>
-                    </div>
+                    <div className='about__wrapper__card__text'>
+                            <h2>FIND COMMERCIAL VEHICLES!!</h2>
+                            <h3>MY CUSTOMER NEEDS A 15 PASSENGER VAN!</h3>
+                            <p>
+                                Or maybe its a cube van or a flat deck truck? 
+                                Somebody wants one and you don't have anything like
+                                that! It isn't something that you carry. Do you say
+                                you can't help?? You could possibly lose a deal!
+                            </p>
+                            <p>
+                                Tell the prospect you will call them back. Then list
+                                the enquiry on the website for free, and wait for a
+                                response.
+                            </p>
+                            <p>
+                                We work as well with Leasing and Rental Companies
+                                and there's a good chance that the vehicle you want
+                                is out there, and most importantly, it is you who
+                                finds it for them! Your customer is not checking
+                                around with other dealers and you maintain control!
+                            </p>
+                        </div>
+                        <div className='about__wrapper__card__img'>
+                            <img src={carFour} alt="Car picture" />
+                        </div>
+                   
                 </div>
                 
+            </div>
+            <div className='about__wrapper__call__to__action'>
+                <div className='about__wrapper__call__to__action__text'>
+                    <h1>Ready to start trading?</h1>
+                    <h2>Start a free trial today!</h2>
+                    <button className='about__wrapper__call__to__action__text__btn'>START HERE</button>
+                </div>
+                <img src={carFive} alt="Car picture" />
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@ export default function Header() {
     <div className='header'>
       <div className='header__wrapper'> 
         <div className='header__logo'>
-          <a href='/'><img src={logo} alt="logo" width='70' /></a>
+          <a href='/'>Carznot</a>
         </div>
         <nav>
           <ul>

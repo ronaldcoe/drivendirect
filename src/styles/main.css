@@ -18,6 +18,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
 }
+.App .App-header {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+}
 
 main {
   flex: 1;

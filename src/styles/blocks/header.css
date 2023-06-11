@@ -12,24 +12,35 @@ nav ul li {
   font-weight: bold;
 }
 nav ul li a {
-  color: #0B57D0;
+  color: #063846;
 }
 
 .header {
-  background-color: #E5F7FF;
+  background-color: white;
+  border-bottom: 1px solid #B6B6B6;
 }
 .header .header__wrapper {
   max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
-  padding: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+.header .header__wrapper nav ul li a {
+  color: white;
+  background-color: #063846;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 5px;
+}
 .header .header__wrapper .header__logo {
   font-family: "Rubik", sans-serif;
-  color: #0B57D0;
+  color: #063846;
   font-size: 1.6rem;
   font-weight: 600;
+}
+.header .header__wrapper .header__logo a {
+  text-decoration: none;
+  color: #063846;
 }/*# sourceMappingURL=header.css.map */

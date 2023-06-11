@@ -14,7 +14,7 @@ function App() {
       <main>
         <Hero></Hero>
         <About></About>
-        <LandingInventory></LandingInventory>
+   
         <Testimonial></Testimonial>
       </main>
     </div>

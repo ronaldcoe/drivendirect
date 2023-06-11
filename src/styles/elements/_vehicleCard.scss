@@ -3,7 +3,7 @@
 
 .vehiclecard {
     border: 1px solid $border-color;
-    width: 350px;
+    width: 300px;
     border-radius: 5px;
     padding: 10px 20px;
     display: flex;
@@ -11,7 +11,7 @@
     cursor: pointer;
 
     height: fit-content;
-    background-color: $secondary-background-color;
+  
     
     @media screen and (max-width: $breakpoint-small) {
         width: 100%;
@@ -19,6 +19,7 @@
 
     .vehiclecard__title {
        display: flex;
+       flex-direction: column-reverse;
        justify-content: space-between;
        width: 100%;
        h3 {

@@ -2,7 +2,6 @@
 @import '../variables/mixins';
 
 .testimonial {
-    margin-top: 200px;
 
     .testimonial__wrapper {
         @include wrapper;

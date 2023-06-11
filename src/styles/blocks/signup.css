@@ -7,7 +7,7 @@
 }
 .signup .signup__wrapper .signup__wrapper__content {
   border-radius: 5px;
-  background-color: #eff0ff;
+  background-color: #F3F3F3;
   padding: 50px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   max-width: -moz-fit-content;
@@ -16,7 +16,7 @@
   margin-top: 50px;
 }
 .signup .signup__wrapper .signup__wrapper__content h1 {
-  color: #36454F;
+  color: #063846;
 }
 .signup .signup__wrapper .signup__wrapper__content form {
   display: flex;
@@ -44,7 +44,7 @@
   width: 100%;
 }
 .signup .signup__wrapper .signup__wrapper__content form label input:focus {
-  border: 1px solid #0B57D0;
+  border: 1px solid #063846;
   outline: none;
   transition: 0.5s;
 }
@@ -57,12 +57,12 @@
   width: 100%;
 }
 .signup .signup__wrapper .signup__wrapper__content form label select:focus {
-  border: 1px solid #0B57D0;
+  border: 1px solid #063846;
   outline: none;
   transition: 0.5s;
 }
 .signup .signup__wrapper .signup__wrapper__content form label select option:hover {
-  background-color: #0B57D0;
+  background-color: #063846;
   color: "Rubik", sans-serif;
 }
 .signup .signup__wrapper .signup__wrapper__content form button {
@@ -73,7 +73,7 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #0B57D0;
+  background-color: #063846;
   color: white;
 }
 .signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox {
