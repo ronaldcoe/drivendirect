@@ -9,14 +9,32 @@
 @mixin input {
     border-radius: 5px;
     padding:10px;
-    border: 1px solid $border-color;
+    border: 2px solid $border-color;
     font-family: $paragraph-font;
     color: $primary-paragraph-font-color;
 
     &:focus {
-        border: 1px solid $primary-color; 
+        border: 2px solid $primary-color; 
         outline: none;
         transition: 0.5s;
+    }
+
+    &:required {
+
+        &:valid {
+            border: 2px solid green;
+            background-color: rgb(238, 255, 238);
+        }
+    }
+
+    &.valid {
+        border: 2px solid green;
+        background-color: rgb(238, 255, 238);
+    }
+
+    &.invalid {
+        border: 2px solid red;
+        background-color: rgb(255, 235, 235);
     }
 }
 @mixin buttons {

@@ -1,5 +1,5 @@
 import React from 'react'
-import carBanner from '../../images/car_banner.png'
+
 import '../../styles/blocks/hero.css'
 
 export default function Hero() {

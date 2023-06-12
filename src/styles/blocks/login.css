@@ -46,15 +46,27 @@
 .login .login__wrapper .login__wrapper__content form label input {
   border-radius: 5px;
   padding: 10px;
-  border: 1px solid #B6B6B6;
+  border: 2px solid #B6B6B6;
   font-family: "Rubik", sans-serif;
   color: #36454F;
   width: 100%;
 }
 .login .login__wrapper .login__wrapper__content form label input:focus {
-  border: 1px solid #063846;
+  border: 2px solid #063846;
   outline: none;
   transition: 0.5s;
+}
+.login .login__wrapper .login__wrapper__content form label input:required:valid {
+  border: 2px solid green;
+  background-color: rgb(238, 255, 238);
+}
+.login .login__wrapper .login__wrapper__content form label input.valid {
+  border: 2px solid green;
+  background-color: rgb(238, 255, 238);
+}
+.login .login__wrapper .login__wrapper__content form label input.invalid {
+  border: 2px solid red;
+  background-color: rgb(255, 235, 235);
 }
 .login .login__wrapper .login__wrapper__content form button {
   padding: 15px;

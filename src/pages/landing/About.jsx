@@ -1,6 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCar, faMagnifyingGlass, faVanShuttle, faCommentsDollar } from '@fortawesome/free-solid-svg-icons';
+import { faCar, faMagnifyingGlass, faVanShuttle, faCommentsDollar, faClipboardCheck, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/blocks/about.css'
 import carOne from '../../images/car_blue.jpg'
 import carTwo from '../../images/car_2.jpg'
@@ -16,7 +16,20 @@ export default function About() {
         
         <div className='about__wrapper'>
             
-           
+           <div className='about__wrapper__btns'>
+                <div className='about__wrapper__icons'>
+                    <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                    <h3>Search for what you need</h3>
+                </div>
+                <div className='about__wrapper__icons'>
+                    <FontAwesomeIcon className="about__wrapper__icon" icon={faCar} />
+                    <h3>See trades available</h3>
+                </div>
+                <div className='about__wrapper__icons'>
+                    <FontAwesomeIcon className="about__wrapper__icon" icon={faClipboardCheck} />
+                    <h3>List a vehicle to trade</h3>
+                </div>
+           </div>
             <div className='about__wrapper__card__container'>
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
@@ -41,7 +54,7 @@ export default function About() {
                         </p>
                     </div>
                     <div className='about__wrapper__card__img'>
-                        <img src={carOne} alt="Car picture" />
+                        <img src={carOne} alt="a small blue car parked on the side of the road" loading='lazy' />
                     </div>
                 </div>
                 <div className='about__wrapper__card'>
@@ -66,7 +79,7 @@ export default function About() {
                             </p>
                         </div>
                         <div className='about__wrapper__card__img'>
-                            <img src={carTwo} alt="Car picture" />
+                            <img src={carTwo} alt="a blue car parked on the side of the road" loading='lazy' />
                         </div>
                 </div>
 
@@ -94,7 +107,7 @@ export default function About() {
                             </p>
                         </div>
                         <div className='about__wrapper__card__img'>
-                            <img src={carTree} alt="Car picture" />
+                            <img src={carTree} alt="a white honda cr - v parked in the snow" loading='lazy' />
                         </div>
                 </div>
 
@@ -122,7 +135,7 @@ export default function About() {
                             </p>
                         </div>
                         <div className='about__wrapper__card__img'>
-                            <img src={carFour} alt="Car picture" />
+                            <img src={carFour} alt="a silver van parked on the side of a road" loading='lazy'/>
                         </div>
                    
                 </div>
@@ -134,7 +147,7 @@ export default function About() {
                     <h2>Start a free trial today!</h2>
                     <button className='about__wrapper__call__to__action__text__btn'>START HERE</button>
                 </div>
-                <img src={carFive} alt="Car picture" />
+                <img src={carFive} alt="a black car is parked in a parking lot" loading='lazy'/>
             </div>
         </div>
     </div>
