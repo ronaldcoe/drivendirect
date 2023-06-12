@@ -38,11 +38,11 @@ export default function Login() {
                 <form action="get">
                     <label>
                         <p>User Name</p>
-                        <input type="text" name="" id="" onChange={handleSetUserName}/>
+                        <input type="email" name="" id=""  required onChange={handleSetUserName}/>
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type={showPassword?'text':'password'} name="" id=""  onChange={handleSetPassword}/>
+                        <input type={showPassword?'text':'password'} name="" id="" required onChange={handleSetPassword}/>
                         <FontAwesomeIcon className="login__wrapper__content__eyeicon" icon={showPassword?faEyeSlash:faEye} onClick={handleShowPassword}/>
                     </label>
                     <a className='login__wrapper__content__resetpassword' href='#'>Forgot Password?</a>
