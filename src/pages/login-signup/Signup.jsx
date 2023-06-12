@@ -1,9 +1,27 @@
 import React, { useState } from 'react'
 import '../../styles/blocks/signup.css'
+import {createUser} from "../../Firebase/FirebaseStateManagement"
 
 export default function Signup() {
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword]= useState("")
 
-
+    // Function to handle the SignUp, it will create the user and store in the DB
+    const signUp= async (e)=>{
+        e.preventDefault();
+        try {
+            const success = await createUser(email, password, firstName, lastName);
+            if (success) {
+              console.log('User was created');
+            } else {
+              console.log('User creation failed');
+            }
+          } catch (error) {
+            console.log(error);
+          }
+    }
 
     const statesUSA = [
         'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
@@ -36,22 +54,22 @@ export default function Signup() {
         <div className='signup__wrapper'>
             <div className='signup__wrapper__content'>
                 <h1>Create an Account</h1>
-                <form action="" method="get">
+                <form onSubmit={signUp}>
                     <label>
                         <p>First Name</p>
-                        <input type='text'></input>  
+                        <input type='text' value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}></input>  
                     </label>  
                     <label>
                         <p>Last Name</p>
-                        <input type='text'></input>  
+                        <input type='text' value={lastName} onChange={(e)=>{setLastName(e.target.value)}}></input>  
                     </label>
                     <label>
                         <p>Email</p>
-                        <input type='email'></input>  
+                        <input type='email' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>  
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type='password'></input>  
+                        <input type='password' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
                     </label>
                     <label>
                         <p>Confirm password</p>
@@ -97,7 +115,7 @@ export default function Signup() {
 
                         </div>
                     </label>
-                    <button>
+                    <button type='submit'>
                         Sign Up
                     </button>
                 </form>

@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './pages/landing/Footer';
 import Login from './pages/login-signup/Login';
 import Signup from './pages/login-signup/Signup';
-import Firebase from './Firebase';
+import Firebase from './Firebase2';
 
 
 function App() {
