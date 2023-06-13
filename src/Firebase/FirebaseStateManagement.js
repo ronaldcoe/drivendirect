@@ -57,7 +57,8 @@ export const getAllListingsByEntity = async (entity, value) => {
 /************************AUTH AND USER********************************************/
 
 //Create new user
-export const createUser = async (email, password, firstName, lastName) => {
+export const createUser = async (email, password, firstName, lastName, dealership,
+                                  website, country, region, city, phoneNumber) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCreds.user;
@@ -68,6 +69,12 @@ export const createUser = async (email, password, firstName, lastName) => {
       lastName: lastName,
       email: user.email,
       // Add other custom fields as needed
+      dealership: dealership,
+      website: website,
+      country: country,
+      region: region,
+      city: city,
+      phoneNumber: phoneNumber
     };
 
     // Store additional fields in Firestore and create the user collection
@@ -89,6 +96,6 @@ export const loginUser = async (email, password) => {
     
   } catch (error) {
     console.log(error);
-    throw new Error('User creation failed'); 
+    throw new Error('User Login failed'); 
   }
 };
