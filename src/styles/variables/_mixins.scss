@@ -23,13 +23,13 @@
 
         &:valid {
             border: 2px solid green;
-            background-color: rgb(238, 255, 238);
+            background-color: rgb(246, 255, 246);
         }
     }
 
     &.valid {
         border: 2px solid green;
-        background-color: rgb(238, 255, 238);
+        background-color: rgb(246, 255, 246);
     }
 
     &.invalid {
@@ -60,4 +60,49 @@
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
    
+}
+
+@mixin forms {
+    display: flex;
+    flex-direction: column;
+    label {
+        margin-bottom: 20px;
+
+        p {
+            font-size: 1.3rem;
+            color: $secondary-background-color-font;
+            
+        }
+        
+        
+        input {
+            @include input;
+            width: 100%;
+
+            
+        }
+
+        select {
+            @include input;
+            width: 100%;
+
+            option {
+                
+                &:hover {
+                    
+                    color: $paragraph-font
+                }
+            }
+        }
+
+        textarea {
+            @include input;
+            width: 100%;
+            resize: none;
+        }
+        
+        
+        
+       
+    }
 }

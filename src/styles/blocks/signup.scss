@@ -32,15 +32,14 @@
         .signup__wrapper__form {
             @include container;
             max-width: 500px;
-            min-width: 500px;
+            min-width: 300px;
       
            
 
             
 
             form {
-                display: flex;
-                flex-direction: column;
+                @include forms;
 
                 .login__wrapper__form__eyeicon {
                     color: $border-color;
@@ -48,50 +47,17 @@
                     transform: translateY(10px);
                     right: 60px;
                 }
+                .signup__wrapper__form__details {
+                    display: none ;
+                    font-size: 1.1rem;
+                    margin-top: 10px;
 
-                label {
-                    margin-bottom: 20px;
-
-                    p {
-                        font-size: 1.3rem;
-                        color: $secondary-background-color-font;
-                        
+                    &.show_details {
+                        display: block;
                     }
                     
-                    .signup__wrapper__form__details {
-                        display: none ;
-                        font-size: 1.1rem;
-                        margin-top: 10px;
-
-                        &.show_details {
-                            display: block;
-                        }
-                        
-                    }
-                    input {
-                        @include input;
-                        width: 100%;
-
-                        
-                    }
-
-                    select {
-                        @include input;
-                        width: 100%;
-
-                        option {
-                            
-                            &:hover {
-                                background-color: $primary-color;
-                                color: $paragraph-font
-                            }
-                        }
-                    }
-                    
-                    
-                    
-                   
                 }
+                
                 
                 
 
