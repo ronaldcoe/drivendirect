@@ -14,6 +14,7 @@ export default function AddVehicle() {
     Chevrolet: ["Silverado", "Equinox", "Cruze"],
   };
 
+  // Data
   const [makeSelected, setMakeSelected] = useState('')
   const [modelSelected, setModelSelected] = useState('')
   const [vehicleYear, setVehicleYear] = useState('')
