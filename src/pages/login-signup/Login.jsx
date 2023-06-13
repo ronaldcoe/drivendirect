@@ -9,7 +9,7 @@ export default function Login() {
     const [showPassword, setShowPassword] = useState(false);
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
-
+    const [error, setError] = useState(false)
 
 
     const login=async(e)=>{
@@ -19,11 +19,12 @@ export default function Login() {
             if (userCreds) {
               console.log(userCreds)
               console.log('User was logged in');
+              setError(false)
             } else {
               console.log('User login fail');
             }
           } catch (error) {
-            console.log(error);
+            setError(true)
           }     
     }
 
@@ -40,6 +41,7 @@ export default function Login() {
    
   return (
     <div className='login'>
+      {error && <div>Error</div> }
         <div className='login__wrapper'>
             <div className='login__wrapper__content'>
                 <h1>Login</h1>

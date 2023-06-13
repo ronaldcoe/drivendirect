@@ -3,18 +3,30 @@ import '../../styles/blocks/signup.css'
 import {createUser} from "../../Firebase/FirebaseStateManagement"
 
 export default function Signup() {
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword]= useState("")
 
+    // TODO store all the input values in a state
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [dealership, setDealership] = useState('')
+    const [website, setWebsite] = useState('')
+    const [country, setCountry] = useState('')
+    const [region, setRegion] = useState('')
+    const [city, setCity] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+
+    
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
         e.preventDefault();
         try {
-            const success = await createUser(email, password, firstName, lastName);
+            const success = await createUser(email, password, firstName, lastName, dealership,
+                                                website, country, region, city, phoneNumber);
             if (success) {
-              console.log('User was created');
+                console.log('User was created');
+                
             } else {
               console.log('User creation failed');
             }
@@ -41,147 +53,50 @@ export default function Signup() {
         'Quebec', 'Saskatchewan', 'Yukon'
     ];
     
-    
-    
-    const [isFocused, setIsFocused] = useState(false);
-
-
-    // TODO store all the input values in a state
-    const [name, setName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
-    const [dealership, setDealership] = useState('')
-    const [website, setWebsite] = useState('')
-    const [country, setCountry] = useState('')
-    const [region, setRegion] = useState('')
-    const [city, setCity] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [passwordMatchError, setPasswordMatchError] = useState(true);
+       
   
-    let info = {
-        name: name,
-        lastName: lastName,
-        email: email,
-        password: password,
-        confirmPassword: confirmPassword,
-        dealership: dealership,
-        website: website,
-        country: country,
-        region: region,
-        city: city,
-        phoneNumber: phoneNumber,
-    }
-    console.log(confirmPassword)
-    console.log(info)
-    const handleFocus = () => {
-      setIsFocused(true);
-    };
-  
-    const handleBlur = () => {
-      setIsFocused(false);
-    };
-  
-    // HANDELERS FOR FORM VALUES
-    const handleName = (event) => {
-        setName(event.target.value)
-    }
 
-    const handleLastName = (event) => {
-        setLastName(event.target.value)
-    }
-
-    const handleEmail = (event) => {
-        setEmail(event.target.value)
-    }
-
-    const handlePassword = (event) => {
-        setPassword(event.target.value)
-    }
-    const handleConfirmPassword = (event) => {
-        setConfirmPassword(event.target.value)
-    }
-
-    const handleDealership = (event) => {
-        setDealership(event.target.value)
-    }
-    
-    const handleWebsite = (event) => {
-        event.preventDefault()
-        setWebsite(event.target.value)
-    }
-
-    const handleCountry = (event) => {
-        setCountry(event.target.value);
-    };
-  
-    const handleRegion = (event) => {
-        setRegion(event.target.value)
-    }
-
-    const handleCity = (event) => {
-        setCity(event.target.value)
-    }
-
-    const handlePhoneNumber = (event) => {
-        setPhoneNumber(event.target.value)
-    }
- 
-  
-    const handleFormSubmit = (event) => {
-      event.preventDefault();
-  
-      if (confirmPassword !== event.target.password.value) {
-        setPasswordMatchError(true);
-      } else {
-        // Passwords match, proceed with form submission
-        setPasswordMatchError(false);
-        // TODO: Submit form data or perform further actions
-      }
-    };
-  
-  
   return (
     <div className='signup'>
         <div className='signup__wrapper'>
             <div className='signup__wrapper__description'>
                 <h1>Create an Account</h1>
-
+            </div>
+            <div className='signup__wrapper__form'>
                 <form onSubmit={signUp}>
                     <label>
                         <p>First Name</p>
-                        <input type='text' value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}></input>  
+                        <input type='text' required value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}></input>  
                     </label>  
                     <label>
                         <p>Last Name</p>
-                        <input type='text' value={lastName} onChange={(e)=>{setLastName(e.target.value)}}></input>  
+                        <input type='text' required value={lastName} onChange={(e)=>{setLastName(e.target.value)}}></input>  
                     </label>
                     <label>
                         <p>Email</p>
-                        <input type='email' value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>  
+                        <input type='email' required value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>  
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type='password' value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
+                        <input type='password' required value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
 
                     </label>
                     <label>
                         <p>Confirm password</p>
-                        <input type='password' className={password !== confirmPassword? 'invalid' : password === ''? '' : 'valid'} onChange={handleConfirmPassword}></input>
-                        {password != confirmPassword? <p className='signup__wrapper__content__details show_details'>*Passwords must match</p>: ''} 
+                        <input type='password' required className={password !== confirmPassword? 'invalid' : password === ''? '' : 'valid'} onChange={(e)=>{setConfirmPassword(e.target.value)}}></input>
+                        {password != confirmPassword? <p className='signup__wrapper__form__details show_details'>*Passwords must match</p>: ''} 
                     </label>
                     <label>
                         <p>Dealership Name</p>
-                        <input type='text' onChange={handleDealership} required minLength="2"></input>  
+                        <input type='text' required onChange={(e)=>{setDealership(e.target.value)}} minLength="2"></input>  
                     </label>
                     <label>
                         <p>Website</p>
-                        <input type='text' onChange={handleWebsite} required pattern="^(https?://)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$"></input>  
+                        <input type='text' required onChange={(e)=>{setWebsite(e.target.value)}} pattern="^(https?://)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$"></input>  
                     </label>
                     <label>
                         <p>Country</p>
-                        <select value={country} required onChange={handleCountry}>
+                        <select value={country} required onChange={(e)=>{setCountry(e.target.value)}}>
                             <option value='' selected>Select Country</option>
                             <option value='USA'>United States</option>
                             <option value='CA'>Canada</option>
@@ -190,7 +105,7 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Region</p>
-                    <select onChange={handleRegion} required>
+                    <select onChange={(e)=>{setRegion(e.target.value)}} required>
                         <option value="">Select a Region</option>
                         {(country === 'USA'? statesUSA : country === 'CA' ? statesCanada : []).map((state) => (
                         <option key={state} value={state}>{state}</option>
@@ -199,16 +114,16 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>City</p>
-                        <input type='text' onChange={handleCity}  required minLength="2"></input>  
+                        <input type='text' onChange={(e)=>{setCity(e.target.value)}}  required minLength="2"></input>  
                     </label>
                     <label>
                         <p>Phone Number</p>
-                        <input type='tel' onChange={handlePhoneNumber} required></input>  
+                        <input type='tel' onChange={(e)=>{setPhoneNumber(e.target.value)}} required></input>  
                     </label>
                     <label>
-                        <div className='signup__wrapper__content__checkbox'>
-                            <input type="checkbox" name="" id="" /> 
-                            <p>I agree to the <a href='#'>Terms of Service</a> and <a href='/privacy-policy'>Privacy Policy</a></p>
+                        <div className='signup__wrapper__form__checkbox'>
+                            <input type="checkbox" required name="" id="" /> 
+                            <p>I agree to the <a href='#'>Terms of Service</a> and <a href='/privacy-policy' target='_blank'>Privacy Policy</a></p>
 
                         </div>
                     </label>

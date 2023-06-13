@@ -25,7 +25,7 @@
   padding-top: 20px;
   font-size: 1.2rem;
 }
-.signup .signup__wrapper .signup__wrapper__content {
+.signup .signup__wrapper .signup__wrapper__form {
   border-radius: 5px;
   background-color: #F3F3F3;
   padding: 50px;
@@ -33,32 +33,32 @@
   max-width: 500px;
   min-width: 500px;
 }
-.signup .signup__wrapper .signup__wrapper__content form {
+.signup .signup__wrapper .signup__wrapper__form form {
   display: flex;
   flex-direction: column;
 }
-.signup .signup__wrapper .signup__wrapper__content form .login__wrapper__content__eyeicon {
+.signup .signup__wrapper .signup__wrapper__form form .login__wrapper__form__eyeicon {
   color: #B6B6B6;
   position: absolute;
   transform: translateY(10px);
   right: 60px;
 }
-.signup .signup__wrapper .signup__wrapper__content form label {
+.signup .signup__wrapper .signup__wrapper__form form label {
   margin-bottom: 20px;
 }
-.signup .signup__wrapper .signup__wrapper__content form label p {
+.signup .signup__wrapper .signup__wrapper__form form label p {
   font-size: 1.3rem;
   color: #636363;
 }
-.signup .signup__wrapper .signup__wrapper__content form label .signup__wrapper__content__details {
+.signup .signup__wrapper .signup__wrapper__form form label .signup__wrapper__form__details {
   display: none;
   font-size: 1.1rem;
   margin-top: 10px;
 }
-.signup .signup__wrapper .signup__wrapper__content form label .signup__wrapper__content__details.show_details {
+.signup .signup__wrapper .signup__wrapper__form form label .signup__wrapper__form__details.show_details {
   display: block;
 }
-.signup .signup__wrapper .signup__wrapper__content form label input {
+.signup .signup__wrapper .signup__wrapper__form form label input {
   border-radius: 5px;
   padding: 10px;
   border: 2px solid #B6B6B6;
@@ -66,24 +66,24 @@
   color: #36454F;
   width: 100%;
 }
-.signup .signup__wrapper .signup__wrapper__content form label input:focus {
+.signup .signup__wrapper .signup__wrapper__form form label input:focus {
   border: 2px solid #063846;
   outline: none;
   transition: 0.5s;
 }
-.signup .signup__wrapper .signup__wrapper__content form label input:required:valid {
+.signup .signup__wrapper .signup__wrapper__form form label input:required:valid {
   border: 2px solid green;
   background-color: rgb(238, 255, 238);
 }
-.signup .signup__wrapper .signup__wrapper__content form label input.valid {
+.signup .signup__wrapper .signup__wrapper__form form label input.valid {
   border: 2px solid green;
   background-color: rgb(238, 255, 238);
 }
-.signup .signup__wrapper .signup__wrapper__content form label input.invalid {
+.signup .signup__wrapper .signup__wrapper__form form label input.invalid {
   border: 2px solid red;
   background-color: rgb(255, 235, 235);
 }
-.signup .signup__wrapper .signup__wrapper__content form label select {
+.signup .signup__wrapper .signup__wrapper__form form label select {
   border-radius: 5px;
   padding: 10px;
   border: 2px solid #B6B6B6;
@@ -91,28 +91,28 @@
   color: #36454F;
   width: 100%;
 }
-.signup .signup__wrapper .signup__wrapper__content form label select:focus {
+.signup .signup__wrapper .signup__wrapper__form form label select:focus {
   border: 2px solid #063846;
   outline: none;
   transition: 0.5s;
 }
-.signup .signup__wrapper .signup__wrapper__content form label select:required:valid {
+.signup .signup__wrapper .signup__wrapper__form form label select:required:valid {
   border: 2px solid green;
   background-color: rgb(238, 255, 238);
 }
-.signup .signup__wrapper .signup__wrapper__content form label select.valid {
+.signup .signup__wrapper .signup__wrapper__form form label select.valid {
   border: 2px solid green;
   background-color: rgb(238, 255, 238);
 }
-.signup .signup__wrapper .signup__wrapper__content form label select.invalid {
+.signup .signup__wrapper .signup__wrapper__form form label select.invalid {
   border: 2px solid red;
   background-color: rgb(255, 235, 235);
 }
-.signup .signup__wrapper .signup__wrapper__content form label select option:hover {
+.signup .signup__wrapper .signup__wrapper__form form label select option:hover {
   background-color: #063846;
   color: "Rubik", sans-serif;
 }
-.signup .signup__wrapper .signup__wrapper__content form button {
+.signup .signup__wrapper .signup__wrapper__form form button {
   padding: 15px;
   border: none;
   font-family: "Rubik", sans-serif;
@@ -123,16 +123,16 @@
   background-color: #063846;
   color: white;
 }
-.signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox {
+.signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox {
   display: flex;
   font-family: "Rubik", sans-serif;
   align-items: center;
   gap: 10px;
 }
-.signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox a {
+.signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox a {
   color: inherit;
 }
-.signup .signup__wrapper .signup__wrapper__content .signup__wrapper__content__checkbox input {
+.signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox input {
   height: 13px;
   width: 13px;
 }/*# sourceMappingURL=signup.css.map */
