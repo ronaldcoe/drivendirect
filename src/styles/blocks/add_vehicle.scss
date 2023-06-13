@@ -1,0 +1,50 @@
+@import '../variables/variables';
+@import '../variables/mixins';
+
+.addVehicle {
+    
+    .addVehicle__wrapper {
+        @include wrapper;
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 50px;
+
+        @media screen and (max-width:$breakpoint-medium) {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        
+        h1 {
+            color: $primary-color;
+        }
+        .addVehicle__wrapper__description {
+            max-width: 400px;
+
+            .addVehicle__wrapper__form__important {
+                font-size: 1.2rem;
+                color: $secondary-background-color-font;
+                margin-top: 20px;
+            }
+        }
+        .addVehicle__wrapper__form {
+            @include container;
+            max-width: 500px;
+            min-width: 300px;
+
+            form {
+                @include forms
+            }
+
+          
+        }
+
+        button {
+            @include buttons;
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+   
+}

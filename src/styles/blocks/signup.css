@@ -31,17 +31,11 @@
   padding: 50px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   max-width: 500px;
-  min-width: 500px;
+  min-width: 300px;
 }
 .signup .signup__wrapper .signup__wrapper__form form {
   display: flex;
   flex-direction: column;
-}
-.signup .signup__wrapper .signup__wrapper__form form .login__wrapper__form__eyeicon {
-  color: #B6B6B6;
-  position: absolute;
-  transform: translateY(10px);
-  right: 60px;
 }
 .signup .signup__wrapper .signup__wrapper__form form label {
   margin-bottom: 20px;
@@ -49,14 +43,6 @@
 .signup .signup__wrapper .signup__wrapper__form form label p {
   font-size: 1.3rem;
   color: #636363;
-}
-.signup .signup__wrapper .signup__wrapper__form form label .signup__wrapper__form__details {
-  display: none;
-  font-size: 1.1rem;
-  margin-top: 10px;
-}
-.signup .signup__wrapper .signup__wrapper__form form label .signup__wrapper__form__details.show_details {
-  display: block;
 }
 .signup .signup__wrapper .signup__wrapper__form form label input {
   border-radius: 5px;
@@ -73,11 +59,11 @@
 }
 .signup .signup__wrapper .signup__wrapper__form form label input:required:valid {
   border: 2px solid green;
-  background-color: rgb(238, 255, 238);
+  background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label input.valid {
   border: 2px solid green;
-  background-color: rgb(238, 255, 238);
+  background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label input.invalid {
   border: 2px solid red;
@@ -98,19 +84,58 @@
 }
 .signup .signup__wrapper .signup__wrapper__form form label select:required:valid {
   border: 2px solid green;
-  background-color: rgb(238, 255, 238);
+  background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select.valid {
   border: 2px solid green;
-  background-color: rgb(238, 255, 238);
+  background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select.invalid {
   border: 2px solid red;
   background-color: rgb(255, 235, 235);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select option:hover {
-  background-color: #063846;
   color: "Rubik", sans-serif;
+}
+.signup .signup__wrapper .signup__wrapper__form form label textarea {
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+  resize: none;
+}
+.signup .signup__wrapper .signup__wrapper__form form label textarea:focus {
+  border: 2px solid #063846;
+  outline: none;
+  transition: 0.5s;
+}
+.signup .signup__wrapper .signup__wrapper__form form label textarea:required:valid {
+  border: 2px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.signup .signup__wrapper .signup__wrapper__form form label textarea.valid {
+  border: 2px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.signup .signup__wrapper .signup__wrapper__form form label textarea.invalid {
+  border: 2px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.signup .signup__wrapper .signup__wrapper__form form .login__wrapper__form__eyeicon {
+  color: #B6B6B6;
+  position: absolute;
+  transform: translateY(10px);
+  right: 60px;
+}
+.signup .signup__wrapper .signup__wrapper__form form .signup__wrapper__form__details {
+  display: none;
+  font-size: 1.1rem;
+  margin-top: 10px;
+}
+.signup .signup__wrapper .signup__wrapper__form form .signup__wrapper__form__details.show_details {
+  display: block;
 }
 .signup .signup__wrapper .signup__wrapper__form form button {
   padding: 15px;

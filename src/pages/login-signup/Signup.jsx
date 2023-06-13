@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../../styles/blocks/signup.css'
+import Error from '../../shared/notifications/Error'
 import {createUser} from "../../Firebase/FirebaseStateManagement"
 
 export default function Signup() {
@@ -16,7 +17,13 @@ export default function Signup() {
     const [region, setRegion] = useState('')
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    
+    
 
+
+    // Errors 
+    const [errors, setErrors] = useState('')
+    const [showError, setShowError] = useState(false)
     
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
@@ -31,7 +38,9 @@ export default function Signup() {
               console.log('User creation failed');
             }
           } catch (error) {
-            console.log(error);
+            setErrors(error[0])
+            setShowError(true)
+            console.log(errors)
           }
     }
 
@@ -58,11 +67,15 @@ export default function Signup() {
 
   return (
     <div className='signup'>
+        {errors.length > 0 && showError ? errors.map((error) => {return (<Error key={error} close={{showError, setShowError}} message={error}/>)}):''}
         <div className='signup__wrapper'>
+            
             <div className='signup__wrapper__description'>
                 <h1>Create an Account</h1>
+                <p>Once registered your information will be verified and an email will then be sent to you allowing you to enter a username and password. Thank you.</p>
             </div>
             <div className='signup__wrapper__form'>
+                
                 <form onSubmit={signUp}>
                     <label>
                         <p>First Name</p>
@@ -78,7 +91,7 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Password</p>
-                        <input type='password' required value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
+                        <input type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
 
                     </label>
                     <label>
@@ -96,8 +109,8 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Country</p>
-                        <select value={country} required onChange={(e)=>{setCountry(e.target.value)}}>
-                            <option value='' selected>Select Country</option>
+                        <select required onChange={(e)=>{setCountry(e.target.value)}}>
+                            <option value='' >Select Country</option>
                             <option value='USA'>United States</option>
                             <option value='CA'>Canada</option>
 
