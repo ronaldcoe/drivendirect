@@ -4,6 +4,8 @@ import '../../styles/blocks/add_vehicle.css'
 export default function AddVehicle() {
 
 
+
+  // Will move this over the database. Just testing
   const vehicles = {
     Hyundai: ["Santa Fe", "Tucson", "Accent"],
     Toyota: ["Camry", "Corolla", "RAV4"],
@@ -12,9 +14,12 @@ export default function AddVehicle() {
     Chevrolet: ["Silverado", "Equinox", "Cruze"],
   };
 
-  const [makeSelected, setMakeSelected] = useState(null)
+  const [makeSelected, setMakeSelected] = useState('')
   const [modelSelected, setModelSelected] = useState('')
+  const [vehicleYear, setVehicleYear] = useState('')
+  const [vehicleDescription, setVehicleDescription] = useState('')
 
+console.log(makeSelected, modelSelected, vehicleYear, vehicleDescription)
   
   return (
     <div className='addVehicle'>
@@ -30,7 +35,7 @@ export default function AddVehicle() {
             <label>
               <p>Make</p>
               <select required onChange={(e)=>{setMakeSelected(e.target.value)}}>
-                <option value="">Select a Make</option>
+                <option value=''>Select a Make</option>
                 {Object.keys(vehicles).map((make)=> {
                   return (
                     <option value={make} key={make}>{make}</option>
@@ -42,23 +47,23 @@ export default function AddVehicle() {
             <label>
               <p>Model</p>
               {makeSelected !== 'other'? 
-                <select required>
+                <select required onChange={(e)=>{setModelSelected(e.target.value)}}>
                 <option value=''>Select a Model</option>
-                {makeSelected !== null ? vehicles[makeSelected].map((model)=>{
+                {makeSelected !== "" ? vehicles[makeSelected].map((model)=>{
                   return (
                     <option value={model} key={model}>{model}</option>
                   )
                 }):'' }
-              </select>:<input type='text' placeholder='Type in the Model'></input>
+              </select>:<input type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}></input>
               }
             </label>
             <label>
               <p>Year</p>
-              <input type="text" required pattern='\d{4}'/>
+              <input type="text" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}}/>
             </label>
             <label>
               <p>Description</p>
-              <textarea name="" id="" cols="30" rows="5" maxLength={120}></textarea>
+              <textarea name="" id="" cols="30" rows="5" maxLength={120} onChange={(e)=>{setVehicleDescription(e.target.value)}}></textarea>
             </label>
             <button type='submit'>List Vehicle</button>
           </form>
