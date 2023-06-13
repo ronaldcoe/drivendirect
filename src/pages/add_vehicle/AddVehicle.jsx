@@ -19,7 +19,6 @@ export default function AddVehicle() {
   const [vehicleYear, setVehicleYear] = useState('')
   const [vehicleDescription, setVehicleDescription] = useState('')
 
-console.log(makeSelected, modelSelected, vehicleYear, vehicleDescription)
   
   return (
     <div className='addVehicle'>
