@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'fire
 const inventoryTradeCollectionRef = collection(firestore, 'inventoryTrade');
 const inventoryListCollectionRef = collection(firestore, 'inventoryList');
 const usersCollectionRef = collection(firestore, 'users');
+const staticCollectionRef = collection(firestore, 'static data');
 
 
 /***********************InventoryList and Inventorytrade****************************************************** */
@@ -182,4 +183,49 @@ export const loginUser = async (email, password) => {
 
 /****************************************************************************************** */
 
+/*************************************ENTER STATIC DATA****************
+ *  const data ={
+      countries:{
+        USA :[
+          'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+          'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+          'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+          'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+          'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+          'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
+          'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        ],
+        Canada : [
+        'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
+        'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
+        'Quebec', 'Saskatchewan', 'Yukon'
+        ]
+      }
+    }
+    const enter =async()=>{
+      await enterStaticData(data)
+    }
+ * enter()
+ * ****************** */
+export const enterStaticData= async(data)=>{
+  await addDoc(staticCollectionRef, data)
+  return true
+}
 
+// Get all countries
+export const getCountries = async () => {
+  try {
+    const querySnapshot = await getDocs(staticCollectionRef);
+
+    // Map the data and extract the countries field
+    const countries = querySnapshot.docs.map((doc) => doc.data().countries);
+    return countries;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+/*************************************************************************************** */

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import Error from '../../shared/notifications/Error';
 import {loginUser} from "../../Firebase/FirebaseStateManagement"
+import { getCountries } from '../../Firebase/FirebaseStateManagement';
 
 export default function Login() {
 
@@ -11,7 +12,6 @@ export default function Login() {
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const [showError, setShowError] = useState(false)
-
 
     const login=async(e)=>{
         e.preventDefault();
@@ -32,7 +32,7 @@ export default function Login() {
             setShowError(true)
           }     
     }
-
+    
     // Handleres for show password
     const handleShowPassword = () =>{
         if (!showPassword) {

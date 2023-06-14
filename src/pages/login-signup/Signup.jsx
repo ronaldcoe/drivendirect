@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/blocks/signup.css'
 import Error from '../../shared/notifications/Error'
 import {createUser} from "../../Firebase/FirebaseStateManagement"
+import { getCountries } from '../../Firebase/FirebaseStateManagement';
 
 export default function Signup() {
-
+    // Data for the Form
+    const [countriesData, setCountriesData]= useState({})
+    const [selectedStates, setSelectedStates] = useState([])
+    // Get Static Data
+    const fetchdata=async()=>{
+        const data = await getCountries()
+        setCountriesData(data[0])
+   
+      }
+ 
+    console.log(countriesData)
     // TODO store all the input values in a state
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState('')
@@ -18,12 +29,10 @@ export default function Signup() {
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     
-    
-
-
     // Errors 
     const [errors, setErrors] = useState('')
     const [showError, setShowError] = useState(false)
+
     
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
@@ -44,26 +53,27 @@ export default function Signup() {
           }
     }
 
-    const statesUSA = [
-        'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
-        'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
-        'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-        'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-        'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-        'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
-        'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
-        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-    ];
+    // const statesUSA = [
+    //     'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+    //     'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+    //     'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+    //     'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+    //     'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+    //     'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+    //     'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+    //     'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
+    //     'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+    // ];
 
-    const statesCanada = [
-        'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
-        'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
-        'Quebec', 'Saskatchewan', 'Yukon'
-    ];
-    
+    // const statesCanada = [
+    //     'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
+    //     'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
+    //     'Quebec', 'Saskatchewan', 'Yukon'
+    // ];
        
-  
+  useEffect(()=>{
+    fetchdata()
+  }, [])
 
   return (
     <div className='signup'>
@@ -109,18 +119,24 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Country</p>
-                        <select required onChange={(e)=>{setCountry(e.target.value)}}>
-                            <option value='' >Select Country</option>
-                            <option value='USA'>United States</option>
-                            <option value='CA'>Canada</option>
-
+                        <select required onChange={(e) => { 
+                            setCountry(e.target.value)
+                            setSelectedStates(countriesData[e.target.value])
+                        
+                        }}>
+                        <option value=''>Select Country</option>
+                        {
+                            Object.entries(countriesData).map(([key, value]) => {
+                                return <option value={key}>{key}</option>;
+                            })
+                        }
                         </select>
                     </label>
                     <label>
                         <p>Region</p>
                     <select onChange={(e)=>{setRegion(e.target.value)}} required>
                         <option value="">Select a Region</option>
-                        {(country === 'USA'? statesUSA : country === 'CA' ? statesCanada : []).map((state) => (
+                        {selectedStates?.map((state) => (
                         <option key={state} value={state}>{state}</option>
                         ))}
                     </select>
