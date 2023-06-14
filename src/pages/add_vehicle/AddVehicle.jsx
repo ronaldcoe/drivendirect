@@ -22,6 +22,7 @@ export default function AddVehicle() {
   const [modelSelected, setModelSelected] = useState('')
   const [vehicleYear, setVehicleYear] = useState('')
   const [vehicleDescription, setVehicleDescription] = useState('')
+  const [type, setType]= useState('trade')
 
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
@@ -34,7 +35,7 @@ export default function AddVehicle() {
       year: vehicleYear,
       description: vehicleDescription,
       status: "Publish",
-      type: "trade",
+      type: type,
       dateCreate: currentDate
     }
     const res = await createInventory(vehicleObject)
