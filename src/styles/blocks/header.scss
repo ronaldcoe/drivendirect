@@ -21,11 +21,9 @@
                 li {
 
                     a {
-                        color: white;
-                        background-color: $primary-color;
+                        @include buttons($button-color);
+                        color: white; 
                         text-decoration: none;
-                        padding: 10px;
-                        border-radius: 5px;
                     }
                 }
             }

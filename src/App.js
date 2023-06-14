@@ -9,6 +9,7 @@ import Login from './pages/login-signup/Login';
 import Signup from './pages/login-signup/Signup';
 import Firebase from './Firebase2';
 import AddVehicle from './pages/add_vehicle/AddVehicle';
+import CardGrid from './shared/CarInformation/CardGrid';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path='/signup' element={<Signup/>}></Route>
 
             <Route path='/add-vehicle' element={<AddVehicle/>}></Route>
+            <Route path='/inventory' element={<CardGrid/>}></Route>
           </Routes>
         </Router>
         {/* <AddVehicle/> */}

@@ -41,8 +41,7 @@
         }
 
         button {
-            @include buttons;
-            background-color: $primary-color;
+            @include buttons($primary-color);
             color: white;
         }
     }

@@ -37,7 +37,7 @@
         background-color: rgb(255, 235, 235);
     }
 }
-@mixin buttons {
+@mixin buttons($backgroundColor) {
     padding: 15px;
     border: none;
     font-family: $button-font;
@@ -45,6 +45,11 @@
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 20px;
+    background-color: $backgroundColor;
+
+    &:focus {
+        background-color: rgba($backgroundColor, 0.9);
+    }
 }
 
 @mixin shadow {

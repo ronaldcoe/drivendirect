@@ -92,7 +92,7 @@ export default function AddVehicle() {
                     <option value={model} key={model}>{model}</option>
                   )
                 }):'' }
-              </select>:<input type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}></input>
+              </select>:<input type='text' placeholder='Type in the Model' required onChange={(e)=>{setModelSelected(e.target.value)}}></input>
               }
             </label>
             <label>
@@ -101,7 +101,7 @@ export default function AddVehicle() {
             </label>
             <label>
               <p>Description</p>
-              <textarea name="" id="" cols="30" rows="5" maxLength={120} onChange={(e)=>{setVehicleDescription(e.target.value)}}></textarea>
+              <textarea name="" id="" cols="30" rows="5" maxLength={120} required onChange={(e)=>{setVehicleDescription(e.target.value)}}></textarea>
             </label>
             <button type='submit'>List Vehicle</button>
           </form>

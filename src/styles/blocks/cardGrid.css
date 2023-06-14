@@ -45,8 +45,153 @@
   line-height: 1.5;
 }
 
-.cardGrid {
+.cardGrid .cardGrid__wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  display: grid;
+  gap: 60px;
+  grid-template-columns: auto auto;
+  margin-top: 50px;
+}
+@media screen and (max-width: 1000px) {
+  .cardGrid .cardGrid__wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 0;
+    justify-content: left;
+  }
+}
+.cardGrid .cardGrid__wrapper .cardGrid__description {
+  position: sticky;
+  top: 70px;
+}
+@media screen and (max-width: 1000px) {
+  .cardGrid .cardGrid__wrapper .cardGrid__description {
+    padding: 20px;
+  }
+}
+.cardGrid .cardGrid__wrapper .cardGrid__description h1 {
+  color: #063846;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters {
+  border: 1px solid #B6B6B6;
+  border-radius: 5px;
   display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters label {
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters label select {
+  margin-top: 10px;
+  border: none;
+  width: 100%;
+}
+.cardGrid .cardGrid__wrapper table {
+  font-family: "Rubik", sans-serif;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-collapse: collapse;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+.cardGrid .cardGrid__wrapper table thead {
+  background-color: #063846;
+  color: white;
+  font-weight: 500;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper table thead {
+    display: none;
+  }
+}
+.cardGrid .cardGrid__wrapper table thead td {
+  border: none;
+}
+.cardGrid .cardGrid__wrapper table tr {
+  border: 1px solid #B6B6B6;
+  padding: 20px 20px;
+  font-size: 1.3rem;
+}
+.cardGrid .cardGrid__wrapper table tr:nth-child(even) {
+  background-color: #F3F3F3;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper table tr {
+    display: grid;
+    grid-template-columns: min-content max-content max-content 1fr;
+    align-items: baseline;
+    gap: 7px;
+  }
+  .cardGrid .cardGrid__wrapper table tr #table_year {
+    font-size: 2rem;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    font-weight: bold;
+  }
+  .cardGrid .cardGrid__wrapper table tr #table_make {
+    font-size: 2rem;
+    grid-column: 2/3;
+    grid-row: 1/2;
+    font-weight: bold;
+  }
+  .cardGrid .cardGrid__wrapper table tr #table_model {
+    font-size: 2rem;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    font-weight: bold;
+  }
+  .cardGrid .cardGrid__wrapper table tr #table_location {
+    font-size: 1.5rem;
+    grid-column: 4/5;
+    text-align: end;
+  }
+  .cardGrid .cardGrid__wrapper table tr #table_description {
+    font-size: 1.5rem;
+    grid-column: 1/5;
+    grid-row: 2/3;
+    padding: 10px 0px;
+  }
+  .cardGrid .cardGrid__wrapper table tr #table_actions {
+    grid-column: 1/5;
+  }
+}
+.cardGrid .cardGrid__wrapper table tr td {
+  padding: 10px 20px;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper table tr td {
+    padding: 0px;
+  }
+}
+.cardGrid .cardGrid__wrapper table tr #table_actions {
+  display: flex;
+  gap: 10px;
+}
+.cardGrid .cardGrid__wrapper table tr #table_actions #table_actions_save {
+  background-color: rgb(250, 255, 250);
+  border: 1px solid green;
+  color: green;
+}
+.cardGrid .cardGrid__wrapper table button {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #063846;
+  font-size: 1.2rem;
+  background-color: white;
+  color: #063846;
+  border: 1px solid #063846;
+  padding: 5px;
+  margin: 0;
+}
+.cardGrid .cardGrid__wrapper table button:focus {
+  background-color: rgba(6, 56, 70, 0.9);
 }/*# sourceMappingURL=cardGrid.css.map */

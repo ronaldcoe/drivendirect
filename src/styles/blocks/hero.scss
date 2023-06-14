@@ -49,17 +49,16 @@
            
             }
             .hero__call_to_action_primarybutton {
-                @include buttons;
-                background-color: $button-color;
-                color: white;
+                @include buttons($button-color);
+                color: white; 
+                
                 font-size: 1.8rem
             }
 
             .hero__call_to_action_secondarybutton {
-                @include buttons;
-                border: 1px solid white;
-                color: white;
-                background-color: transparent;
+                @include buttons(transparent);
+                color: white; 
+                border: 1px solid white;      
                 font-size: 1.8rem;
                 margin-left:20px;
             }
