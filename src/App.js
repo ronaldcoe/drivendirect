@@ -31,6 +31,7 @@ function App() {
             <Route path='/inventory' element={<CardGrid/>}></Route>
           </Routes>
         </Router>
+        {/* <AddVehicle/> */}
       </main>
       <footer>
         <Footer/>

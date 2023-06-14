@@ -19,6 +19,10 @@ export default function Login() {
             const userCreds = await loginUser(userName, password);
             if (userCreds) {
               console.log(userCreds)
+                //   Set the local Storage
+                localStorage.setItem("userId",userCreds.user.uid)
+                localStorage.setItem("accessToken",userCreds.user.accessToken)
+
               console.log('User was logged in');
               setShowError(false)
             } else {

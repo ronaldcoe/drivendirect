@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/blocks/add_vehicle.css'
+import { createInventory } from '../../Firebase/FirebaseStateManagement';
+import { auth } from '../../Firebase/FirebaseConfig';
+import { useNavigate } from 'react-router';
+
 
 export default function AddVehicle() {
-
-
-
   // Will move this over the database. Just testing
   const vehicles = {
     Hyundai: ["Santa Fe", "Tucson", "Accent"],
@@ -13,14 +14,51 @@ export default function AddVehicle() {
     Honda: ["Civic", "Accord", "CR-V"],
     Chevrolet: ["Silverado", "Equinox", "Cruze"],
   };
-
+  // For Authorization and Navigation
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
   // Data
   const [makeSelected, setMakeSelected] = useState('')
   const [modelSelected, setModelSelected] = useState('')
   const [vehicleYear, setVehicleYear] = useState('')
   const [vehicleDescription, setVehicleDescription] = useState('')
+  const [type, setType]= useState('trade')
 
-  
+  const createVehicleTrade = async(e)=>{
+    e.preventDefault();
+    // Create the Object to save
+    const currentDate = new Date();
+    const vehicleObject={
+      userId:localStorage.getItem("userId"),
+      make: makeSelected,
+      model: modelSelected,
+      year: vehicleYear,
+      description: vehicleDescription,
+      status: "Publish",
+      type: type,
+      dateCreate: currentDate
+    }
+    const res = await createInventory(vehicleObject)
+    if(res){
+      console.log("Vehicle was created and Publish")
+    }
+    else(
+      console.log("Vehicle was not created")
+    )
+  }
+
+  useEffect(()=>{
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        // User is signed in
+        setUser(user);
+      } else {
+        // User is signed out
+        navigate('/login');
+      }});
+
+      return () => unsubscribe(); 
+  }, [])
   return (
     <div className='addVehicle'>
       <div className='addVehicle__wrapper'>
@@ -31,7 +69,7 @@ export default function AddVehicle() {
           </p>
         </div>
         <div className='addVehicle__wrapper__form'>
-          <form>
+          <form onSubmit={createVehicleTrade}>
             <label>
               <p>Make</p>
               <select required onChange={(e)=>{setMakeSelected(e.target.value)}}>
