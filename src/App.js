@@ -29,6 +29,7 @@ function App() {
             <Route path='/add-vehicle' element={<AddVehicle/>}></Route>
           </Routes>
         </Router>
+        {/* <AddVehicle/> */}
       </main>
       <footer>
         <Footer/>

@@ -1,5 +1,5 @@
 import {auth, firestore } from "./FirebaseConfig"
-import {addDoc, collection, serverTimestamp, getDocs, query , where} from "@firebase/firestore"
+import {addDoc, collection, serverTimestamp, getDocs, query , where, doc, updateDoc, setDoc} from "@firebase/firestore"
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
 
 const inventoryTradeCollectionRef = collection(firestore, 'inventoryTrade');
@@ -11,7 +11,7 @@ const usersCollectionRef = collection(firestore, 'users');
 // create an inventory
 export const createInventory = async(data)=>{
       try{
-        if(data.type =="list"){
+        if(data.type =="listing"){
           await addDoc(inventoryListCollectionRef, data)
           return true
         }
@@ -31,7 +31,7 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
     let q = ''
 
      // Create the Query
-    if (type =="list"){
+    if (type =="listing"){
       q = query(
       inventoryListCollectionRef,
       where(entity, '==', value)
@@ -63,7 +63,7 @@ export const getAllInventoryByFilters = async (filters, type) => {
   try {
 
     let queryRef = ''
-    if(type == "list"){
+    if(type == "listing"){
       queryRef = inventoryListCollectionRef;
     }
     else if(type == "trade"){
@@ -93,7 +93,7 @@ export const getAllInventoryByFilters = async (filters, type) => {
 export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
   try {
     let inventoryRef = ''
-    if (type =="list"){
+    if (type =="listing"){
       inventoryRef = doc(inventoryListCollectionRef, inventoryId);
     }
 
@@ -112,11 +112,11 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
 };
 
 // Change status of the Inventory (Sold, Found)
-export const updateInventoryStatus = async (inventoryId) => {
+export const updateInventoryStatus = async (inventoryId,type) => {
   try {
 
     let inventoryRef = ''
-    if (type =="list"){
+    if (type =="listing"){
       inventoryRef = doc(inventoryListCollectionRef, inventoryId);
     }
 
@@ -157,7 +157,8 @@ export const createUser = async (email, password, firstName, lastName, dealershi
     };
 
     // Store additional fields in Firestore and create the user collection
-    await addDoc(usersCollectionRef, userData);
+    const userRef = doc(usersCollectionRef, user.uid);
+    await setDoc(userRef, userData);
     return true;
 
   } catch (error) {
