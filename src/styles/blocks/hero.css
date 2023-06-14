@@ -62,6 +62,9 @@
   color: white;
   font-size: 1.8rem;
 }
+.hero .hero__wrapper .hero__call_to_action .hero__call_to_action_primarybutton:focus {
+  background-color: rgba(6, 56, 70, 0.9);
+}
 .hero .hero__wrapper .hero__call_to_action .hero__call_to_action_secondarybutton {
   padding: 15px;
   border: none;
@@ -70,11 +73,14 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  border: 1px solid white;
-  color: white;
   background-color: transparent;
+  color: white;
+  border: 1px solid white;
   font-size: 1.8rem;
   margin-left: 20px;
+}
+.hero .hero__wrapper .hero__call_to_action .hero__call_to_action_secondarybutton:focus {
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .hero .hero__wrapper img {
   max-width: 500px;

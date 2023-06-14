@@ -28,11 +28,19 @@ nav ul li a {
   justify-content: space-between;
 }
 .header .header__wrapper nav ul li a {
-  color: white;
-  background-color: #063846;
-  text-decoration: none;
-  padding: 10px;
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
   border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #063846;
+  color: white;
+  text-decoration: none;
+}
+.header .header__wrapper nav ul li a:focus {
+  background-color: rgba(6, 56, 70, 0.9);
 }
 .header .header__wrapper .header__logo {
   font-family: "Rubik", sans-serif;

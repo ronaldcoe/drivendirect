@@ -134,4 +134,7 @@
   margin-bottom: 20px;
   background-color: #063846;
   color: white;
+}
+.addVehicle .addVehicle__wrapper button:focus {
+  background-color: rgba(6, 56, 70, 0.9);
 }/*# sourceMappingURL=add_vehicle.css.map */

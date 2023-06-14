@@ -122,11 +122,11 @@
                 }
 
                 .about__wrapper__call__to__action__text__btn {
-                    @include buttons;
-                    background-color: $primary-color;
+                    @include buttons($button-color);
+                    color: white; 
                     display: block;
                     margin: 0 auto;
-                    color: white;
+             
                 }
             }
             img {
@@ -139,8 +139,16 @@
 
         .about__wrapper__btns {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             margin-bottom: 70px;
+            padding: 20px;
+            gap: 40px;
+
+            @media screen and (max-width: $breakpoint-medium) {
+                justify-content: center;
+            }
+
             .about__wrapper__icons {
                 display: flex;
                 flex-direction: column;

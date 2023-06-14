@@ -148,6 +148,9 @@
   background-color: #063846;
   color: white;
 }
+.signup .signup__wrapper .signup__wrapper__form form button:focus {
+  background-color: rgba(6, 56, 70, 0.9);
+}
 .signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox {
   display: flex;
   font-family: "Rubik", sans-serif;

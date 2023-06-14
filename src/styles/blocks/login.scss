@@ -56,8 +56,7 @@
                 
 
                 button {
-                    @include buttons;
-                    background-color: $button-color;
+                    @include buttons($button-color);
                     color: white; 
                 }
             }

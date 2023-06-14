@@ -111,9 +111,12 @@
   margin-top: 20px;
   margin-bottom: 20px;
   background-color: #063846;
+  color: white;
   display: block;
   margin: 0 auto;
-  color: white;
+}
+.about .about__wrapper .about__wrapper__call__to__action .about__wrapper__call__to__action__text .about__wrapper__call__to__action__text__btn:focus {
+  background-color: rgba(6, 56, 70, 0.9);
 }
 .about .about__wrapper .about__wrapper__call__to__action img {
   position: absolute;
@@ -124,8 +127,16 @@
 }
 .about .about__wrapper .about__wrapper__btns {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 70px;
+  padding: 20px;
+  gap: 40px;
+}
+@media screen and (max-width: 820px) {
+  .about .about__wrapper .about__wrapper__btns {
+    justify-content: center;
+  }
 }
 .about .about__wrapper .about__wrapper__btns .about__wrapper__icons {
   display: flex;
