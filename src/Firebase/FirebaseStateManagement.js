@@ -2,57 +2,136 @@ import {auth, firestore } from "./FirebaseConfig"
 import {addDoc, collection, serverTimestamp, getDocs, query , where} from "@firebase/firestore"
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
 
-const sellListCollectionRef = collection(firestore, 'sellListing');
-const searchListCollectionRef = collection(firestore, 'searchList');
+const inventoryTradeCollectionRef = collection(firestore, 'inventoryTrade');
+const inventoryListCollectionRef = collection(firestore, 'inventoryList');
 const usersCollectionRef = collection(firestore, 'users');
 
-/***********************SEARCH LIST CONTROLLER****************************************************** */
-// create a list
-export const createListing = async(data)=>{
+
+/***********************InventoryList and Inventorytrade****************************************************** */
+// create an inventory
+export const createInventory = async(data)=>{
       try{
-          await addDoc(sellListCollectionRef, data)
-          return 1
+        if(data.type =="list"){
+          await addDoc(inventoryListCollectionRef, data)
+          return true
         }
+        else if (data.type == "trade"){
+          await addDoc(inventoryTradeCollectionRef, data)
+          return true
+        }}
       catch (err){
           console.log(err)
-          return 0
+          return false
         }
       }
 
-// Get all listing
-export const getAllLisitings = async()=>{
-    try {
-        const listingsSnapshot = await getDocs(sellListCollectionRef);
-        const allListings = listingsSnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        return allListings;
-        }
-    catch (err){
-        console.log(err)
-        return 0
-    }
-}
-
 // Getting All Listing by a value
-export const getAllListingsByEntity = async (entity, value) => {
+export const getAllInventoryByEntity = async (entity, value, type) => {
   try {
+    let q = ''
 
-    // Create the Query
-    const q = query(
-      sellListCollectionRef,
+     // Create the Query
+    if (type =="list"){
+      q = query(
+      inventoryListCollectionRef,
       where(entity, '==', value)
-    );
+    );}
+
+    else if (type == "trade"){
+      q = query(
+      inventoryListCollectionRef,
+      where(entity, '==', value)
+    );}
+   
     // Create the Snap
     const querySnapshot = await getDocs(q)
 
     // Map and send the Object
-    const allListings = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-    return allListings;
+    const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    return allinventory;
   
+
   } catch (err) {
     console.log(err);
     return [];
   }
 };
+
+
+// get inventory based on Filters
+export const getAllInventoryByFilters = async (filters, type) => {
+  try {
+
+    let queryRef = ''
+    if(type == "list"){
+      queryRef = inventoryListCollectionRef;
+    }
+    else if(type == "trade"){
+      queryRef = inventoryTradeCollectionRef;
+    }
+
+    // Apply multiple where clauses based on the filters
+    filters.forEach((filter) => {
+      const { entity, operator, value } = filter;
+      queryRef = queryRef.where(entity, operator, value);
+    });
+
+    // Execute the query
+    const querySnapshot = await queryRef.get();
+
+    // Map and send the objects
+    const allInventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    return allInventory;
+    
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+// Edit a inventory
+export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
+  try {
+    let inventoryRef = ''
+    if (type =="list"){
+      inventoryRef = doc(inventoryListCollectionRef, inventoryId);
+    }
+
+    else if (type == "trade"){
+      inventoryRef = doc(inventoryTradeCollectionRef, inventoryId);
+    }
+    
+    await updateDoc(inventoryRef, updatedData);
+    console.log("Record updated successfully");
+    return true
+
+  } catch (err) {
+    console.log(err);
+    return false
+  }
+};
+
+// Change status of the Inventory (Sold, Found)
+export const updateInventoryStatus = async (inventoryId) => {
+  try {
+
+    let inventoryRef = ''
+    if (type =="list"){
+      inventoryRef = doc(inventoryListCollectionRef, inventoryId);
+    }
+
+    else if (type == "trade"){
+      inventoryRef = doc(inventoryTradeCollectionRef, inventoryId);
+    }
+
+    await updateDoc(inventoryRef, { ["Status"]: false  });
+    console.log("Value updated successfully");
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+/******************************************************************************** */
 
 /************************AUTH AND USER********************************************/
 
@@ -99,3 +178,7 @@ export const loginUser = async (email, password) => {
     throw new Error('User Login failed'); 
   }
 };
+
+/****************************************************************************************** */
+
+
