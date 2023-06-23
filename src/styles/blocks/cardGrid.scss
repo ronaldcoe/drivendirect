@@ -1,6 +1,7 @@
 @import '../variables/_variables';
 @import '../variables/_mixins';
 @import '../elements/vehicleCard';
+@import '../elements/dropDown';
 
 .cardGrid {
    
@@ -14,8 +15,11 @@
         @media screen and (max-width:1000px) {
             grid-template-columns: 1fr;
             grid-template-rows: auto auto;
-            padding: 0;
+            padding: 10px;
             justify-content: left;
+        }
+        @media screen and (max-width:$breakpoint-small) {
+            padding: 0;
         }
 
         .cardGrid__description {
@@ -33,11 +37,17 @@
             }
 
             .cardGrid__filters {
-                border: 1px solid $border-color;
              
-                border-radius: 5px;
+             
+            
                 display: flex;
                 flex-direction: column;
+                max-width: 345px;
+
+                @media screen and (max-width: $breakpoint-small) {
+                    max-width: 100%;
+                }
+
                 label {
                     padding: 10px;
                     margin-bottom: 10px;
@@ -55,6 +65,7 @@
             height: fit-content;
             border-collapse: collapse;
             box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+            padding: 10px;
           
            
     
@@ -167,6 +178,6 @@
     }
   
     
-
+   
     
 }

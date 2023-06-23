@@ -19,7 +19,7 @@
   max-width: 400px;
 }
 .signup .signup__wrapper .signup__wrapper__description h1 {
-  color: #063846;
+  color: #080077;
 }
 .signup .signup__wrapper .signup__wrapper__description p {
   padding-top: 20px;
@@ -53,7 +53,7 @@
   width: 100%;
 }
 .signup .signup__wrapper .signup__wrapper__form form label input:focus {
-  border: 2px solid #063846;
+  border: 2px solid #080077;
   outline: none;
   transition: 0.5s;
 }
@@ -78,7 +78,7 @@
   width: 100%;
 }
 .signup .signup__wrapper .signup__wrapper__form form label select:focus {
-  border: 2px solid #063846;
+  border: 2px solid #080077;
   outline: none;
   transition: 0.5s;
 }
@@ -107,7 +107,7 @@
   resize: none;
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea:focus {
-  border: 2px solid #063846;
+  border: 2px solid #080077;
   outline: none;
   transition: 0.5s;
 }
@@ -145,11 +145,11 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #063846;
+  background-color: #080077;
   color: white;
 }
 .signup .signup__wrapper .signup__wrapper__form form button:focus {
-  background-color: rgba(6, 56, 70, 0.9);
+  background-color: rgba(8, 0, 119, 0.9);
 }
 .signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox {
   display: flex;

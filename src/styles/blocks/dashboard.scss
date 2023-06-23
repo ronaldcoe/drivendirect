@@ -1,0 +1,52 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+
+
+.dashboard {
+   
+    .dashboard__wrapper {
+        @include wrapper;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+
+        @media screen and (max-width: $breakpoint-medium) {
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+        }
+    
+        .dashboard__wrapper_col_1 {
+    
+            .dashboard__wrapper__profile {
+                border: 1px solid $border-color;
+                border-radius: 5px;
+                display: flex;
+                padding: 20px;
+                gap: 20px;
+                max-width: fit-content;
+
+                .dashboard__wrapper__profile__picture {
+                    font-family: $paragraph-font;
+                    background-color: $border-color;
+                    height: 50px;
+                    width: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 9999px;
+                }
+
+                .dashboard__wrapper__profile__info {
+
+                    h3 {
+                        margin-top: 20px;
+                        margin-bottom: 10px;
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+    
+        }
+    }
+
+}

@@ -58,12 +58,12 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #063846;
+  background-color: #080077;
   color: white;
   font-size: 1.8rem;
 }
 .hero .hero__wrapper .hero__call_to_action .hero__call_to_action_primarybutton:focus {
-  background-color: rgba(6, 56, 70, 0.9);
+  background-color: rgba(8, 0, 119, 0.9);
 }
 .hero .hero__wrapper .hero__call_to_action .hero__call_to_action_secondarybutton {
   padding: 15px;

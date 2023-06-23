@@ -19,7 +19,7 @@
 }
 .about .about__wrapper h1 {
   font-family: "Rubik", sans-serif;
-  color: #063846;
+  color: #080077;
   margin-bottom: 50px;
 }
 .about .about__wrapper .about__wrapper__description {
@@ -59,11 +59,11 @@
   max-width: 600px;
 }
 .about .about__wrapper .about__wrapper__card__container .about__wrapper__card .about__wrapper__card__text h2 {
-  color: #063846;
+  color: #080077;
   padding-bottom: 10px;
 }
 .about .about__wrapper .about__wrapper__card__container .about__wrapper__card .about__wrapper__card__text h3 {
-  color: #063846;
+  color: #080077;
   padding-bottom: 10px;
 }
 .about .about__wrapper .about__wrapper__card__container .about__wrapper__card .about__wrapper__card__text p {
@@ -93,13 +93,13 @@
 }
 .about .about__wrapper .about__wrapper__call__to__action .about__wrapper__call__to__action__text h1 {
   text-align: center;
-  color: #063846;
+  color: #080077;
   margin: 0;
   padding-bottom: 20px;
 }
 .about .about__wrapper .about__wrapper__call__to__action .about__wrapper__call__to__action__text h2 {
   text-align: center;
-  color: #063846;
+  color: #080077;
   padding-bottom: 20px;
 }
 .about .about__wrapper .about__wrapper__call__to__action .about__wrapper__call__to__action__text .about__wrapper__call__to__action__text__btn {
@@ -110,13 +110,13 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #063846;
+  background-color: #080077;
   color: white;
   display: block;
   margin: 0 auto;
 }
 .about .about__wrapper .about__wrapper__call__to__action .about__wrapper__call__to__action__text .about__wrapper__call__to__action__text__btn:focus {
-  background-color: rgba(6, 56, 70, 0.9);
+  background-color: rgba(8, 0, 119, 0.9);
 }
 .about .about__wrapper .about__wrapper__call__to__action img {
   position: absolute;
@@ -138,13 +138,18 @@
     justify-content: center;
   }
 }
+@media screen and (max-width: 505px) {
+  .about .about__wrapper .about__wrapper__btns {
+    gap: 100px;
+  }
+}
 .about .about__wrapper .about__wrapper__btns .about__wrapper__icons {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .about .about__wrapper .about__wrapper__btns .about__wrapper__icons .about__wrapper__icon {
-  color: #063846;
+  color: #080077;
   font-size: 5rem;
   padding-left: 20px;
   padding-right: 20px;
@@ -152,5 +157,5 @@
   margin-bottom: 40px;
 }
 .about .about__wrapper .about__wrapper__btns .about__wrapper__icons h3 {
-  color: #063846;
+  color: #080077;
 }/*# sourceMappingURL=about.css.map */

@@ -149,6 +149,10 @@
                 justify-content: center;
             }
 
+            @media screen and (max-width: $breakpoint-small) {
+                gap: 100px;
+            }
+
             .about__wrapper__icons {
                 display: flex;
                 flex-direction: column;
