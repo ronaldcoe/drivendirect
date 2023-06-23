@@ -4,11 +4,14 @@ import Error from '../../shared/notifications/Error'
 import {createUser} from "../../Firebase/FirebaseStateManagement"
 import { getCountries } from '../../Firebase/FirebaseStateManagement';
 import DropDown from '../../shared/dropdown/DropDown';
+import {useNavigate} from "react-router"
 
 export default function Signup() {
     // Data for the Form
     const [countriesData, setCountriesData]= useState([])
 
+    const navigate = useNavigate()
+    
     // Get Static Data
     const fetchdata=async()=>{
         const data = await getCountries()
@@ -43,6 +46,7 @@ export default function Signup() {
                                                 website, country, region, city, phoneNumber);
             if (success) {
                 console.log('User was created');
+                navigate("/login")
                 
             } else {
               console.log('User creation failed');
