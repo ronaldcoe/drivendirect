@@ -3,23 +3,24 @@ import '../../styles/blocks/signup.css'
 import Error from '../../shared/notifications/Error'
 import {createUser} from "../../Firebase/FirebaseStateManagement"
 import { getCountries } from '../../Firebase/FirebaseStateManagement';
+import DropDown from '../../shared/dropdown/DropDown';
 import {useNavigate} from "react-router"
 
 export default function Signup() {
     // Data for the Form
-    const [countriesData, setCountriesData]= useState({})
-    const [selectedStates, setSelectedStates] = useState([])
+    const [countriesData, setCountriesData]= useState([])
 
     const navigate = useNavigate()
     
     // Get Static Data
     const fetchdata=async()=>{
         const data = await getCountries()
-        setCountriesData(data[0])
+        console.log(data)
+        setCountriesData(data[1])
    
       }
  
-    console.log(countriesData)
+    
     // TODO store all the input values in a state
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState('')
@@ -28,8 +29,8 @@ export default function Signup() {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [dealership, setDealership] = useState('')
     const [website, setWebsite] = useState('')
-    const [country, setCountry] = useState('')
-    const [region, setRegion] = useState('')
+    const [country, setCountry] = useState(null)
+    const [region, setRegion] = useState(null)
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     
@@ -37,7 +38,6 @@ export default function Signup() {
     const [errors, setErrors] = useState('')
     const [showError, setShowError] = useState(false)
 
-    
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
         e.preventDefault();
@@ -60,7 +60,9 @@ export default function Signup() {
            
   useEffect(()=>{
     fetchdata()
+    
   }, [])
+
 
   return (
     <div className='signup'>
@@ -106,27 +108,12 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Country</p>
-                        <select required onChange={(e) => { 
-                            setCountry(e.target.value)
-                            setSelectedStates(countriesData[e.target.value])
-                        
-                        }}>
-                        <option value=''>Select Country</option>
-                        {
-                            Object.entries(countriesData).map(([key, value]) => {
-                                return <option value={key}>{key}</option>;
-                            })
-                        }
-                        </select>
+                        {countriesData?<DropDown   selectedOption={country} setSelectedOption={setCountry} data={Object.keys(countriesData)}/>:''}                       
                     </label>
                     <label>
                         <p>Region</p>
-                    <select onChange={(e)=>{setRegion(e.target.value)}} required>
-                        <option value="">Select a Region</option>
-                        {selectedStates?.map((state) => (
-                        <option key={state} value={state}>{state}</option>
-                        ))}
-                    </select>
+                        {countriesData?<DropDown  selectedOption={region} setSelectedOption={setRegion} data={countriesData[country]}/>:''}
+
                     </label>
                     <label>
                         <p>City</p>

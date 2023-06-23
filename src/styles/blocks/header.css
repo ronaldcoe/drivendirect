@@ -12,7 +12,7 @@ nav ul li {
   font-weight: bold;
 }
 nav ul li a {
-  color: #063846;
+  color: #080077;
 }
 
 .header {
@@ -35,20 +35,20 @@ nav ul li a {
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #063846;
+  background-color: #080077;
   color: white;
   text-decoration: none;
 }
 .header .header__wrapper nav ul li a:focus {
-  background-color: rgba(6, 56, 70, 0.9);
+  background-color: rgba(8, 0, 119, 0.9);
 }
 .header .header__wrapper .header__logo {
   font-family: "Rubik", sans-serif;
-  color: #063846;
+  color: #080077;
   font-size: 1.6rem;
   font-weight: 600;
 }
 .header .header__wrapper .header__logo a {
   text-decoration: none;
-  color: #063846;
+  color: #080077;
 }/*# sourceMappingURL=header.css.map */

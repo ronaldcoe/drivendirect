@@ -9,16 +9,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
 
-
+// 063846 old color
 // Colors
-$primary-color: #063846;
-$title-color: #063846;
+$primary-color: #080077;
+$title-color: $primary-color;
 $primary-paragraph-font-color: #36454F;
 $primary-background-color: #E5F7FF;
 $secondary-background-color: #F3F3F3;
 $secondary-background-color-font: #636363;
 $border-color: #B6B6B6;
-$button-color: #063846;
+$button-color: $primary-color;
 
 // Fonts
 $title-font: 'Rubik', sans-serif;

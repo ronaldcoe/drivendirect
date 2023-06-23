@@ -16,7 +16,7 @@
   }
 }
 .addVehicle .addVehicle__wrapper h1 {
-  color: #063846;
+  color: #080077;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__description {
   max-width: 400px;
@@ -54,7 +54,7 @@
   width: 100%;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label input:focus {
-  border: 2px solid #063846;
+  border: 2px solid #080077;
   outline: none;
   transition: 0.5s;
 }
@@ -79,7 +79,7 @@
   width: 100%;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label select:focus {
-  border: 2px solid #063846;
+  border: 2px solid #080077;
   outline: none;
   transition: 0.5s;
 }
@@ -108,7 +108,7 @@
   resize: none;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label textarea:focus {
-  border: 2px solid #063846;
+  border: 2px solid #080077;
   outline: none;
   transition: 0.5s;
 }
@@ -132,9 +132,9 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #063846;
+  background-color: #080077;
   color: white;
 }
 .addVehicle .addVehicle__wrapper button:focus {
-  background-color: rgba(6, 56, 70, 0.9);
+  background-color: rgba(8, 0, 119, 0.9);
 }/*# sourceMappingURL=add_vehicle.css.map */

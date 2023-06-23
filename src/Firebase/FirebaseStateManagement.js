@@ -214,6 +214,9 @@ export const enterStaticData= async(data)=>{
   return true
 }
 
+
+
+
 // Get all countries
 export const getCountries = async () => {
   try {
@@ -222,6 +225,20 @@ export const getCountries = async () => {
     // Map the data and extract the countries field
     const countries = querySnapshot.docs.map((doc) => doc.data().countries);
     return countries;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+// Get all countries
+export const getVehicles = async () => {
+  try {
+    const querySnapshot = await getDocs(staticCollectionRef);
+
+    // Map the data and extract the vehicles field
+    const vehicles = querySnapshot.docs.map((doc) => doc.data().vehicles);
+    return vehicles;
   } catch (error) {
     console.log(error);
     return [];
