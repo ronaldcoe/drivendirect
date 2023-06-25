@@ -15,7 +15,6 @@ export default function Signup() {
     // Get Static Data
     const fetchdata=async()=>{
         const data = await getCountries()
-        console.log(data)
         setCountriesData(data[1])
    
       }
@@ -41,22 +40,25 @@ export default function Signup() {
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
         e.preventDefault();
-        try {
-            const success = await createUser(email, password, firstName, lastName, dealership,
-                                                website, country, region, city, phoneNumber);
-            if (success) {
-                console.log('User was created');
-                navigate("/login")
-                
-            } else {
-              console.log('User creation failed');
-            }
-          } catch (error) {
-            setErrors(error[0])
-            setShowError(true)
-            console.log(errors)
-          }
+        if (country !=- null && region !== null) {
+            try {
+                const success = await createUser(email, password, firstName, lastName, dealership,
+                                                    website, country, region, city, phoneNumber);
+                if (success) {
+                    console.log('User was created');
+                    navigate("/login")
+                    
+                } else {
+                  console.log('User creation failed');
+                }
+              } catch (error) {
+                setErrors(error[0])
+                setShowError(true)
+                console.log(errors)
+              }
+        }
     }
+       
            
   useEffect(()=>{
     fetchdata()

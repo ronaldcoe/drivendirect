@@ -5,6 +5,7 @@ import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
 import Error from '../../shared/notifications/Error';
 import {loginUser} from "../../Firebase/FirebaseStateManagement"
 import { getCountries } from '../../Firebase/FirebaseStateManagement';
+import { useNavigate } from 'react-router';
 
 export default function Login() {
 
@@ -12,23 +13,27 @@ export default function Login() {
     const [userName, setUserName] = useState()
     const [password, setPassword] = useState()
     const [showError, setShowError] = useState(false)
-
+    const navigate = useNavigate();
     const login=async(e)=>{
         e.preventDefault();
         try {
             const userCreds = await loginUser(userName, password);
             if (userCreds) {
-              console.log(userCreds)
+             
                 //   Set the local Storage
                 localStorage.setItem("userId",userCreds.user.uid)
                 localStorage.setItem("accessToken",userCreds.user.accessToken)
 
-              console.log('User was logged in');
+            
               setShowError(false)
+
+              navigate('/dashboard');
             } else {
-              console.log('User login fail');
+             
+             
             }
           } catch (error) {
+          
             setShowError(true)
           }     
     }

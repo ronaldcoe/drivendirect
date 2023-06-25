@@ -3,7 +3,8 @@ import '../../styles/blocks/add_vehicle.css'
 import { createInventory } from '../../Firebase/FirebaseStateManagement';
 import { auth } from '../../Firebase/FirebaseConfig';
 import { useNavigate } from 'react-router';
-
+import DropDown from '../../shared/dropdown/DropDown';
+import { getVehicles } from '../../Firebase/FirebaseStateManagement';
 
 export default function AddVehicle(props) {
   // Will move this over the database. Just testing
@@ -22,7 +23,13 @@ export default function AddVehicle(props) {
   const [modelSelected, setModelSelected] = useState('')
   const [vehicleYear, setVehicleYear] = useState('')
   const [vehicleDescription, setVehicleDescription] = useState('')
-  const [type, setType]= useState('trade')
+  const [type, setType]= useState(props.type)
+
+
+  // Data for Dropdown
+  const [dataVehicles, setDataVehicles] = useState(null)
+  const [makes, setMakes] = useState(undefined)
+  const [models, setModels] = useState(undefined)
 
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
@@ -59,6 +66,40 @@ export default function AddVehicle(props) {
 
       return () => unsubscribe(); 
   }, [])
+
+
+
+   // Get Static Data
+  const fetchdata=async()=>{
+  const vehicles = await getVehicles()
+  setDataVehicles(vehicles)
+       
+  }
+
+  useEffect(()=> {
+    fetchdata()
+
+    
+  },[])
+
+  useEffect(()=> {
+    if (dataVehicles) {
+      setMakes(Object.keys(dataVehicles[0]).sort())
+      
+ 
+    }
+   
+  },[dataVehicles])
+
+  useEffect(()=> {
+    setModelSelected('')
+    if (dataVehicles) {
+      setModels(dataVehicles[0][makeSelected])
+    }
+    
+  },[makeSelected])
+
+
   return (
     <div className='addVehicle'>
       <div className='addVehicle__wrapper'>
@@ -72,28 +113,11 @@ export default function AddVehicle(props) {
           <form onSubmit={createVehicleTrade}>
             <label>
               <p>Make</p>
-              <select required onChange={(e)=>{setMakeSelected(e.target.value)}}>
-                <option value=''>Select a Make</option>
-                {Object.keys(vehicles).map((make)=> {
-                  return (
-                    <option value={make} key={make}>{make}</option>
-                  )
-                })}
-                <option value='other'>Other</option>
-              </select>
+              <DropDown selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
             </label>
             <label>
               <p>Model</p>
-              {makeSelected !== 'other'? 
-                <select required onChange={(e)=>{setModelSelected(e.target.value)}}>
-                <option value=''>Select a Model</option>
-                {makeSelected !== "" ? vehicles[makeSelected].map((model)=>{
-                  return (
-                    <option value={model} key={model}>{model}</option>
-                  )
-                }):'' }
-              </select>:<input type='text' placeholder='Type in the Model' required onChange={(e)=>{setModelSelected(e.target.value)}}></input>
-              }
+              <DropDown selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
             </label>
             <label>
               <p>Year</p>
