@@ -29,7 +29,7 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/dashboard' element={<Dashboard/>}/>
             <Route path='/trade' element={<AddVehicle type={"trade"}/>}/>
-            <Route path='/search' element={<AddVehicle type={"search"} />}/>
+            <Route path='/search' element={<AddVehicle type={"listing"} />}/>
             <Route path='/inventory' element={<CardGrid/>}/>
           </Routes>
         </Router>
