@@ -6,11 +6,19 @@
    
     .dashboard__wrapper {
         @include wrapper;
-        display: flex;
+        display: grid;
+        grid-template-columns: 300px 340px 340px ;
         gap:40px;
         flex-wrap: wrap;
+
         @media screen and (max-width: $breakpoint-medium) {
-            flex-direction: column;
+            grid-template-columns: 300px 340px;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        @media screen and (max-width: 720px) {
+            grid-template-columns: 340px;
+            grid-template-rows: 1fr 1fr 1fr;
         }
     
         .dashboard__wrapper_col_1 {
@@ -22,10 +30,55 @@
                 padding: 20px;
                 gap: 20px;
                 min-width: 300px;
+                position: relative;
+                
+
+                .menu {
+                    width: 8px;
+                    margin-top: 5px;
+                    height: fit-content;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    
+                    ellipse {
+                        fill: $primary-paragraph-font-color;
+                    }
+                }
+
+                .options {
+                    position: absolute;
+                    background-color: white;
+                    width: 150px;
+                    top: 40px;
+                    right: 20px;
+                    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                    border: 1px solid $border-color;
+                    z-index: 9999;
+                    ul {
+    
+                        list-style: none;
+                        font-family: $paragraph-font;
+    
+                        li {
+    
+                            padding: 10px;
+    
+                                &:hover {
+                                    background-color: $primary-color;
+                                    color: white;
+                                    cursor: pointer;
+                                }
+                            
+                        }
+                    }
+                }
 
                 .dashboard__wrapper__profile__picture {
                     font-family: $paragraph-font;
-                    background-color: $border-color;
+                    background-color: $primary-color;
+                    color: white;
                     height: 50px;
                     width: 50px;
                     display: flex;
@@ -52,10 +105,23 @@
             }
     
         }
+        .dashboard__wrapper_col_3 {
+
+            @media screen and (max-width: 1089px) {
+                grid-column: 2/3;
+            }
+            @media screen and (max-width: 720px) {
+                grid-column: 1/2;
+            }
+        }
         .dashboard__wrapper__section {
             background-color: $secondary-background-color;
             padding: 20px;
             border-radius: 5px;
+            height: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            
+          
 
             h2 {
                 color: $primary-paragraph-font-color;

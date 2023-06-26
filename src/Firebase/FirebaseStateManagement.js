@@ -231,7 +231,7 @@ export const getCountries = async () => {
   }
 };
 
-// Get all countries
+// Get all Vehicles
 export const getVehicles = async () => {
   try {
     const querySnapshot = await getDocs(staticCollectionRef);
