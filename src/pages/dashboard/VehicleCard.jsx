@@ -16,7 +16,7 @@ export default function Card({ car, onClick, isSelected }) {
             {showOptions && <div className='options'>
                 <ul>
                     <li><a>Edit</a></li>
-                    <li><a>Mark as Sold</a></li>
+                    <li><a>Mark as Found</a></li>
                     <li><a>Delete</a></li>
                 </ul>
             </div>
