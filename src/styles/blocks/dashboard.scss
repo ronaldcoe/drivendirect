@@ -7,7 +7,7 @@
     .dashboard__wrapper {
         @include wrapper;
         display: grid;
-        grid-template-columns: 300px 340px 340px ;
+        grid-template-columns: 340px 340px 340px ;
         gap:40px;
         flex-wrap: wrap;
 
@@ -41,7 +41,7 @@
                     &:hover {
                         cursor: pointer;
                     }
-                    
+
                     ellipse {
                         fill: $primary-paragraph-font-color;
                     }
