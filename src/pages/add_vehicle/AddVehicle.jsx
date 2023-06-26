@@ -30,7 +30,7 @@ export default function AddVehicle(props) {
   const [dataVehicles, setDataVehicles] = useState(null)
   const [makes, setMakes] = useState(undefined)
   const [models, setModels] = useState(undefined)
-
+  console.log(makeSelected)
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
     // Create the Object to save
@@ -113,11 +113,24 @@ export default function AddVehicle(props) {
           <form onSubmit={createVehicleTrade}>
             <label>
               <p>Make</p>
-              <DropDown selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
+              
+              <DropDown initial="Other" selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
+
+              
+              {makes && !makes.includes(makeSelected) &&makeSelected !== ''?
+              <input required style={{marginTop:'20px'}} type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
+              :null
+              }
+              
             </label>
             <label>
               <p>Model</p>
-              <DropDown selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
+              {makeSelected !== 'Other'?<DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
+:''}
+              {makes && makeSelected === 'Other'?
+              <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>             
+              : null
+              }
             </label>
             <label>
               <p>Year</p>

@@ -23,7 +23,7 @@
 }
 .vehiclecard .vehiclecard__title {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
 }
@@ -40,6 +40,35 @@
   color: #36454F;
   font-size: 1.2rem;
   padding-top: 0.5rem;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options {
+  position: relative;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .menu {
+  width: 8px;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .menu ellipse {
+  fill: #36454F;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .options {
+  position: absolute;
+  background-color: white;
+  width: 150px;
+  right: 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border: 1px solid #B6B6B6;
+  z-index: 9999;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .options ul {
+  list-style: none;
+  font-family: "Rubik", sans-serif;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .options ul li {
+  padding: 10px;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .options ul li:hover {
+  background-color: #080077;
+  color: white;
 }
 .vehiclecard .vehiclecard__description {
   font-family: "Rubik", sans-serif;

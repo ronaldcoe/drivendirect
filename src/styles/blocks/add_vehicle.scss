@@ -33,6 +33,9 @@
             max-width: 500px;
             min-width: 300px;
 
+            @media screen and (max-width: $breakpoint-medium) {
+                width: 100%;
+            }
             form {
                 @include forms
             }
