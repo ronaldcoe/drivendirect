@@ -19,6 +19,7 @@
   .dashboard .dashboard__wrapper {
     grid-template-columns: 340px;
     grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
   }
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper_col_1 .dashboard__wrapper__profile {
