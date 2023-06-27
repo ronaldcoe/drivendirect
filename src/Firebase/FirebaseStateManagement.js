@@ -1,5 +1,5 @@
 import {auth, firestore } from "./FirebaseConfig"
-import {addDoc, collection, serverTimestamp, getDocs, query , where, doc, updateDoc, setDoc} from "@firebase/firestore"
+import {addDoc, collection, serverTimestamp, getDocs,getDoc, query , where, doc, updateDoc, setDoc} from "@firebase/firestore"
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
 
 const inventoryTradeCollectionRef = collection(firestore, 'inventoryTrade');
@@ -181,6 +181,25 @@ export const loginUser = async (email, password) => {
   }
 };
 
+// Get User by ID
+export const getUserInfo= async (id)=>{
+  try{
+    var userDocRef = doc(usersCollectionRef, id);
+    var docSnapshot = await getDoc(userDocRef);
+
+    if (docSnapshot.exists()) {
+      var user = docSnapshot.data();
+      return user;
+    } else {
+      console.log('User not found');
+      return false;
+    }
+  }
+  catch (error){
+    console.log(error)
+    return false
+  }
+}
 /****************************************************************************************** */
 
 /*************************************ENTER STATIC DATA****************

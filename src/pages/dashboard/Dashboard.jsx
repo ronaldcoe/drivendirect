@@ -1,24 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../../styles/blocks/dashboard.css'
 import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
+import { getUserInfo } from '../../Firebase/FirebaseStateManagement';
 
 
 export default function Dashboard() {
+    const [account, setAccount] = useState()
 
-    const account = [{
-        city: "Rexburg",
-        country: "USA",
-        dealership:"Lakeram Narine",
-        email: "nar19002@byui.edu",
-        firstName: "Lakeram",
-        lastName: "Narine",
-        phoneNumber: "2084775405",
-        region: "Alaska",
-        website: "www.honda.com"
-    }]
+    const fetchUserInfo = async ()=>{
+        var userId = localStorage.getItem('userId')
+        var userInfo = await getUserInfo(userId)
+        if (userInfo){
+            console.log(userInfo)
+            setAccount(userInfo)
+        }
+    }
     
     const car = [{make: "Honda", model:"Civic", year:"2019", description:"Reliable and fuel-efficient compact car."}]
     const selling = [{make: "Honda", model:"Civic", year:"2019", description:"Reliable and fuel-efficient compact car."}
@@ -26,6 +25,10 @@ export default function Dashboard() {
 
     const navigate = useNavigate();
     const [showOptions, setShowOptions] = useState(false)
+
+    useEffect(()=>{
+        fetchUserInfo()
+    }, [])
     
   return (
     <div className='dashboard'>
@@ -33,20 +36,20 @@ export default function Dashboard() {
             <div className='dashboard__wrapper_col_1'>
                 <div className='dashboard__wrapper__profile'>
                     <div className='dashboard__wrapper__profile__picture'>
-                        {account[0].firstName.slice(0,1)}{account[0].lastName.slice(0,1)}
+                        {account?.firstName.slice(0,1)}{account?.lastName.slice(0,1)}
                     </div>
                     <div className='dashboard__wrapper__profile__info'>
-                        <h2>{account[0].firstName} {account[0].lastName}</h2>
+                        <h2>{account?.firstName} {account?.lastName}</h2>
                         <h3>Contact Information</h3>
-                        <p>{account[0].dealership}</p>
-                        <p>{account[0].email}</p>
-                        <p>{account[0].website}</p>
-                        <p>{account[0].phoneNumber}</p>
+                        <p>{account?.dealership}</p>
+                        <p>{account?.email}</p>
+                        <p>{account?.website}</p>
+                        <p>{account?.phoneNumber}</p>
 
                         <h3>Location</h3>
-                        <p>{account[0].city}</p>
-                        <p>{account[0].region}</p>
-                        <p>{account[0].country}</p>
+                        <p>{account?.city}</p>
+                        <p>{account?.region}</p>
+                        <p>{account?.country}</p>
                     </div>
                     <ReactSVG src={menu} className='menu' onClick={()=>{setShowOptions(!showOptions)}}/>
                     {showOptions && <div className='options'>
