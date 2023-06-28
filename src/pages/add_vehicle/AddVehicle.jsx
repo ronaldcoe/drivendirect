@@ -31,6 +31,7 @@ export default function AddVehicle(props) {
   const [makes, setMakes] = useState(undefined)
   const [models, setModels] = useState(undefined)
   console.log(makeSelected)
+
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
     // Create the Object to save
@@ -48,6 +49,7 @@ export default function AddVehicle(props) {
     const res = await createInventory(vehicleObject)
     if(res){
       console.log("Vehicle was created and Publish")
+      navigate("/dashboard")
     }
     else(
       console.log("Vehicle was not created")
@@ -78,15 +80,11 @@ export default function AddVehicle(props) {
 
   useEffect(()=> {
     fetchdata()
-
-    
   },[])
 
   useEffect(()=> {
     if (dataVehicles) {
       setMakes(Object.keys(dataVehicles[0]).sort())
-      
- 
     }
    
   },[dataVehicles])
