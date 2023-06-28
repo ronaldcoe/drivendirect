@@ -7,8 +7,6 @@ import { getAllInventoryBytype, getVehicles } from '../../Firebase/FirebaseState
 
 
 export default function CardGrid() {
-
-
   const [yearFilter, setYearFilter] = useState('');
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
