@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../../styles/blocks/dashboard.css'
 import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
@@ -12,6 +12,7 @@ export default function Dashboard() {
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
+    const optionsRef = useRef(null);
     const navigate = useNavigate();
     const tradeMax = 2
     const listMax = 2
@@ -35,7 +36,19 @@ export default function Dashboard() {
         var listVehicles = await getAllInventoryByEntity("userId", userId, "listing")
         setListings(listVehicles)
     }
-   
+
+    useEffect(() => {
+    const handleMouseDown = (event) => {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+        setShowOptions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleMouseDown);
+    return () => {
+      document.removeEventListener('mousedown', handleMouseDown);
+    };
+  }, []);
 
 
     useEffect(()=>{
@@ -66,12 +79,12 @@ export default function Dashboard() {
                         <p>{account?.country}</p>
                     </div>
                     <ReactSVG src={menu} className='menu' onClick={()=>{setShowOptions(!showOptions)}}/>
-                    {showOptions && <div className='options'>
+                    {showOptions && (<div ref={optionsRef} className='options'>
                         <ul>
                             <li><a>Edit account</a></li>
                         </ul>
                     </div>
-                    }
+                    )}
             </div>
         </div>
         <div className='dashboard__wrapper_col_2'>
