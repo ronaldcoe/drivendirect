@@ -30,9 +30,8 @@ export const createInventory = async(data)=>{
 export const getAllInventoryByEntity = async (entity, value, type) => {
   try {
     let q = ''
-
      // Create the Query
-    if (type =="listing"){
+    if (type == "listing"){
       q = query(
       inventoryListCollectionRef,
       where(entity, '==', value)
@@ -40,13 +39,13 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
 
     else if (type == "trade"){
       q = query(
-      inventoryListCollectionRef,
+      inventoryTradeCollectionRef,
       where(entity, '==', value)
     );}
    
     // Create the Snap
     const querySnapshot = await getDocs(q)
-
+    
     // Map and send the Object
     const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
     return allinventory;

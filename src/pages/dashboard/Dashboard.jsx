@@ -4,32 +4,46 @@ import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
-import { getUserInfo } from '../../Firebase/FirebaseStateManagement';
+import { getUserInfo, getAllInventoryByEntity } from '../../Firebase/FirebaseStateManagement';
 
 
 export default function Dashboard() {
     const [account, setAccount] = useState()
+    const [trades, setTrades] = useState()
+    const [listings, setListings] = useState()
+    const [showOptions, setShowOptions] = useState(false)
+    const navigate = useNavigate();
+    const tradeMax = 2
+    const listMax = 2
 
     const fetchUserInfo = async ()=>{
         var userId = localStorage.getItem('userId')
         var userInfo = await getUserInfo(userId)
         if (userInfo){
-            console.log(userInfo)
             setAccount(userInfo)
         }
     }
     
-    const car = [{make: "Honda", model:"Civic", year:"2019", description:"Reliable and fuel-efficient compact car."}]
-    const selling = [{make: "Honda", model:"Civic", year:"2019", description:"Reliable and fuel-efficient compact car."}
-    ]
+    const fetchTrades = async ()=>{
+        var userId = localStorage.getItem('userId')
+        var tradeVehicles = await getAllInventoryByEntity("userId", userId, "trade")
+        setTrades(tradeVehicles)
+    }
 
-    const navigate = useNavigate();
-    const [showOptions, setShowOptions] = useState(false)
+    const fetchListing = async ()=>{
+        var userId = localStorage.getItem('userId')
+        var listVehicles = await getAllInventoryByEntity("userId", userId, "listing")
+        setListings(listVehicles)
+    }
+   
+
 
     useEffect(()=>{
         fetchUserInfo()
+        fetchTrades()
+        fetchListing()
     }, [])
-    
+
   return (
     <div className='dashboard'>
         <div className='dashboard__wrapper'>
@@ -66,12 +80,12 @@ export default function Dashboard() {
                     <h2>Tradings</h2>
                 </div>
                <div>
-                {car.map((item, key)=> {
+                {trades?.map((item, key)=> {
                         return(
                             <VehicleCard car={item} key={key}/>
                         )
                     })}
-                    {car.length<2?<button onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
+                    {trades?.length<tradeMax?<button onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
                </div>
             </div>
         </div>
@@ -80,12 +94,12 @@ export default function Dashboard() {
                 <div>
                     <h2>Searching</h2>
                 </div>
-                    {selling.map((item, key)=> {
+                    {listings?.map((item, key)=> {
                     return(
                         <VehicleCard car={item} key={key}/>
                     )
                 })}
-                    {selling.length<2?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
+                    {listings?.length<listMax?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
                 
             </div>
         </div>
