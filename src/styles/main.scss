@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 /* ===== Scrollbar CSS ===== */
@@ -33,6 +34,7 @@ html {
 
 body {
     font-size: 16px;
+    overflow-x: hidden;
     
 }
 .App {

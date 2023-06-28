@@ -6,7 +6,7 @@ import DropDown from '../dropdown/DropDown';
 import { getAllInventoryBytype, getVehicles } from '../../Firebase/FirebaseStateManagement';
 
 
-export default function CardGrid() {
+export default function CardGrid(props) {
   const [yearFilter, setYearFilter] = useState('');
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
@@ -14,10 +14,11 @@ export default function CardGrid() {
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [vehicles, setVehicles] = useState([]);
+  
 
   const fetchInventory = async () => {
-    const vehicles = await getAllInventoryBytype("trade");
-    console.log(vehicles);
+    const vehicles = await getAllInventoryBytype(props.type);
+
     setVehicles(vehicles);
     const uniqueMakes = [...new Set(vehicles.map((obj) => obj.make))];
     setMakes(uniqueMakes);
@@ -88,7 +89,7 @@ export default function CardGrid() {
                     <td id='table_year'>{item.year}</td>
                     <td id='table_make'>{item.make}</td>
                     <td id='table_model'>{item.model}</td>
-                    <td id='table_location'>{item.location}</td>
+                    <td id='table_location'>{item.region}</td>
                     <td id='table_description'>{item.description}</td>
                     <td id='table_actions'>
                       <button>Contact</button>

@@ -2,6 +2,15 @@
 @import '../variables/_mixins';
 @import '../elements/navBar';
 
+@keyframes moveRightToLeft {
+    0% {
+      transform: translateX(100%); // Starting position
+    }
+    100% {
+      transform: translateX(0%); // Ending position
+    }
+  }
+  
 .header {
     background-color: white;
     border-bottom: 1px solid $border-color;
@@ -15,7 +24,11 @@
         justify-content: space-between;
 
         nav {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            justify-content: end;
+            width: 100%;
+            
             ul {
 
                 li {
@@ -25,6 +38,78 @@
                         color: $primary-color; 
                         text-decoration: none;
                     }
+                }
+            }
+
+            .header__wrapper__menu {
+
+                justify-self: center;
+
+                @media screen and (max-width:$breakpoint-medium) {
+                    display: none;
+                }
+                a {
+                    padding: 20px;
+                    &:hover {
+                        background-color: $primary-color;
+                        color: white;
+                        
+                    }
+                }
+
+                &.hamburger {
+                    
+                    @media screen and (max-width:$breakpoint-medium) {
+                        display: block;
+                        position: absolute;
+                        background-color: $secondary-background-color;
+                        right: 0;
+                        top: 60px;
+                        animation: moveRightToLeft 0.3s;
+                        width: 100%;
+                        
+
+                    li {
+                        padding: 20px 0px;
+                        text-align: right;
+                        a {
+                            height: 50px;
+                            
+                        }
+                        
+                    }
+                    }
+                }
+            }
+
+            .header__wrapper__action__links {
+                a {
+                    font-weight: 300;
+                    text-decoration: underline;
+                }
+                
+            }
+
+            .header__wrapper__hamburguer {
+
+                display: none;
+                margin-left: 50px;
+                cursor: pointer;
+
+                svg {
+                    display: flex;
+                    align-items: center;
+                    width: 20px;
+                    height: 20px;
+
+                    rect {
+                        fill: $primary-color;
+                    }
+                }
+                @media screen and (max-width:$breakpoint-medium) {
+                    display: block;
+                    
+                    
                 }
             }
         }

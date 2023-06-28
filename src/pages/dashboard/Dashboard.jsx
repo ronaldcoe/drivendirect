@@ -7,7 +7,8 @@ import { ReactSVG } from 'react-svg';
 import { getUserInfo, getAllInventoryByEntity } from '../../Firebase/FirebaseStateManagement';
 
 
-export default function Dashboard() {
+export default function Dashboard(props) {
+    document.title = props.title
     const [account, setAccount] = useState()
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
@@ -22,9 +23,11 @@ export default function Dashboard() {
         var userInfo = await getUserInfo(userId)
         if (userInfo){
             setAccount(userInfo)
+            console.log(account?.region)
+            
         }
     }
-    
+    localStorage.setItem("region", account?.region)
     const fetchTrades = async ()=>{
         var userId = localStorage.getItem('userId')
         var tradeVehicles = await getAllInventoryByEntity("userId", userId, "trade")

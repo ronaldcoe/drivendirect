@@ -13,7 +13,7 @@
     height: fit-content;
     margin-top: 20px;
   
-    
+   
     @media screen and (max-width: $breakpoint-small) {
         width: 100%;
     }
@@ -30,6 +30,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 235px;
+        font-size: 1.6rem;
        }
 
        p {
@@ -81,6 +82,7 @@
         padding-top: 1rem;
         color: $primary-paragraph-font-color;
         line-height: 1.5;
+        font-size: 1.4rem;
      
     }
 }
