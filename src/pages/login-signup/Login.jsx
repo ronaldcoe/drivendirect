@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../styles/blocks/login.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,7 @@ import Error from '../../shared/notifications/Error';
 import {loginUser} from "../../Firebase/FirebaseStateManagement"
 import { getCountries } from '../../Firebase/FirebaseStateManagement';
 import { useNavigate } from 'react-router';
+import { auth } from '../../Firebase/FirebaseConfig';
 
 export default function Login() {
 
@@ -14,6 +15,24 @@ export default function Login() {
     const [password, setPassword] = useState()
     const [showError, setShowError] = useState(false)
     const navigate = useNavigate();
+
+    const [user, setUser] = useState(null);
+
+    useEffect(()=>{
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+          if (user) {
+            // User is signed in
+            navigate("/dashboard")
+
+          } else {
+            // User is signed out
+            navigate('/login');
+          }});
+    
+          return () => unsubscribe(); 
+      }, [])
+
+
     const login=async(e)=>{
         e.preventDefault();
         try {

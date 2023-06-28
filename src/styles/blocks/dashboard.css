@@ -26,6 +26,7 @@
   border: 1px solid #B6B6B6;
   border-radius: 5px;
   display: flex;
+  justify-content: space-between;
   padding: 20px;
   gap: 20px;
   min-width: 300px;
@@ -117,11 +118,10 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: white;
+  background-color: #080077;
   width: 100%;
-  border: 1px solid #B6B6B6;
-  color: #36454F;
+  color: white;
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper__section button:focus {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(8, 0, 119, 0.9);
 }/*# sourceMappingURL=dashboard.css.map */

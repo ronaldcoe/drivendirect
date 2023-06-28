@@ -7,14 +7,7 @@ import DropDown from '../../shared/dropdown/DropDown';
 import { getVehicles } from '../../Firebase/FirebaseStateManagement';
 
 export default function AddVehicle(props) {
-  // Will move this over the database. Just testing
-  const vehicles = {
-    Hyundai: ["Santa Fe", "Tucson", "Accent"],
-    Toyota: ["Camry", "Corolla", "RAV4"],
-    Ford: ["Mustang", "F-150", "Focus"],
-    Honda: ["Civic", "Accord", "CR-V"],
-    Chevrolet: ["Silverado", "Equinox", "Cruze"],
-  };
+
   // For Authorization and Navigation
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -123,11 +116,10 @@ export default function AddVehicle(props) {
             </label>
             <label>
               <p>Model</p>
-              {makeSelected !== 'Other'?<DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
-:''}
-              {makes && makeSelected === 'Other'?
+    
+              {makes && !makes.includes(makeSelected)?
               <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>             
-              : null
+              : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
               }
             </label>
             <label>

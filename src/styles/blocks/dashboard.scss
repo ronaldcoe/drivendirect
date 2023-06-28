@@ -28,6 +28,7 @@
                 border: 1px solid $border-color;
                 border-radius: 5px;
                 display: flex;
+                justify-content: space-between;
                 padding: 20px;
                 gap: 20px;
                 min-width: 300px;
@@ -129,10 +130,9 @@
             }
 
             button {
-                @include buttons(white);
+                @include buttons($primary-color);
                 width: 100%;
-                border: 1px solid $border-color;
-                color: $primary-paragraph-font-color;
+                color: white;
             }
         }
 

@@ -4,6 +4,7 @@
 nav ul {
   display: flex;
   gap: 20px;
+  align-items: center;
 }
 nav ul li {
   list-style: none;
@@ -27,20 +28,12 @@ nav ul li a {
   align-items: center;
   justify-content: space-between;
 }
-.header .header__wrapper nav ul li a {
-  padding: 15px;
-  border: none;
-  font-family: "Rubik", sans-serif;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background-color: #080077;
-  color: white;
-  text-decoration: none;
+.header .header__wrapper nav {
+  display: flex;
 }
-.header .header__wrapper nav ul li a:focus {
-  background-color: rgba(8, 0, 119, 0.9);
+.header .header__wrapper nav ul li a {
+  color: #080077;
+  text-decoration: none;
 }
 .header .header__wrapper .header__logo {
   font-family: "Rubik", sans-serif;
