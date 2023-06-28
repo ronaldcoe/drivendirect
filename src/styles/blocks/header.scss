@@ -15,14 +15,14 @@
         justify-content: space-between;
 
         nav {
-
+            display: flex;
             ul {
 
                 li {
 
                     a {
-                        @include buttons($button-color);
-                        color: white; 
+                        
+                        color: $primary-color; 
                         text-decoration: none;
                     }
                 }
