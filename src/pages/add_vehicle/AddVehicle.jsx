@@ -37,7 +37,8 @@ export default function AddVehicle(props) {
       description: vehicleDescription,
       status: "Publish",
       type: type,
-      dateCreate: currentDate
+      dateCreate: currentDate,
+      region: localStorage.getItem("region")
     }
     const res = await createInventory(vehicleObject)
     if(res){

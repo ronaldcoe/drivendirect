@@ -8,7 +8,8 @@ export default function Header() {
 
   const [user, setUser] = useState(null);
   const [account, setAccount] = useState()
-  console.log(user)
+  const [showMenu, setShowMenu] = useState(false)
+
   
   useEffect(()=>{
     
@@ -50,11 +51,27 @@ export default function Header() {
           <a href='/'>Carznot</a>
         </div>
         <nav>
-          
-          <ul>
-            <li>{user?<a href='./dashboard'>Welcome {account?.firstName}</a>:<a href='./login'>Log in</a>}</li>
+          <ul className={`header__wrapper__menu ${showMenu?"hamburger":''}`}>
+            {user?
+              <>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/inventory/trade">Trading Inventory</a></li>
+                <li><a href="/inventory/listing">Searching Inventory</a></li>
+                
+              </>
+            :''}
+          </ul>
+          <ul className='header__wrapper__action__links'>
+            <li>{user?<a href='/dashboard'>Welcome {account?.firstName}</a>:<a href='./login'>Log in</a>}</li>
             <li>{user?<a href='/' onClick={logoutUser}>Log out</a>:<a href='./signup'>Sign up</a>}</li>
           </ul>
+          <div className='header__wrapper__hamburguer' onClick={()=>{setShowMenu(!showMenu)}}>
+          <svg viewBox="0 0 100 80">
+            <rect width="100" height="20" rx="10" ry="10"></rect>
+            <rect y="30" width="100" height="20" rx="10" ry="10"></rect>
+            <rect y="60" width="100" height="20" rx="10" ry="10"></rect>
+          </svg>
+          </div>
         </nav>
       </div>
     </div>

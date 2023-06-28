@@ -6,10 +6,13 @@
    
     .dashboard__wrapper {
         @include wrapper;
+        max-width: fit-content;
+        margin: 0 auto;
+        padding: 20px;
         display: grid;
-        grid-template-columns: 340px 340px 340px ;
-        gap:40px;
-        flex-wrap: wrap;
+        grid-template-columns: auto 340px 340px;
+        gap: 40px;   
+        margin-top: 50px;
 
         @media screen and (max-width: $breakpoint-medium) {
             grid-template-columns: 300px 340px;
@@ -18,8 +21,12 @@
 
         @media screen and (max-width: 720px) {
             grid-template-columns: 340px;
-            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-rows: auto 1fr 1fr;
             justify-content: center;
+        }
+
+        h2 {
+            font-size: 2rem;
         }
     
         .dashboard__wrapper_col_1 {
@@ -28,10 +35,10 @@
                 border: 1px solid $border-color;
                 border-radius: 5px;
                 display: flex;
-                justify-content: space-between;
+                
                 padding: 20px;
                 gap: 20px;
-                min-width: 300px;
+                
                 position: relative;
                 
 

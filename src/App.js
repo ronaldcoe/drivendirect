@@ -27,10 +27,11 @@ function App() {
             <Route path="/privacy-policy" element={<Terms />} />
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
-            <Route path='/dashboard' element={<Dashboard/>}/>
+            <Route path='/dashboard' element={<Dashboard title="Dashboard"/>}/>
             <Route path='/trade' element={<AddVehicle type={"trade"}/>}/>
             <Route path='/search' element={<AddVehicle type={"listing"} />}/>
-            <Route path='/inventory' element={<CardGrid/>}/>
+            <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
+            <Route path='/inventory/listing' element={<CardGrid type={"listing"}/>}/>
           </Routes>
         </Router>
         {/* <AddVehicle/> */}

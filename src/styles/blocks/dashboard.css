@@ -4,10 +4,14 @@
   max-width: 1300px;
   margin: 0 auto;
   padding: 20px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 20px;
   display: grid;
-  grid-template-columns: 340px 340px 340px;
+  grid-template-columns: auto 340px 340px;
   gap: 40px;
-  flex-wrap: wrap;
+  margin-top: 50px;
 }
 @media screen and (max-width: 820px) {
   .dashboard .dashboard__wrapper {
@@ -18,18 +22,19 @@
 @media screen and (max-width: 720px) {
   .dashboard .dashboard__wrapper {
     grid-template-columns: 340px;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
     justify-content: center;
   }
+}
+.dashboard .dashboard__wrapper h2 {
+  font-size: 2rem;
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper_col_1 .dashboard__wrapper__profile {
   border: 1px solid #B6B6B6;
   border-radius: 5px;
   display: flex;
-  justify-content: space-between;
   padding: 20px;
   gap: 20px;
-  min-width: 300px;
   position: relative;
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper_col_1 .dashboard__wrapper__profile .menu {

@@ -4,6 +4,7 @@ nav {
         display: flex;
         gap: 20px;
         align-items: center;
+        justify-content: end;
         li {
             list-style: none;
             font-family: $paragraph-font;
