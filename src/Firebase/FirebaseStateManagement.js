@@ -57,6 +57,26 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
   }
 };
 
+export const getAllInventoryBytype = async(type)=>{
+  try {
+    if(type == "trade"){
+      const querySnapshot = await getDocs(inventoryTradeCollectionRef);
+      const vehicles = querySnapshot.docs.map((doc) => doc.data());
+      return vehicles;
+    }
+    else if (type =="listing"){
+      const querySnapshot = await getDocs(inventoryListCollectionRef);
+      const vehicles = querySnapshot.docs.map((doc) => doc.data());
+      return vehicles;
+    }
+    // Map the data and extract the vehicles field
+    
+
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+}
 
 // get inventory based on Filters
 export const getAllInventoryByFilters = async (filters, type) => {
