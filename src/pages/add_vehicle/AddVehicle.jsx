@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../../styles/blocks/add_vehicle.css'
-import { createInventory } from '../../Firebase/FirebaseStateManagement';
+import { createInventory, getAllInventoryByEntity } from '../../Firebase/FirebaseStateManagement';
 import { auth } from '../../Firebase/FirebaseConfig';
 import { useNavigate } from 'react-router';
 import DropDown from '../../shared/dropdown/DropDown';
@@ -14,6 +14,8 @@ export default function AddVehicle(props) {
   const [vehicleYear, setVehicleYear] = useState('')
   const [vehicleDescription, setVehicleDescription] = useState('')
   const [type, setType]= useState(props.type)
+  // this will be set in the future by the account details
+  const [userMax, setUserMax] = useState(2)
 
 
   // Data for Dropdown
@@ -47,6 +49,15 @@ export default function AddVehicle(props) {
     )
   }
 
+  // Get all search or trade for a user
+  const fetchAllInventoryCreated = async()=>{
+    const userId = localStorage.getItem("userId")
+    const listOfInventory = await getAllInventoryByEntity("userId", userId, type)
+    // now check if it has exceed the limit and push them back to the Dashboard
+    if(listOfInventory?.length >= userMax){
+      navigate("/")
+    }
+  }
    // Get Static Data
   const fetchdata=async()=>{
   const vehicles = await getVehicles()
@@ -55,8 +66,11 @@ export default function AddVehicle(props) {
   }
 
   useEffect(()=> {
+    fetchAllInventoryCreated()
     fetchdata()
   },[])
+
+  
 
   useEffect(()=> {
     if (dataVehicles) {
