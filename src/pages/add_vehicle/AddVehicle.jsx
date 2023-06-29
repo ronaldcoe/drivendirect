@@ -55,7 +55,7 @@ export default function AddVehicle(props) {
     const listOfInventory = await getAllInventoryByEntity("userId", userId, type)
     // now check if it has exceed the limit and push them back to the Dashboard
     if(listOfInventory?.length >= userMax){
-      navigate("/")
+      navigate("/dashboard")
     }
   }
    // Get Static Data
