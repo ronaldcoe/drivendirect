@@ -52,18 +52,18 @@ export default function Header() {
         </div>
         <nav>
           <ul className={`header__wrapper__menu ${showMenu?"hamburger":''}`}>
-            {user?
+            {
               <>
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/inventory/trade">Trading Inventory</a></li>
                 <li><a href="/inventory/listing">Searching Inventory</a></li>
                 
               </>
-            :''}
+            }
           </ul>
           <ul className='header__wrapper__action__links'>
-            <li>{user?<a href='/dashboard'>Welcome {account?.firstName}</a>:<a href='./login'>Log in</a>}</li>
-            <li>{user?<a href='/' onClick={logoutUser}>Log out</a>:<a href='./signup'>Sign up</a>}</li>
+            <li>{user?<a href='/dashboard'>Welcome {account?.firstName}</a>:<a href='/login'>Log in</a>}</li>
+            <li>{user?<a href='/' onClick={logoutUser}>Log out</a>:<a href='/signup'>Sign up</a>}</li>
           </ul>
           <div className='header__wrapper__hamburguer' onClick={()=>{setShowMenu(!showMenu)}}>
           <svg viewBox="0 0 100 80">
