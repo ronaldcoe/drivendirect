@@ -11,6 +11,7 @@ import Firebase from './Firebase2';
 import AddVehicle from './pages/add_vehicle/AddVehicle';
 import CardGrid from './shared/CarInformation/CardGrid';
 import Dashboard from './pages/dashboard/Dashboard';
+import ProtectedRoute from './shared/ProtectedRoute';
 
 
 function App() {
@@ -27,7 +28,12 @@ function App() {
             <Route path="/privacy-policy" element={<Terms />} />
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
-            <Route path='/dashboard' element={<Dashboard title="Dashboard"/>}/>
+            <Route exact path='/dashboard' element={
+              <ProtectedRoute>
+                <Dashboard title="Dashboard"/>
+              </ProtectedRoute>
+            } />
+            {/* <Route path='/dashboard' element={<Dashboard title="Dashboard"/>}/> */}
             <Route path='/trade' element={<AddVehicle type={"trade"}/>}/>
             <Route path='/search' element={<AddVehicle type={"listing"} />}/>
             <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
