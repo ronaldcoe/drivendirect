@@ -15,6 +15,7 @@ export default function Dashboard(props) {
     const [showOptions, setShowOptions] = useState(false)
     const optionsRef = useRef(null);
     const navigate = useNavigate();
+    // These will be changed in the future
     const tradeMax = 2
     const listMax = 2
 

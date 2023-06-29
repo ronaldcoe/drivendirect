@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import data from './car-data.json';
 import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
-import { getAllInventoryBytype, getVehicles } from '../../Firebase/FirebaseStateManagement';
+import { getAllInventoryBytype, getUserInfo, getVehicles } from '../../Firebase/FirebaseStateManagement';
+import { auth } from '../../Firebase/FirebaseConfig';
 
 
 export default function CardGrid(props) {
@@ -14,7 +15,6 @@ export default function CardGrid(props) {
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  
 
   const fetchInventory = async () => {
     const vehicles = await getAllInventoryBytype(props.type);
@@ -24,6 +24,19 @@ export default function CardGrid(props) {
     setMakes(uniqueMakes);
     setDataVehicles(vehicles);
   };
+
+  // This only gets called when the contact button is clicked and the user is logged in
+  const fetchDealerInformation = async(vehicle)=>{
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const dealerInformation = await getUserInfo(vehicle.userId)
+        console.log(dealerInformation)
+      } else {
+        // Have an Alert or something to show user has not signed in and therefore cannot see
+        console.log("You are not signed In")
+      }});
+    
+  }
 
   useEffect(() => {
     fetchInventory();
@@ -92,7 +105,7 @@ export default function CardGrid(props) {
                     <td id='table_location'>{item.region}</td>
                     <td id='table_description'>{item.description}</td>
                     <td id='table_actions'>
-                      <button>Contact</button>
+                      <button onClick={ ()=>{fetchDealerInformation(item)}}>Contact</button>
                       <button id='table_actions_save'>Save</button>
                     </td>
                   </tr>
