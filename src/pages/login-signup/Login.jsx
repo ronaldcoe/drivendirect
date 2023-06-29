@@ -71,7 +71,7 @@ export default function Login() {
     <div className='login'>
       
         <div className='login__wrapper'>
-        {showError && <Error close={{showError, setShowError}} message={"Your email or password don't match our database"} />}
+        {showError && <Error close={{showError, setShowError}} message={"Your email or password are incorrect"} />}
             <div className='login__wrapper__content'>
                 <h1>Login</h1>
                 <p className='login__wrapper__content__login'>Don't have an account? <a href="/signup">Sign up for free</a></p>

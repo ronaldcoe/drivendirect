@@ -122,7 +122,7 @@
   padding: 20px;
   display: grid;
   gap: 60px;
-  grid-template-columns: auto auto;
+  grid-template-columns: 200px auto;
   margin-top: 50px;
 }
 @media screen and (max-width: 1000px) {
