@@ -7,9 +7,6 @@ import DropDown from '../../shared/dropdown/DropDown';
 import { getVehicles } from '../../Firebase/FirebaseStateManagement';
 
 export default function AddVehicle(props) {
-
-  // For Authorization and Navigation
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   // Data
   const [makeSelected, setMakeSelected] = useState('')
@@ -49,21 +46,6 @@ export default function AddVehicle(props) {
       console.log("Vehicle was not created")
     )
   }
-
-  useEffect(()=>{
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in
-        setUser(user);
-      } else {
-        // User is signed out
-        navigate('/login');
-      }});
-
-      return () => unsubscribe(); 
-  }, [])
-
-
 
    // Get Static Data
   const fetchdata=async()=>{

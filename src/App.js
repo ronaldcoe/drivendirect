@@ -28,16 +28,26 @@ function App() {
             <Route path="/privacy-policy" element={<Terms />} />
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
+            <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
+            <Route path='/inventory/listing' element={<CardGrid type={"listing"}/>}/>
+            
+            {/* ALL PROTECTED ROUTES THAT NEED SIGNIN USER */}
             <Route exact path='/dashboard' element={
               <ProtectedRoute>
                 <Dashboard title="Dashboard"/>
               </ProtectedRoute>
             } />
-            {/* <Route path='/dashboard' element={<Dashboard title="Dashboard"/>}/> */}
-            <Route path='/trade' element={<AddVehicle type={"trade"}/>}/>
-            <Route path='/search' element={<AddVehicle type={"listing"} />}/>
-            <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
-            <Route path='/inventory/listing' element={<CardGrid type={"listing"}/>}/>
+            <Route exact path='/trade' element={
+              <ProtectedRoute>
+                <AddVehicle type={"trade"}/>
+              </ProtectedRoute>
+            } />
+            <Route exact path='/search' element={
+              <ProtectedRoute>
+                <AddVehicle type={"listing"} />
+              </ProtectedRoute>
+            } />
+           
           </Routes>
         </Router>
         {/* <AddVehicle/> */}
