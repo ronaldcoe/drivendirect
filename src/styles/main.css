@@ -76,4 +76,20 @@ h2 {
 p {
   font-family: "Rubik", sans-serif;
   line-height: 1.5;
+}
+
+.notifications {
+  font-family: "Rubik", sans-serif;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.notifications .rnc__notification-item--success {
+  background-color: white;
+  border-left: 8px solid #1f8838;
+}
+.notifications .rnc__notification-title {
+  color: #1f8838;
+}
+.notifications .rnc__notification-message {
+  color: #1f8838;
 }/*# sourceMappingURL=main.css.map */

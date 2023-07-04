@@ -12,7 +12,9 @@ import AddVehicle from './pages/add_vehicle/AddVehicle';
 import CardGrid from './shared/CarInformation/CardGrid';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProtectedRoute from './shared/ProtectedRoute';
-
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css/animate.min.css';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         {/* <Firebase/>    */}
       </header>
       <main>
+        <ReactNotifications className='notifications' />
         <Router>
           <Routes>
             <Route path="/" element={<Landing />} />

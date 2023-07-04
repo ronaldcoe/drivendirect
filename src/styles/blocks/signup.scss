@@ -58,8 +58,18 @@
                     
                 }
                 
-                
-                
+                .business_type_container {
+                    display: flex;
+                    gap: 30px;
+                    
+                    .business_type {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        gap: 5px;
+                        width: fit-content
+                    }
+                }
+                    
 
                 button {
                     @include buttons($button-color);

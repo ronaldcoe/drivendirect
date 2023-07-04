@@ -47,9 +47,7 @@
     margin-bottom: 20px;
     background-color: $backgroundColor;
 
-    &:focus {
-        background-color: rgba($backgroundColor, 0.9);
-    }
+   
 }
 
 @mixin shadow {
