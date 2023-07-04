@@ -22,11 +22,11 @@ export default function Card({ car, onClick, isSelected }) {
 
   return (
     <div className='vehiclecard' onClick={onClick}>
-      <div className='vehiclecard__title'>
+      <div className='vehiclecard__title' onClick={() => { setShowOptions(!showOptions) }}>
         <h3>{car.year} {car.make} {car.model}</h3>
 
         <div className='vehiclecard__title__options'>
-          <ReactSVG src={menu} className='menu' onClick={() => { setShowOptions(!showOptions) }} />
+          <ReactSVG src={menu} className='menu'  />
           {showOptions && (
             <div ref={optionsRef} className='options'>
               <ul>

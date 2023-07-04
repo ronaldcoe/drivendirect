@@ -155,6 +155,9 @@
   display: flex;
   max-width: 600px;
 }
+.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters .custom-dropdown {
+  border: 1px solid #B6B6B6;
+}
 @media screen and (max-width: 670px) {
   .cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters {
     max-width: 100%;

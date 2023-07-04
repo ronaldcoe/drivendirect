@@ -2,6 +2,7 @@
 import Header from './pages/landing/Header';
 import './styles/main.css';
 import Terms from './pages/terms/Privacy.jsx'
+import Faq from './pages/terms/Faq.jsx'
 import Landing from './Landing'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './pages/landing/Footer';
@@ -29,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/privacy-policy" element={<Terms />} />
+            <Route path="/faq" element={<Faq />} />
             <Route path='/login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>

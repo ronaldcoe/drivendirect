@@ -46,6 +46,9 @@
                 max-width: 600px;
 
                
+                .custom-dropdown  {
+                    border: 1px solid $border-color;
+                }
 
                 @media screen and (max-width: 670px) {
                     max-width: 100%;
