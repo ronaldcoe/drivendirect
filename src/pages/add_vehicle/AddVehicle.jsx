@@ -6,6 +6,12 @@ import { useNavigate } from 'react-router';
 import DropDown from '../../shared/dropdown/DropDown';
 import { getVehicles } from '../../Firebase/FirebaseStateManagement';
 
+
+import { Store } from 'react-notifications-component';
+
+
+
+
 export default function AddVehicle(props) {
   const navigate = useNavigate();
   // Data
@@ -41,8 +47,24 @@ export default function AddVehicle(props) {
     }
     const res = await createInventory(vehicleObject)
     if(res){
+
       console.log("Vehicle was created and Publish")
       navigate("/dashboard")
+      
+      Store.addNotification({
+        title: "Success",
+        message: "Your vehicle was sucessfully added",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true
+        }
+      });
+
     }
     else(
       console.log("Vehicle was not created")
@@ -55,7 +77,7 @@ export default function AddVehicle(props) {
     const listOfInventory = await getAllInventoryByEntity("userId", userId, type)
     // now check if it has exceed the limit and push them back to the Dashboard
     if(listOfInventory?.length >= userMax){
-      navigate("/")
+      navigate("/dashboard")
     }
   }
    // Get Static Data

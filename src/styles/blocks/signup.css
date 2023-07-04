@@ -137,6 +137,17 @@
 .signup .signup__wrapper .signup__wrapper__form form .signup__wrapper__form__details.show_details {
   display: block;
 }
+.signup .signup__wrapper .signup__wrapper__form form .business_type_container {
+  display: flex;
+  gap: 30px;
+}
+.signup .signup__wrapper .signup__wrapper__form form .business_type_container .business_type {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
 .signup .signup__wrapper .signup__wrapper__form form button {
   padding: 15px;
   border: none;
@@ -147,9 +158,6 @@
   margin-bottom: 20px;
   background-color: #080077;
   color: white;
-}
-.signup .signup__wrapper .signup__wrapper__form form button:focus {
-  background-color: rgba(8, 0, 119, 0.9);
 }
 .signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox {
   display: flex;

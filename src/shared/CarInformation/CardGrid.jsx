@@ -1,6 +1,5 @@
 // CardGrid.js
 import React, { useEffect, useState } from 'react';
-import data from './car-data.json';
 import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
 import { getAllInventoryBytype, getUserInfo, getVehicles } from '../../Firebase/FirebaseStateManagement';
@@ -8,13 +7,17 @@ import { auth } from '../../Firebase/FirebaseConfig';
 
 
 export default function CardGrid(props) {
-  const [yearFilter, setYearFilter] = useState('');
+
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
+  const [regionFilter, setRegionFilter] = useState('All')
   const [dataVehicles, setDataVehicles] = useState();
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [vehicles, setVehicles] = useState([]);
+  const [regions, setRegions] = useState([])
+  const [dealerInformation, setDealerInformation] = useState()
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
 
   const fetchInventory = async () => {
     const vehicles = await getAllInventoryBytype(props.type);
@@ -26,17 +29,24 @@ export default function CardGrid(props) {
   };
 
   // This only gets called when the contact button is clicked and the user is logged in
-  const fetchDealerInformation = async(vehicle)=>{
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const dealerInformation = await getUserInfo(vehicle.userId)
-        console.log(dealerInformation)
+  const fetchDealerInformation = async (vehicle) => {
+    const user = auth.currentUser;
+    if (user) {
+      if (selectedVehicle === vehicle && dealerInformation) {
+        // If the same vehicle is clicked again and contact information is already shown, hide it
+        setDealerInformation(null);
+        setSelectedVehicle(null);
       } else {
-        // Have an Alert or something to show user has not signed in and therefore cannot see
-        console.log("You are not signed In")
-      }});
-    
-  }
+        const dealerInfo = await getUserInfo(vehicle.userId);
+        setDealerInformation(dealerInfo);
+        setSelectedVehicle(vehicle);
+      }
+    } else {
+      // Have an Alert or something to show the user has not signed in and therefore cannot see
+      console.log("You are not signed in.");
+    }
+  };
+  
 
   useEffect(() => {
     fetchInventory();
@@ -53,7 +63,17 @@ export default function CardGrid(props) {
       setModels([]);
     }
     setModelFilter('All');
+
+    
+
   }, [makeFilter, vehicles]);
+
+
+  useEffect(()=> {
+    const uniqueRegions = [...new Set(dataVehicles?.map(item => item.region))];
+    setRegions(uniqueRegions);
+  },[vehicles])
+
 
   return (
     <div className='cardGrid'>
@@ -62,16 +82,24 @@ export default function CardGrid(props) {
         <div>
           <div className='cardGrid__description'>
             <h1>Search Inventory</h1>
+            <h2>Filters</h2>
             <div className='cardGrid__filters'>
+              
               <label>
                 <p>Make</p>
-                <DropDown initial="All" selectedOption={makeFilter} setSelectedOption={setMakeFilter} data={makes} />
+                <DropDown initial="All" selectedOption={makeFilter} setSelectedOption={setMakeFilter} data={makes.sort()} />
               </label>
      
               <label>
                 <p>Model</p>
-                <DropDown initial="All" selectedOption={modelFilter} setSelectedOption={setModelFilter} data={models} />
+                <DropDown initial="All" selectedOption={modelFilter} setSelectedOption={setModelFilter} data={models.sort()} />
               </label>
+
+              <label>
+                <p>Region</p>
+                <DropDown initial="All" selectedOption={regionFilter} setSelectedOption={setRegionFilter} data={regions.sort()} />
+              </label>
+
             </div>
           </div>
         </div>
@@ -85,7 +113,7 @@ export default function CardGrid(props) {
               <td>Model</td>
               <td>Region</td>
               <td>Description</td>
-              <td>Actions</td>
+              <td>Contact Information</td>
             </tr>
           </thead>
           <tbody>
@@ -96,6 +124,9 @@ export default function CardGrid(props) {
               .filter(
                 (item) => modelFilter === 'All' || item.model.includes(modelFilter)
               )
+              .filter(
+                (item) => regionFilter === 'All' || item.region.includes(regionFilter)
+              )
               .map((item, index) => {
                 return (
                   <tr key={index}>
@@ -105,8 +136,23 @@ export default function CardGrid(props) {
                     <td id='table_location'>{item.region}</td>
                     <td id='table_description'>{item.description}</td>
                     <td id='table_actions'>
-                      <button onClick={ ()=>{fetchDealerInformation(item)}}>Contact</button>
-                      <button id='table_actions_save'>Save</button>
+                      <button onClick={() => {fetchDealerInformation(item); setSelectedVehicle(item)}}>Contact</button>
+                      {selectedVehicle === item && dealerInformation && (
+                        <div className='dealer_info'>
+                          <strong>Name:</strong>
+                          <div>{dealerInformation.firstName} {dealerInformation.lastName}</div>
+                          <strong>Business Name:</strong>
+                          <div>{dealerInformation.dealership}</div>
+                          <strong>Phone Number:</strong>
+                          <div>{dealerInformation.phoneNumber}</div>
+                          <strong>Email:</strong>
+                          <div>{dealerInformation.email}</div>
+                          <strong>Website:</strong>
+                          <div>{dealerInformation.website}</div>
+                          <strong>Location:</strong>
+                          <div>{dealerInformation.city} {dealerInformation.region}</div>
+                        </div>
+                      )}
                     </td>
                   </tr>
                 );

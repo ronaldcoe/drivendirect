@@ -1,5 +1,6 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useNavigate } from 'react-router';
 import { faCar, faMagnifyingGlass, faVanShuttle, faCommentsDollar, faClipboardCheck, faClipboardList } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/blocks/about.css'
 import carOne from '../../images/car_blue.jpg'
@@ -11,6 +12,8 @@ import carFive from '../../images/car_5.jpg'
 
 
 export default function About() {
+
+    const navigate = useNavigate()
   return (
     <div className='about'>
         
@@ -145,7 +148,7 @@ export default function About() {
                 <div className='about__wrapper__call__to__action__text'>
                     <h1>Ready to start trading?</h1>
                     <h2>Start a free trial today!</h2>
-                    <button className='about__wrapper__call__to__action__text__btn'>START HERE</button>
+                    <button className='about__wrapper__call__to__action__text__btn' onClick={()=>{navigate("/signup")}}>START HERE</button>
                 </div>
                 <img src={carFive} alt="a black car is parked in a parking lot" loading='lazy'/>
             </div>

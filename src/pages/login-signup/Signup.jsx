@@ -26,13 +26,14 @@ export default function Signup() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
+    const [businessType, setBusinessType] = useState('')
     const [dealership, setDealership] = useState('')
     const [website, setWebsite] = useState('')
     const [country, setCountry] = useState(null)
     const [region, setRegion] = useState(null)
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    
+    console.log(businessType)
     // Errors 
     const [errors, setErrors] = useState('')
     const [showError, setShowError] = useState(false)
@@ -42,7 +43,7 @@ export default function Signup() {
         e.preventDefault();
         if (country !=- null && region !== null) {
             try {
-                const success = await createUser(email, password, firstName, lastName, dealership,
+                const success = await createUser(email, password, firstName, lastName, dealership, businessType,
                                                     website, country, region, city, phoneNumber);
                 if (success) {
                     console.log('User was created');
@@ -100,8 +101,20 @@ export default function Signup() {
                         <input type='password' required className={password !== confirmPassword? 'invalid' : password === ''? '' : 'valid'} onChange={(e)=>{setConfirmPassword(e.target.value)}}></input>
                         {password != confirmPassword? <p className='signup__wrapper__form__details show_details'>*Passwords must match</p>: ''} 
                     </label>
+                    <p>What type of business are you?</p>
+
+                    <div className='business_type_container'>
+                        <label className='business_type'>
+                            <p>Dealer</p>
+                            <input type="radio" value="dealer" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
+                        </label>
+                        <label className='business_type'>
+                            <p>Rental</p>
+                            <input type="radio" value="rental" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
+                        </label>
+                    </div>
                     <label>
-                        <p>Dealership Name</p>
+                        <p>Business Name</p>
                         <input type='text' required onChange={(e)=>{setDealership(e.target.value)}} minLength="2"></input>  
                     </label>
                     <label>

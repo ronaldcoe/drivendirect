@@ -115,9 +115,6 @@
   display: block;
   margin: 0 auto;
 }
-.about .about__wrapper .about__wrapper__call__to__action .about__wrapper__call__to__action__text .about__wrapper__call__to__action__text__btn:focus {
-  background-color: rgba(8, 0, 119, 0.9);
-}
 .about .about__wrapper .about__wrapper__call__to__action img {
   position: absolute;
   width: 100%;

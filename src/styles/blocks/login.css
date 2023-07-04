@@ -79,9 +79,6 @@
   background-color: #080077;
   color: white;
 }
-.login .login__wrapper .login__wrapper__content form button:focus {
-  background-color: rgba(8, 0, 119, 0.9);
-}
 .login .login__wrapper .login__wrapper__content .login__wrapper__content__resetpassword {
   color: #636363;
   font-size: 1.2rem;
