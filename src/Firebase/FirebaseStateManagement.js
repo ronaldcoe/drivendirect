@@ -92,6 +92,9 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
   }
 };
 
+// Getting Inventory By Type, this also filters out the deleted products
+// It also update products that has a passed the 7 Days mark
+// which needs to be done elsewhere in the future
 export const getAllInventoryBytype = async (type) => {
   try {
     let q = '';
@@ -152,7 +155,6 @@ export const getAllInventoryBytype = async (type) => {
     return [];
   }
 };
-
 
 // get inventory based on Filters
 export const getAllInventoryByFilters = async (filters, type) => {
