@@ -202,21 +202,40 @@ export const loginUser = async (email, password) => {
 
 // Get User by ID
 export const getUserInfo= async (id)=>{
-  try{
-    var userDocRef = doc(usersCollectionRef, id);
-    var docSnapshot = await getDoc(userDocRef);
-
+  try {
+    const userDocRef = doc(usersCollectionRef, id);
+    const docSnapshot = await getDoc(userDocRef);
+  
     if (docSnapshot.exists()) {
-      var user = docSnapshot.data();
+      const user = docSnapshot.data();  
       return user;
     } else {
       console.log('User not found');
       return false;
     }
+  } catch (error) {
+    console.log(error);
+    return false;
   }
-  catch (error){
-    console.log(error)
-    return false
+}
+
+// Edit User
+export const editUserInfo = async (id, updatedUser)=>{
+  try {
+    const userDocRef = doc(usersCollectionRef, id);
+    const docSnapshot = await getDoc(userDocRef);
+  
+    if (docSnapshot.exists()) {
+      const user = docSnapshot.data();  
+      await setDoc(userDocRef, updatedUser);
+      return user;
+    } else {
+      console.log('User not found');
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 }
 /****************************************************************************************** */
