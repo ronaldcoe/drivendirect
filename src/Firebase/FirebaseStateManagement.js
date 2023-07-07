@@ -47,7 +47,7 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
     const querySnapshot = await getDocs(q)
     
     // Map and send the Object
-    const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+    const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((vehicle) => vehicle.status === "Publish");;
     return allinventory;
   
 
@@ -57,26 +57,27 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
   }
 };
 
-export const getAllInventoryBytype = async(type)=>{
+export const getAllInventoryBytype = async (type) => {
   try {
-    if(type == "trade"){
+    if (type === "trade") {
       const querySnapshot = await getDocs(inventoryTradeCollectionRef);
-      const vehicles = querySnapshot.docs.map((doc) => doc.data());
+      const vehicles = querySnapshot.docs
+        .map((doc) => doc.data())
       return vehicles;
-    }
-    else if (type =="listing"){
+    } else if (type === "listing") {
       const querySnapshot = await getDocs(inventoryListCollectionRef);
-      const vehicles = querySnapshot.docs.map((doc) => doc.data());
+      const vehicles = querySnapshot.docs
+        .map((doc) => doc.data())
       return vehicles;
     }
-    // Map the data and extract the vehicles field
-    
 
+    return [];
   } catch (error) {
     console.log(error);
     return [];
   }
-}
+};
+
 
 // get inventory based on Filters
 export const getAllInventoryByFilters = async (filters, type) => {
@@ -116,18 +117,25 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
     if (type =="listing"){
       inventoryRef = doc(inventoryListCollectionRef, inventoryId);
     }
+    
 
     else if (type == "trade"){
       inventoryRef = doc(inventoryTradeCollectionRef, inventoryId);
     }
-    
-    await updateDoc(inventoryRef, updatedData);
-    console.log("Record updated successfully");
-    return true
 
-  } catch (err) {
-    console.log(err);
-    return false
+    const docSnapshot = await getDoc(inventoryRef);
+
+    if (docSnapshot.exists()) {
+      const inventory = docSnapshot.data();
+      await setDoc(inventoryRef, updatedData);
+      return true
+    } else {
+      console.log('Inventory not updated');
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
   }
 };
 

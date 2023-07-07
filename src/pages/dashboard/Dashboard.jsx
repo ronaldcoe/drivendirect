@@ -19,15 +19,18 @@ export default function Dashboard(props) {
     const tradeMax = 2
     const listMax = 2
 
+    // This is to help with the Update of the inventory
+    const [update, setUpdate] = useState(false)
+
     const fetchUserInfo = async ()=>{
         var userId = localStorage.getItem('userId')
         var userInfo = await getUserInfo(userId)
         if (userInfo){
             setAccount(userInfo)
             console.log(account?.region)
-            
         }
     }
+
     localStorage.setItem("region", account?.region)
     const fetchTrades = async ()=>{
         var userId = localStorage.getItem('userId')
@@ -59,7 +62,7 @@ export default function Dashboard(props) {
         fetchUserInfo()
         fetchTrades()
         fetchListing()
-    }, [])
+    }, [update])
 
   return (
     <div className='dashboard'>
@@ -99,7 +102,7 @@ export default function Dashboard(props) {
                <div>
                 {trades?.map((item, key)=> {
                         return(
-                            <VehicleCard car={item} key={key} type={"trade"}/>
+                            <VehicleCard car={item} key={key} type={"trade"} onUpdate={setUpdate} update={update} />
                         )
                     })}
                     {trades?.length<tradeMax?<button onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
@@ -113,7 +116,7 @@ export default function Dashboard(props) {
                 </div>
                     {listings?.map((item, key)=> {
                     return(
-                        <VehicleCard car={item} key={key} type={"list"}/>
+                        <VehicleCard car={item} key={key} type={"listing"} onUpdate={setUpdate} update={update}/>
                     )
                 })}
                     {listings?.length<listMax?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
