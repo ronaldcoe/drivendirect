@@ -3,7 +3,7 @@ import '../../styles/blocks/card.css';
 import menu from '../../images/menu_dots.svg';
 import { ReactSVG } from 'react-svg';
 
-export default function Card({ car, onClick, isSelected }) {
+export default function Card({ car, onClick, isSelected, type }) {
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
 
@@ -31,7 +31,8 @@ export default function Card({ car, onClick, isSelected }) {
             <div ref={optionsRef} className='options'>
               <ul>
                 <li><a>Edit</a></li>
-                <li><a>Mark as Found</a></li>
+                { type == "list"?<li><a>Mark as Found</a></li>:<li><a>Mark as Sold</a></li>}
+                
                 <li><a>Delete</a></li>
               </ul>
             </div>

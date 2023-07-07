@@ -99,7 +99,7 @@ export default function Dashboard(props) {
                <div>
                 {trades?.map((item, key)=> {
                         return(
-                            <VehicleCard car={item} key={key}/>
+                            <VehicleCard car={item} key={key} type={"trade"}/>
                         )
                     })}
                     {trades?.length<tradeMax?<button onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
@@ -113,7 +113,7 @@ export default function Dashboard(props) {
                 </div>
                     {listings?.map((item, key)=> {
                     return(
-                        <VehicleCard car={item} key={key}/>
+                        <VehicleCard car={item} key={key} type={"list"}/>
                     )
                 })}
                     {listings?.length<listMax?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
