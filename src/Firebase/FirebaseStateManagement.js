@@ -27,27 +27,62 @@ export const createInventory = async(data)=>{
       }
 
 // Getting All Listing by a value and Filter all the active products
+// Also only return items that are within the 7 days from creation
 export const getAllInventoryByEntity = async (entity, value, type) => {
+  
   try {
     let q = ''
      // Create the Query
     if (type == "listing"){
       q = query(
       inventoryListCollectionRef,
-      where(entity, '==', value)
+      where(entity, '==', value),
+      where("status", '==',"Publish")
     );}
 
     else if (type == "trade"){
       q = query(
       inventoryTradeCollectionRef,
-      where(entity, '==', value)
+      where(entity, '==', value),
+      where("status", '==',"Publish")
     );}
    
     // Create the Snap
     const querySnapshot = await getDocs(q)
-    
+    // Map and filter the objects
+    const currentDate = new Date();
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(currentDate.getDate() - 7);
     // Map and send the Object
-    const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })).filter((vehicle) => vehicle.status === "Publish");;
+    const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    .filter((vehicle) => {
+      const targetDate = new Date(vehicle.dateCreate.seconds * 1000);
+
+      const timeDifference = currentDate.getTime() - targetDate.getTime();
+      const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+      if (daysDifference >= 7) {
+        // Make the update
+        // This needs to be done in Cloud Function and not here because its slow and not efficient
+        const updatedData = {
+          ...vehicle,
+          status: "Delete"
+        };
+        console.log(updatedData);
+
+        if (type === "listing") {
+          const inventoryRef = doc(inventoryListCollectionRef, vehicle.id);
+          setDoc(inventoryRef, updatedData);
+        } else if (type === "trade") {
+          const inventoryRef = doc(inventoryTradeCollectionRef, vehicle.id);
+          setDoc(inventoryRef, updatedData);
+        }
+
+        return false; // Exclude vehicles where 7 days have passed
+      } else {
+        return true; // Include vehicles within the last 7 days
+      }
+    });
     return allinventory;
   
 
@@ -59,19 +94,59 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
 
 export const getAllInventoryBytype = async (type) => {
   try {
-    if (type === "trade") {
-      const querySnapshot = await getDocs(inventoryTradeCollectionRef);
-      const vehicles = querySnapshot.docs
-        .map((doc) => doc.data())
-      return vehicles;
-    } else if (type === "listing") {
-      const querySnapshot = await getDocs(inventoryListCollectionRef);
-      const vehicles = querySnapshot.docs
-        .map((doc) => doc.data())
-      return vehicles;
+    let q = '';
+    // Create the Query
+    if (type === "listing") {
+      q = query(
+        inventoryListCollectionRef,
+        where("status", "!=", "Delete")
+      );
+    } else if (type === "trade") {
+      q = query(
+        inventoryTradeCollectionRef,
+        where("status", "!=", "Delete")
+      );
     }
 
-    return [];
+    // Create the Snap
+    const querySnapshot = await getDocs(q);
+    // Map and filter the objects
+    const currentDate = new Date();
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(currentDate.getDate() - 7);
+
+    const allInventory = querySnapshot.docs
+      .map((doc) => ({ ...doc.data(), id: doc.id }))
+      .filter((vehicle) => {
+        const targetDate = new Date(vehicle.dateCreate.seconds * 1000);
+
+        const timeDifference = currentDate.getTime() - targetDate.getTime();
+        const daysDifference = timeDifference / (1000 * 3600 * 24);
+
+        if (daysDifference >= 7) {
+          // Make the update
+          // This needs to be done in Cloud Function and not here because its slow and not efficient
+          const updatedData = {
+            ...vehicle,
+            status: "Delete"
+          };
+          console.log(updatedData);
+
+          if (type === "listing") {
+            const inventoryRef = doc(inventoryListCollectionRef, vehicle.id);
+            setDoc(inventoryRef, updatedData);
+          } else if (type === "trade") {
+            const inventoryRef = doc(inventoryTradeCollectionRef, vehicle.id);
+            setDoc(inventoryRef, updatedData);
+          }
+
+          return false; // Exclude vehicles where 7 days have passed
+        } else {
+          return true; // Include vehicles within the last 7 days
+        }
+      });
+
+    return allInventory;
   } catch (error) {
     console.log(error);
     return [];
