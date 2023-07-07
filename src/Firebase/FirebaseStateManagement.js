@@ -26,7 +26,7 @@ export const createInventory = async(data)=>{
         }
       }
 
-// Getting All Listing by a value
+// Getting All Listing by a value and Filter all the active products
 export const getAllInventoryByEntity = async (entity, value, type) => {
   try {
     let q = ''
@@ -110,7 +110,7 @@ export const getAllInventoryByFilters = async (filters, type) => {
   }
 };
 
-// Edit a inventory
+// Edit a inventory based on the Type
 export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
   try {
     let inventoryRef = ''
@@ -139,25 +139,6 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
   }
 };
 
-// Change status of the Inventory (Sold, Found)
-export const updateInventoryStatus = async (inventoryId,type) => {
-  try {
-
-    let inventoryRef = ''
-    if (type =="listing"){
-      inventoryRef = doc(inventoryListCollectionRef, inventoryId);
-    }
-
-    else if (type == "trade"){
-      inventoryRef = doc(inventoryTradeCollectionRef, inventoryId);
-    }
-
-    await updateDoc(inventoryRef, { ["Status"]: false  });
-    console.log("Value updated successfully");
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 /******************************************************************************** */
 

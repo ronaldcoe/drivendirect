@@ -30,6 +30,22 @@ export default function Card({ car, onClick, isSelected, type, onUpdate , update
     
     }
 
+    // This will handle the soft delete of an Inventory
+    // Inventory is not delete but the status is changed
+    const softDeleteInventory =async(car)=>{
+        var updatedCar={
+          ...car,
+          status: "Delete"
+       }
+      
+      // Make the update
+      console.log("Starting to Delete")
+      await updateInventoryRecord(car.id, updatedCar, type)
+      onUpdate(!update)
+      
+      }
+  
+
   useEffect(() => {
     const handleMouseDown = (event) => {
       if (optionsRef.current && !optionsRef.current.contains(event.target)) {
@@ -57,7 +73,7 @@ export default function Card({ car, onClick, isSelected, type, onUpdate , update
                 <li><a>Edit</a></li>
                 { type == "listing"?<li><a onClick={()=>changeStatus("listing", car)}>Mark as Found</a></li>:<li><a onClick={()=>changeStatus("trade", car)} >Mark as Sold</a></li>}
                 
-                <li><a>Delete</a></li>
+                <li><a onClick={()=>softDeleteInventory(car)}>Delete</a></li>
               </ul>
             </div>
           )}
