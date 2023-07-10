@@ -245,6 +245,7 @@
 }
 .cardGrid .cardGrid__wrapper table tr td {
   padding: 10px 20px;
+  color: #36454F;
 }
 @media screen and (max-width: 670px) {
   .cardGrid .cardGrid__wrapper table tr td {
@@ -266,7 +267,7 @@
   border-radius: 5px;
   border: 1px solid #B6B6B6;
 }
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 670px) {
   .cardGrid .cardGrid__wrapper table tr #table_actions .dealer_info {
     position: relative;
     top: 0px;

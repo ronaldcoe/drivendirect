@@ -28,7 +28,7 @@ export default function AddVehicle(props) {
   const [dataVehicles, setDataVehicles] = useState(null)
   const [makes, setMakes] = useState(undefined)
   const [models, setModels] = useState(undefined)
-  console.log(makeSelected)
+
 
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
@@ -48,7 +48,7 @@ export default function AddVehicle(props) {
     const res = await createInventory(vehicleObject)
     if(res){
 
-      console.log("Vehicle was created and Publish")
+     
       navigate("/dashboard")
       
       Store.addNotification({
@@ -139,8 +139,13 @@ export default function AddVehicle(props) {
               {makes && !makes.includes(makeSelected)?
               <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>             
               : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
+           
               }
             </label>
+            <label>
+              {modelSelected && !models?.includes(modelSelected)?<input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>  :null}
+            </label>
+           
             <label>
               <p>Year</p>
               <input type="text" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}}/>

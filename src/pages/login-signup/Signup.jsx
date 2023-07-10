@@ -5,6 +5,7 @@ import {createUser} from "../../Firebase/FirebaseStateManagement"
 import { getCountries } from '../../Firebase/FirebaseStateManagement';
 import DropDown from '../../shared/dropdown/DropDown';
 import {useNavigate} from "react-router"
+import { Store } from 'react-notifications-component';
 
 export default function Signup() {
     // Data for the Form
@@ -48,6 +49,20 @@ export default function Signup() {
                 if (success) {
                     console.log('User was created');
                     navigate("/login")
+
+                    Store.addNotification({
+                        title: "Success",
+                        message: "Your account was created",
+                        type: "success",
+                        insert: "top",
+                        container: "top-right",
+                        animationIn: ["animate__animated", "animate__fadeInDown"],
+                        animationOut: ["animate__animated", "animate__fadeOut"],
+                        dismiss: {
+                          duration: 5000,
+                          showIcon: true
+                        }
+                      });
                     
                 } else {
                   console.log('User creation failed');
@@ -74,7 +89,7 @@ export default function Signup() {
             
             <div className='signup__wrapper__description'>
                 <h1>Create an Account</h1>
-                <p>Once registered your information will be verified and an email will then be sent to you allowing you to enter a username and password. Thank you.</p>
+                <p>Once registered your information will be verified and an email will then be sent to you allowing you to enter a username and password.</p>
             </div>
             <div className='signup__wrapper__form'>
                 
