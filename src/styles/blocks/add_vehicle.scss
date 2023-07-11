@@ -30,14 +30,26 @@
         }
         .addVehicle__wrapper__form {
             @include container;
-            max-width: 500px;
-            min-width: 300px;
+            width: 360px;
+           
 
-            @media screen and (max-width: $breakpoint-medium) {
-                width: 100%;
-            }
+            
             form {
-                @include forms
+                @include forms;
+
+                input {
+                    &::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    &::-webkit-outer-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+                    &[type=number] {
+                        -moz-appearance: textfield;
+                    }
+                }
             }
 
           

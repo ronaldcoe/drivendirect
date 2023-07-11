@@ -87,9 +87,19 @@ p {
   background-color: white;
   border-left: 8px solid #1f8838;
 }
-.notifications .rnc__notification-title {
+.notifications .rnc__notification-item--success .rnc__notification-title {
   color: #1f8838;
 }
-.notifications .rnc__notification-message {
+.notifications .rnc__notification-item--success .rnc__notification-message {
   color: #1f8838;
+}
+.notifications .rnc__notification-item--warning {
+  background-color: white;
+  border-left: 8px solid #eab000;
+}
+.notifications .rnc__notification-item--warning .rnc__notification-title {
+  color: #eab000;
+}
+.notifications .rnc__notification-item--warning .rnc__notification-message {
+  color: #eab000;
 }/*# sourceMappingURL=main.css.map */

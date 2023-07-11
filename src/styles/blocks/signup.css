@@ -137,6 +137,9 @@
 .signup .signup__wrapper .signup__wrapper__form form .signup__wrapper__form__details.show_details {
   display: block;
 }
+.signup .signup__wrapper .signup__wrapper__form form p {
+  color: #636363;
+}
 .signup .signup__wrapper .signup__wrapper__form form .business_type_container {
   display: flex;
   gap: 30px;
@@ -147,6 +150,7 @@
   gap: 5px;
   width: -moz-fit-content;
   width: fit-content;
+  padding-top: 10px;
 }
 .signup .signup__wrapper .signup__wrapper__form form button {
   padding: 15px;

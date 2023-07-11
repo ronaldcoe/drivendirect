@@ -4,7 +4,7 @@ import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
 import { getAllInventoryBytype, getUserInfo, getVehicles } from '../../Firebase/FirebaseStateManagement';
 import { auth } from '../../Firebase/FirebaseConfig';
-
+import { Store } from 'react-notifications-component';
 
 export default function CardGrid(props) {
 
@@ -43,7 +43,19 @@ export default function CardGrid(props) {
       }
     } else {
       // Have an Alert or something to show the user has not signed in and therefore cannot see
-      console.log("You are not signed in.");
+      Store.addNotification({
+        title: "Notification",
+        message: "You need to log in to see the contact information",
+        type: "warning",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true
+        }
+      });
     }
   };
   
@@ -148,7 +160,7 @@ export default function CardGrid(props) {
                           <strong>Email:</strong>
                           <div>{dealerInformation.email}</div>
                           <strong>Website:</strong>
-                          <div>{dealerInformation.website}</div>
+                          <div><a href={`https://${dealerInformation.website}`}>{dealerInformation.website}</a></div>
                           <strong>Location:</strong>
                           <div>{dealerInformation.city} {dealerInformation.region}</div>
                         </div>

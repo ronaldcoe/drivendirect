@@ -28,7 +28,7 @@ export default function AddVehicle(props) {
   const [dataVehicles, setDataVehicles] = useState(null)
   const [makes, setMakes] = useState(undefined)
   const [models, setModels] = useState(undefined)
-  console.log(makeSelected)
+
 
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
@@ -48,7 +48,7 @@ export default function AddVehicle(props) {
     const res = await createInventory(vehicleObject)
     if(res){
 
-      console.log("Vehicle was created and Publish")
+     
       navigate("/dashboard")
       
       Store.addNotification({
@@ -77,6 +77,20 @@ export default function AddVehicle(props) {
     const listOfInventory = await getAllInventoryByEntity("userId", userId, type)
     // now check if it has exceed the limit and push them back to the Dashboard
     if(listOfInventory?.length >= userMax){
+      // Show messsage user can't add more vehicles
+      Store.addNotification({
+        title: "Notification",
+        message: "You can't add more vehicles",
+        type: "warning",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true
+        }
+      });
       navigate("/dashboard")
     }
   }
@@ -139,11 +153,16 @@ export default function AddVehicle(props) {
               {makes && !makes.includes(makeSelected)?
               <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>             
               : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
+           
               }
             </label>
             <label>
+              {modelSelected && !models?.includes(modelSelected)?<input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>  :null}
+            </label>
+           
+            <label>
               <p>Year</p>
-              <input type="text" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}}/>
+              <input type="number" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}} max={2024}/>
             </label>
             <label>
               <p>Description</p>

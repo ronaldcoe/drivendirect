@@ -31,13 +31,7 @@
   background-color: #F3F3F3;
   padding: 50px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-  max-width: 500px;
-  min-width: 300px;
-}
-@media screen and (max-width: 820px) {
-  .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form {
-    width: 100%;
-  }
+  width: 360px;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form {
   display: flex;
@@ -128,6 +122,17 @@
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label textarea.invalid {
   border: 2px solid red;
   background-color: rgb(255, 235, 235);
+}
+.addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form input[type=number] {
+  -moz-appearance: textfield;
 }
 .addVehicle .addVehicle__wrapper button {
   padding: 15px;

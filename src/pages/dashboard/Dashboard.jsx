@@ -8,7 +8,7 @@ import { getUserInfo, getAllInventoryByEntity } from '../../Firebase/FirebaseSta
 
 
 export default function Dashboard(props) {
-    document.title = props.title
+    document.title = "Dashboard"
     const [account, setAccount] = useState()
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
@@ -49,7 +49,7 @@ export default function Dashboard(props) {
       if (optionsRef.current && !optionsRef.current.contains(event.target)) {
         setShowOptions(false);
       }
-    };
+};
 
     document.addEventListener('mousedown', handleMouseDown);
     return () => {

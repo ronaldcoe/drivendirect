@@ -14,7 +14,7 @@ export default function Footer() {
             <div className='footer__wrapper__quicklinks'>
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href='/'>FAQ</a></li>
+                    <li><a href='/faq'>FAQ</a></li>
                     <li><a href='/'>Contact us</a></li>
                     <li><a href='/privacy-policy'>Privacy Policy</a></li>
                 </ul>
