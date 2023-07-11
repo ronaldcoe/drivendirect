@@ -49,7 +49,7 @@ export default function Dashboard(props) {
       if (optionsRef.current && !optionsRef.current.contains(event.target)) {
         setShowOptions(false);
       }
-    };
+};
 
     document.addEventListener('mousedown', handleMouseDown);
     return () => {

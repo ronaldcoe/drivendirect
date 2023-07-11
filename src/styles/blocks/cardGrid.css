@@ -208,6 +208,8 @@
     display: grid;
     grid-template-columns: min-content max-content max-content 1fr;
     align-items: baseline;
+    margin: 10px 0px;
+    border-radius: 5px;
     gap: 7px;
   }
   .cardGrid .cardGrid__wrapper table tr #table_year {

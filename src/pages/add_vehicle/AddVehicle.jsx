@@ -77,6 +77,20 @@ export default function AddVehicle(props) {
     const listOfInventory = await getAllInventoryByEntity("userId", userId, type)
     // now check if it has exceed the limit and push them back to the Dashboard
     if(listOfInventory?.length >= userMax){
+      // Show messsage user can't add more vehicles
+      Store.addNotification({
+        title: "Notification",
+        message: "You can't add more vehicles",
+        type: "warning",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true
+        }
+      });
       navigate("/dashboard")
     }
   }
@@ -148,7 +162,7 @@ export default function AddVehicle(props) {
            
             <label>
               <p>Year</p>
-              <input type="text" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}}/>
+              <input type="number" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}} max={2024}/>
             </label>
             <label>
               <p>Description</p>
