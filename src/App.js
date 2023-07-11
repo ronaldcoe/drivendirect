@@ -31,7 +31,7 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/privacy-policy" element={<Terms />} />
             <Route path="/faq" element={<Faq />} />
-            <Route path='/login' element={<Login/>}/>
+            <Route path='./login' element={<Login/>}/>
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
             <Route path='/inventory/listing' element={<CardGrid type={"listing"}/>}/>
