@@ -20,9 +20,11 @@
         }
 
         @media screen and (max-width: 720px) {
-            grid-template-columns: 340px;
-            grid-template-rows: auto 1fr 1fr;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
             justify-content: center;
+            padding: 10px;
+            max-width: 100%;
         }
 
         h2 {
@@ -35,7 +37,6 @@
                 border: 1px solid $border-color;
                 border-radius: 5px;
                 display: flex;
-                
                 padding: 20px;
                 gap: 20px;
                 
@@ -46,7 +47,7 @@
                     width: 8px;
                     margin-top: 5px;
                     height: fit-content;
-
+                    margin-left: auto;
                     &:hover {
                         cursor: pointer;
                     }
@@ -54,6 +55,7 @@
                     ellipse {
                         fill: $primary-paragraph-font-color;
                     }
+
                 }
 
                 .options {
@@ -127,7 +129,7 @@
             background-color: $secondary-background-color;
             padding: 20px;
             border-radius: 5px;
-            height: 100%;
+            height: fit-content;
             
             
           

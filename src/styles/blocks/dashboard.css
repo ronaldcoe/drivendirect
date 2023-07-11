@@ -21,9 +21,11 @@
 }
 @media screen and (max-width: 720px) {
   .dashboard .dashboard__wrapper {
-    grid-template-columns: 340px;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
     justify-content: center;
+    padding: 10px;
+    max-width: 100%;
   }
 }
 .dashboard .dashboard__wrapper h2 {
@@ -42,6 +44,7 @@
   margin-top: 5px;
   height: -moz-fit-content;
   height: fit-content;
+  margin-left: auto;
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper_col_1 .dashboard__wrapper__profile .menu:hover {
   cursor: pointer;
@@ -109,7 +112,8 @@
   background-color: #F3F3F3;
   padding: 20px;
   border-radius: 5px;
-  height: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper__section h2 {
   color: #36454F;
