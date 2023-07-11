@@ -13,7 +13,29 @@
     height: fit-content;
     margin-top: 20px;
   
-   
+    .vehiclecard__edit_car {
+        display: flex;
+        flex-direction: column;
+
+        @include forms;
+
+        a {
+            @include buttons($primary-color);
+            color: white;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            padding: 7px;
+            font-size: 1.3rem
+        }
+        .vehiclecard__cancel {
+            @include buttons(rgb(255, 228, 228));
+            margin-top: 5px;
+            margin-bottom: 5px;
+           
+            color: red;
+            padding: 7px
+        }
+    }
     @media screen and (max-width: $breakpoint-small) {
         width: 100%;
     }
@@ -64,13 +86,19 @@
 
                     li {
 
-                        padding: 10px;
+                        
 
-                            &:hover {
-                                background-color: $primary-color;
-                                color: white;
+                        &:hover {
+                            background-color: $primary-color;
+                            color: white;
 
-                            }
+                        }
+
+                        a {
+                            padding: 10px;
+                            display: block;
+                            width: 100%;
+                        }
                         
                     }
                 }
