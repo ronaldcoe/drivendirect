@@ -47,51 +47,51 @@
 .signup .signup__wrapper .signup__wrapper__form form label input {
   border-radius: 5px;
   padding: 10px;
-  border: 2px solid #B6B6B6;
+  border: 1px solid #B6B6B6;
   font-family: "Rubik", sans-serif;
   color: #36454F;
   width: 100%;
 }
 .signup .signup__wrapper .signup__wrapper__form form label input:focus {
-  border: 2px solid #080077;
+  border: 1px solid #080077;
   outline: none;
   transition: 0.5s;
 }
 .signup .signup__wrapper .signup__wrapper__form form label input:required:valid {
-  border: 2px solid green;
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label input.valid {
-  border: 2px solid green;
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label input.invalid {
-  border: 2px solid red;
+  border: 1px solid red;
   background-color: rgb(255, 235, 235);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select {
   border-radius: 5px;
   padding: 10px;
-  border: 2px solid #B6B6B6;
+  border: 1px solid #B6B6B6;
   font-family: "Rubik", sans-serif;
   color: #36454F;
   width: 100%;
 }
 .signup .signup__wrapper .signup__wrapper__form form label select:focus {
-  border: 2px solid #080077;
+  border: 1px solid #080077;
   outline: none;
   transition: 0.5s;
 }
 .signup .signup__wrapper .signup__wrapper__form form label select:required:valid {
-  border: 2px solid green;
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select.valid {
-  border: 2px solid green;
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select.invalid {
-  border: 2px solid red;
+  border: 1px solid red;
   background-color: rgb(255, 235, 235);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select option:hover {
@@ -100,27 +100,27 @@
 .signup .signup__wrapper .signup__wrapper__form form label textarea {
   border-radius: 5px;
   padding: 10px;
-  border: 2px solid #B6B6B6;
+  border: 1px solid #B6B6B6;
   font-family: "Rubik", sans-serif;
   color: #36454F;
   width: 100%;
   resize: none;
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea:focus {
-  border: 2px solid #080077;
+  border: 1px solid #080077;
   outline: none;
   transition: 0.5s;
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea:required:valid {
-  border: 2px solid green;
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea.valid {
-  border: 2px solid green;
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea.invalid {
-  border: 2px solid red;
+  border: 1px solid red;
   background-color: rgb(255, 235, 235);
 }
 .signup .signup__wrapper .signup__wrapper__form form .login__wrapper__form__eyeicon {

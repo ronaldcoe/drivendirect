@@ -16,6 +16,127 @@
   height: fit-content;
   margin-top: 20px;
 }
+.vehiclecard .vehiclecard__edit_car {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  flex-direction: column;
+}
+.vehiclecard .vehiclecard__edit_car label {
+  margin-bottom: 20px;
+}
+.vehiclecard .vehiclecard__edit_car label p {
+  font-size: 1.3rem;
+  color: #636363;
+}
+.vehiclecard .vehiclecard__edit_car label input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.vehiclecard .vehiclecard__edit_car label input:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.vehiclecard .vehiclecard__edit_car label input:required:valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.vehiclecard .vehiclecard__edit_car label input.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.vehiclecard .vehiclecard__edit_car label input.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.vehiclecard .vehiclecard__edit_car label select {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.vehiclecard .vehiclecard__edit_car label select:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.vehiclecard .vehiclecard__edit_car label select:required:valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.vehiclecard .vehiclecard__edit_car label select.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.vehiclecard .vehiclecard__edit_car label select.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.vehiclecard .vehiclecard__edit_car label select option:hover {
+  color: "Rubik", sans-serif;
+}
+.vehiclecard .vehiclecard__edit_car label textarea {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+  resize: none;
+}
+.vehiclecard .vehiclecard__edit_car label textarea:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.vehiclecard .vehiclecard__edit_car label textarea:required:valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.vehiclecard .vehiclecard__edit_car label textarea.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.vehiclecard .vehiclecard__edit_car label textarea.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.vehiclecard .vehiclecard__edit_car a {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #080077;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 7px;
+  font-size: 1.3rem;
+}
+.vehiclecard .vehiclecard__edit_car .vehiclecard__cancel {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(255, 228, 228);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  color: red;
+  padding: 7px;
+}
 @media screen and (max-width: 505px) {
   .vehiclecard {
     width: 100%;
@@ -64,12 +185,14 @@
   list-style: none;
   font-family: "Rubik", sans-serif;
 }
-.vehiclecard .vehiclecard__title .vehiclecard__title__options .options ul li {
-  padding: 10px;
-}
 .vehiclecard .vehiclecard__title .vehiclecard__title__options .options ul li:hover {
   background-color: #080077;
   color: white;
+}
+.vehiclecard .vehiclecard__title .vehiclecard__title__options .options ul li a {
+  padding: 10px;
+  display: block;
+  width: 100%;
 }
 .vehiclecard .vehiclecard__description {
   font-family: "Rubik", sans-serif;
@@ -83,7 +206,7 @@
   position: relative;
   width: 100%;
   font-family: "Rubik", sans-serif;
-  border: 2px solid #B6B6B6;
+  border: 1px solid #B6B6B6;
   border-radius: 5px;
 }
 .custom-dropdown .dropdown-header {
