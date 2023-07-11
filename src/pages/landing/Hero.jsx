@@ -13,7 +13,7 @@ export default function Hero() {
               HELPING DEALERS
               HELP EACHOTHER
               </h1>
-              <button className='hero__call_to_action_primarybutton' onClick={()=>{navigate("/signup")}}>Start Today</button>
+              <button className='hero__call_to_action_primarybutton' onClick={()=>{navigate("/login")}}>Start Today</button>
             
           </div>
           
