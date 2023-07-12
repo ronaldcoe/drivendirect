@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 .addVehicle .addVehicle__wrapper {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
@@ -39,6 +39,7 @@
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label {
   margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label p {
   font-size: 1.3rem;

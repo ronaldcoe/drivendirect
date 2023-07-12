@@ -18,7 +18,7 @@ export default function CardGrid(props) {
   const [regions, setRegions] = useState([])
   const [dealerInformation, setDealerInformation] = useState()
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-
+  const [statusFilter, setStatusfilter] = useState(false)
   const fetchInventory = async () => {
     const vehicles = await getAllInventoryBytype(props.type);
 
@@ -93,8 +93,14 @@ export default function CardGrid(props) {
         
         <div>
           <div className='cardGrid__description'>
-            <h1>Search Inventory</h1>
-            <h2>Filters</h2>
+            <h1>{props.type === "trade"?"Sale":"List"} Inventory</h1>
+            {props.type === "trade"?<p>This contains the vehicles that dealers are selling. If you're logged in, you can see the information of whom is selling the vehicle</p>:<p>This contains the list of vehicles that dealers are looking for</p>}
+            
+          </div>
+        </div>
+
+        <div>
+      
             <div className='cardGrid__filters'>
               
               <label>
@@ -111,66 +117,80 @@ export default function CardGrid(props) {
                 <p>Region</p>
                 <DropDown initial="All" selectedOption={regionFilter} setSelectedOption={setRegionFilter} data={regions.sort()} />
               </label>
-
+              
+              
             </div>
-          </div>
-        </div>
-        
 
-        <table role='presentation'>
-          <thead>
-            <tr>
-              <td>Year</td>
-              <td>Make</td>
-              <td>Model</td>
-              <td>Region</td>
-              <td>Description</td>
-              <td>Contact Information</td>
-            </tr>
-          </thead>
-          <tbody>
-            {dataVehicles
-              ?.filter(
-                (item) => makeFilter === 'All' || item.make.includes(makeFilter)
-              )
-              .filter(
-                (item) => modelFilter === 'All' || item.model.includes(modelFilter)
-              )
-              .filter(
-                (item) => regionFilter === 'All' || item.region.includes(regionFilter)
-              )
-              .map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td id='table_year'>{item.year}</td>
-                    <td id='table_make'>{item.make}</td>
-                    <td id='table_model'>{item.model}</td>
-                    <td id='table_location'>{item.region}</td>
-                    <td id='table_description'>{item.description}</td>
-                    <td id='table_actions'>
-                      <button onClick={() => {fetchDealerInformation(item); setSelectedVehicle(item)}}>Contact</button>
+            <label className='filter_available'>
+                
+                <input type="checkbox" onChange={() =>setStatusfilter(!statusFilter)}  />
+                <p>Only show available</p>
+            </label>
+
+          <table role='presentation'>
+            
+            <thead>
+              <tr>
+                <td>Year</td>
+                <td>Make</td>
+                <td>Model</td>
+                <td>Status</td>
+                <td>Region</td>
+                
+                <td>Description</td>
+                <td>Contact Information</td>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {dataVehicles
+                ?.filter(
+                  (item) => makeFilter === 'All' || item.make.includes(makeFilter)
+                )
+                .filter(
+                  (item) => modelFilter === 'All' || item.model.includes(modelFilter)
+                )
+                .filter(
+                  (item) => regionFilter === 'All' || item.region.includes(regionFilter)
+                )
+                .filter((item) => !statusFilter || item.status === "Publish")
+                .map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      
+                      <td className='table_year'>{item.year}</td>
+                      <td className='table_make'>{item.make}</td>
+                      <td className='table_model'>{item.model}</td>
+                      <td className='table_status'>{item.status === "Sold" || item.status ==="Found"?<div className='car_tag'>{item.status}</div>:<div className='car_available'>Available</div>}</td>
+                      <td className='table_location'>{item.region}</td>
+                      <td className='table_description'>{item.description}</td>
+                      <td className='table_actions'>
+                        <button onClick={() => {fetchDealerInformation(item); setSelectedVehicle(item)}}>Contact</button>
+                        
+                      </td>
                       {selectedVehicle === item && dealerInformation && (
-                        <div className='dealer_info'>
-                          <strong>Name:</strong>
-                          <div>{dealerInformation.firstName} {dealerInformation.lastName}</div>
-                          <strong>Business Name:</strong>
-                          <div>{dealerInformation.dealership}</div>
-                          <strong>Phone Number:</strong>
-                          <div>{dealerInformation.phoneNumber}</div>
-                          <strong>Email:</strong>
-                          <div>{dealerInformation.email}</div>
-                          <strong>Website:</strong>
-                          <div><a href={`https://${dealerInformation.website}`}>{dealerInformation.website}</a></div>
-                          <strong>Location:</strong>
-                          <div>{dealerInformation.city} {dealerInformation.region}</div>
-                        </div>
-                      )}
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+                          <div className='dealer_info'>
+                            <strong>Name:</strong>
+                            <div>{dealerInformation.firstName} {dealerInformation.lastName}</div>
+                            <strong>Business Name:</strong>
+                            <div>{dealerInformation.dealership}</div>
+                            <strong>Phone Number:</strong>
+                            <div>{dealerInformation.phoneNumber}</div>
+                            <strong>Email:</strong>
+                            <div>{dealerInformation.email}</div>
+                            <strong>Website:</strong>
+                            <div><a href={`https://${dealerInformation.website}`}>{dealerInformation.website}</a></div>
+                            <strong>Location:</strong>
+                            <div>{dealerInformation.city} {dealerInformation.region}</div>
+                          </div>
+                        )}
+
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

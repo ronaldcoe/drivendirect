@@ -8,7 +8,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Footer from './pages/landing/Footer';
 import Login from './pages/login-signup/Login';
 import Signup from './pages/login-signup/Signup';
-import Firebase from './Firebase2';
 import AddVehicle from './pages/add_vehicle/AddVehicle';
 import CardGrid from './shared/CarInformation/CardGrid';
 import Dashboard from './pages/dashboard/Dashboard';
@@ -16,6 +15,7 @@ import ProtectedRoute from './shared/ProtectedRoute';
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
+import EditAccount from './pages/account/EditAccount';
 
 function App() {
   return (
@@ -50,6 +50,12 @@ function App() {
             <Route exact path='/search' element={
               <ProtectedRoute>
                 <AddVehicle type={"listing"} />
+              </ProtectedRoute>
+            } />
+
+            <Route exact path='/account' element={
+              <ProtectedRoute>
+                <EditAccount />
               </ProtectedRoute>
             } />
            
