@@ -230,6 +230,7 @@ export const createUser = async (email, password, firstName, lastName, dealershi
     
     // Create the new user object
     const userData = {
+      userId: user.uid,
       firstName: firstName,
       lastName: lastName,
       email: user.email,
