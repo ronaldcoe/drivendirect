@@ -111,7 +111,8 @@ export default function Card({
   }, []);
 
   // This handles the car data update
-  const changeCarData =async () => {
+  const changeCarData =async (e) => {
+    e.preventDefault()
     await updateInventoryRecord(car.id, updatedCarData, type);
     setEditMode(!editMode)
     onUpdate(!update);
@@ -148,7 +149,7 @@ export default function Card({
         status: "Sold",
       };
     }
-    
+
     await updateInventoryRecord(car.id, updatedCar, type);
     onUpdate(!update);
 
@@ -250,6 +251,7 @@ export default function Card({
         (
         
         <div className="vehiclecard__edit_car">
+          <form onSubmit={changeCarData}>
             <label>
               <p>Make</p>
               <DropDown initial="Other" selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
@@ -275,7 +277,7 @@ export default function Card({
 
           <label>
             <p>Year</p>
-            <input type="text" name="" value={updatedCarData.year} onChange={(e) =>
+            <input type="number" required  min={1900} max={2024} value={updatedCarData.year} onChange={(e) =>
                   setUpdatedCarData({
                     ...updatedCarData,
                     year: e.target.value,
@@ -293,10 +295,13 @@ export default function Card({
               </textarea>
             </label>
           <div style={{display:"flex",gap:"10px"}}>
-            <a onClick={()=> changeCarData()}>Update</a>
+            <button id="vehiclecard__update" type="submit">Update</button>
             <a  className="vehiclecard__cancel" onClick={()=> handleCancel()}>Cancel</a>
           </div>
-        </div>)  : 
+          </form>
+        </div>
+        
+        )  : 
         <>
           <div className="vehiclecard__description">{car.description}</div>
           
