@@ -24,6 +24,7 @@
 }
 .vehiclecard .vehiclecard__edit_car label {
   margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
 }
 .vehiclecard .vehiclecard__edit_car label p {
   font-size: 1.3rem;
@@ -240,12 +241,14 @@
 }
 
 .cardGrid .cardGrid__wrapper {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
   display: grid;
   gap: 20px;
+  grid-template-columns: 300px auto;
   margin-top: 50px;
+  gap: 40px;
 }
 @media screen and (max-width: 1000px) {
   .cardGrid .cardGrid__wrapper {
@@ -259,6 +262,10 @@
   .cardGrid .cardGrid__wrapper {
     padding: 0;
   }
+}
+.cardGrid .cardGrid__wrapper .cardGrid__description {
+  position: sticky;
+  top: 100px;
 }
 @media screen and (max-width: 1000px) {
   .cardGrid .cardGrid__wrapper .cardGrid__description {
@@ -274,29 +281,42 @@
   color: #36454F;
   margin-right: 30px;
 }
-.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters {
+.cardGrid .cardGrid__wrapper .cardGrid__filters {
   display: flex;
   max-width: 600px;
 }
-.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters .custom-dropdown {
+.cardGrid .cardGrid__wrapper .cardGrid__filters .custom-dropdown {
   border: 1px solid #B6B6B6;
 }
 @media screen and (max-width: 670px) {
-  .cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters {
+  .cardGrid .cardGrid__wrapper .cardGrid__filters {
     max-width: 100%;
     flex-direction: column;
     align-items: start;
+    padding: 10px;
   }
 }
-.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters label {
+.cardGrid .cardGrid__wrapper .cardGrid__filters label {
   padding: 10px 10px 10px 0px;
   margin-bottom: 10px;
   width: 100%;
 }
-.cardGrid .cardGrid__wrapper .cardGrid__description .cardGrid__filters label select {
+.cardGrid .cardGrid__wrapper .cardGrid__filters label select {
   margin-top: 10px;
   border: none;
   width: 100%;
+}
+.cardGrid .cardGrid__wrapper .filter_available {
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  margin: 10px 0px;
+  cursor: pointer;
+  gap: 10px;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper .filter_available {
+    padding: 10px;
+  }
 }
 .cardGrid .cardGrid__wrapper table {
   font-family: "Rubik", sans-serif;
@@ -304,6 +324,12 @@
   height: fit-content;
   border-collapse: collapse;
   padding: 10px;
+  width: 100%;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper table {
+    width: 100%;
+  }
 }
 .cardGrid .cardGrid__wrapper table thead {
   background-color: #F3F3F3;
@@ -318,13 +344,66 @@
 .cardGrid .cardGrid__wrapper table thead td {
   border: none;
 }
+.cardGrid .cardGrid__wrapper table tbody tr {
+  background-color: white;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper table tbody tr:nth-child(even) {
+    background-color: #F3F3F3;
+  }
+}
+.cardGrid .cardGrid__wrapper table tbody .table_status {
+  font-size: 1rem;
+}
+.cardGrid .cardGrid__wrapper table tbody .dealer_info {
+  background-color: white;
+  position: absolute;
+  padding: 10px;
+  z-index: 99999;
+  top: 40px;
+  border-radius: 5px;
+  border: 1px solid #B6B6B6;
+}
+@media screen and (max-width: 670px) {
+  .cardGrid .cardGrid__wrapper table tbody .dealer_info {
+    position: relative;
+    top: 0px;
+    z-index: 0;
+    grid-column: 1/5;
+    grid-row: 5/6;
+  }
+}
+.cardGrid .cardGrid__wrapper table tbody .dealer_info strong {
+  color: #36454F;
+}
+.cardGrid .cardGrid__wrapper table tbody .dealer_info div {
+  padding: 3px 0px 10px 0px;
+}
 .cardGrid .cardGrid__wrapper table tr {
   border: 1px solid #B6B6B6;
   padding: 20px 20px;
   font-size: 1.3rem;
+  position: relative;
 }
-.cardGrid .cardGrid__wrapper table tr #table_description {
+.cardGrid .cardGrid__wrapper table tr .table_description {
   max-width: 300px;
+}
+.cardGrid .cardGrid__wrapper table tr .car_available {
+  background-color: #080077;
+  padding: 5px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.cardGrid .cardGrid__wrapper table tr .car_tag {
+  background-color: #E9FFE4;
+  color: #005822;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  font-family: "Rubik", sans-serif;
+  text-align: center;
 }
 @media screen and (max-width: 670px) {
   .cardGrid .cardGrid__wrapper table tr {
@@ -335,37 +414,45 @@
     border-radius: 5px;
     gap: 7px;
   }
-  .cardGrid .cardGrid__wrapper table tr #table_year {
+  .cardGrid .cardGrid__wrapper table tr .table_year {
     font-size: 2rem;
     grid-column: 1/2;
     grid-row: 1/2;
     font-weight: bold;
   }
-  .cardGrid .cardGrid__wrapper table tr #table_make {
+  .cardGrid .cardGrid__wrapper table tr .table_make {
     font-size: 2rem;
     grid-column: 2/3;
     grid-row: 1/2;
     font-weight: bold;
   }
-  .cardGrid .cardGrid__wrapper table tr #table_model {
+  .cardGrid .cardGrid__wrapper table tr .table_model {
     font-size: 2rem;
     grid-column: 3/4;
     grid-row: 1/2;
     font-weight: bold;
   }
-  .cardGrid .cardGrid__wrapper table tr #table_location {
+  .cardGrid .cardGrid__wrapper table tr .table_location {
     font-size: 1.5rem;
     grid-column: 4/5;
     text-align: end;
   }
-  .cardGrid .cardGrid__wrapper table tr #table_description {
+  .cardGrid .cardGrid__wrapper table tr .table_description {
     font-size: 1.5rem;
     grid-column: 1/5;
     grid-row: 2/3;
     padding: 10px 0px;
+    max-width: 100%;
   }
-  .cardGrid .cardGrid__wrapper table tr #table_actions {
-    grid-column: 1/5;
+  .cardGrid .cardGrid__wrapper table tr .table_status {
+    grid-column: 2/3;
+    grid-row: 4/5;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+  .cardGrid .cardGrid__wrapper table tr .table_actions {
+    grid-column: 1/2;
+    grid-row: 4/5;
   }
 }
 .cardGrid .cardGrid__wrapper table tr td {
@@ -377,35 +464,13 @@
     padding: 0px;
   }
 }
-.cardGrid .cardGrid__wrapper table tr #table_actions {
+.cardGrid .cardGrid__wrapper table tr .table_actions {
   display: flex;
   flex-direction: column;
   gap: 10px;
   position: relative;
 }
-.cardGrid .cardGrid__wrapper table tr #table_actions .dealer_info {
-  background-color: white;
-  position: absolute;
-  padding: 10px;
-  z-index: 99999;
-  top: 40px;
-  border-radius: 5px;
-  border: 1px solid #B6B6B6;
-}
-@media screen and (max-width: 670px) {
-  .cardGrid .cardGrid__wrapper table tr #table_actions .dealer_info {
-    position: relative;
-    top: 0px;
-    z-index: 0;
-  }
-}
-.cardGrid .cardGrid__wrapper table tr #table_actions .dealer_info strong {
-  color: #36454F;
-}
-.cardGrid .cardGrid__wrapper table tr #table_actions .dealer_info div {
-  padding: 3px 0px 10px 0px;
-}
-.cardGrid .cardGrid__wrapper table tr #table_actions #table_actions_save {
+.cardGrid .cardGrid__wrapper table tr .table_actions #table_actions_save {
   background-color: rgb(250, 255, 250);
   border: 1px solid green;
   color: green;
@@ -427,4 +492,6 @@
   margin: 0;
   height: -moz-fit-content;
   height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }/*# sourceMappingURL=cardGrid.css.map */

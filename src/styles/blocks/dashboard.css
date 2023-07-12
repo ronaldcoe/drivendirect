@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 .dashboard .dashboard__wrapper {
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
   max-width: -moz-fit-content;
@@ -30,6 +30,9 @@
 }
 .dashboard .dashboard__wrapper h2 {
   font-size: 2rem;
+}
+.dashboard .dashboard__wrapper .dashboard__wrapper_col_1 {
+  background-color: white;
 }
 .dashboard .dashboard__wrapper .dashboard__wrapper_col_1 .dashboard__wrapper__profile {
   border: 1px solid #B6B6B6;

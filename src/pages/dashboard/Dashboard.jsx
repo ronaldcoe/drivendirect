@@ -89,7 +89,7 @@ export default function Dashboard(props) {
                     <ReactSVG src={menu} className='menu' onClick={()=>{setShowOptions(!showOptions)}}/>
                     {showOptions && (<div ref={optionsRef} className='options'>
                         <ul>
-                            <li><a>Edit account</a></li>
+                            <li><a onClick={()=> navigate("/account")}>Edit account</a></li>
                         </ul>
                     </div>
                     )}

@@ -16,14 +16,13 @@ export default function Card({
   onUpdate,
   update,
 }) {
+
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
 
-
+  // States for the Edit mode
   const [editMode, setEditMode] = useState(false);
   const [updatedCarData, setUpdatedCarData] = useState({ ...car });
-
-
   const [makeSelected, setMakeSelected] = useState(car.make)
   const [modelSelected, setModelSelected] = useState(car.model)
 
@@ -40,25 +39,34 @@ export default function Card({
         
   }
 
+  // Get the data the first time the component is rendered
+  useEffect(()=> {
+
+    fetchdata()
+  },[])
+
+
   useEffect(()=> {
     if (dataVehicles) {
       setMakes(Object.keys(dataVehicles[0]).sort())
+
+      // When we enter the edit mode. There is a make that is selected
+      // that comes from the car data
       setModels(dataVehicles[0][makeSelected])
     }
    
   },[dataVehicles])
 
-  const handleCancel = () => {
-    setEditMode(!editMode);
-    setMakeSelected(car.make)
-   
-  }
+ 
 
-
+  // If the state of edit mode changes, reset the state of
+  // modelSelected
   useEffect(()=> {
     setModelSelected(car.model)
   },[editMode])
 
+  // If the makeSelected changes, update the updatedCarData state
+  // with the new make
   useEffect(()=> {
     
     if (dataVehicles) {
@@ -73,6 +81,8 @@ export default function Card({
     
   },[makeSelected])
 
+  // If the modelSelected changes, update the updatedCarData state
+  // with the new model
   useEffect(()=> {
    
     if (dataVehicles) {
@@ -84,10 +94,21 @@ export default function Card({
     })
   },[modelSelected])
 
-  useEffect(()=> {
+  
 
-    fetchdata()
-  },[])
+
+  useEffect(() => {
+    const handleMouseDown = (event) => {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+        setShowOptions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleMouseDown);
+    return () => {
+      document.removeEventListener("mousedown", handleMouseDown);
+    };
+  }, []);
 
   // This handles the car data update
   const changeCarData =async () => {
@@ -128,6 +149,8 @@ export default function Card({
       };
     }
     
+    await updateInventoryRecord(car.id, updatedCar, type);
+    onUpdate(!update);
 
     Store.addNotification({
       title: "Success",
@@ -172,18 +195,14 @@ export default function Card({
     });
   };
 
-  useEffect(() => {
-    const handleMouseDown = (event) => {
-      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-        setShowOptions(false);
-      }
-    };
 
-    document.addEventListener("mousedown", handleMouseDown);
-    return () => {
-      document.removeEventListener("mousedown", handleMouseDown);
-    };
-  }, []);
+  // Cancel and exit the edit mode
+  const handleCancel = () => {
+    setEditMode(!editMode);
+    setMakeSelected(car.make)
+   
+  }
+  
 
   return (
     <div className="vehiclecard" onClick={onClick}>
