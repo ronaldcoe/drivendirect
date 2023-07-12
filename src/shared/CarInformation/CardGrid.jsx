@@ -1,39 +1,63 @@
-// CardGrid.js
 import React, { useEffect, useState } from 'react';
 import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
-import { getAllInventoryBytype, getUserInfo, getVehicles } from '../../Firebase/FirebaseStateManagement';
+import {
+  getAllInventoryBytype,
+  getUserInfo,
+  getVehicles,
+} from '../../Firebase/FirebaseStateManagement';
 import { auth } from '../../Firebase/FirebaseConfig';
 import { Store } from 'react-notifications-component';
 
 export default function CardGrid(props) {
-
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
-  const [regionFilter, setRegionFilter] = useState('All')
-  const [dataVehicles, setDataVehicles] = useState();
+  const [regionFilter, setRegionFilter] = useState('All');
+  const [dataVehicles, setDataVehicles] = useState([]);
   const [makes, setMakes] = useState([]);
   const [models, setModels] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const [regions, setRegions] = useState([])
-  const [dealerInformation, setDealerInformation] = useState()
+  const [regions, setRegions] = useState([]);
+  const [dealerInformation, setDealerInformation] = useState(null);
   const [selectedVehicle, setSelectedVehicle] = useState(null);
-  const [statusFilter, setStatusfilter] = useState(false)
+  const [statusFilter, setStatusfilter] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+
   const fetchInventory = async () => {
     const vehicles = await getAllInventoryBytype(props.type);
-
     setVehicles(vehicles);
     const uniqueMakes = [...new Set(vehicles.map((obj) => obj.make))];
     setMakes(uniqueMakes);
     setDataVehicles(vehicles);
   };
 
-  // This only gets called when the contact button is clicked and the user is logged in
+  const filterData = (data) => {
+    let filteredData = data;
+
+    if (makeFilter !== 'All') {
+      filteredData = filteredData.filter((item) => item.make === makeFilter);
+    }
+
+    if (modelFilter !== 'All') {
+      filteredData = filteredData.filter((item) => item.model === modelFilter);
+    }
+
+    if (regionFilter !== 'All') {
+      filteredData = filteredData.filter((item) => item.region === regionFilter);
+    }
+
+    if (statusFilter) {
+      filteredData = filteredData.filter((item) => item.status === 'Publish');
+    }
+
+    return filteredData;
+  };
+
   const fetchDealerInformation = async (vehicle) => {
     const user = auth.currentUser;
     if (user) {
       if (selectedVehicle === vehicle && dealerInformation) {
-        // If the same vehicle is clicked again and contact information is already shown, hide it
         setDealerInformation(null);
         setSelectedVehicle(null);
       } else {
@@ -42,23 +66,21 @@ export default function CardGrid(props) {
         setSelectedVehicle(vehicle);
       }
     } else {
-      // Have an Alert or something to show the user has not signed in and therefore cannot see
       Store.addNotification({
-        title: "Notification",
-        message: "You need to log in to see the contact information",
-        type: "warning",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeInDown"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
+        title: 'Notification',
+        message: 'You need to log in to see the contact information',
+        type: 'warning',
+        insert: 'top',
+        container: 'top-right',
+        animationIn: ['animate__animated', 'animate__fadeInDown'],
+        animationOut: ['animate__animated', 'animate__fadeOut'],
         dismiss: {
           duration: 5000,
-          showIcon: true
-        }
+          showIcon: true,
+        },
       });
     }
   };
-  
 
   useEffect(() => {
     fetchInventory();
@@ -75,16 +97,22 @@ export default function CardGrid(props) {
       setModels([]);
     }
     setModelFilter('All');
-
-    
-
   }, [makeFilter, vehicles]);
 
-
-  useEffect(()=> {
-    const uniqueRegions = [...new Set(dataVehicles?.map(item => item.region))];
+  useEffect(() => {
+    const uniqueRegions = [...new Set(dataVehicles?.map((item) => item.region))];
     setRegions(uniqueRegions);
-  },[vehicles])
+  }, [dataVehicles]);
+
+  // Pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filterData(dataVehicles).slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
 
 
   return (
@@ -143,19 +171,8 @@ export default function CardGrid(props) {
               </tr>
             </thead>
             <tbody>
-              {dataVehicles
-                ?.filter(
-                  (item) => makeFilter === 'All' || item.make.includes(makeFilter)
-                )
-                .filter(
-                  (item) => modelFilter === 'All' || item.model.includes(modelFilter)
-                )
-                .filter(
-                  (item) => regionFilter === 'All' || item.region.includes(regionFilter)
-                )
-                .filter((item) => !statusFilter || item.status === "Publish")
-                .map((item, index) => {
-                  return (
+            {filterData(currentItems).map((item, index) => {
+                return (
                     <tr key={index}>
                       
                       <td className='table_year'>{item.year}</td>
@@ -190,6 +207,20 @@ export default function CardGrid(props) {
                 })}
             </tbody>
           </table>
+          <div className='pagination'>
+          <ul>
+            {Array.from({ length: Math.ceil(dataVehicles.length / itemsPerPage) }, (_, index) => (
+              <li key={index}>
+                <button
+                  className={currentPage === index + 1 ? 'active' : ''}
+                  onClick={() => paginate(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
         </div>
       </div>
     </div>
