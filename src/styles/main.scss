@@ -112,6 +112,19 @@ p {
         }
     }
 
+    .rnc__notification-item--danger {
+        background-color: white;
+       
+        border-left: 8px solid #ea0000;
+
+        .rnc__notification-title {
+            color: #ea0000
+        }
+        .rnc__notification-message {
+            color: #ea0000
+        }
+    }
+
     
 
     

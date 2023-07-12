@@ -113,25 +113,42 @@ export default function Card({
   // This handles the car data update
   const changeCarData =async (e) => {
     e.preventDefault()
-    await updateInventoryRecord(car.id, updatedCarData, type);
-    setEditMode(!editMode)
-    onUpdate(!update);
+    if(modelSelected !== "") {
+      await updateInventoryRecord(car.id, updatedCarData, type);
+      setEditMode(!editMode)
+      onUpdate(!update);
 
 
-    Store.addNotification({
-      title: "Success",
-      message: "Your vehicle was sucessfully updated",
-      type: "success",
-      insert: "top",
-      container: "top-right",
-      animationIn: ["animate__animated", "animate__fadeInDown"],
-      animationOut: ["animate__animated", "animate__fadeOut"],
-      dismiss: {
-        duration: 5000,
-        showIcon: true,
-      },
-    });
+      Store.addNotification({
+        title: "Success",
+        message: "Your vehicle was sucessfully updated",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true,
+        },
+      });
+    } else {
+      Store.addNotification({
+        title: "Error",
+        message: "Your need to provide a vehicle Model",
+        type: "danger",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true,
+        },
+      });
+    }
   }
+  console.log(modelSelected)
 
 
   // This Handle the Update on the Status as Sold or Found
@@ -267,7 +284,7 @@ export default function Card({
             <label>
               <p>Model</p>
               {makes && !makes.includes(makeSelected)?
-              <input required  type='text' value={modelSelected} onChange={(e)=>{setModelSelected(e.target.value)}}/>             
+              <input required  type='text' placeholder='Type in the Model' value={modelSelected} onChange={(e)=>{setModelSelected(e.target.value)}}/>             
               : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
            
               }

@@ -102,4 +102,14 @@ p {
 }
 .notifications .rnc__notification-item--warning .rnc__notification-message {
   color: #eab000;
+}
+.notifications .rnc__notification-item--danger {
+  background-color: white;
+  border-left: 8px solid #ea0000;
+}
+.notifications .rnc__notification-item--danger .rnc__notification-title {
+  color: #ea0000;
+}
+.notifications .rnc__notification-item--danger .rnc__notification-message {
+  color: #ea0000;
 }/*# sourceMappingURL=main.css.map */
