@@ -1,0 +1,25 @@
+@import "../variables/_variables";
+@import "../variables/_mixins";
+
+.edit_account {
+    
+
+    .edit_account__wrapper {
+        @include wrapper;
+        margin-top: 50px;
+        h1 {
+            color: $primary-color;
+        }
+        form {
+            @include forms;
+            max-width: 400px;
+            @include container;
+            margin: 0 auto;
+
+            button {
+                @include buttons($primary-color);
+                color: white;
+            }
+        }
+    }
+}

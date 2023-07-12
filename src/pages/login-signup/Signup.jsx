@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import '../../styles/blocks/signup.css'
-import Error from '../../shared/notifications/Error'
 import {createUser} from "../../Firebase/FirebaseStateManagement"
 import { getCountries } from '../../Firebase/FirebaseStateManagement';
 import DropDown from '../../shared/dropdown/DropDown';
@@ -34,7 +33,7 @@ export default function Signup() {
     const [region, setRegion] = useState(null)
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
-    console.log(businessType)
+ 
     // Errors 
     const [errors, setErrors] = useState('')
     const [showError, setShowError] = useState(false)
@@ -42,7 +41,7 @@ export default function Signup() {
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
         e.preventDefault();
-        if (country !=- null && region !== null) {
+        if (country !== null && region !== null) {
             try {
                 const success = await createUser(email, password, firstName, lastName, dealership, businessType,
                                                     website, country, region, city, phoneNumber);
@@ -84,7 +83,6 @@ export default function Signup() {
 
   return (
     <div className='signup'>
-        {errors.length > 0 && showError ? errors.map((error) => {return (<Error key={error} close={{showError, setShowError}} message={error}/>)}):''}
         <div className='signup__wrapper'>
             
             <div className='signup__wrapper__description'>

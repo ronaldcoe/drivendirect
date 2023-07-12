@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.edit_account .edit_account__wrapper {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 50px;
+}
+.edit_account .edit_account__wrapper h1 {
+  color: #080077;
+}
+.edit_account .edit_account__wrapper form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  border-radius: 5px;
+  background-color: #F3F3F3;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  margin: 0 auto;
+}
+.edit_account .edit_account__wrapper form label {
+  margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
+}
+.edit_account .edit_account__wrapper form label p {
+  font-size: 1.3rem;
+  color: #636363;
+}
+.edit_account .edit_account__wrapper form label input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.edit_account .edit_account__wrapper form label input:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.edit_account .edit_account__wrapper form label input:required:valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.edit_account .edit_account__wrapper form label input.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.edit_account .edit_account__wrapper form label input.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.edit_account .edit_account__wrapper form label select {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.edit_account .edit_account__wrapper form label select:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.edit_account .edit_account__wrapper form label select:required:valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.edit_account .edit_account__wrapper form label select.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.edit_account .edit_account__wrapper form label select.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.edit_account .edit_account__wrapper form label select option:hover {
+  color: "Rubik", sans-serif;
+}
+.edit_account .edit_account__wrapper form label textarea {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+  resize: none;
+}
+.edit_account .edit_account__wrapper form label textarea:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.edit_account .edit_account__wrapper form label textarea:required:valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.edit_account .edit_account__wrapper form label textarea.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.edit_account .edit_account__wrapper form label textarea.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.edit_account .edit_account__wrapper form button {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #080077;
+  color: white;
+}/*# sourceMappingURL=edit_account.css.map */
