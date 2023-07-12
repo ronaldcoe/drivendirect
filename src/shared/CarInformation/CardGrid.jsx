@@ -91,15 +91,15 @@ export default function CardGrid(props) {
     <div className='cardGrid'>
       <div className='cardGrid__wrapper'>
         
-        <div>
-          <div className='cardGrid__description'>
+        <div className='cardGrid__description'>
+          <div >
             <h1>{props.type === "trade"?"Sale":"List"} Inventory</h1>
             {props.type === "trade"?<p>This contains the vehicles that dealers are selling. If you're logged in, you can see the information of whom is selling the vehicle</p>:<p>This contains the list of vehicles that dealers are looking for</p>}
             
           </div>
         </div>
 
-        <div>
+        <div className='cardGrid_table'>
       
             <div className='cardGrid__filters'>
               

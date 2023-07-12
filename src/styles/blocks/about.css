@@ -33,7 +33,7 @@
   gap: 20px;
 }
 .about .about__wrapper .about__wrapper__card__container .about__wrapper__card {
-  background-color: #F3F3F3;
+  background-color: white;
   border-radius: 5px;
   padding: 40px;
   display: flex;

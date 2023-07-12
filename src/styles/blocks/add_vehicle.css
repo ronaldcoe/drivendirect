@@ -28,9 +28,8 @@
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form {
   border-radius: 5px;
-  background-color: #F3F3F3;
+  background-color: white;
   padding: 30px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   width: 360px;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form {
