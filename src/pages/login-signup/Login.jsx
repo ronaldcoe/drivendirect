@@ -20,7 +20,7 @@ export default function Login() {
 
     useEffect(()=>{
         const unsubscribe = auth.onAuthStateChanged((user) => {
-          if (user) {
+          if (user && localStorage.getItem("isSignedIn")) {
             // User is signed in
             navigate("/dashboard")
 
@@ -42,6 +42,7 @@ export default function Login() {
                 //   Set the local Storage
                 localStorage.setItem("userId",userCreds.user.uid)
                 localStorage.setItem("accessToken",userCreds.user.accessToken)
+                localStorage.setItem("isSignedIn",true)
 
             
               setShowError(false)

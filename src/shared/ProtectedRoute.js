@@ -9,7 +9,7 @@ const ProtectedRoute = ({children }) => {
   
   useEffect(()=>{
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (user && localStorage.getItem("isSignedIn")) {
         // User is signed in
         setUser(user);
       } else {

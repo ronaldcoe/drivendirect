@@ -117,18 +117,14 @@ export default function CardGrid(props) {
                 <p>Region</p>
                 <DropDown initial="All" selectedOption={regionFilter} setSelectedOption={setRegionFilter} data={regions.sort()} />
               </label>
-              
-              
             </div>
 
             <div className='filter_available'>
-                
                 <input type="checkbox" onChange={() =>setStatusfilter(!statusFilter)}  />
                 <p>Only show available</p>
             </div>
 
           <table role='presentation'>
-            
             <thead>
               <tr>
                 <td>Year</td>
@@ -136,10 +132,8 @@ export default function CardGrid(props) {
                 <td>Model</td>
                 <td>Status</td>
                 <td>Region</td>
-                
                 <td>Description</td>
                 <td>Contact Information</td>
-                
               </tr>
             </thead>
             <tbody>
