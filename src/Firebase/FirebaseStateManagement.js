@@ -222,7 +222,7 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
 /************************AUTH AND USER********************************************/
 
 //Create new user
-export const createUser = async (email, password, firstName, lastName, dealership, 
+export const createUser = async (email, password, firstName, lastName, businessName, 
                                   businessType, website, country, region, city, phoneNumber) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
@@ -235,7 +235,7 @@ export const createUser = async (email, password, firstName, lastName, dealershi
       lastName: lastName,
       email: user.email,
       // Add other custom fields as needed
-      dealership: dealership,
+      businessName: businessName,
       businessType:businessType,
       website: website,
       country: country,
