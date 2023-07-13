@@ -124,6 +124,12 @@
 .vehiclecard .vehiclecard__edit_car input[type=number] {
   -moz-appearance: textfield;
 }
+.vehiclecard .vehiclecard__edit_car .addVehicle__other {
+  text-decoration: underline;
+  color: #080077;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 .vehiclecard .vehiclecard__edit_car #vehiclecard__update {
   padding: 15px;
   border: none;
