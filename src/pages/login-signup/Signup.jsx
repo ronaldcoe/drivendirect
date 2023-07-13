@@ -34,8 +34,11 @@ export default function Signup() {
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [acceptTerms, setAcceptTerms] = useState(false)
+    const [tradeMax, setTradeMax] = useState()
+    const [searchMax, setSearchMax] = useState()
  
     console.log(country)
+
     // Function to make sure we're not sending incorrect data
     const checkData = () => {
 
@@ -108,7 +111,7 @@ export default function Signup() {
             try {
                 const success = await createUser(email, password, firstName, lastName,          
                     businessName, businessType,
-                    website, country, region, city, phoneNumber);
+                    website, country, region, city, phoneNumber, tradeMax, searchMax);
                 if (success) {
                     
                     navigate("/login")
@@ -168,6 +171,17 @@ export default function Signup() {
     fetchdata()
     
   }, [])
+
+  useEffect(()=> {
+    if (businessType === "rental") {
+        setTradeMax(10)
+        setSearchMax(-1)
+    }
+    if (businessType === "dealer") {
+        setTradeMax(2)
+        setSearchMax(2)
+    }
+  })
 
 
   return (
