@@ -20,9 +20,9 @@ export default function Dashboard(props) {
     const optionsRef = useRef(null);
     const navigate = useNavigate();
     // These will be changed in the future
-    const tradeMax = 2
-    const listMax = 2
-
+    const tradeMax = account?.tradeMax
+    const listMax = account?.searchMax
+    console.log(tradeMax)
     // This is to help with the Update of the inventory
     const [update, setUpdate] = useState(false)
 

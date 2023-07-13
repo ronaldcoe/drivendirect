@@ -223,7 +223,7 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
 
 //Create new user
 export const createUser = async (email, password, firstName, lastName, businessName, 
-                                  businessType, website, country, region, city, phoneNumber) => {
+                                  businessType, website, country, region, city, phoneNumber, tradeMax, searchMax) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCreds.user;
@@ -241,7 +241,9 @@ export const createUser = async (email, password, firstName, lastName, businessN
       country: country,
       region: region,
       city: city,
-      phoneNumber: phoneNumber
+      phoneNumber: phoneNumber,
+      tradeMax:tradeMax,
+      searchMax:searchMax
     };
 
     // Store additional fields in Firestore and create the user collection

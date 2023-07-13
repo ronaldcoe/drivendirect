@@ -4,6 +4,7 @@ import { createInventory, getAllInventoryByEntity } from '../../Firebase/Firebas
 import { auth } from '../../Firebase/FirebaseConfig';
 import { useNavigate } from 'react-router';
 import DropDown from '../../shared/dropdown/DropDown';
+import { getUserInfo } from '../../Firebase/FirebaseStateManagement';
 import { getVehicles } from '../../Firebase/FirebaseStateManagement';
 
 
@@ -21,9 +22,13 @@ export default function AddVehicle(props) {
   const [vehicleDescription, setVehicleDescription] = useState('')
   const [type, setType]= useState(props.type)
   // this will be set in the future by the account details
-  const [userMax, setUserMax] = useState(2)
+  const [account, setAccount] = useState({})
+  const [update, setUpdate] = useState(false)
 
-
+  // User Max
+  let tradeMax = account?.tradeMax
+  let searchMax = account?.searchMax
+  
   // Data for Dropdown
   const [dataVehicles, setDataVehicles] = useState(null)
   const [makes, setMakes] = useState(undefined)
@@ -31,6 +36,18 @@ export default function AddVehicle(props) {
 
   const [otherMake, setOtherMake] = useState(false)
   const [otherModel, setOtherModel] = useState(false)
+
+
+
+  // Get user info
+  const fetchUserInfo = async ()=>{
+    var userId = localStorage.getItem('userId')
+    var userInfo = await getUserInfo(userId)
+    if (userInfo){
+        setAccount(userInfo)
+        setUpdate(!update)
+    }
+}
 
   // Function to make sure we're not sending incorrect data
   const checkData = () => {
@@ -132,28 +149,52 @@ export default function AddVehicle(props) {
   }
 
 
-
+ 
   // Get all search or trade for a user
   const fetchAllInventoryCreated = async()=>{
     const userId = localStorage.getItem("userId")
     const listOfInventory = await getAllInventoryByEntity("userId", userId, type)
     // now check if it has exceed the limit and push them back to the Dashboard
-    if(listOfInventory?.length >= userMax){
-      // Show messsage user can't add more vehicles
-      Store.addNotification({
-        title: "Notification",
-        message: "You can't add more vehicles",
-        type: "warning",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeInDown"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          showIcon: true
-        }
-      });
-      navigate("/dashboard")
+    if(type ==="trade"){
+      if(listOfInventory?.length >= tradeMax) {
+        // Show messsage user can't add more vehicles
+        Store.addNotification({
+          title: "Notification",
+          message: "You can't add more vehicles",
+          type: "warning",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeInDown"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          }
+        });
+        navigate("/dashboard")
+      }
+    }
+
+
+    if(type ==="listing"){
+      if(listOfInventory?.length >= searchMax) {
+       
+        // Show messsage user can't add more vehicles
+        Store.addNotification({
+          title: "Notification",
+          message: "You can't add more vehicles",
+          type: "warning",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeInDown"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          }
+        });
+        navigate("/dashboard")
+      }
     }
   }
    // Get Static Data
@@ -166,8 +207,12 @@ export default function AddVehicle(props) {
   useEffect(()=> {
     fetchAllInventoryCreated()
     fetchdata()
-  },[])
+    fetchUserInfo()
+  },[tradeMax, searchMax])
 
+  useEffect(()=> {
+    
+  })
   
 
   useEffect(()=> {
