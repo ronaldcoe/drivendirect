@@ -10,8 +10,10 @@ export default function Hero() {
         <div className='hero__wrapper'>
           <div className='hero__call_to_action'>
               <h1>
-              HELPING DEALERS
-              HELP EACHOTHER
+              Helping Dealers
+              </h1>
+              <h1>
+              Help each other
               </h1>
               <button className='hero__call_to_action_primarybutton' onClick={()=>{navigate("/login")}}>Start Today</button>
             

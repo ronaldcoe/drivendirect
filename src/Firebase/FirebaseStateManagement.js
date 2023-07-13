@@ -222,8 +222,8 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
 /************************AUTH AND USER********************************************/
 
 //Create new user
-export const createUser = async (email, password, firstName, lastName, dealership,
-                                  website, country, region, city, phoneNumber) => {
+export const createUser = async (email, password, firstName, lastName, businessName, 
+                                  businessType, website, country, region, city, phoneNumber, tradeMax, searchMax) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCreds.user;
@@ -235,12 +235,15 @@ export const createUser = async (email, password, firstName, lastName, dealershi
       lastName: lastName,
       email: user.email,
       // Add other custom fields as needed
-      dealership: dealership,
+      businessName: businessName,
+      businessType:businessType,
       website: website,
       country: country,
       region: region,
       city: city,
-      phoneNumber: phoneNumber
+      phoneNumber: phoneNumber,
+      tradeMax:tradeMax,
+      searchMax:searchMax
     };
 
     // Store additional fields in Firestore and create the user collection
@@ -249,8 +252,8 @@ export const createUser = async (email, password, firstName, lastName, dealershi
     return true;
 
   } catch (error) {
-    console.log(error);
-    throw new Error('User creation failed'); 
+    
+    throw new Error(error); 
   }
 };
 

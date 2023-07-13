@@ -4,17 +4,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 .vehiclecard {
-  border: 1px solid #B6B6B6;
   width: 100%;
   border-radius: 5px;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  background-color: white;
+  background-color: #F5F4F7;
   height: -moz-fit-content;
   height: fit-content;
   margin-top: 20px;
+  border-bottom: 1px solid #B6B6B6;
 }
 .vehiclecard .vehiclecard__edit_car {
   display: flex;
@@ -124,6 +124,12 @@
 .vehiclecard .vehiclecard__edit_car input[type=number] {
   -moz-appearance: textfield;
 }
+.vehiclecard .vehiclecard__edit_car .addVehicle__other {
+  text-decoration: underline;
+  color: #080077;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 .vehiclecard .vehiclecard__edit_car #vehiclecard__update {
   padding: 15px;
   border: none;
@@ -153,6 +159,7 @@
   font-size: 1.3rem;
   color: red;
   padding: 7px;
+  font-weight: bold;
 }
 @media screen and (max-width: 505px) {
   .vehiclecard {
@@ -266,7 +273,7 @@
   margin-top: 50px;
   gap: 40px;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1140px) {
   .cardGrid .cardGrid__wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
@@ -276,12 +283,12 @@
 }
 @media screen and (max-width: 505px) {
   .cardGrid .cardGrid__wrapper {
-    padding: 0;
+    padding: 0px;
   }
 }
 .cardGrid .cardGrid__wrapper .cardGrid__description {
-  position: sticky;
-  top: 100px;
+  padding: 20px;
+  border-radius: 5px;
 }
 @media screen and (max-width: 1000px) {
   .cardGrid .cardGrid__wrapper .cardGrid__description {
@@ -297,14 +304,20 @@
   color: #36454F;
   margin-right: 30px;
 }
+.cardGrid .cardGrid__wrapper .cardGrid_table {
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+}
 .cardGrid .cardGrid__wrapper .cardGrid__filters {
   display: flex;
-  max-width: 600px;
+  background-color: white;
+  width: 100%;
 }
 .cardGrid .cardGrid__wrapper .cardGrid__filters .custom-dropdown {
   border: 1px solid #B6B6B6;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper .cardGrid__filters {
     max-width: 100%;
     flex-direction: column;
@@ -328,8 +341,10 @@
   margin: 10px 0px;
   cursor: pointer;
   gap: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper .filter_available {
     padding: 10px;
   }
@@ -342,7 +357,7 @@
   padding: 10px;
   width: 100%;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 780px) {
   .cardGrid .cardGrid__wrapper table {
     width: 100%;
   }
@@ -352,7 +367,7 @@
   color: #36454F;
   font-weight: 500;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table thead {
     display: none;
   }
@@ -362,14 +377,15 @@
 }
 .cardGrid .cardGrid__wrapper table tbody tr {
   background-color: white;
+  border-bottom: 1px solid #B6B6B6;
 }
-@media screen and (max-width: 670px) {
-  .cardGrid .cardGrid__wrapper table tbody tr:nth-child(even) {
+@media screen and (max-width: 787px) {
+  .cardGrid .cardGrid__wrapper table tbody tr {
     background-color: #F3F3F3;
   }
 }
 .cardGrid .cardGrid__wrapper table tbody .table_status {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 .cardGrid .cardGrid__wrapper table tbody .dealer_info {
   background-color: white;
@@ -396,7 +412,6 @@
   padding: 3px 0px 10px 0px;
 }
 .cardGrid .cardGrid__wrapper table tr {
-  border: 1px solid #B6B6B6;
   padding: 20px 20px;
   font-size: 1.3rem;
   position: relative;
@@ -421,7 +436,7 @@
   font-family: "Rubik", sans-serif;
   text-align: center;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table tr {
     display: grid;
     grid-template-columns: min-content max-content max-content 1fr;
@@ -475,7 +490,7 @@
   padding: 10px 20px;
   color: #36454F;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table tr td {
     padding: 0px;
   }

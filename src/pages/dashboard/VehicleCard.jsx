@@ -32,6 +32,29 @@ export default function Card({
   const [models, setModels] = useState(undefined)
 
 
+  const [otherMake, setOtherMake] = useState(false)
+  const [otherModel, setOtherModel] = useState(false)
+
+  // Function to make sure we're not sending incorrect data
+  const checkData = () => {
+    let errors = []
+    
+    let makeSelectedError = makeSelected === "" || makeSelected === "Other"
+    makeSelectedError && errors.push("You need to provide a Make.")
+
+    let modelSelectedError  = modelSelected === ""
+    modelSelectedError && errors.push("You need to provide a Model.")
+
+    let vehicleYearError  = updatedCarData.year === "" || isNaN(parseInt(updatedCarData.year)) || parseInt(updatedCarData.year) > (new Date()).getFullYear() || parseInt(updatedCarData.year) < 1920
+    vehicleYearError && errors.push("You need to provide a valid year.")
+    console.log(parseInt(updatedCarData.year) > (new Date()).getFullYear())
+    let vehicleDescriptionError  = updatedCarData.description === "" 
+    vehicleDescriptionError && errors.push("You need to provide a description.")
+
+    return errors
+  }
+
+
   // Get Static Data
   const fetchdata=async()=>{
     const vehicles = await getVehicles()
@@ -113,29 +136,53 @@ export default function Card({
   // This handles the car data update
   const changeCarData =async (e) => {
     e.preventDefault()
-    if(modelSelected !== "") {
-      await updateInventoryRecord(car.id, updatedCarData, type);
+
+    let errors = checkData()
+
+    if (errors) {
+      errors.forEach((error) => {
+        Store.addNotification({
+          title: "Error",
+          message: error,
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeInDown"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          }
+        })
+      })
+    } 
+
+    if(errors.length === 0) {
+      const res = await updateInventoryRecord(car.id, updatedCarData, type);
       setEditMode(!editMode)
       onUpdate(!update);
 
 
-      Store.addNotification({
-        title: "Success",
-        message: "Your vehicle was sucessfully updated",
-        type: "success",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeInDown"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          showIcon: true,
-        },
-      });
+      if(res) {
+        Store.addNotification({
+          title: "Success",
+          message: "Your vehicle was sucessfully updated.",
+          type: "success",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeInDown"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true,
+          },
+        });
+      }
+
     } else {
       Store.addNotification({
         title: "Error",
-        message: "Your need to provide a vehicle Model",
+        message: "There was an issue when updating the vehicle.",
         type: "danger",
         insert: "top",
         container: "top-right",
@@ -143,12 +190,12 @@ export default function Card({
         animationOut: ["animate__animated", "animate__fadeOut"],
         dismiss: {
           duration: 5000,
-          showIcon: true,
-        },
-      });
+          showIcon: true
+        }
+      })
     }
   }
-  console.log(modelSelected)
+
 
 
   // This Handle the Update on the Status as Sold or Found
@@ -172,7 +219,7 @@ export default function Card({
 
     Store.addNotification({
       title: "Success",
-      message: "Your vehicle was sucessfully updated",
+      message: "Your vehicle was sucessfully updated.",
       type: "success",
       insert: "top",
       container: "top-right",
@@ -200,7 +247,7 @@ export default function Card({
 
     Store.addNotification({
       title: "Success",
-      message: "Your vehicle was sucessfully deleted",
+      message: "Your vehicle was sucessfully deleted.",
       type: "success",
       insert: "top",
       container: "top-right",
@@ -271,23 +318,39 @@ export default function Card({
           <form onSubmit={changeCarData}>
             <label>
               <p>Make</p>
-              <DropDown initial="Other" selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
+              {/* <DropDown initial="Other" selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
 
 
               {makes && !makes.includes(makeSelected) &&makeSelected !== ''?
               <input required style={{marginTop:'20px'}} type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
               :null
+              } */}
+
+              {!otherMake && <DropDown selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>}
+
+                                          
+              {otherMake?<input required  type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
+              :null
               }
+              <a className='addVehicle__other' onClick={()=>{setOtherMake(!otherMake);setMakeSelected("")}}>{otherMake?"Go back":"Other Make"}</a>
 
             </label>
 
             <label>
               <p>Model</p>
-              {makes && !makes.includes(makeSelected)?
+              {/* {makes && !makes.includes(makeSelected)?
               <input required  type='text' placeholder='Type in the Model' value={modelSelected} onChange={(e)=>{setModelSelected(e.target.value)}}/>             
               : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
            
-              }
+              } */}
+
+              {!otherMake && !otherModel? <DropDown  selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>:""}
+
+              {otherMake || otherModel?  <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/> :""  }
+
+              <a className='addVehicle__other' onClick={()=>{setOtherModel(!otherModel); setModelSelected("")}}>{otherModel?"Go back":"Other Model"}</a>
+
+              
             </label>
 
             

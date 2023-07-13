@@ -27,50 +27,142 @@ export default function Signup() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [businessType, setBusinessType] = useState('')
-    const [dealership, setDealership] = useState('')
+    const [businessName, setBusinessName] = useState('')
     const [website, setWebsite] = useState('')
     const [country, setCountry] = useState(null)
     const [region, setRegion] = useState(null)
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+    const [acceptTerms, setAcceptTerms] = useState(false)
+    const [tradeMax, setTradeMax] = useState()
+    const [searchMax, setSearchMax] = useState()
  
-    // Errors 
-    const [errors, setErrors] = useState('')
-    const [showError, setShowError] = useState(false)
+    console.log(country)
+
+    // Function to make sure we're not sending incorrect data
+    const checkData = () => {
+
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+
+        let errors = []
+        
+        let firstNameError = firstName === "" 
+        firstNameError && errors.push("First Name can't be empty.")
+
+        let lastNameError = lastName === "" 
+        lastNameError && errors.push("Last Name can't be empty.")
+        
+        let passwordError = regex.test(password)
+        !passwordError && errors.push("Password must match pattern")
+
+        let confirmPasswordError = password !== confirmPassword
+        confirmPasswordError && errors.push("Password confirmation must match")
+
+        let businessTypeError = businessType === ""
+        businessTypeError && errors.push("You need to select a business type")
+
+        let businessNameError = businessName === ""
+        businessNameError && errors.push("Business Name can't be empty")
+
+        let websiteError = website === ""
+        websiteError && errors.push("Website can't be empty")
+
+        let countryError = country === null
+        countryError && errors.push("You need to select a country")
+
+        let regionError = region === null
+        regionError && errors.push("You need to select a region")
+
+        let cityError = city === ""
+        cityError && errors.push("City can't be empty")
+
+        let phoneNumberError = phoneNumber === ""
+        phoneNumberError && errors.push("Phone number can't be empty")
+
+        let acceptTermsError = acceptTerms === false
+        acceptTermsError && errors.push("You need to accept the Terms of service")
+        return errors
+    }
 
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
         e.preventDefault();
-        if (country !== null && region !== null) {
+        let errors = checkData()
+
+        if (errors) {
+            errors.forEach((error) => {
+              Store.addNotification({
+                title: "Error",
+                message: error,
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeInDown"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 5000,
+                  showIcon: true
+                }
+              })
+            })
+        }
+
+        if (errors.length === 0) {
             try {
-                const success = await createUser(email, password, firstName, lastName, dealership, businessType,
-                                                    website, country, region, city, phoneNumber);
+                const success = await createUser(email, password, firstName, lastName,          
+                    businessName, businessType,
+                    website, country, region, city, phoneNumber, tradeMax, searchMax);
                 if (success) {
-                    console.log('User was created');
+                    
                     navigate("/login")
 
                     Store.addNotification({
                         title: "Success",
-                        message: "Your account was created",
+                        message: "Your account was created.",
                         type: "success",
                         insert: "top",
                         container: "top-right",
                         animationIn: ["animate__animated", "animate__fadeInDown"],
                         animationOut: ["animate__animated", "animate__fadeOut"],
                         dismiss: {
-                          duration: 5000,
-                          showIcon: true
+                            duration: 5000,
+                            showIcon: true
                         }
-                      });
+                        });
                     
                 } else {
-                  console.log('User creation failed');
+                    Store.addNotification({
+                        title: "Error",
+                        message: "There was an issue while creating new account.",
+                        type: "danger",
+                        insert: "top",
+                        container: "top-right",
+                        animationIn: ["animate__animated", "animate__fadeInDown"],
+                        animationOut: ["animate__animated", "animate__fadeOut"],
+                        dismiss: {
+                        duration: 5000,
+                        showIcon: true
+                        }
+                    })
                 }
-              } catch (error) {
-                setErrors(error[0])
-                setShowError(true)
-                console.log(errors)
-              }
+            } catch(error) {
+
+                // This will throw a notification if the email already exist
+                Store.addNotification({
+                    title: "Error",
+                    message: `${(error.message==="FirebaseError: Firebase: Error (auth/email-already-in-use).")&&"Email already exist."}`,
+                    type: "danger",
+                    insert: "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeInDown"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                    }
+                })
+            }
+              
         }
     }
        
@@ -79,6 +171,17 @@ export default function Signup() {
     fetchdata()
     
   }, [])
+
+  useEffect(()=> {
+    if (businessType === "rental") {
+        setTradeMax(10)
+        setSearchMax(-1)
+    }
+    if (businessType === "dealer") {
+        setTradeMax(2)
+        setSearchMax(2)
+    }
+  })
 
 
   return (
@@ -106,8 +209,9 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Password</p>
+                        
                         <input type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
-
+                        <p className='signup__wrapper__form__details show_details'>*Password must be at least 8 characters long, contain an upper case, lower case letter, and a special character.</p>
                     </label>
                     <label>
                         <p>Confirm password</p>
@@ -128,11 +232,11 @@ export default function Signup() {
                     </div>
                     <label>
                         <p>Business Name</p>
-                        <input type='text' required onChange={(e)=>{setDealership(e.target.value)}} minLength="2"></input>  
+                        <input type='text' required onChange={(e)=>{setBusinessName(e.target.value)}} minLength="2"></input>  
                     </label>
                     <label>
                         <p>Website</p>
-                        <input type='text' required onChange={(e)=>{setWebsite(e.target.value)}} pattern="^(https?://)?[\w.-]+\.[a-zA-Z]{2,}(\/\S*)?$"></input>  
+                        <input type='text' required onChange={(e)=>{setWebsite(e.target.value)}}></input>  
                     </label>
                     <label>
                         <p>Country</p>
@@ -153,7 +257,7 @@ export default function Signup() {
                     </label>
                     <label>
                         <div className='signup__wrapper__form__checkbox'>
-                            <input type="checkbox" required name="" id="" /> 
+                            <input type="checkbox" required onChange={() =>setAcceptTerms(!acceptTerms)} /> 
                             <p>I agree to the <a href='#'>Terms of Service</a> and <a href='/privacy-policy' target='_blank'>Privacy Policy</a></p>
 
                         </div>

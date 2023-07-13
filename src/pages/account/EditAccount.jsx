@@ -2,11 +2,12 @@ import { useEffect, useState } from "react"
 import React  from 'react'
 import "../../styles/blocks/edit_account.css"
 import { editUserInfo, getUserInfo } from '../../Firebase/FirebaseStateManagement';
-
+import { Store } from 'react-notifications-component';
+import {useNavigate} from "react-router"
 
 export default function EditAccount() {
 
-
+  const navigate = useNavigate()
   const [account, setAccount] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
 
@@ -25,10 +26,27 @@ export default function EditAccount() {
 
   const updateUser = async (e) => {
     e.preventDefault()
-    if (account) {
-      const userId = localStorage.getItem('userId');
-      console.log(userId)
-       await editUserInfo(userId, updatedUser);
+    const userId = localStorage.getItem('userId');
+    const result = await editUserInfo(userId, updatedUser);
+    if (result) {
+      
+      Store.addNotification({
+        title: "Success",
+        message: "Your account was succesfully updated",
+        type: "success",
+        insert: "top",
+        container: "top-right",
+        animationIn: ["animate__animated", "animate__fadeInDown"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 5000,
+          showIcon: true
+        }
+      });
+
+      navigate('/dashboard')
+
+      
     
     }
   };

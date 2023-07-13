@@ -13,12 +13,16 @@ export default function Dashboard(props) {
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
+
+
+
+
     const optionsRef = useRef(null);
     const navigate = useNavigate();
     // These will be changed in the future
-    const tradeMax = 2
-    const listMax = 2
-
+    const tradeMax = account?.tradeMax
+    const listMax = account?.searchMax
+    console.log(tradeMax)
     // This is to help with the Update of the inventory
     const [update, setUpdate] = useState(false)
 
@@ -111,7 +115,8 @@ export default function Dashboard(props) {
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>
-            <div className='dashboard__wrapper__section'>
+            {account?.businessType !== "rental"&&
+                <div className='dashboard__wrapper__section'>
                 <div>
                     <h2>Searching</h2>
                 </div>
@@ -123,6 +128,7 @@ export default function Dashboard(props) {
                     {listings?.length<listMax?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
                 
             </div>
+            }
         </div>
     </div>
     
