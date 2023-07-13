@@ -115,7 +115,8 @@ export default function Dashboard(props) {
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>
-            <div className='dashboard__wrapper__section'>
+            {account?.businessType !== "rental"&&
+                <div className='dashboard__wrapper__section'>
                 <div>
                     <h2>Searching</h2>
                 </div>
@@ -127,6 +128,7 @@ export default function Dashboard(props) {
                     {listings?.length<listMax?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
                 
             </div>
+            }
         </div>
     </div>
     

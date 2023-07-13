@@ -40,16 +40,16 @@ export default function Card({
     let errors = []
     
     let makeSelectedError = makeSelected === "" || makeSelected === "Other"
-    makeSelectedError && errors.push("You need to provide a Make")
+    makeSelectedError && errors.push("You need to provide a Make.")
 
     let modelSelectedError  = modelSelected === ""
-    modelSelectedError && errors.push("You need to provide a Model")
+    modelSelectedError && errors.push("You need to provide a Model.")
 
     let vehicleYearError  = updatedCarData.year === "" || isNaN(parseInt(updatedCarData.year)) || parseInt(updatedCarData.year) > (new Date()).getFullYear() || parseInt(updatedCarData.year) < 1920
-    vehicleYearError && errors.push("You need to provide a valid Year")
+    vehicleYearError && errors.push("You need to provide a valid year.")
     console.log(parseInt(updatedCarData.year) > (new Date()).getFullYear())
     let vehicleDescriptionError  = updatedCarData.description === "" 
-    vehicleDescriptionError && errors.push("You need to provide a description")
+    vehicleDescriptionError && errors.push("You need to provide a description.")
 
     return errors
   }
@@ -166,7 +166,7 @@ export default function Card({
       if(res) {
         Store.addNotification({
           title: "Success",
-          message: "Your vehicle was sucessfully updated",
+          message: "Your vehicle was sucessfully updated.",
           type: "success",
           insert: "top",
           container: "top-right",
@@ -182,7 +182,7 @@ export default function Card({
     } else {
       Store.addNotification({
         title: "Error",
-        message: "There was an issue when updating the vehicle",
+        message: "There was an issue when updating the vehicle.",
         type: "danger",
         insert: "top",
         container: "top-right",
@@ -219,7 +219,7 @@ export default function Card({
 
     Store.addNotification({
       title: "Success",
-      message: "Your vehicle was sucessfully updated",
+      message: "Your vehicle was sucessfully updated.",
       type: "success",
       insert: "top",
       container: "top-right",
@@ -247,7 +247,7 @@ export default function Card({
 
     Store.addNotification({
       title: "Success",
-      message: "Your vehicle was sucessfully deleted",
+      message: "Your vehicle was sucessfully deleted.",
       type: "success",
       insert: "top",
       container: "top-right",
