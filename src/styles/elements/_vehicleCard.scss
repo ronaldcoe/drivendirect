@@ -38,6 +38,12 @@
                 -moz-appearance: textfield;
             }
         }
+        .addVehicle__other {
+            text-decoration: underline;
+            color: $primary-color;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
         #vehiclecard__update {
             @include buttons($primary-color);
             color: white;

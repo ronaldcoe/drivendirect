@@ -31,7 +31,7 @@ export default function AddVehicle(props) {
 
   const [otherMake, setOtherMake] = useState(false)
   const [otherModel, setOtherModel] = useState(false)
-  console.log(parseInt("33") === NaN)
+
   // Function to make sure we're not sending incorrect data
   const checkData = () => {
     let errors = []
@@ -42,12 +42,12 @@ export default function AddVehicle(props) {
     let modelSelectedError  = modelSelected === ""
     modelSelectedError && errors.push("You need to provide a Model")
 
-    let vehicleYearError  = vehicleYear === "" || isNaN(parseInt(vehicleYear)) || parseInt(vehicleYear) > (new Date()).getFullYear()
+    let vehicleYearError  = vehicleYear === "" || isNaN(parseInt(vehicleYear)) || parseInt(vehicleYear) > (new Date()).getFullYear() || parseInt(vehicleYear) < 1920
     vehicleYearError && errors.push("You need to provide a valid Year")
 
     let vehicleDescriptionError  = vehicleDescription === "" 
     vehicleDescriptionError && errors.push("You need to provide a description")
-    console.log(vehicleYearError)
+
     return errors
   }
 

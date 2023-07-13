@@ -106,8 +106,9 @@ export default function Signup() {
                     </label>
                     <label>
                         <p>Password</p>
+                        
                         <input type='password' required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>  
-
+                        <p className='signup__wrapper__form__details show_details'>*Password must be at least 8 characters long, contain an upper case and lower case letter and a special character.</p>
                     </label>
                     <label>
                         <p>Confirm password</p>

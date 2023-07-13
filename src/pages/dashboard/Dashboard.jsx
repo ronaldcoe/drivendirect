@@ -13,6 +13,10 @@ export default function Dashboard(props) {
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
+
+
+
+
     const optionsRef = useRef(null);
     const navigate = useNavigate();
     // These will be changed in the future
