@@ -20,15 +20,15 @@ export default function About() {
         <div className='about__wrapper'>
             
            <div className='about__wrapper__btns'>
-                <div className='about__wrapper__icons'>
+                <div className='about__wrapper__icons' onClick={()=>navigate("/inventory/listing")}>
                     <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
-                    <h3>Search for what you need</h3>
+                    <h3>See what other dealers want</h3>
                 </div>
-                <div className='about__wrapper__icons'>
+                <div className='about__wrapper__icons' onClick={()=>navigate("/inventory/trade")}>
                     <FontAwesomeIcon className="about__wrapper__icon" icon={faCar} />
                     <h3>See trades available</h3>
                 </div>
-                <div className='about__wrapper__icons'>
+                <div className='about__wrapper__icons' onClick={()=>navigate("/dashboard")}>
                     <FontAwesomeIcon className="about__wrapper__icon" icon={faClipboardCheck} />
                     <h3>List a vehicle to trade</h3>
                 </div>
