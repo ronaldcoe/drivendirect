@@ -12,7 +12,7 @@
     margin-top: 50px;
     gap: 40px;
 
-    @media screen and (max-width: 1000px) {
+    @media screen and (max-width: 1140px) {
       grid-template-columns: 1fr;
       grid-template-rows: auto auto;
       padding: 10px;
@@ -61,7 +61,7 @@
           border: 1px solid $border-color;
         }
 
-        @media screen and (max-width: 670px) {
+        @media screen and (max-width: 787px) {
           max-width: 100%;
           flex-direction: column;
           align-items: start;
@@ -89,7 +89,7 @@
         cursor: pointer;
         gap: 10px;
 
-        @media screen and (max-width: 670px) {
+        @media screen and (max-width: 787px) {
            
             padding: 10px;
         }
@@ -101,7 +101,7 @@
       padding: 10px;
       width: 100%;
 
-      @media screen and (max-width: 670px) {
+      @media screen and (max-width: 780px) {
         width: 100%;
       }
       thead {
@@ -109,7 +109,7 @@
         color: $primary-paragraph-font-color;
         font-weight: 500;
 
-        @media screen and (max-width: 670px) {
+        @media screen and (max-width: 787px) {
           display: none;
         }
         td {
@@ -122,7 +122,7 @@
             border-bottom: 1px solid $border-color;
             
         }
-        @media screen and (max-width:670px) {
+        @media screen and (max-width:787px) {
             tr {
                 
                 background-color: $secondary-background-color;
@@ -188,7 +188,7 @@
             text-align: center;
         }
 
-        @media screen and (max-width: 670px) {
+        @media screen and (max-width: 787px) {
           display: grid;
 
           grid-template-columns: min-content max-content max-content 1fr;
@@ -241,7 +241,7 @@
         td {
           padding: 10px 20px;
           color: $primary-paragraph-font-color;
-          @media screen and (max-width: 670px) {
+          @media screen and (max-width: 787px) {
             padding: 0px;
           }
         }
