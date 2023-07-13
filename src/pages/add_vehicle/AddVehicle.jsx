@@ -29,6 +29,9 @@ export default function AddVehicle(props) {
   const [makes, setMakes] = useState(undefined)
   const [models, setModels] = useState(undefined)
 
+  const [otherMake, setOtherMake] = useState(false)
+  const [otherModel, setOtherModel] = useState(false)
+  console.log(parseInt("33") === NaN)
   // Function to make sure we're not sending incorrect data
   const checkData = () => {
     let errors = []
@@ -39,12 +42,12 @@ export default function AddVehicle(props) {
     let modelSelectedError  = modelSelected === ""
     modelSelectedError && errors.push("You need to provide a Model")
 
-    let vehicleYearError  = vehicleYear === "" || parseInt(vehicleYear) !== NaN
+    let vehicleYearError  = vehicleYear === "" || isNaN(parseInt(vehicleYear)) || parseInt(vehicleYear) > (new Date()).getFullYear()
     vehicleYearError && errors.push("You need to provide a valid Year")
 
     let vehicleDescriptionError  = vehicleDescription === "" 
     vehicleDescriptionError && errors.push("You need to provide a description")
-
+    console.log(vehicleYearError)
     return errors
   }
 
@@ -197,33 +200,28 @@ export default function AddVehicle(props) {
             <label>
               <p>Make </p>
               
-              <DropDown initial="Other" selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
+              {!otherMake && <DropDown selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>}
 
               
-              {makes && !makes.includes(makeSelected) &&makeSelected !== ''?
-              <input required style={{marginTop:'20px'}} type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
+              {otherMake?<input required  type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
               :null
               }
-             <a className='addVehicle__other'>I don't see my make here</a>
+             <a className='addVehicle__other' onClick={()=>{setOtherMake(!otherMake);setMakeSelected("")}}>{otherMake?"Go back":"Other Make"}</a>
             </label>
+
             <label>
               <p>Model </p>
     
-              {makes && !makes.includes(makeSelected) || modelSelected === "Other" || !models?.includes(modelSelected)?
-              <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>             
-              : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
-           
-              }
+              {!otherMake && !otherModel? <DropDown  selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>:""}
+
+              {otherMake || otherModel?  <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/> :""  }
+
+              <a className='addVehicle__other' onClick={()=>{setOtherModel(!otherModel); setModelSelected("")}}>{otherModel?"Go back":"Other Model"}</a>
+
             </label>
-            {/* </label>
-            
-              {modelSelected === "Other" ||  !models?.includes(modelSelected)?<label><input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>  </label>:null}
-            
-           
-            <label> */}
             <label>
               <p>Year</p>
-              <input type="number" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}} max={2024}/>
+              <input type="number" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}} max={2023}/>
             </label>
             <label>
               <p>Description</p>

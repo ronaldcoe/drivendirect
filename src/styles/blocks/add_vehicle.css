@@ -134,6 +134,12 @@
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form input[type=number] {
   -moz-appearance: textfield;
 }
+.addVehicle .addVehicle__wrapper .addVehicle__wrapper__form .addVehicle__other {
+  text-decoration: underline;
+  color: #080077;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
 .addVehicle .addVehicle__wrapper button {
   padding: 15px;
   border: none;
