@@ -190,7 +190,7 @@ export default function AddVehicle(props) {
     <div className='addVehicle'>
       <div className='addVehicle__wrapper'>
         <div className='addVehicle__wrapper__description'>
-          <h1>List a Vehicle to {props.type}</h1>
+          <h1>Add a Vehicle to {props.type}</h1>
           <p className='addVehicle__wrapper__form__important'>
           IMPORTANT: This service is for management personnel only. Use it for specific vehicles the dealer wants to move or trade. It's NOT for selling retail units at retail prices to other dealers. Listing retail inventory at retail prices will result in termination of your ability to list more vehicles.
           </p>

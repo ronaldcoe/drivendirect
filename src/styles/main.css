@@ -34,6 +34,7 @@ html {
 body {
   font-size: 16px;
   overflow-x: hidden;
+  background-color: #F5F4F7;
 }
 
 .App {
@@ -49,7 +50,6 @@ body {
 
 main {
   flex: 1;
-  background-color: #F5F4F7;
 }
 
 h1, h2, h3, h4 {
