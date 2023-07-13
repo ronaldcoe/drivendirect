@@ -121,10 +121,12 @@ export default function CardGrid(props) {
               
             </div>
 
-            <div className='filter_available'>
+            <div>
                 
-                <input type="checkbox" onChange={() =>setStatusfilter(!statusFilter)}  />
-                <p>Only show available</p>
+                <label className='filter_available'>
+                  <input type="checkbox" onChange={() =>setStatusfilter(!statusFilter)}  />
+                  <p>Only show available</p>
+                </label>
             </div>
 
           <table role='presentation'>

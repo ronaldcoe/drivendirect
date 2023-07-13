@@ -273,7 +273,7 @@
   margin-top: 50px;
   gap: 40px;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1140px) {
   .cardGrid .cardGrid__wrapper {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
@@ -317,7 +317,7 @@
 .cardGrid .cardGrid__wrapper .cardGrid__filters .custom-dropdown {
   border: 1px solid #B6B6B6;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper .cardGrid__filters {
     max-width: 100%;
     flex-direction: column;
@@ -342,7 +342,7 @@
   cursor: pointer;
   gap: 10px;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper .filter_available {
     padding: 10px;
   }
@@ -355,7 +355,7 @@
   padding: 10px;
   width: 100%;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 780px) {
   .cardGrid .cardGrid__wrapper table {
     width: 100%;
   }
@@ -365,7 +365,7 @@
   color: #36454F;
   font-weight: 500;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table thead {
     display: none;
   }
@@ -377,7 +377,7 @@
   background-color: white;
   border-bottom: 1px solid #B6B6B6;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table tbody tr {
     background-color: #F3F3F3;
   }
@@ -434,7 +434,7 @@
   font-family: "Rubik", sans-serif;
   text-align: center;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table tr {
     display: grid;
     grid-template-columns: min-content max-content max-content 1fr;
@@ -488,7 +488,7 @@
   padding: 10px 20px;
   color: #36454F;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper table tr td {
     padding: 0px;
   }
