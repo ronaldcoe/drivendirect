@@ -4,17 +4,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 .vehiclecard {
-  border: 1px solid #B6B6B6;
   width: 100%;
   border-radius: 5px;
   padding: 10px 20px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  background-color: white;
+  background-color: #F5F4F7;
   height: -moz-fit-content;
   height: fit-content;
   margin-top: 20px;
+  border-bottom: 1px solid #B6B6B6;
 }
 .vehiclecard .vehiclecard__edit_car {
   display: flex;
@@ -153,6 +153,7 @@
   font-size: 1.3rem;
   color: red;
   padding: 7px;
+  font-weight: bold;
 }
 @media screen and (max-width: 505px) {
   .vehiclecard {
@@ -276,12 +277,12 @@
 }
 @media screen and (max-width: 505px) {
   .cardGrid .cardGrid__wrapper {
-    padding: 0;
+    padding: 10px;
   }
 }
 .cardGrid .cardGrid__wrapper .cardGrid__description {
-  position: sticky;
-  top: 100px;
+  padding: 20px;
+  border-radius: 5px;
 }
 @media screen and (max-width: 1000px) {
   .cardGrid .cardGrid__wrapper .cardGrid__description {
@@ -297,9 +298,15 @@
   color: #36454F;
   margin-right: 30px;
 }
+.cardGrid .cardGrid__wrapper .cardGrid_table {
+  background-color: white;
+  padding: 30px;
+  border-radius: 5px;
+}
 .cardGrid .cardGrid__wrapper .cardGrid__filters {
   display: flex;
-  max-width: 600px;
+  background-color: white;
+  width: 100%;
 }
 .cardGrid .cardGrid__wrapper .cardGrid__filters .custom-dropdown {
   border: 1px solid #B6B6B6;
@@ -362,14 +369,15 @@
 }
 .cardGrid .cardGrid__wrapper table tbody tr {
   background-color: white;
+  border-bottom: 1px solid #B6B6B6;
 }
 @media screen and (max-width: 670px) {
-  .cardGrid .cardGrid__wrapper table tbody tr:nth-child(even) {
+  .cardGrid .cardGrid__wrapper table tbody tr {
     background-color: #F3F3F3;
   }
 }
 .cardGrid .cardGrid__wrapper table tbody .table_status {
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 .cardGrid .cardGrid__wrapper table tbody .dealer_info {
   background-color: white;
@@ -396,7 +404,6 @@
   padding: 3px 0px 10px 0px;
 }
 .cardGrid .cardGrid__wrapper table tr {
-  border: 1px solid #B6B6B6;
   padding: 20px 20px;
   font-size: 1.3rem;
   position: relative;

@@ -49,6 +49,7 @@ body {
 
 main {
   flex: 1;
+  background-color: #F5F4F7;
 }
 
 h1, h2, h3, h4 {
@@ -56,7 +57,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 3rem;
 }
 @media screen and (max-width: 820px) {
   h1 {

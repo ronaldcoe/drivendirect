@@ -29,6 +29,27 @@ export default function AddVehicle(props) {
   const [makes, setMakes] = useState(undefined)
   const [models, setModels] = useState(undefined)
 
+  const [otherMake, setOtherMake] = useState(false)
+  const [otherModel, setOtherModel] = useState(false)
+  console.log(parseInt("33") === NaN)
+  // Function to make sure we're not sending incorrect data
+  const checkData = () => {
+    let errors = []
+    
+    let makeSelectedError = makeSelected === "" || makeSelected === "Other"
+    makeSelectedError && errors.push("You need to provide a Make")
+
+    let modelSelectedError  = modelSelected === ""
+    modelSelectedError && errors.push("You need to provide a Model")
+
+    let vehicleYearError  = vehicleYear === "" || isNaN(parseInt(vehicleYear)) || parseInt(vehicleYear) > (new Date()).getFullYear()
+    vehicleYearError && errors.push("You need to provide a valid Year")
+
+    let vehicleDescriptionError  = vehicleDescription === "" 
+    vehicleDescriptionError && errors.push("You need to provide a description")
+    console.log(vehicleYearError)
+    return errors
+  }
 
   const createVehicleTrade = async(e)=>{
     e.preventDefault();
@@ -45,31 +66,72 @@ export default function AddVehicle(props) {
       dateCreate: currentDate,
       region: localStorage.getItem("region")
     }
-    const res = await createInventory(vehicleObject)
-    if(res){
 
-     
-      navigate("/dashboard")
+ 
+
+    let errors = checkData()
+
+    if (errors) {
+      errors.forEach((error) => {
+        Store.addNotification({
+          title: "Error",
+          message: error,
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeInDown"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          }
+        })
+      })
+    } 
+    
+    
+
       
-      Store.addNotification({
-        title: "Success",
-        message: "Your vehicle was sucessfully added",
-        type: "success",
-        insert: "top",
-        container: "top-right",
-        animationIn: ["animate__animated", "animate__fadeInDown"],
-        animationOut: ["animate__animated", "animate__fadeOut"],
-        dismiss: {
-          duration: 5000,
-          showIcon: true
+      if(errors.length === 0){
+        const res = await createInventory(vehicleObject)
+        if (res) {
+          navigate("/dashboard")
+        
+          Store.addNotification({
+            title: "Success",
+            message: "Your vehicle was sucessfully added",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeInDown"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 5000,
+              showIcon: true
+            }
+          });
+        } else {
+          Store.addNotification({
+            title: "Error",
+            message: "There was an issue when adding the vehicle",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            animationIn: ["animate__animated", "animate__fadeInDown"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 5000,
+              showIcon: true
+            }
+          })
         }
-      });
-
-    }
-    else(
-      console.log("Vehicle was not created")
-    )
+        
+  
+      }
+      
   }
+
+
 
   // Get all search or trade for a user
   const fetchAllInventoryCreated = async()=>{
@@ -130,39 +192,36 @@ export default function AddVehicle(props) {
         <div className='addVehicle__wrapper__description'>
           <h1>List a Vehicle to {props.type}</h1>
           <p className='addVehicle__wrapper__form__important'>
-          IMPORTANT: This service is intended for the use of management personnel only. It should only be used for specific vehicles that a dealer wants to move out of inventory or trade for a different type of vehicle. It is NOT INTENDED as a means for dealers or sales personnel to sell retail units at retail prices to other dealers. Should any dealer begin listing retail inventory at retail prices your ability to list further vehicles will be terminated.
+          IMPORTANT: This service is for management personnel only. Use it for specific vehicles the dealer wants to move or trade. It's NOT for selling retail units at retail prices to other dealers. Listing retail inventory at retail prices will result in termination of your ability to list more vehicles.
           </p>
         </div>
         <div className='addVehicle__wrapper__form'>
           <form onSubmit={createVehicleTrade}>
             <label>
-              <p>Make</p>
+              <p>Make </p>
               
-              <DropDown initial="Other" selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>
+              {!otherMake && <DropDown selectedOption={makeSelected} setSelectedOption={setMakeSelected} data={makes}/>}
 
               
-              {makes && !makes.includes(makeSelected) &&makeSelected !== ''?
-              <input required style={{marginTop:'20px'}} type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
+              {otherMake?<input required  type='text' placeholder='Type in the Make' onChange={(e)=>{setMakeSelected(e.target.value)}}/>             
               :null
               }
-              
+             <a className='addVehicle__other' onClick={()=>{setOtherMake(!otherMake);setMakeSelected("")}}>{otherMake?"Go back":"Other Make"}</a>
             </label>
+
             <label>
-              <p>Model</p>
+              <p>Model </p>
     
-              {makes && !makes.includes(makeSelected)?
-              <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>             
-              : <DropDown initial="Other" selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>
-           
-              }
+              {!otherMake && !otherModel? <DropDown  selectedOption={modelSelected} setSelectedOption={setModelSelected} data={models}/>:""}
+
+              {otherMake || otherModel?  <input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/> :""  }
+
+              <a className='addVehicle__other' onClick={()=>{setOtherModel(!otherModel); setModelSelected("")}}>{otherModel?"Go back":"Other Model"}</a>
+
             </label>
-            <label>
-              {modelSelected && !models?.includes(modelSelected)?<input required  type='text' placeholder='Type in the Model' onChange={(e)=>{setModelSelected(e.target.value)}}/>  :null}
-            </label>
-           
             <label>
               <p>Year</p>
-              <input type="number" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}} max={2024}/>
+              <input type="number" required pattern='\d{4}' onChange={(e)=>{setVehicleYear(e.target.value)}} max={2023}/>
             </label>
             <label>
               <p>Description</p>

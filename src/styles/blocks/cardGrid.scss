@@ -19,12 +19,14 @@
       justify-content: left;
     }
     @media screen and (max-width: $breakpoint-small) {
-      padding: 0;
+      padding: 10px;
     }
 
     .cardGrid__description {
-        position: sticky;
-        top: 100px;
+    
+        // background-color: white;
+        padding: 20px;
+        border-radius: 5px;
       @media screen and (max-width: 1000px) {
         padding: 20px;
       }
@@ -41,10 +43,19 @@
       }
       
     }
+
+    .cardGrid_table {
+        background-color: white;
+        padding: 30px; 
+        border-radius: 5px;
+    }
     .cardGrid__filters {
         display: flex;
-     
-        max-width: 600px;
+        background-color: white;
+        
+        width: 100%;
+           
+      
 
         .custom-dropdown {
           border: 1px solid $border-color;
@@ -108,16 +119,18 @@
       tbody {
         tr {
             background-color: white;
+            border-bottom: 1px solid $border-color;
+            
         }
         @media screen and (max-width:670px) {
             tr {
-                &:nth-child(even) {
-                    background-color: $secondary-background-color;
-                }
+                
+                background-color: $secondary-background-color;
+                
             }
         }
         .table_status {
-            font-size: 1rem;
+            font-size: 1.3rem;
         }
 
         .dealer_info {
@@ -148,7 +161,7 @@
       }
 
       tr {
-        border: 1px solid $border-color;
+      
         padding: 20px 20px;
         font-size: 1.3rem;
         position: relative;

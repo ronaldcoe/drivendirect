@@ -148,7 +148,7 @@ export default function Card({
       });
     }
   }
-  console.log(modelSelected)
+
 
 
   // This Handle the Update on the Status as Sold or Found
