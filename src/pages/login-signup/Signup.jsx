@@ -34,43 +34,100 @@ export default function Signup() {
     const [city, setCity] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
  
-    // Errors 
-    const [errors, setErrors] = useState('')
-    const [showError, setShowError] = useState(false)
+    
+    // Function to make sure we're not sending incorrect data
+    const checkData = () => {
+        let errors = []
+        
+        let firstNameError = firstName === "" 
+        firstNameError && errors.push("First Name can't be empty.")
+
+        let lastNameError = firstName === "" 
+        lastNameError && errors.push("Last Name can't be empty.")
+      
+
+        return errors
+    }
 
     // Function to handle the SignUp, it will create the user and store in the DB
     const signUp= async (e)=>{
         e.preventDefault();
-        if (country !== null && region !== null) {
+        let errors = checkData()
+
+        if (errors) {
+            errors.forEach((error) => {
+              Store.addNotification({
+                title: "Error",
+                message: error,
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeInDown"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                  duration: 5000,
+                  showIcon: true
+                }
+              })
+            })
+        }
+
+        if (errors.length === 0) {
             try {
-                const success = await createUser(email, password, firstName, lastName, dealership, businessType,
-                                                    website, country, region, city, phoneNumber);
+                const success = await createUser(email, password, firstName, lastName,          
+                    dealership, businessType,
+                    website, country, region, city, phoneNumber);
                 if (success) {
-                    console.log('User was created');
+                    
                     navigate("/login")
 
                     Store.addNotification({
                         title: "Success",
-                        message: "Your account was created",
+                        message: "Your account was created.",
                         type: "success",
                         insert: "top",
                         container: "top-right",
                         animationIn: ["animate__animated", "animate__fadeInDown"],
                         animationOut: ["animate__animated", "animate__fadeOut"],
                         dismiss: {
-                          duration: 5000,
-                          showIcon: true
+                            duration: 5000,
+                            showIcon: true
                         }
-                      });
+                        });
                     
                 } else {
-                  console.log('User creation failed');
+                    Store.addNotification({
+                        title: "Error",
+                        message: "There was an issue while creating new account.",
+                        type: "danger",
+                        insert: "top",
+                        container: "top-right",
+                        animationIn: ["animate__animated", "animate__fadeInDown"],
+                        animationOut: ["animate__animated", "animate__fadeOut"],
+                        dismiss: {
+                        duration: 5000,
+                        showIcon: true
+                        }
+                    })
                 }
-              } catch (error) {
-                setErrors(error[0])
-                setShowError(true)
-                console.log(errors)
-              }
+            } catch(error) {
+
+                // This will throw a notification if the email already exist
+                Store.addNotification({
+                    title: "Error",
+                    message: `${(error.message==="FirebaseError: Firebase: Error (auth/email-already-in-use).")&&"Email already exist."}`,
+                    type: "danger",
+                    insert: "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeInDown"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                    duration: 5000,
+                    showIcon: true
+                    }
+                })
+            }
+              
         }
     }
        

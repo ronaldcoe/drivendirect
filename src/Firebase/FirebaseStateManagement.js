@@ -250,8 +250,8 @@ export const createUser = async (email, password, firstName, lastName, dealershi
     return true;
 
   } catch (error) {
-    console.log(error);
-    throw new Error('User creation failed'); 
+    
+    throw new Error(error); 
   }
 };
 
