@@ -8,6 +8,7 @@
 
     .about__wrapper {
         @include wrapper;
+        
         gap: 50px;
         padding-top: 70px;
         padding-bottom: 100px;
@@ -78,11 +79,11 @@
                         max-width: 100%;
                     }
                     h2 {
-                        color: $accent-color;
+                        color: $primary-color;
                         padding-bottom: 10px;
                     }
                     h3 {
-                        color: $accent-color;
+                        color: $primary-color;
                         padding-bottom: 10px;
                     }
                     p {

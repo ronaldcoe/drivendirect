@@ -77,7 +77,6 @@ p {
 .notifications {
   font-family: "Rubik", sans-serif;
   font-size: 14px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 .notifications .rnc__notification-item--success {
   background-color: white;

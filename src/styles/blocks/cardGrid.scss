@@ -146,8 +146,10 @@
         tr {
             background-color: white;
             border-bottom: 1px solid $border-color;
+            position: relative;
             
         }
+       
         @media screen and (max-width:787px) {
             tr {
                 
@@ -201,19 +203,21 @@
             padding: 5px;
             color: white;
             text-align: center;
-            border-radius: 5px;
-            font-weight: bold;
+          
+ 
         }
         .car_tag {
-            background-color: #E9FFE4;
-            color: #005822;
-            border-radius: 5px;
+            background-color: $secondary-color;
+            color: white;
+          
             padding: 5px;
-            font-weight: bold;
+         
             font-family: $paragraph-font;
             text-align: center;
         }
-
+       .table_status {
+        position: relative;
+       }
         @media screen and (max-width: 787px) {
           display: grid;
 
@@ -243,24 +247,26 @@
           }
           .table_location {
             font-size: 1.5rem;
-            grid-column: 4/5;
-            text-align: end;
+            grid-column: 1/5;
+            grid-row: 2/3;
+           
           }
           .table_description {
             font-size: 1.5rem;
             grid-column: 1/5;
-            grid-row: 2/3;
+            grid-row: 3/4;
             padding: 10px 0px;
             max-width: 100%;
           }
           .table_status {
-            grid-column: 2/3;
+            grid-column: 1/5;
             grid-row: 4/5 ;
-            width: fit-content;
+            width: 68px;
+            margin-left: 70px;
             
           }
           .table_actions {
-            grid-column: 1/2;
+            grid-column: 1/5;
             grid-row: 4/5;
           }
         }
@@ -279,26 +285,25 @@
           position: relative;
 
           
-          #table_actions_save {
-            background-color: rgb(250, 255, 250);
-            border: 1px solid green;
-            color: green;
-          }
+        
         }
       }
 
       button {
-        @include buttons($primary-color);
+        @include buttons(transparent);
         font-size: 1.2rem;
-        background-color: white;
+        text-decoration: underline;
         color: $primary-color;
-        border: 1px solid $primary-color;
+      
         padding: 5px;
         margin: 0;
         height: fit-content;
         width: fit-content;
+
       }
 
     }
   }
+
+
 }
