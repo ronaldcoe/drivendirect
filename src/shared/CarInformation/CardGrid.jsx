@@ -10,6 +10,8 @@ import { auth } from '../../Firebase/FirebaseConfig';
 import { Store } from 'react-notifications-component';
 
 export default function CardGrid(props) {
+  document.title = "Inventory"
+
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
   const [regionFilter, setRegionFilter] = useState('All');

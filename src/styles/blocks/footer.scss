@@ -6,6 +6,12 @@
     border-top: 1px solid $border-color;
     margin-top: 100px;
     background-color: white;
+    .credits {
+        color: $primary-paragraph-font-color;
+        font-size: 1rem;
+        text-align: center;
+        font-family: $paragraph-font
+    }
 
     .footer__wrapper {
         @include wrapper;
@@ -34,7 +40,6 @@
             color: $secondary-background-color-font;
         }
         
-
         .footer__wrapper__about {
             max-width: 400px;
             

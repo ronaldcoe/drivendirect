@@ -48,6 +48,32 @@
         background-color: white;
         padding: 30px; 
         border-radius: 5px;
+
+        .pagination {
+          display: flex;
+          justify-content: center;
+          margin-top: 30px;
+          ul {
+            display: flex;
+            gap: 10px;
+            li {
+              list-style: none;
+
+              button {
+                background-color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+
+                &.active {
+                  background-color: $primary-color;
+                  color: white;
+                }
+              }
+            }
+
+          }
+        }
     }
     .cardGrid__filters {
         display: flex;
