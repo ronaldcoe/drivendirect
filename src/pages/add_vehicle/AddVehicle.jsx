@@ -14,6 +14,8 @@ import { Store } from 'react-notifications-component';
 
 
 export default function AddVehicle(props) {
+
+  document.title = "Add Vehicle"
   const navigate = useNavigate();
   // Data
   const [makeSelected, setMakeSelected] = useState('')

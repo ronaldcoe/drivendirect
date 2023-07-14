@@ -309,6 +309,28 @@
   padding: 30px;
   border-radius: 5px;
 }
+.cardGrid .cardGrid__wrapper .cardGrid_table .pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.cardGrid .cardGrid__wrapper .cardGrid_table .pagination ul {
+  display: flex;
+  gap: 10px;
+}
+.cardGrid .cardGrid__wrapper .cardGrid_table .pagination ul li {
+  list-style: none;
+}
+.cardGrid .cardGrid__wrapper .cardGrid_table .pagination ul li button {
+  background-color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+.cardGrid .cardGrid__wrapper .cardGrid_table .pagination ul li button.active {
+  background-color: #080077;
+  color: white;
+}
 .cardGrid .cardGrid__wrapper .cardGrid__filters {
   display: flex;
   background-color: white;

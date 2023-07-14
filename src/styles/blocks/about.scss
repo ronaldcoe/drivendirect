@@ -43,6 +43,8 @@
 
             .about__wrapper__card {
                 background-color: white;
+            
+                // background: linear-gradient(120deg, white 50%, $secondary-color 50%);
                 border-radius: 5px;
                 padding: 40px;
                 display: flex;
@@ -54,6 +56,8 @@
 
                 &:nth-child(even) {
                     flex-direction: row-reverse;
+                    // background: linear-gradient(-120deg, white 50%,$secondary-color 50%);
+
                 }
 
                 @media screen and (max-width: $breakpoint-medium) {
@@ -74,18 +78,18 @@
                         max-width: 100%;
                     }
                     h2 {
-                        color: $title-color;
+                        color: $accent-color;
                         padding-bottom: 10px;
                     }
                     h3 {
-                        color: $title-color;
+                        color: $accent-color;
                         padding-bottom: 10px;
                     }
                     p {
                         color: $primary-paragraph-font-color;
                         padding-bottom: 10px;
                     }
-                  
+                   
                 }
                 .about__wrapper__card__img {
                     max-width: 50%;
@@ -130,7 +134,7 @@
                 }
 
                 .about__wrapper__call__to__action__text__btn {
-                    @include buttons($button-color);
+                    @include buttons($accent-color);
                     color: white; 
                     display: block;
                     margin: 0 auto;
@@ -146,14 +150,13 @@
         }
 
         .about__wrapper__btns {
-            display: flex;
-            flex-wrap: wrap;
+            
             justify-content: space-between;
             margin-bottom: 70px;
-            padding: 20px;
+       
             gap: 40px;
-            background-color: white;
-            padding: 40px;
+            
+
             border-radius: 5px;
             @media screen and (max-width: $breakpoint-medium) {
                 justify-content: center;
@@ -164,24 +167,58 @@
             }
 
             .about__wrapper__icons {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                cursor: pointer;
+                             
                 
+                cursor: pointer;
+                width: 100%;
+                padding: 30px 150px;
+                background-color: $primary-color;
+                
+                @media screen and (max-width: $breakpoint-medium) {
+                    flex-direction: column;
+                    padding: 20px;
+                }
+                .about__wrapper__icons__content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 80px;
+                    @media screen and (max-width: $breakpoint-medium) {
+                        flex-direction: column;
+                        padding: 20px;
+                    }
+                }
                 .about__wrapper__icon {
-                    color: $primary-color;
-                    font-size: 5rem;
-                    padding-left: 20px;
-                    padding-right: 20px;
-                    border-radius: 5px;
-                    margin-bottom: 40px;
+                    color: white;
+                    font-size: 2rem;
+                   
                 
                     
                 }
     
                 h3 {
-                    color: $title-color;
+                    color: white;
+                    font-size: 3rem;
+                }
+                p {
+                    color: white;
+                    padding: 10px 0px;
+                }
+
+                button {
+                    @include buttons($accent-color);
+                    color: white;
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+                    font-size: 1.6rem
+                }
+
+                .aboout__wrapper__icons__images {
+
+                    img {
+                        height: 200px;
+                    }
                 }
             }
         }

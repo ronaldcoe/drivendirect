@@ -8,36 +8,79 @@ import carTwo from '../../images/car_2.jpg'
 import carTree from '../../images/car_3.jpg'
 import carFour from '../../images/car_4.jpg'
 import carFive from '../../images/car_5.jpg'
-
-
+import carIllustration from "../../images/car_illustration.svg"
+import carIllustration2 from "../../images/car_illustration2.svg"
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function About() {
 
     const navigate = useNavigate()
+
+
+    
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay:true,
+        autoplaySpeed: 9000,
+        prevArrow: <></>,
+        nextArrow: <></>,
+    }
+    
+
+
   return (
     <div className='about'>
         
         <div className='about__wrapper'>
             
-           <div className='about__wrapper__btns'>
-                <div className='about__wrapper__icons' onClick={()=>navigate("/inventory/listing")}>
-                    <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
-                    <h3>See what other dealers want</h3>
-                </div>
-                <div className='about__wrapper__icons' onClick={()=>navigate("/inventory/trade")}>
-                    <FontAwesomeIcon className="about__wrapper__icon" icon={faCar} />
-                    <h3>See trades available</h3>
-                </div>
-                <div className='about__wrapper__icons' onClick={()=>navigate("/dashboard")}>
-                    <FontAwesomeIcon className="about__wrapper__icon" icon={faClipboardCheck} />
-                    <h3>List a vehicle to trade</h3>
-                </div>
-           </div>
+            <div className='about__wrapper__btns'>
+                <Slider {...settings}>
+                    <div className='about__wrapper__icons'>
+                        <div className='about__wrapper__icons__content'>
+                            <div>
+                                
+                                <h3>See what other dealers want</h3>
+                                <p>Every day, dealers post cars they want. Chances are that you have it.</p>
+                                <button  onClick={() => navigate("/inventory/listing")}>
+                                    Search the inventory
+                                    <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                                    </button>
+                            </div>
+                            <div className='aboout__wrapper__icons__images'>
+                                <img src={carIllustration} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div className='about__wrapper__icons' >
+                        <div className='about__wrapper__icons__content'>
+                                <div>
+                                    
+                                    <h3>Find the vehicle your customer wants</h3>
+                                    <p>Your customer is looking for a specific vehicle you don't have on your
+                                        lot.</p>
+                                    <button onClick={() => navigate("/inventory/trade")}>
+                                        Search the inventory
+                                        <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                                    </button>
+                                </div>
+                                <div className='aboout__wrapper__icons__images'>
+                                    <img src={carIllustration2} alt="" />
+                                </div>
+                        </div>
+                    </div>
+                </Slider>
+            </div>
             <div className='about__wrapper__card__container'>
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                        <h2>FIND WHAT YOU NEED NOW!</h2>
-                        <h3>DON'T EVER SAY "I DON'T HAVE ONE!</h3>
+                        <h2>Find what you need now!</h2>
+                        <h3>Don't ever say "I don't have one!"</h3>
                         <p>
                             It's like a dealer transfer for new, except on this site it's for used!
                             Your customer is looking for a specific vehicle you don't have on your
@@ -62,8 +105,8 @@ export default function About() {
                 </div>
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2>LIST A VEHICLE TO TRADE!</h2>
-                            <h3>SAVE ON AUCTION FEES!</h3>
+                            <h2>List a vehicle to trade!</h2>
+                            <h3>Save on auction fees!</h3>
                             <p>
                                 Before you send it to an auction! List it here and let
                                 other dealers know you want to move it and it costs far
@@ -88,8 +131,8 @@ export default function About() {
 
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2>FORGET THE BLACK BOOK!</h2>
-                            <h3>FIND OUT WHAT A TRADE IS REALLY WORTH!</h3>
+                            <h2>Forget the black book!</h2>
+                            <h3>Find out what a trade is really worth!</h3>
                             <p>
                                 It might be a vehicle you are not familiar with but you 
                                 don't want to lose the deal! List the vehicle on the 
@@ -116,8 +159,8 @@ export default function About() {
 
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2>FIND COMMERCIAL VEHICLES!!</h2>
-                            <h3>MY CUSTOMER NEEDS A 15 PASSENGER VAN!</h3>
+                            <h2>Find commercial vehicles!</h2>
+                            <h3>My customer needs a 15 passenger van!</h3>
                             <p>
                                 Or maybe its a cube van or a flat deck truck? 
                                 Somebody wants one and you don't have anything like

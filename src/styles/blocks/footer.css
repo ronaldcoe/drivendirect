@@ -5,6 +5,12 @@
   margin-top: 100px;
   background-color: white;
 }
+.footer .credits {
+  color: #36454F;
+  font-size: 1rem;
+  text-align: center;
+  font-family: "Rubik", sans-serif;
+}
 .footer .footer__wrapper {
   max-width: 1500px;
   margin: 0 auto;
