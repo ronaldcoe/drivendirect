@@ -9,44 +9,45 @@ const staticCollectionRef = collection(firestore, 'static data');
 
 
 /***********************InventoryList and Inventorytrade****************************************************** */
-// create an inventory
-export const createInventory = async(data)=>{
-      try{
-        if(data.type =="listing"){
-          await addDoc(inventoryListCollectionRef, data)
-          return true
-        }
-        else if (data.type == "trade"){
-          await addDoc(inventoryTradeCollectionRef, data)
-          return true
-        }}
-      catch (err){
-          console.log(err)
-          return false
-        }
-      }
 
-// Getting All Listing by a value and Filter all the active products
-// Also only return items that are within the 7 days from creation
-export const getAllInventoryByEntity = async (entity, value, type) => {
-  
+/**********************************************************************************************************
+ * Creates a new inventory item based on the provided data.
+ * @param {Object} data - The data for the inventory item.
+ * @param {string} data.type - The type of inventory ("listing" or "trade").
+ * @returns {Promise<boolean>} - A promise that resolves to true if the inventory item is successfully created, false otherwise.
+ *****************************************************************************************/
+export const createInventory = async (data) => {
   try {
-    let q = ''
-     // Create the Query
-    if (type == "listing"){
-      q = query(
-      inventoryListCollectionRef,
-      where(entity, '==', value),
-      where("status", '==',"Publish")
-    );}
+    if (data.type === "listing" || data.type === "trade") {
+      const collectionRef =
+        data.type === "listing" ? inventoryListCollectionRef : inventoryTradeCollectionRef;
 
-    else if (type == "trade"){
-      q = query(
-      inventoryTradeCollectionRef,
+      await addDoc(collectionRef, data);
+      return true;
+    } else {
+      throw new Error("Invalid inventory type");
+    }
+  } catch (err) {
+    console.log(err);
+    return false;
+  }
+};
+
+/********************************************************************************
+ * Retrieves all inventory items based on the provided entity, value, and type.
+ * Updates the status of items that have passed 7 days from the creation date.
+ * @param {string} entity - The entity field to filter by.
+ * @param {*} value - The value to match for the entity field.
+ * @param {string} type - The type of inventory ("listing" or "trade").
+ * @returns {Promise<Array>} - A promise that resolves to an array of inventory items.
+ ********************************************************************************/
+export const getAllInventoryByEntity = async (entity, value, type) => {
+  try {
+    const q = query(
+      type === "listing" ? inventoryListCollectionRef : inventoryTradeCollectionRef,
       where(entity, '==', value),
-      where("status", '==',"Publish")
-    );}
-   
+      where("status", '==', "Publish")
+    );
     // Create the Snap
     const querySnapshot = await getDocs(q)
     // Map and filter the objects
@@ -54,7 +55,8 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(currentDate.getDate() - 7);
     // Map and send the Object
-    const allinventory = querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    const allinventory = querySnapshot.docs
+    .map((doc) => ({ ...doc.data(), id: doc.id }))
     .filter((vehicle) => {
       const targetDate = new Date(vehicle.dateCreate.seconds * 1000);
 
@@ -77,24 +79,24 @@ export const getAllInventoryByEntity = async (entity, value, type) => {
           const inventoryRef = doc(inventoryTradeCollectionRef, vehicle.id);
           setDoc(inventoryRef, updatedData);
         }
-
         return false; // Exclude vehicles where 7 days have passed
       } else {
         return true; // Include vehicles within the last 7 days
       }
     });
     return allinventory;
-  
-
   } catch (err) {
     console.log(err);
     return [];
   }
 };
 
-// Getting Inventory By Type, this also filters out the deleted products
-// It also update products that has a passed the 7 Days mark
-// which needs to be done elsewhere in the future
+/*******************************************************************
+ * Retrieves all inventory items of a specific type.
+ * Updates the status of items that have passed 7 days from the creation date.
+ * @param {string} type - The type of inventory ("listing" or "trade").
+ * @returns {Promise<Array>} - A promise that resolves to an array of inventory items.
+ *****************************************************************/
 export const getAllInventoryBytype = async (type) => {
   try {
     let q = '';
@@ -156,7 +158,12 @@ export const getAllInventoryBytype = async (type) => {
   }
 };
 
-// get inventory based on Filters
+/*******************************************************
+ * Retrieves inventory items based on the provided filters and type.
+ * @param {Array} filters - An array of filters to apply.
+ * @param {string} type - The type of inventory ("listing" or "trade").
+ * @returns {Promise<Array>} - A promise that resolves to an array of inventory items.
+ **********************************************************/
 export const getAllInventoryByFilters = async (filters, type) => {
   try {
 
@@ -187,7 +194,13 @@ export const getAllInventoryByFilters = async (filters, type) => {
   }
 };
 
-// Edit a inventory based on the Type
+/*************************************************
+ * Updates the inventory record with the provided updated data.
+ * @param {string} inventoryId - The ID of the inventory record to update.
+ * @param {Object} updatedData - The updated data to set for the inventory record.
+ * @param {string} type - The type of inventory ("listing" or "trade").
+ * @returns {Promise<boolean>} - A promise that resolves to true if the inventory record is successfully updated, false otherwise.
+ ***********************************************************/
 export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
   try {
     let inventoryRef = ''
@@ -221,7 +234,23 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
 
 /************************AUTH AND USER********************************************/
 
-//Create new user
+/**
+ * Creates a new user with the provided user details.
+ * @param {string} email - The email address of the user.
+ * @param {string} password - The password of the user.
+ * @param {string} firstName - The first name of the user.
+ * @param {string} lastName - The last name of the user.
+ * @param {string} businessName - The name of the user's business.
+ * @param {string} businessType - The type of the user's business.
+ * @param {string} website - The website URL of the user's business.
+ * @param {string} country - The country of the user.
+ * @param {string} region - The region of the user.
+ * @param {string} city - The city of the user.
+ * @param {string} phoneNumber - The phone number of the user.
+ * @param {number} tradeMax - The maximum number of trades allowed for the user.
+ * @param {number} searchMax - The maximum number of searches allowed for the user.
+ * @returns {Promise<boolean>} - A promise that resolves to true if the user is successfully created, throws an error otherwise.
+ */
 export const createUser = async (email, password, firstName, lastName, businessName, 
                                   businessType, website, country, region, city, phoneNumber, tradeMax, searchMax) => {
   try {
@@ -257,8 +286,12 @@ export const createUser = async (email, password, firstName, lastName, businessN
   }
 };
 
-
-// Login user
+/********************************************
+ * Logs in a user with the provided email and password.
+ * @param {string} email - The email address of the user.
+ * @param {string} password - The password of the user.
+ * @returns {Promise<object>} - A promise that resolves to the user credentials object if the login is successful, throws an error otherwise.
+ **********************************************************/
 export const loginUser = async (email, password) => {
   try {
     const userCreds = await signInWithEmailAndPassword(auth, email, password);
@@ -270,34 +303,18 @@ export const loginUser = async (email, password) => {
   }
 };
 
-// Get User by ID
-export const getUserInfo= async (id)=>{
+/***********************************
+ * Retrieves the user information for the provided user ID.
+ * @param {string} id - The ID of the user.
+ * @returns {Promise<object|boolean>} - A promise that resolves to the user information if the user is found, or false if the user is not found or an error occurs.
+ ************************************/
+export const getUserInfo = async (id) => {
   try {
     const userDocRef = doc(usersCollectionRef, id);
     const docSnapshot = await getDoc(userDocRef);
-  
-    if (docSnapshot.exists()) {
-      const user = docSnapshot.data();  
-      return user;
-    } else {
-      console.log('User not found');
-      return false;
-    }
-  } catch (error) {
-    console.log(error);
-    return false;
-  }
-}
 
-// Edit User
-export const editUserInfo = async (id, updatedUser)=>{
-  try {
-    const userDocRef = doc(usersCollectionRef, id);
-    const docSnapshot = await getDoc(userDocRef);
-  
     if (docSnapshot.exists()) {
-      const user = docSnapshot.data();  
-      await setDoc(userDocRef, updatedUser);
+      const user = docSnapshot.data();
       return user;
     } else {
       console.log('User not found');
@@ -307,7 +324,32 @@ export const editUserInfo = async (id, updatedUser)=>{
     console.log(error);
     return false;
   }
-}
+};
+
+/*******************************************************
+ * Edits the user information for the provided user ID with the updated user data.
+ * @param {string} id - The ID of the user.
+ * @param {object} updatedUser - The updated user data to set.
+ * @returns {Promise<object|boolean>} - A promise that resolves to the user information if the user is found and the update is successful, or false if the user is not found or an error occurs.
+ *******************************************/
+export const editUserInfo = async (id, updatedUser) => {
+  try {
+    const userDocRef = doc(usersCollectionRef, id);
+    const docSnapshot = await getDoc(userDocRef);
+
+    if (docSnapshot.exists()) {
+      await setDoc(userDocRef, updatedUser);
+      return updatedUser;
+    } else {
+      console.log('User not found');
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 /****************************************************************************************** */
 
 /*************************************ENTER STATIC DATA****************
