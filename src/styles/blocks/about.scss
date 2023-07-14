@@ -172,21 +172,31 @@
                 
                 cursor: pointer;
                 width: 100%;
-                padding: 30px 150px;
+                padding: 0px 0px;
                 background-color: $primary-color;
                 
                 @media screen and (max-width: $breakpoint-medium) {
                     flex-direction: column;
-                    padding: 20px;
+                    
                 }
                 .about__wrapper__icons__content {
-                    display: flex;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
                     align-items: center;
-                    justify-content: center;
-                    gap: 80px;
-                    @media screen and (max-width: $breakpoint-medium) {
-                        flex-direction: column;
+                 
+                    .about__wrapper__icons__content__description {
+                        justify-self: center;
                         padding: 20px;
+
+                        @media screen and (max-width: $breakpoint-medium) {
+                            padding: 50px 20px;
+                            
+                        }
+                    }
+                    @media screen and (max-width: $breakpoint-medium) {
+                        grid-template-columns: 1fr;
+                        grid-template-rows: auto;
+                        grid-template-rows: auto;
                     }
                 }
                 .about__wrapper__icon {
@@ -218,7 +228,9 @@
                 .aboout__wrapper__icons__images {
 
                     img {
-                        height: 200px;
+                        width: 100%;
+                        height: 300px;
+                        object-fit: cover;
                     }
                 }
             }
