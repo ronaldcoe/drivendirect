@@ -191,7 +191,7 @@ export default function About() {
                 <div className='about__wrapper__call__to__action__text'>
                     <h1>Ready to start trading?</h1>
                     <h2>Start a free trial today!</h2>
-                    <button className='about__wrapper__call__to__action__text__btn' onClick={()=>{navigate("/login")}}>START HERE</button>
+                    <button className='about__wrapper__call__to__action__text__btn' onClick={()=>{navigate("/login")}}>Start Here</button>
                 </div>
                 <img src={carFive} alt="a black car is parked in a parking lot" loading='lazy'/>
             </div>

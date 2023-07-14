@@ -70,15 +70,16 @@
                         z-index: 9999;
                         
 
-                    li {
-                        padding: 20px 0px;
-                        text-align: right;
-                        a {
-                            height: 50px;
+                        li {
+                           
+                            text-align: right;
+                            a {
+                                display: block;
+                                height: 50px;
+                                
+                            }
                             
                         }
-                        
-                    }
                     }
                 }
             }

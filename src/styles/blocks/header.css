@@ -74,10 +74,10 @@ nav ul li a {
     z-index: 9999;
   }
   .header .header__wrapper nav .header__wrapper__menu.hamburger li {
-    padding: 20px 0px;
     text-align: right;
   }
   .header .header__wrapper nav .header__wrapper__menu.hamburger li a {
+    display: block;
     height: 50px;
   }
 }

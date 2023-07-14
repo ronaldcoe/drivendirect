@@ -110,7 +110,7 @@ export default function CardGrid(props) {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterData(dataVehicles).slice(indexOfFirstItem, indexOfLastItem);
-
+  console.log(currentItems)
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -170,9 +170,13 @@ export default function CardGrid(props) {
               </tr>
             </thead>
             <tbody>
+              {currentItems.length ===0 && <tr><td colSpan={7} style={{textAlign:"center"}}>👀 Nothing to see in here. Try using other filters!</td></tr>}
             {filterData(currentItems).map((item, index) => {
+
                 return (
+
                     <tr key={index}>
+                      
                       
                       <td className='table_year'>{item.year}</td>
                       <td className='table_make'>{item.make}</td>
@@ -202,6 +206,7 @@ export default function CardGrid(props) {
                         )}
 
                     </tr>
+                  
                   );
                 })}
             </tbody>
