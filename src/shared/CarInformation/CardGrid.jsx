@@ -124,8 +124,9 @@ export default function CardGrid(props) {
         <div className='cardGrid__description'>
           <div >
             <h1>{props.type === "trade"?"Sale":"List"} Inventory</h1>
-            {props.type === "trade"?<p>This contains the vehicles that dealers are selling. If you're logged in, you can see the information of whom is selling the vehicle</p>:<p>This contains the list of vehicles that dealers are looking for</p>}
-            
+            {props.type === "trade"?<p>This contains the vehicles that dealers are selling or Trading.
+              <hr/>
+               <p>You can list a vechicle here for trade or sale by clicking on your <strong>Dashboard</strong></p></p>:<p>This contains the list of vehicles that dealers are looking for. <hr/><p>Use this to supply the need. You can also list what you need by clicking on your <strong>Dashboard</strong></p></p>}
           </div>
         </div>
 
