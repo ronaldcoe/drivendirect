@@ -71,6 +71,7 @@ nav ul li a {
     top: 60px;
     animation: moveRightToLeft 0.3s;
     width: 100%;
+    z-index: 9999;
   }
   .header .header__wrapper nav .header__wrapper__menu.hamburger li {
     padding: 20px 0px;
