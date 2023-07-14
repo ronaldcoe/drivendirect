@@ -8,13 +8,8 @@ import carTwo from '../../images/car_2.jpg'
 import carTree from '../../images/car_3.jpg'
 import carFour from '../../images/car_4.jpg'
 import carFive from '../../images/car_5.jpg'
-import carIllustration from "../../images/car_illustration.svg"
-import carIllustration2 from "../../images/car_illustration2.svg"
-import carbanner from "../../images/car_banner.jpg"
-import carbanner2 from "../../images/car_banner2.jpg"
-import Slider from 'react-slick';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
+import iconSearch from '../../images/icons-search.gif'
 
 export default function About() {
 
@@ -22,18 +17,7 @@ export default function About() {
 
 
     
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay:false,
-        autoplaySpeed: 9000,
-        prevArrow: <></>,
-        nextArrow: <></>,
-    }
-    
+   
 
 
   return (
@@ -42,41 +26,7 @@ export default function About() {
         <div className='about__wrapper'>
             
             <div className='about__wrapper__btns'>
-                <Slider {...settings}>
-                    <div className='about__wrapper__icons'>
-                        <div className='about__wrapper__icons__content'>
-                            <div className='about__wrapper__icons__content__description'>
-                                
-                                <h3>See what other dealers want</h3>
-                                <p>Every day, dealers post cars they want. Chances are that you have it.</p>
-                                <button  onClick={() => navigate("/inventory/listing")}>
-                                    Search the inventory
-                                    <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
-                                    </button>
-                            </div>
-                            <div className='aboout__wrapper__icons__images'>
-                                <img src={carbanner} alt="" />
-                            </div>
-                        </div>
-                    </div>
-                    <div className='about__wrapper__icons' >
-                        <div className='about__wrapper__icons__content'>
-                                <div className='about__wrapper__icons__content__description'>
-                                    
-                                    <h3>Find the vehicle your customer wants</h3>
-                                    <p>Your customer is looking for a specific vehicle you don't have on your
-                                        lot.</p>
-                                    <button onClick={() => navigate("/inventory/trade")}>
-                                        Search the inventory
-                                        <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
-                                    </button>
-                                </div>
-                                <div className='aboout__wrapper__icons__images'>
-                                    <img src={carbanner2} alt="" />
-                                </div>
-                        </div>
-                    </div>
-                </Slider>
+                <img src={iconSearch}/>
             </div>
             <div className='about__wrapper__card__container'>
                 <div className='about__wrapper__card'>
@@ -100,6 +50,10 @@ export default function About() {
                             importantly, it is you who finds it for them! As well, your customer
                             isn't checking around with other dealers and you maintain control!
                         </p>
+                        <button onClick={() => navigate("/inventory/trade")}>
+                            Search the inventory
+                            <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                        </button>
                     </div>
                     <div className='about__wrapper__card__img'>
                         <img src={carOne} alt="a small blue car parked on the side of the road" loading='lazy' />
@@ -125,6 +79,10 @@ export default function About() {
                                 also save on freight charges! Dealers deal directly with
                                 each other free of charge!
                             </p>
+                            <button onClick={() => navigate("/inventory/trade")}>
+                                Start trading today
+                                <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                            </button>
                         </div>
                         <div className='about__wrapper__card__img'>
                             <img src={carTwo} alt="a blue car parked on the side of the road" loading='lazy' />
@@ -153,6 +111,10 @@ export default function About() {
                                 chances by risking what it might be worth, or by 
                                 losing the deal or by paying way too much!
                             </p>
+                            <button onClick={() => navigate("/inventory/trade")}>
+                                Start listing today
+                                <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                            </button>
                         </div>
                         <div className='about__wrapper__card__img'>
                             <img src={carTree} alt="a white honda cr - v parked in the snow" loading='lazy' />
@@ -181,6 +143,10 @@ export default function About() {
                                 finds it for them! Your customer is not checking
                                 around with other dealers and you maintain control!
                             </p>
+                            <button onClick={() => navigate("/inventory/trade")}>
+                                Search the inventory
+                                <FontAwesomeIcon className="about__wrapper__icon" icon={faMagnifyingGlass} />
+                            </button>
                         </div>
                         <div className='about__wrapper__card__img'>
                             <img src={carFour} alt="a silver van parked on the side of a road" loading='lazy'/>

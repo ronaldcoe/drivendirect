@@ -60,6 +60,8 @@
                     // background: linear-gradient(-120deg, white 50%,$secondary-color 50%);
 
                 }
+                
+
 
                 @media screen and (max-width: $breakpoint-medium) {
                     flex-direction: column;
@@ -90,7 +92,14 @@
                         color: $primary-paragraph-font-color;
                         padding-bottom: 10px;
                     }
-                   
+                    button {
+                        @include buttons($accent-color);
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        font-size: 1.6rem
+                    }
                 }
                 .about__wrapper__card__img {
                     max-width: 50%;
@@ -173,7 +182,7 @@
                 cursor: pointer;
                 width: 100%;
                 padding: 0px 0px;
-                background-color: $primary-color;
+                background-color: #ffffff;
                 
                 @media screen and (max-width: $breakpoint-medium) {
                     flex-direction: column;
@@ -208,23 +217,16 @@
                 }
     
                 h3 {
-                    color: white;
-                    font-size: 3rem;
+                    color: $primary-color;
+                    font-size: 4rem;
                 }
                 p {
-                    color: white;
+                    color: $primary-color;
                     padding: 10px 0px;
+                    font-size: 2rem;
                 }
 
-                button {
-                    @include buttons($accent-color);
-                    color: white;
-                    display: flex;
-                    align-items: center;
-                    gap: 15px;
-                    font-size: 1.6rem
-                }
-
+                
                 .aboout__wrapper__icons__images {
 
                     img {
