@@ -10,6 +10,8 @@ import carFour from '../../images/car_4.jpg'
 import carFive from '../../images/car_5.jpg'
 import carIllustration from "../../images/car_illustration.svg"
 import carIllustration2 from "../../images/car_illustration2.svg"
+import carbanner from "../../images/car_banner.jpg"
+import carbanner2 from "../../images/car_banner2.jpg"
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -26,7 +28,7 @@ export default function About() {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay:true,
+        autoplay:false,
         autoplaySpeed: 9000,
         prevArrow: <></>,
         nextArrow: <></>,
@@ -43,7 +45,7 @@ export default function About() {
                 <Slider {...settings}>
                     <div className='about__wrapper__icons'>
                         <div className='about__wrapper__icons__content'>
-                            <div>
+                            <div className='about__wrapper__icons__content__description'>
                                 
                                 <h3>See what other dealers want</h3>
                                 <p>Every day, dealers post cars they want. Chances are that you have it.</p>
@@ -53,13 +55,13 @@ export default function About() {
                                     </button>
                             </div>
                             <div className='aboout__wrapper__icons__images'>
-                                <img src={carIllustration} alt="" />
+                                <img src={carbanner} alt="" />
                             </div>
                         </div>
                     </div>
                     <div className='about__wrapper__icons' >
                         <div className='about__wrapper__icons__content'>
-                                <div>
+                                <div className='about__wrapper__icons__content__description'>
                                     
                                     <h3>Find the vehicle your customer wants</h3>
                                     <p>Your customer is looking for a specific vehicle you don't have on your
@@ -70,7 +72,7 @@ export default function About() {
                                     </button>
                                 </div>
                                 <div className='aboout__wrapper__icons__images'>
-                                    <img src={carIllustration2} alt="" />
+                                    <img src={carbanner2} alt="" />
                                 </div>
                         </div>
                     </div>
