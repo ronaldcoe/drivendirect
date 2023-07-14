@@ -14,9 +14,6 @@ export default function Dashboard(props) {
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
 
-
-
-
     const optionsRef = useRef(null);
     const navigate = useNavigate();
     // These will be changed in the future
@@ -103,6 +100,8 @@ export default function Dashboard(props) {
             <div className='dashboard__wrapper__section'>
                 <div>
                     <h2>Tradings</h2>
+                    <hr/>
+                    <p>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>
                 </div>
                <div>
                 {trades?.map((item, key)=> {
@@ -119,6 +118,8 @@ export default function Dashboard(props) {
                 <div className='dashboard__wrapper__section'>
                 <div>
                     <h2>Searching</h2>
+                    <hr/>
+                    <p>List vehicles here that you are in need of. Dealers will contact you, if they have what you need or you can search our <strong>Trading Inventory</strong>. Listings will disappear after 7 days of creation.</p>
                 </div>
                     {listings?.map((item, key)=> {
                     return(
