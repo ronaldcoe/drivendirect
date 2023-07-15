@@ -9,7 +9,13 @@ import carTree from '../../images/car_3.jpg'
 import carFour from '../../images/car_4.jpg'
 import carFive from '../../images/car_5.jpg'
 
-import iconSearch from '../../images/icons-search.gif'
+import iconSearch from '../../images/icons-search.png'
+import iconCar from '../../images/icons-car.png'
+import iconMoney from '../../images/icons-money.png'
+import iconPrice from '../../images/icons-price.png'
+import iconDeal from '../../images/icons-deal.png'
+import iconArrow from '../../images/icons-arrow.png'
+
 
 export default function About() {
 
@@ -26,9 +32,38 @@ export default function About() {
         <div className='about__wrapper'>
             
             <div className='about__wrapper__btns'>
-                <img src={iconSearch}/>
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/inventory/trade")}>
+                    <img src={iconCar}/>
+                    <h2>You need it or don't?</h2>
+                    <p>Find cars that you need or Sell cars that you don't need.</p>
+                    
+                    
+                </div>
+                
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
+                    <img src={iconSearch}/>
+                    <h2>Search or list it</h2>
+                    <p>Check the inventory or list the vehicle you want to sell.</p>
+                    
+                    
+                </div>
+                
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
+                    <img src={iconPrice}/>
+                    <h2>Make or get offers</h2>
+                    <p>You found the car you need? Contact the seller.</p>
+                    
+                    
+                </div>
+                
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
+                    <img src={iconDeal}/>
+                    <h2>Close the deal</h2>
+                    <p>The best part? There are not commission fees.</p>
+                    
+                </div>
             </div>
-            <div className='about__wrapper__card__container'>
+            <div className='about__wrapper__card__container' >
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
                         <h2>Find what you need now!</h2>

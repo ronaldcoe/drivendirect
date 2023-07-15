@@ -132,8 +132,105 @@
             padding: 20px;
             border-radius: 5px;
             height: fit-content;
+            position: relative;
+
+            .tradingInfoIcon {
+                cursor: pointer;
+                position: relative;
+                z-index: 999;
+            }
             
-            
+            .listingInfo {
+                position: absolute;
+                background-color: rgb(215, 235, 255);
+                padding: 20px;
+                font-size: 1.3rem;
+                z-index: 99;
+                width: 200px;
+                top: 55px;
+                right: 67px;
+
+                border-radius: 5px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+               
+                @media screen and (max-width:$breakpoint-medium) {
+                    right: 67px;
+                }
+                @media screen and (max-width:720px) {
+                    right: 106px;
+                }
+             
+                
+                &:before {
+                    content: ' ';
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    left: auto;
+                    right: 125px;
+                    top: -30px;
+                    bottom: auto;
+                    border: 15px solid;
+                    transform: rotate(180deg);
+                    border-color:  rgb(215, 235, 255) transparent transparent transparent;
+                    
+                    
+                }
+            }
+
+            .tradingInfo {
+                position: absolute;
+                background-color: rgb(215, 235, 255);
+                padding: 20px;
+                font-size: 1.3rem;
+                z-index: 99;
+                width: 200px;
+                top: 55px;
+                right: 80px;
+
+                border-radius: 5px;
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+               
+                @media screen and (max-width:$breakpoint-medium) {
+                    right: 80px;
+                }
+                @media screen and (max-width:720px) {
+                    right: 120px;
+                }
+             
+                
+                &:before {
+                    content: ' ';
+                    position: absolute;
+                    width: 0;
+                    height: 0;
+                    left: auto;
+                    right: 125px;
+                    top: -30px;
+                    bottom: auto;
+                    border: 15px solid;
+                    transform: rotate(180deg);
+                    border-color:  rgb(215, 235, 255) transparent transparent transparent;
+                    
+                    
+                }
+                // &:after {
+                    
+                //     content: ' ';
+                //     position: absolute;
+                //     width: 0;
+                //     height: 0;
+                //     left: 46px;
+           
+                //     top: -28px;
+                //     bottom: auto;
+                //     border: 14px solid;
+      
+                //     transform: rotate(180deg);
+                //     border-color: white transparent transparent;
+                
+                // }
+            }
           
 
             h2 {

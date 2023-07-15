@@ -10,7 +10,7 @@
         @include wrapper;
         
         gap: 50px;
-        padding-top: 70px;
+        padding-top: 30px;
         padding-bottom: 100px;
    
 
@@ -160,8 +160,9 @@
         }
 
         .about__wrapper__btns {
-            
-            justify-content: space-between;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
             margin-bottom: 70px;
        
             gap: 40px;
@@ -173,69 +174,55 @@
             }
 
             @media screen and (max-width: $breakpoint-small) {
-                gap: 100px;
+                
             }
+            
 
-            .about__wrapper__icons {
-                             
-                
-                cursor: pointer;
-                width: 100%;
-                padding: 0px 0px;
-                background-color: #ffffff;
-                
-                @media screen and (max-width: $breakpoint-medium) {
-                    flex-direction: column;
-                    
-                }
-                .about__wrapper__icons__content {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr;
-                    align-items: center;
-                 
-                    .about__wrapper__icons__content__description {
-                        justify-self: center;
-                        padding: 20px;
+            .about__wrapper__btns {
+                display: flex;
+              }
+              
+              .about__wrapper__btns__container {
+                position: relative;
+                flex-grow: 1;
+                text-align: center;
+              }
+              
+              
+            .about__wrapper__btns__container {
+               background-color: white;
+               border-radius: 5px;
+               padding: 40px;
+               transform: scale(1);
+               transition: 0.4s;
+               cursor: pointer;
+               width: 300px;
 
-                        @media screen and (max-width: $breakpoint-medium) {
-                            padding: 50px 20px;
-                            
-                        }
-                    }
-                    @media screen and (max-width: $breakpoint-medium) {
-                        grid-template-columns: 1fr;
-                        grid-template-rows: auto;
-                        grid-template-rows: auto;
-                    }
-                }
-                .about__wrapper__icon {
-                    color: white;
-                    font-size: 2rem;
-                   
-                
-                    
-                }
-    
-                h3 {
-                    color: $primary-color;
-                    font-size: 4rem;
-                }
-                p {
-                    color: $primary-color;
-                    padding: 10px 0px;
-                    font-size: 2rem;
-                }
+                            position: relative;
+                            flex-grow: 1;
+                            text-align: center;
 
-                
-                .aboout__wrapper__icons__images {
+               &:hover {
+                transform: scale(1.1);
+                transition: 0.4s;
+               }
+               img {
+                display: block;
+                margin: 0 auto;
+               }
 
-                    img {
-                        width: 100%;
-                        height: 300px;
-                        object-fit: cover;
-                    }
-                }
+               h2 {
+                color: $primary-paragraph-font-color;
+                text-align: center;
+                padding-top: 20px;
+               }
+               p {
+                color: $primary-paragraph-font-color;
+                padding: 10px 0px;
+                text-align: center;
+               }
             }
+            
         }
     }  
         
