@@ -14,7 +14,15 @@ import iconCar from '../../images/icons-car.png'
 import iconMoney from '../../images/icons-money.png'
 import iconPrice from '../../images/icons-price.png'
 import iconDeal from '../../images/icons-deal.png'
-import iconArrow from '../../images/icons-arrow.png'
+
+
+import ribbonIconCar from '../../images/ribbon_icon_car.png'
+import ribbonIconCarTrade from '../../images/ribbon_icon_car_trade.png'
+import ribbonIconTrade from '../../images/ribbon_icon_trade.png'
+import ribbonIconSearch from '../../images/ribbon_icon_search.png'
+import ribbonIconHome from '../../images/ribbon_icon_home.png'
+import ribbonIconComment from '../../images/ribbon_icon_comment.png'
+
 import Testimonial from './Testimonial';
 
 
@@ -31,7 +39,33 @@ export default function About() {
     <div className='about'>
         
         <div className='about__wrapper'>
-            
+            <div className='about__wrapper__ribbon'>
+                <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/inventory/listing")}>
+                    <img src={ribbonIconCar} alt="" />
+                    <p>What other dealers want</p>
+                </div>
+                <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/inventory/trade")}>
+                    <img src={ribbonIconCarTrade} alt="" />
+                    <p>What other dealers want to trade</p>
+                </div>
+                <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/trade")}>
+                    <img src={ribbonIconTrade} alt="" />
+                    <p>Trade</p>
+                </div>
+                <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/search")}>
+                    <img src={ribbonIconSearch} alt="" />
+                    <p>Search</p>
+                </div>
+                <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/")}>
+                    <img src={ribbonIconHome} alt="" />
+                    <p>Home</p>
+                </div>
+                <div className='about__wrapper__ribbon__content'>
+                    <img src={ribbonIconComment} alt="" />
+                    <p>Comments</p>
+                </div>
+             
+            </div>
             
             <div className='about__wrapper__card__container' >
                 <div className='about__wrapper__card'>
@@ -156,7 +190,7 @@ export default function About() {
                 </div>
                 <img src={carFive} alt="a black car is parked in a parking lot" loading='lazy'/>
             </div>
-            <Testimonial></Testimonial>
+            
             <div className='about__wrapper__btns'>
                 <div className='about__wrapper__btns__container' onClick={()=> navigate("/inventory/trade")}>
                     <img src={iconCar}/>
@@ -189,6 +223,7 @@ export default function About() {
                     
                 </div>
             </div>
+            <Testimonial></Testimonial>
         </div>
     </div>
   )

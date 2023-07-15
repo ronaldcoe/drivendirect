@@ -18,7 +18,10 @@
     
     .header__wrapper {
         @include wrapper;
-       
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 20px ;
+        padding-bottom: 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;

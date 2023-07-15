@@ -4,16 +4,15 @@
 
 .hero {
    
-    padding-top: 100px;
-    padding-bottom: 100px;
+   
     @media screen and (max-width:$breakpoint-medium){
         padding-top: 0px;
     }
     .hero__wrapper {
         @include wrapper;
         
-        padding-top: 0;
-        padding-bottom: 0;
+   
+  
         gap: 30px;
        
         .hero__wrapper__banner {

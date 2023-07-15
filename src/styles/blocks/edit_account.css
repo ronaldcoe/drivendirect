@@ -1,15 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 .edit_account .edit_account__wrapper {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 1800px;
+  margin: 100px auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
   margin-top: 50px;
 }
-.edit_account .edit_account__wrapper h1 {
+.edit_account .edit_account__wrapper .edit_account__wrapper__description {
+  max-width: 400px;
+}
+.edit_account .edit_account__wrapper .edit_account__wrapper__description h1 {
   color: #080077;
 }
-.edit_account .edit_account__wrapper form {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form {
+  width: 360px;
+}
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form {
   display: flex;
   flex-direction: column;
   max-width: 400px;
@@ -18,15 +27,15 @@
   padding: 30px;
   margin: 0 auto;
 }
-.edit_account .edit_account__wrapper form label {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label {
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
 }
-.edit_account .edit_account__wrapper form label p {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label p {
   font-size: 1.3rem;
   color: #636363;
 }
-.edit_account .edit_account__wrapper form label input {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label input {
   border-radius: 5px;
   padding: 10px;
   border: 1px solid #B6B6B6;
@@ -34,24 +43,24 @@
   color: #36454F;
   width: 100%;
 }
-.edit_account .edit_account__wrapper form label input:focus {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label input:focus {
   border: 1px solid #080077;
   outline: none;
   transition: 0.5s;
 }
-.edit_account .edit_account__wrapper form label input:required:valid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label input:required:valid {
   border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
-.edit_account .edit_account__wrapper form label input.valid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label input.valid {
   border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
-.edit_account .edit_account__wrapper form label input.invalid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label input.invalid {
   border: 1px solid red;
   background-color: rgb(255, 235, 235);
 }
-.edit_account .edit_account__wrapper form label select {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label select {
   border-radius: 5px;
   padding: 10px;
   border: 1px solid #B6B6B6;
@@ -59,27 +68,27 @@
   color: #36454F;
   width: 100%;
 }
-.edit_account .edit_account__wrapper form label select:focus {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label select:focus {
   border: 1px solid #080077;
   outline: none;
   transition: 0.5s;
 }
-.edit_account .edit_account__wrapper form label select:required:valid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label select:required:valid {
   border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
-.edit_account .edit_account__wrapper form label select.valid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label select.valid {
   border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
-.edit_account .edit_account__wrapper form label select.invalid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label select.invalid {
   border: 1px solid red;
   background-color: rgb(255, 235, 235);
 }
-.edit_account .edit_account__wrapper form label select option:hover {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label select option:hover {
   color: "Rubik", sans-serif;
 }
-.edit_account .edit_account__wrapper form label textarea {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea {
   border-radius: 5px;
   padding: 10px;
   border: 1px solid #B6B6B6;
@@ -88,24 +97,24 @@
   width: 100%;
   resize: none;
 }
-.edit_account .edit_account__wrapper form label textarea:focus {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea:focus {
   border: 1px solid #080077;
   outline: none;
   transition: 0.5s;
 }
-.edit_account .edit_account__wrapper form label textarea:required:valid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea:required:valid {
   border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
-.edit_account .edit_account__wrapper form label textarea.valid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea.valid {
   border: 1px solid green;
   background-color: rgb(246, 255, 246);
 }
-.edit_account .edit_account__wrapper form label textarea.invalid {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea.invalid {
   border: 1px solid red;
   background-color: rgb(255, 235, 235);
 }
-.edit_account .edit_account__wrapper form button {
+.edit_account .edit_account__wrapper .edit_account__wrapper__form form button {
   padding: 15px;
   border: none;
   font-family: "Rubik", sans-serif;

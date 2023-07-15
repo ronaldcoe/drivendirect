@@ -159,7 +159,6 @@
   font-size: 1.3rem;
   color: red;
   padding: 7px;
-  font-weight: bold;
 }
 @media screen and (max-width: 505px) {
   .vehiclecard {
@@ -264,9 +263,9 @@
 }
 
 .cardGrid .cardGrid__wrapper {
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 20px;
+  max-width: 1800px;
+  margin: 100px auto;
+  padding: 0 20px;
   display: grid;
   gap: 20px;
   grid-template-columns: 300px auto;
