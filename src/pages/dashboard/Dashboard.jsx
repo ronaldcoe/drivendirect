@@ -83,7 +83,7 @@ export default function Dashboard(props) {
                     <div className='dashboard__wrapper__profile__info'>
                         <h2>{account?.firstName} {account?.lastName}</h2>
                         <h3>Contact Information</h3>
-                        <p>{account?.dealership}</p>
+                        <p>{account?.businessName}</p>
                         <p>{account?.email}</p>
                         <p>{account?.website}</p>
                         <p>{account?.phoneNumber}</p>
