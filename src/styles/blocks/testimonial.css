@@ -1,10 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.testimonial {
+  width: 100%;
+  margin-top: 100px;
+}
 .testimonial .testimonial__wrapper {
   max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
   display: flex;
+  padding: 0;
   gap: 50px;
 }
 @media screen and (max-width: 820px) {
