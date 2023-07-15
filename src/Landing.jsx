@@ -14,8 +14,6 @@ function App() {
       <main>
         <Hero></Hero>
         <About></About>
-   
-        <Testimonial></Testimonial>
       </main>
     </div>
   );

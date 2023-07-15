@@ -2,10 +2,12 @@
 @import '../variables/mixins';
 
 .testimonial {
-
+    width: 100%;
+    margin-top: 100px;
     .testimonial__wrapper {
         @include wrapper;
         display: flex;
+        padding: 0;
         gap: 50px;
         
         @media screen and (max-width: $breakpoint-medium) {
