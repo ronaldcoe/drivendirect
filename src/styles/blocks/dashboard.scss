@@ -8,7 +8,7 @@
         @include wrapper;
         max-width: fit-content;
         margin: 0 auto;
-        padding: 20px;
+    
         display: grid;
         grid-template-columns: auto 340px 340px;
         gap: 40px;   
@@ -76,13 +76,16 @@
     
                         li {
     
-                            padding: 10px;
+                            a {
+                                display: block;
+                                padding: 10px;
+                            }
     
-                                &:hover {
-                                    background-color: $primary-color;
-                                    color: white;
-                                    cursor: pointer;
-                                }
+                            &:hover {
+                                background-color: $primary-color;
+                                color: white;
+                                cursor: pointer;
+                            }
                             
                         }
                     }

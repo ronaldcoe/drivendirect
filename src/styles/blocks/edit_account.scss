@@ -6,20 +6,34 @@
 
     .edit_account__wrapper {
         @include wrapper;
+        
+        display: flex;
+        justify-content: center;
+        gap: 50px;
         margin-top: 50px;
-        h1 {
-            color: $primary-color;
-        }
-        form {
-            @include forms;
+        
+        .edit_account__wrapper__description {
             max-width: 400px;
-            @include container;
-            margin: 0 auto;
 
-            button {
-                @include buttons($primary-color);
-                color: white;
+            h1 {
+                color: $primary-color;
             }
         }
-    }
+        
+        .edit_account__wrapper__form {
+            width: 360px;
+            form {
+                @include forms;
+                max-width: 400px;
+                @include container;
+                margin: 0 auto;
+
+                button {
+                    @include buttons($primary-color);
+                    color: white;
+                }
+            }
+        }    
+        }
+        
 }
