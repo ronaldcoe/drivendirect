@@ -61,7 +61,7 @@
           
         }
 
-        button {
+        .addVehicle_button {
             @include buttons($primary-color);
             color: white;
         }

@@ -240,7 +240,7 @@
                 color: $primary-paragraph-font-color;
             }
 
-            button {
+            .dashboard__update {
                 @include buttons($primary-color);
                 width: 100%;
                 color: white;

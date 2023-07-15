@@ -15,7 +15,9 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-
+    border: none;
+    width: 100%;
+    font-family: $paragraph-font;
     .dropdown-header__arrow {
       width: 10px;
       height: 10px;
