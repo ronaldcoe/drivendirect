@@ -262,7 +262,7 @@ export default function Signup() {
 
                         </div>
                     </label>
-                    <button type='submit'>
+                    <button className="signup_button" type='submit'>
                         Sign Up
                     </button>
                 </form>

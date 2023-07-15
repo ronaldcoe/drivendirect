@@ -116,7 +116,7 @@ export default function Dashboard(props) {
                             <VehicleCard car={item} key={key} type={"trade"} onUpdate={setUpdate} update={update} />
                         )
                     })}
-                    {trades?.length<tradeMax?<button onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
+                    {trades?.length<tradeMax?<button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
                </div>
             </div>
         </div>
@@ -134,7 +134,7 @@ export default function Dashboard(props) {
                         <VehicleCard car={item} key={key} type={"listing"} onUpdate={setUpdate} update={update}/>
                     )
                 })}
-                    {listings?.length<listMax?<button onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
+                    {listings?.length<listMax?<button className="dashboard__update" onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
                 
             </div>
             }

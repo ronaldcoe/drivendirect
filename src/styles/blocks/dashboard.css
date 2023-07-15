@@ -197,7 +197,7 @@
 .dashboard .dashboard__wrapper .dashboard__wrapper__section h2 {
   color: #36454F;
 }
-.dashboard .dashboard__wrapper .dashboard__wrapper__section button {
+.dashboard .dashboard__wrapper .dashboard__wrapper__section .dashboard__update {
   padding: 15px;
   border: none;
   font-family: "Rubik", sans-serif;

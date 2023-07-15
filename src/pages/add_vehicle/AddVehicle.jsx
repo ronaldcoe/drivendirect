@@ -274,7 +274,7 @@ export default function AddVehicle(props) {
               <p>Description</p>
               <textarea name="" id="" cols="30" rows="5" maxLength={120} required onChange={(e)=>{setVehicleDescription(e.target.value)}}></textarea>
             </label>
-            <button type='submit'>List Vehicle</button>
+            <button className='addVehicle_button' type='submit'>List Vehicle</button>
           </form>
           
         </div>

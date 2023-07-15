@@ -75,7 +75,7 @@
                 }
                     
 
-                button {
+                .signup_button {
                     @include buttons($button-color);
                     color: white; 
                 }

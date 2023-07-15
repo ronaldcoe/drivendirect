@@ -152,7 +152,7 @@
   width: fit-content;
   padding-top: 10px;
 }
-.signup .signup__wrapper .signup__wrapper__form form button {
+.signup .signup__wrapper .signup__wrapper__form form .signup_button {
   padding: 15px;
   border: none;
   font-family: "Rubik", sans-serif;

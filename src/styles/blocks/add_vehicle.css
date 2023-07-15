@@ -140,7 +140,7 @@
   font-size: 1.2rem;
   cursor: pointer;
 }
-.addVehicle .addVehicle__wrapper button {
+.addVehicle .addVehicle__wrapper .addVehicle_button {
   padding: 15px;
   border: none;
   font-family: "Rubik", sans-serif;

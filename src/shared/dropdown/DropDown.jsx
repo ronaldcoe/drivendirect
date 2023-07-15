@@ -33,21 +33,24 @@ export default function DropDown(props) {
       setIsOpen(!isOpen);
     };
     const handleChange = (event) => {
+      event.preventDefault()
         const selectedOption = event.target.textContent;
       
         setSelectedOption(selectedOption);
         setIsOpen(!isOpen)
         
     };
+
+    console.log(isOpen)
   
 
    
   return (
     <div className="custom-dropdown">
-        <div className="dropdown-header" onClick={toggleDropdown}>
+        <button type='button' className="dropdown-header" onClick={()=>toggleDropdown()}>
             {selectedOption?selectedOption:'Select'} 
             <img className="dropdown-header__arrow" src={arrow} alt="arrow"/>
-        </div>
+        </button>
             {isOpen && (
             <ul className="dropdown-list">
              
