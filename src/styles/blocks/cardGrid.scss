@@ -108,6 +108,9 @@
       }
     .filter_available {
 
+      input {
+        cursor: pointer;
+      }
         font-family: $paragraph-font;
         
         display: flex;

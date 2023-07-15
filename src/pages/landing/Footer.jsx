@@ -23,7 +23,6 @@ export default function Footer() {
             
 
         </div>
-        <a href="https://storyset.com/happy" className='credits'>Happy illustrations by Storyset</a>
     </div>
   )
 }
