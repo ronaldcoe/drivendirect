@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
 import { getUserInfo, getAllInventoryByEntity } from '../../Firebase/FirebaseStateManagement';
-
+import iconInfo from "../../images/icons-info.svg"
 
 export default function Dashboard(props) {
     document.title = "Dashboard"
@@ -19,9 +19,13 @@ export default function Dashboard(props) {
     // These will be changed in the future
     const tradeMax = account?.tradeMax
     const listMax = account?.searchMax
-    console.log(tradeMax)
+    
     // This is to help with the Update of the inventory
     const [update, setUpdate] = useState(false)
+
+    // Show extra info about trading and listing
+    const [showTradingInfo, setShowTradingInfo] = useState(false)
+    const [showListingInfo, setShowListingInfo] = useState(false)
 
     const fetchUserInfo = async ()=>{
         var userId = localStorage.getItem('userId')
@@ -46,17 +50,19 @@ export default function Dashboard(props) {
     }
 
     useEffect(() => {
-    const handleMouseDown = (event) => {
-      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-        setShowOptions(false);
-      }
-};
+        const handleMouseDown = (event) => {
+        if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+            setShowOptions(false);
+            setShowListingInfo(false);
+            setShowTradingInfo(false)
+        }
+        };
 
-    document.addEventListener('mousedown', handleMouseDown);
-    return () => {
-      document.removeEventListener('mousedown', handleMouseDown);
-    };
-  }, []);
+        document.addEventListener('mousedown', handleMouseDown);
+        return () => {
+        document.removeEventListener('mousedown', handleMouseDown);
+        };
+    }, []);
 
 
     useEffect(()=>{
@@ -99,9 +105,10 @@ export default function Dashboard(props) {
         <div className='dashboard__wrapper_col_2'>
             <div className='dashboard__wrapper__section'>
                 <div>
-                    <h2>Tradings</h2>
-                    <hr/>
-                    <p>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>
+                    <h2>Tradings <span className="tradingInfoIcon" onClick={() => {setShowTradingInfo(!showTradingInfo); setShowListingInfo(false);}}> <img src={iconInfo} alt="Information about Tradings" width="15px" /></span></h2>
+                    
+                    {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
+                    }
                 </div>
                <div>
                 {trades?.map((item, key)=> {
@@ -117,9 +124,10 @@ export default function Dashboard(props) {
             {account?.businessType !== "rental"&&
                 <div className='dashboard__wrapper__section'>
                 <div>
-                    <h2>Searching</h2>
-                    <hr/>
-                    <p>List vehicles here that you are in need of. Dealers will contact you, if they have what you need or you can search our <strong>Trading Inventory</strong>. Listings will disappear after 7 days of creation.</p>
+                    <h2>Searching <span className="tradingInfoIcon" onClick={() => { setShowListingInfo(!showListingInfo); setShowTradingInfo(false)} }> <img src={iconInfo} alt="Information about Tradings" width="15px" /></span></h2>
+                    
+                    {showListingInfo && <><p ref={optionsRef} className='listingInfo'>List vehicles here that you are in need of. Dealers will contact you, if they have what you need or you can search our <strong>Trading Inventory</strong>. Listings will disappear after 7 days of creation.</p></>
+                    }
                 </div>
                     {listings?.map((item, key)=> {
                     return(

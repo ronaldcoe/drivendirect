@@ -4,10 +4,6 @@
 
 .hero {
    
-    background-image: url(../../images/banner-min.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
     padding-top: 100px;
     padding-bottom: 100px;
     @media screen and (max-width:$breakpoint-medium){
@@ -16,12 +12,49 @@
     .hero__wrapper {
         @include wrapper;
         
-        display:flex;
         padding-top: 0;
         padding-bottom: 0;
         gap: 30px;
        
-        
+        .hero__wrapper__banner {
+            width: 100%;
+
+            .hero__wrapper__banner__content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                justify-content: space-between;
+                align-items: center;
+                background-color: white;
+
+                @media screen and (max-width:$breakpoint-medium) {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: 300px auto;
+                }
+                .hero__wrapper__banner__content__description {
+                    justify-self: center;
+                    padding: 40px;
+                }
+                h3 {
+                    color: $primary-color;
+                    font-size: 4rem;
+                }
+                p {
+                    color: $primary-color;
+                    padding: 10px 0px;
+                    font-size: 2rem;
+                }
+
+                .hero__wrapper__banner__images {
+                    
+                    img {
+                        width: 100%;
+                        height: 300px;
+                        object-fit: cover;
+                        
+                    }
+                }
+            }
+        }
 
         @media screen and (max-width: $breakpoint-medium) {
             margin-top: 20px;
@@ -66,13 +99,6 @@
 
         }
     
-        img {
-            max-width: 500px;
-            max-height: 500px;
-            min-width: 300px;
-            object-fit: contain;
-
-          
-        }
+       
     }
 }
