@@ -48,6 +48,20 @@ export default function EditAccount() {
 
       
     
+    } else {
+        Store.addNotification({
+          title: "Error",
+          message: "Your account wasn't updated",
+          type: "danger",
+          insert: "top",
+          container: "top-right",
+          animationIn: ["animate__animated", "animate__fadeInDown"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 5000,
+            showIcon: true
+          }
+        });
     }
   };
 console.log(updatedUser)
@@ -56,6 +70,9 @@ console.log(updatedUser)
       <div className='edit_account__wrapper'>
         <div className='edit_account__wrapper__description'>
           <h1>Edit account</h1>
+          <p>If you need to edit other information from your account,
+              send us an email at support@carznot.com
+          </p>
         </div>
         <div className="edit_account__wrapper__form">
           <form onSubmit={updateUser}>
@@ -106,11 +123,11 @@ console.log(updatedUser)
               <input
                 type='text'
                 required
-                value={updatedUser.dealership || ""}
+                value={updatedUser.businessName || ""}
                 onChange={(e) => {
                   setUpdatedUser((prevUser) => ({
                     ...prevUser,
-                    dealership: e.target.value,
+                    businessName: e.target.value,
                   }));
                 }}
                 minLength='2'

@@ -365,6 +365,9 @@
   width: -moz-fit-content;
   width: fit-content;
 }
+.cardGrid .cardGrid__wrapper .filter_available input {
+  cursor: pointer;
+}
 @media screen and (max-width: 787px) {
   .cardGrid .cardGrid__wrapper .filter_available {
     padding: 10px;
