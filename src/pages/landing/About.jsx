@@ -36,7 +36,7 @@ export default function About() {
             <div className='about__wrapper__card__container' >
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                        <h2>Find what you need now!</h2>
+                        <h2 onClick={()=>{navigate("/inventory/trade")}}>Find what you need now!</h2>
                         <h3>Don't ever say "I don't have one!"</h3>
                         <p>
                             It's like a dealer transfer for new, except on this site it's for used!
@@ -63,7 +63,7 @@ export default function About() {
                 </div>
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2>List a vehicle to trade!</h2>
+                            <h2 onClick={()=>{navigate("/login")}}>List a vehicle to trade!</h2>
                             <h3>Save on auction fees!</h3>
                             <p>
                                 Before you send it to an auction! List it here and let
@@ -90,7 +90,7 @@ export default function About() {
 
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2>Forget the black book!</h2>
+                            <h2 onClick={()=>{navigate("/login")}}>Forget the black book!</h2>
                             <h3>Find out what a trade is really worth!</h3>
                             <p>
                                 It might be a vehicle you are not familiar with but you 
@@ -119,7 +119,7 @@ export default function About() {
 
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2>Find commercial vehicles!</h2>
+                            <h2 onClick={()=>{navigate("/inventory/trade")}}>Find commercial vehicles!</h2>
                             <h3>My customer needs a 15 passenger van!</h3>
                             <p>
                                 Or maybe its a cube van or a flat deck truck? 
