@@ -4,8 +4,10 @@ import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
-import { getUserInfo, getAllInventoryByEntity } from '../../Firebase/FirebaseStateManagement';
+import { getUserInfo, getAllInventoryByEntity, getAllStripeProducts, stripeCheckOut } from '../../Firebase/FirebaseStateManagement';
 import iconInfo from "../../images/icons-info.svg"
+
+import { firestore } from '../../Firebase/FirebaseConfig';
 
 export default function Dashboard(props) {
     document.title = "Dashboard"
@@ -13,6 +15,28 @@ export default function Dashboard(props) {
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
+
+    /****************************************************************************************** */
+    // This is for the stripe products : Only testing will move in the future
+    const [products, setProducts]= useState([])
+
+    const checkout = async(priceId)=>{
+        const userId = localStorage.getItem("userId")
+     
+        await stripeCheckOut(userId, priceId)
+
+    }
+
+    useEffect(()=>{
+        const fetchStripeProducts = async()=>{
+            const products = await getAllStripeProducts()
+            console.log(products)
+            setProducts(products)
+        }
+        fetchStripeProducts()
+    }, [])
+
+    /****************************************************************************************** */
 
     const optionsRef = useRef(null);
     const navigate = useNavigate();
@@ -92,6 +116,20 @@ export default function Dashboard(props) {
                         <p>{account?.city}</p>
                         <p>{account?.region}</p>
                         <p>{account?.country}</p>
+                    {/* *************************************STRIPE STUFF****************************************************** */}
+                    <div>
+                        <h2>Products</h2>
+                        {products?.map((product)=>{
+                            return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+                                        <h2>{product.name}</h2>
+                                        <p>{product.description}</p>
+                                        <p></p>
+                                        <button onClick={()=>{checkout(product.prices[0].id)}}>Subscribe</button>
+                                    </div>
+                        })}
+                    </div>
+                    
+                    {/* ******************************************************************************************* */}
                     </div>
                     <ReactSVG src={menu} className='menu' onClick={()=>{setShowOptions(!showOptions)}}/>
                     {showOptions && (<div ref={optionsRef} className='options'>
@@ -139,6 +177,8 @@ export default function Dashboard(props) {
             </div>
             }
         </div>
+    
+    
     </div>
     
     </div>

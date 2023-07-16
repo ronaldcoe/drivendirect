@@ -1,11 +1,13 @@
 import {auth, firestore } from "./FirebaseConfig"
-import {addDoc, collection, serverTimestamp, getDocs,getDoc, query , where, doc, updateDoc, setDoc} from "@firebase/firestore"
+import {addDoc, collection, serverTimestamp, getDocs,getDoc, query , where, doc, updateDoc, setDoc, onSnapshot} from "@firebase/firestore"
+import { loadStripe } from "@stripe/stripe-js";
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
 
 const inventoryTradeCollectionRef = collection(firestore, 'inventoryTrade');
 const inventoryListCollectionRef = collection(firestore, 'inventoryList');
 const usersCollectionRef = collection(firestore, 'users');
 const staticCollectionRef = collection(firestore, 'static data');
+const stripeProductCollectionRef = collection(firestore, 'products');
 
 
 /***********************InventoryList and Inventorytrade****************************************************** */
@@ -415,3 +417,103 @@ export const getVehicles = async () => {
 };
 
 /*************************************************************************************** */
+export const getAllStripeProducts = async () => {
+  try {
+    const q = query(
+      stripeProductCollectionRef,
+      where("active", "==", true),
+    );
+
+    const querySnapshot = await getDocs(q);
+    const allProducts = querySnapshot.docs.map(async (doc) => {
+      const productData = doc.data();
+      const productId = doc.id;
+
+      // Retrieve prices from the subcollection within the product document
+      const pricesQuerySnapshot = await getDocs(
+        collection(stripeProductCollectionRef, productId, 'prices')
+      );
+      const pricesData = pricesQuerySnapshot.docs.map((priceDoc) => ({ ...priceDoc.data(), id: priceDoc.id }));
+
+      // Merge product data with prices
+      const productWithPrices = {
+        ...productData,
+        id: pricesData.id,
+        product_id: productId,
+        prices: pricesData,
+      };
+
+      return productWithPrices;
+    });
+
+    // Wait for all product promises to resolve
+    const allProductsData = await Promise.all(allProducts);
+
+    return allProductsData;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+// const checkout = async(id)=>{
+//   const docRef = await db.collection("users").doc(id).collection
+//   ("checkout_sessions").add({
+//     price:priceId,
+//     success_url:window.location.origin,
+//     cancel_url:window.location.origin,
+//   })
+//   docRef.onSnapshot(async(snap)=>{
+//     const {error, sessionId}= snap.data()
+//     if(error){
+//       alert(error.message)
+//     }
+//     if(sessionId){
+//       const stripe = await loadStripe("ahajdsfhjadfjsd")
+//       stripe.redirectToCheckout({sessionId})
+//     }
+//   })
+// }
+
+
+// import { doc, addDoc, collection, getDoc, onSnapshot } from "firebase/firestore";
+// import { loadStripe } from "@stripe/stripe-js";
+
+export const stripeCheckOut = async (id, priceId) => {
+  try {
+    const userDocRef = doc(usersCollectionRef, id);
+    const docSnapshot = await getDoc(userDocRef);
+
+    if (docSnapshot.exists()) {
+      const userDocData = docSnapshot.data();
+
+      // Create a new document in the "checkout_sessions" subcollection of the user document
+      const checkoutSessionsCollectionRef = collection(userDocRef, 'checkout_sessions');
+      const newCheckoutSessionDocRef = await addDoc(checkoutSessionsCollectionRef, {
+        price: priceId,
+        success_url: window.location.origin,
+        cancel_url: window.location.origin,
+      });
+
+      const unsubscribe = onSnapshot(newCheckoutSessionDocRef, async (snap) => {
+        const { error, sessionId } = snap.data();
+        if (error) {
+          alert(error.message);
+        }
+        if (sessionId) {
+          const stripe = await loadStripe("pk_test_51NUI59J155flwudekbXeaqNnxVtkrsIUC4ifIH32OSpULU5Oem03xYWDajz8q4cMT5Vbe57RgoGTTqf3kepJPnTr00VN5F3tFm");
+          stripe.redirectToCheckout({ sessionId });
+        }
+      });
+
+      return unsubscribe; // Return the unsubscribe function if needed for later cleanup
+    } else {
+      console.log('User not found');
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
