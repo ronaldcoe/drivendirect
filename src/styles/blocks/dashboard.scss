@@ -181,6 +181,12 @@
                 }
             }
 
+            .dashboard__wrapper__section__cards {
+
+                max-height: 600px;
+                overflow-y: scroll;
+            }
+
             .tradingInfo {
                 position: absolute;
                 background-color: rgb(215, 235, 255);

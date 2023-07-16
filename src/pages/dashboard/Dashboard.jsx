@@ -110,14 +110,15 @@ export default function Dashboard(props) {
                     {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
                     }
                 </div>
-               <div>
+               <div className='dashboard__wrapper__section__cards'>
                 {trades?.map((item, key)=> {
                         return(
                             <VehicleCard car={item} key={key} type={"trade"} onUpdate={setUpdate} update={update} />
                         )
                     })}
-                    {trades?.length<tradeMax?<button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
                </div>
+               {trades?.length<tradeMax?<button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
+
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>
