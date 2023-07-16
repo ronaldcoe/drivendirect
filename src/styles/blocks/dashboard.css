@@ -159,6 +159,10 @@
   transform: rotate(180deg);
   border-color: rgb(215, 235, 255) transparent transparent transparent;
 }
+.dashboard .dashboard__wrapper .dashboard__wrapper__section .dashboard__wrapper__section__cards {
+  max-height: 600px;
+  overflow-y: scroll;
+}
 .dashboard .dashboard__wrapper .dashboard__wrapper__section .tradingInfo {
   position: absolute;
   background-color: rgb(215, 235, 255);
