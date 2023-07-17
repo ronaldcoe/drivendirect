@@ -23,7 +23,7 @@
             grid-template-columns: 1fr;
             grid-template-rows: auto auto auto;
             justify-content: center;
-            padding: 10px;
+            padding: 0;
             max-width: 400px;
         }
 
@@ -181,11 +181,7 @@
                 }
             }
 
-            .dashboard__wrapper__section__cards {
-
-                max-height: 600px;
-                overflow-y: scroll;
-            }
+          
 
             .tradingInfo {
                 position: absolute;
