@@ -190,7 +190,7 @@ console.log(updatedUser)
                 required
               />
             </label>
-            <button type="submit">Update Account</button>
+            <button type="submit">Update Profile</button>
           </form>
         </div>
       </div>
@@ -225,13 +225,13 @@ console.log(updatedUser)
         <div>
           <h2>List of available Plans</h2>
           {products?.map((product)=>{
-            const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
-            console.log(isCurrentPlan)
+            // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
+            // console.log(isCurrentPlan)
               return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
                           <h2>{product.name}</h2>
                           <img src={product.images[0]} alt={product.name}/>
                           <p>Description: {product.description}</p>
-                          <p><strong>Price: {product.prices[0].unit_amount}</strong></p>
+                          <p><strong>Price: {parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</strong></p>
                           {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
                       </div>
           })}
