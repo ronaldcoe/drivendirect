@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react"
 import React  from 'react'
 import "../../styles/blocks/edit_account.css"
-import { editUserInfo, getUserInfo } from '../../Firebase/FirebaseStateManagement';
+import { editUserInfo, getUserInfo, getSubscription, stripeCheckOut, getAllStripeProducts } from '../../Firebase/FirebaseStateManagement';
 import { Store } from 'react-notifications-component';
 import {useNavigate} from "react-router"
+import { confirmPasswordReset } from "firebase/auth";
 
 export default function EditAccount() {
 
   const navigate = useNavigate()
   const [account, setAccount] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
+  const [subsciption, setSubscription] = useState([])
 
   const fetchUserInfo = async () => {
     const userId = localStorage.getItem('userId');
@@ -19,6 +21,33 @@ export default function EditAccount() {
       setUpdatedUser(userInfo); // Initialize updatedUser with account data
     }
   };
+
+
+  /****************************************************************************************** */
+    // This is for the stripe products : Only testing will move in the future
+    const [products, setProducts]= useState([])
+
+    const getallSubscribed = async()=>{
+        const userId = localStorage.getItem("userId")
+        const sub = await getSubscription(userId)
+        setSubscription(sub)
+    }
+    const checkout = async(priceId)=>{
+        const userId = localStorage.getItem("userId")
+        await stripeCheckOut(userId, priceId)
+    }
+
+    useEffect(()=>{
+      getallSubscribed()
+        const fetchStripeProducts = async()=>{
+            const products = await getAllStripeProducts()
+            console.log(products)
+            setProducts(products)
+        }
+        fetchStripeProducts()
+    }, [])
+
+    /****************************************************************************************** */
 
   useEffect(() => {
     fetchUserInfo();
@@ -164,6 +193,50 @@ console.log(updatedUser)
             <button type="submit">Update Account</button>
           </form>
         </div>
+      </div>
+      <div className="stripe_management">
+        {/* *************************************STRIPE STUFF****************************************************** */}
+        <div>
+          <h2>Subscriptions</h2>
+          {subsciption?.map((product)=>{
+            // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
+            // console.log(isCurrentPlan)
+            const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
+            const startDate = new Date(product.current_period_start.seconds * 1000);
+            const startDateString = startDate.toLocaleDateString(undefined, options)
+
+            const endDate = new Date(product.current_period_end.seconds * 1000);
+            const endDateString = endDate.toLocaleDateString(undefined, options)
+
+              console.log(product)
+              return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+                          <h2>{product.role}</h2>
+                          <p>{product.description}</p>
+                          <p>Subscription Type: {product.items[0].plan.interval}ly (Recurring)</p>
+                          <p>Subscription Start Date: {startDateString}</p>
+                          <p>Subscription End Date: {endDateString}</p>
+                          <p>Subscription Cost: ${parseFloat(product.items[0].plan.amount)/100} {product.items[0].plan.currency}</p>
+                          <p></p>
+                          <button>Manage your Subscription</button>
+                          {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
+                      </div>
+          })}
+        </div>
+        <div>
+          <h2>List of available Plans</h2>
+          {products?.map((product)=>{
+            const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
+            console.log(isCurrentPlan)
+              return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+                          <h2>{product.name}</h2>
+                          <img src={product.images[0]} alt={product.name}/>
+                          <p>Description: {product.description}</p>
+                          <p><strong>Price: {product.prices[0].unit_amount}</strong></p>
+                          {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
+                      </div>
+          })}
+        </div>
+        {/* ******************************************************************************************* */}
       </div>
     </div>
   );

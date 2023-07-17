@@ -352,71 +352,12 @@ export const editUserInfo = async (id, updatedUser) => {
   }
 };
 
-/****************************************************************************************** */
+/************************************STRIP LOGIC*************************************************** */
 
-/*************************************ENTER STATIC DATA****************
- *  const data ={
-      countries:{
-        USA :[
-          'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
-          'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
-          'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-          'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-          'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-          'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
-          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
-          'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ],
-        Canada : [
-        'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
-        'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
-        'Quebec', 'Saskatchewan', 'Yukon'
-        ]
-      }
-    }
-    const enter =async()=>{
-      await enterStaticData(data)
-    }
- * enter()
- * ****************** */
-export const enterStaticData= async(data)=>{
-  await addDoc(staticCollectionRef, data)
-  return true
-}
-
-
-
-
-// Get all countries
-export const getCountries = async () => {
-  try {
-    const querySnapshot = await getDocs(staticCollectionRef);
-
-    // Map the data and extract the countries field
-    const countries = querySnapshot.docs.map((doc) => doc.data().countries);
-    return countries;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-// Get all Vehicles
-export const getVehicles = async () => {
-  try {
-    const querySnapshot = await getDocs(staticCollectionRef);
-
-    // Map the data and extract the vehicles field
-    const vehicles = querySnapshot.docs.map((doc) => doc.data().vehicles);
-    return vehicles;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-/*************************************************************************************** */
+/*******************************************************
+ * @description Grabs all the Products on the the stripe account along with their prices
+ * @returns {Promise<object|boolean>} - A promise is resolved when all the Products along with thier prices are found and organized.
+ *******************************************/
 export const getAllStripeProducts = async () => {
   try {
     const q = query(
@@ -456,29 +397,12 @@ export const getAllStripeProducts = async () => {
   }
 };
 
-// const checkout = async(id)=>{
-//   const docRef = await db.collection("users").doc(id).collection
-//   ("checkout_sessions").add({
-//     price:priceId,
-//     success_url:window.location.origin,
-//     cancel_url:window.location.origin,
-//   })
-//   docRef.onSnapshot(async(snap)=>{
-//     const {error, sessionId}= snap.data()
-//     if(error){
-//       alert(error.message)
-//     }
-//     if(sessionId){
-//       const stripe = await loadStripe("ahajdsfhjadfjsd")
-//       stripe.redirectToCheckout({sessionId})
-//     }
-//   })
-// }
-
-
-// import { doc, addDoc, collection, getDoc, onSnapshot } from "firebase/firestore";
-// import { loadStripe } from "@stripe/stripe-js";
-
+/*******************************************************
+ * Handles the checkout from the website to stripe
+ * @param {string} id this is the user Id used to link the user to that checkout which will create the subscription obeject and checkout object
+ * @param {string} priceId this is the obejct that holds the price object for the product, the price is a seperate object
+ * @returns {Promise<object|boolean>} - A promise is resolved when all the Products along with thier prices are found and organized.
+ *******************************************/
 export const stripeCheckOut = async (id, priceId) => {
   try {
     const userDocRef = doc(usersCollectionRef, id);
@@ -517,3 +441,95 @@ export const stripeCheckOut = async (id, priceId) => {
   }
 };
 
+/*******************************************************
+ * @description Grabs all the subscription that a specific user has and retunr the active ones
+ * The subscription model is with in the user model as a collection
+ * @param {string} id this is the user Id used to link the user to check the subscription model
+ * @returns {Array} returns and array of subscription that the user has
+ *******************************************/
+export const getSubscription = async (userId) =>{
+  try {
+      const subscriptionQuerySnapshot = await getDocs(
+        collection(usersCollectionRef, userId, 'subscriptions')
+      );
+      const subscriptionDoc = subscriptionQuerySnapshot.docs.map((subDoc) => ({ ...subDoc.data(), id: subDoc.id }))
+      .filter((subscription)=>
+      {
+        return subscription.status !="canceled"
+      }
+      );
+      return subscriptionDoc
+
+  } catch (error) {
+    console.log (error)
+    return []
+  }
+}
+
+
+
+
+/****************************************************************************************** */
+
+/*************************************ENTER STATIC DATA****************
+ *  const data ={
+      countries:{
+        USA :[
+          'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+          'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+          'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+          'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+          'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+          'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
+          'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        ],
+        Canada : [
+        'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
+        'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
+        'Quebec', 'Saskatchewan', 'Yukon'
+        ]
+      }
+    }
+    const enter =async()=>{
+      await enterStaticData(data)
+    }
+ * enter()
+ * ****************** */
+    export const enterStaticData= async(data)=>{
+      await addDoc(staticCollectionRef, data)
+      return true
+    }
+    
+    
+    
+    
+    // Get all countries
+    export const getCountries = async () => {
+      try {
+        const querySnapshot = await getDocs(staticCollectionRef);
+    
+        // Map the data and extract the countries field
+        const countries = querySnapshot.docs.map((doc) => doc.data().countries);
+        return countries;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    };
+    
+    // Get all Vehicles
+    export const getVehicles = async () => {
+      try {
+        const querySnapshot = await getDocs(staticCollectionRef);
+    
+        // Map the data and extract the vehicles field
+        const vehicles = querySnapshot.docs.map((doc) => doc.data().vehicles);
+        return vehicles;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    };
+    
