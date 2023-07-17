@@ -4,8 +4,10 @@ import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
-import { getUserInfo, getAllInventoryByEntity } from '../../Firebase/FirebaseStateManagement';
+import { getUserInfo, getAllInventoryByEntity, getAllStripeProducts, stripeCheckOut, getSubscription } from '../../Firebase/FirebaseStateManagement';
 import iconInfo from "../../images/icons-info.svg"
+
+import { firestore } from '../../Firebase/FirebaseConfig';
 
 export default function Dashboard(props) {
     document.title = "Dashboard"
@@ -92,11 +94,12 @@ export default function Dashboard(props) {
                         <p>{account?.city}</p>
                         <p>{account?.region}</p>
                         <p>{account?.country}</p>
+                   
                     </div>
                     <ReactSVG src={menu} className='menu' onClick={()=>{setShowOptions(!showOptions)}}/>
                     {showOptions && (<div ref={optionsRef} className='options'>
                         <ul>
-                            <li><a onClick={()=> navigate("/account")}>Edit account</a></li>
+                            <li><a onClick={()=> navigate("/account")}>Manage account</a></li>
                         </ul>
                     </div>
                     )}
@@ -140,6 +143,8 @@ export default function Dashboard(props) {
             </div>
             }
         </div>
+    
+    
     </div>
     
     </div>

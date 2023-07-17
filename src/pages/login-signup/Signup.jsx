@@ -115,7 +115,7 @@ export default function Signup() {
                 if (success) {
                     
                     navigate("/login")
-
+                    
                     Store.addNotification({
                         title: "Success",
                         message: "Your account was created.",
