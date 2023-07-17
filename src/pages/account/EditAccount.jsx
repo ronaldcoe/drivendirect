@@ -11,7 +11,7 @@ export default function EditAccount() {
   const navigate = useNavigate()
   const [account, setAccount] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
-  const [subsciption, setSubscription] = useState([])
+  const [subsciption, setSubscription] = useState(null)
 
   const fetchUserInfo = async () => {
     const userId = localStorage.getItem('userId');

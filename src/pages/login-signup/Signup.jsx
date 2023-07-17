@@ -5,6 +5,7 @@ import { getCountries } from '../../Firebase/FirebaseStateManagement';
 import DropDown from '../../shared/dropdown/DropDown';
 import {useNavigate} from "react-router"
 import { Store } from 'react-notifications-component';
+import { getAllStripeProducts, stripeCheckOut } from '../../Firebase/FirebaseStateManagement';
 
 export default function Signup() {
     // Data for the Form
@@ -16,7 +17,6 @@ export default function Signup() {
     const fetchdata=async()=>{
         const data = await getCountries()
         setCountriesData(data[1])
-   
       }
  
     
@@ -36,7 +36,26 @@ export default function Signup() {
     const [acceptTerms, setAcceptTerms] = useState(false)
     const [tradeMax, setTradeMax] = useState()
     const [searchMax, setSearchMax] = useState()
- 
+    const [openSubscription, setOpenSubscription] = useState(false)
+
+    /**************************STRIPE *********************/
+    const [products, setProducts]= useState([])
+    
+    const checkout = async(priceId)=>{
+        const userId = localStorage.getItem("userId")
+        await stripeCheckOut(userId, priceId)
+    }
+
+    useEffect(()=>{
+        const fetchStripeProducts = async()=>{
+            const products = await getAllStripeProducts()
+            console.log(products)
+            setProducts(products)
+        }
+        fetchStripeProducts()
+    }, [])
+
+      /************************* */
     console.log(country)
 
     // Function to make sure we're not sending incorrect data
@@ -113,22 +132,21 @@ export default function Signup() {
                     businessName, businessType,
                     website, country, region, city, phoneNumber, tradeMax, searchMax);
                 if (success) {
-                    
-                    navigate("/login")
-                    
-                    Store.addNotification({
-                        title: "Success",
-                        message: "Your account was created.",
-                        type: "success",
-                        insert: "top",
-                        container: "top-right",
-                        animationIn: ["animate__animated", "animate__fadeInDown"],
-                        animationOut: ["animate__animated", "animate__fadeOut"],
-                        dismiss: {
-                            duration: 5000,
-                            showIcon: true
-                        }
-                        });
+                    setOpenSubscription(true)
+                    // navigate("/login")
+                    // Store.addNotification({
+                    //     title: "Success",
+                    //     message: "Your account was created.",
+                    //     type: "success",
+                    //     insert: "top",
+                    //     container: "top-right",
+                    //     animationIn: ["animate__animated", "animate__fadeInDown"],
+                    //     animationOut: ["animate__animated", "animate__fadeOut"],
+                    //     dismiss: {
+                    //         duration: 5000,
+                    //         showIcon: true
+                    //     }
+                    //     });
                     
                 } else {
                     Store.addNotification({
@@ -187,11 +205,40 @@ export default function Signup() {
   return (
     <div className='signup'>
         <div className='signup__wrapper'>
-            
+          
             <div className='signup__wrapper__description'>
                 <h1>Create an Account</h1>
                 <p>Once registered your information will be verified and an email will then be sent to you allowing you to enter a username and password.</p>
+                {!openSubscription &&
+                <div>
+                <h2>List of available Plans</h2>
+                    {products?.map((product)=>{
+                        // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
+                        // console.log(isCurrentPlan)
+                        return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+                                    <h2>{product.name}</h2>
+                                    <img src={product.images[0]} alt={product.name}/>
+                                    <p>Description: {product.description}</p>
+                                    <p><strong>Price: {parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</strong></p>
+                                </div>
+                    })}
+                </div>}
             </div>
+            {openSubscription ?
+            <div>
+                <h2>Choose Your Plan</h2>
+                    {products?.map((product)=>{
+                        // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
+                        // console.log(isCurrentPlan)
+                        return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+                                    <h2>{product.name}</h2>
+                                    <img src={product.images[0]} alt={product.name}/>
+                                    <p>Description: {product.description}</p>
+                                    <p><strong>Price: {parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</strong></p>
+                                    <button onClick={()=>{checkout(product.prices[0].id)}}>Subscribe</button>
+                                </div>
+                    })}
+            </div>:
             <div className='signup__wrapper__form'>
                 
                 <form onSubmit={signUp}>
@@ -263,10 +310,11 @@ export default function Signup() {
                         </div>
                     </label>
                     <button className="signup_button" type='submit'>
-                        Sign Up
+                        Click to Choose Your Plan
                     </button>
                 </form>
             </div>
+            }
         </div>
     </div>
   )

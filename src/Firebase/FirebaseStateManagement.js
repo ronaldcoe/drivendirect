@@ -258,7 +258,7 @@ export const createUser = async (email, password, firstName, lastName, businessN
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCreds.user;
-    
+    localStorage.setItem("userId", user.uid)
     // Create the new user object
     const userData = {
       userId: user.uid,
@@ -462,7 +462,7 @@ export const getSubscription = async (userId) =>{
 
   } catch (error) {
     console.log (error)
-    return []
+    return null
   }
 }
 
