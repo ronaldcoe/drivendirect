@@ -30,7 +30,15 @@
         h2 {
             font-size: 2rem;
         }
-    
+        
+        .dashboard__wrapper__card_title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            p {
+                font-size: 1.3rem;
+            }
+        }
         .dashboard__wrapper_col_1 {
             
             grid-row: 1/3;

@@ -3,7 +3,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
 nav ul {
   display: flex;
-  gap: 20px;
   align-items: center;
   justify-content: end;
 }
@@ -84,6 +83,10 @@ nav ul li a {
     display: block;
     height: 50px;
   }
+}
+.header .header__wrapper nav .header__wrapper__action__links {
+  display: flex;
+  gap: 20px;
 }
 .header .header__wrapper nav .header__wrapper__action__links a {
   font-weight: 300;

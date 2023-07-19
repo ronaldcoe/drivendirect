@@ -4,15 +4,16 @@ import "../../styles/blocks/edit_account.css"
 import { editUserInfo, getUserInfo, getSubscription, stripeCheckOut, getAllStripeProducts } from '../../Firebase/FirebaseStateManagement';
 import { Store } from 'react-notifications-component';
 import {useNavigate} from "react-router"
+import editIcon from "../../images/icons8-create-32.png"
 import { confirmPasswordReset } from "firebase/auth";
 
 export default function EditAccount() {
-
+  document.title = "Manage Account"
   const navigate = useNavigate()
   const [account, setAccount] = useState({});
   const [updatedUser, setUpdatedUser] = useState({});
   const [subsciption, setSubscription] = useState([])
-
+  const [editMode, setEditMode] = useState(false)
   const fetchUserInfo = async () => {
     const userId = localStorage.getItem('userId');
     const userInfo = await getUserInfo(userId);
@@ -93,7 +94,7 @@ export default function EditAccount() {
         });
     }
   };
-console.log(updatedUser)
+console.log(editMode)
   return (
     <div className='edit_account'>
       <div className='edit_account__wrapper'>
@@ -104,11 +105,11 @@ console.log(updatedUser)
         </div>
           <div className="edit_account__wrapper__content">
             <div className="edit_account__wrapper__form">
-              <h2>Personal Information</h2>
+              <h2>Personal Information <span onClick={()=> setEditMode(!editMode)}>Edit <img src={editIcon} alt="" /> </span></h2>
               <form onSubmit={updateUser}>
                 <label>
                   <p>First Name</p>
-                  <input
+                  <input {...(!editMode ? { readOnly: true } : {})}
                     type='text'
                     required
                     value={updatedUser.firstName || ""}
@@ -122,7 +123,7 @@ console.log(updatedUser)
                 </label>
                 <label>
                   <p>Last Name</p>
-                  <input
+                  <input {...(!editMode ? { readOnly: true } : {})}
                     type='text'
                     required
                     value={updatedUser.lastName || ""}
@@ -136,7 +137,7 @@ console.log(updatedUser)
                 </label>
                 <label>
                   <p>Email</p>
-                  <input
+                  <input {...(!editMode ? { readOnly: true } : {})}
                     type='email'
                     required
                     value={updatedUser.email || ""}
@@ -150,7 +151,7 @@ console.log(updatedUser)
                 </label>
                 <label>
                   <p>Business Name</p>
-                  <input
+                  <input {...(!editMode ? { readOnly: true } : {})}
                     type='text'
                     required
                     value={updatedUser.businessName || ""}
@@ -165,7 +166,7 @@ console.log(updatedUser)
                 </label>
                 <label>
                   <p>Website</p>
-                  <input
+                  <input {...(!editMode ? { readOnly: true } : {})}
                     type='text'
                     required
                     value={updatedUser.website || ""}
@@ -179,7 +180,7 @@ console.log(updatedUser)
                 </label>
                 <label>
                   <p>Phone Number</p>
-                  <input
+                  <input {...(!editMode ? { readOnly: true } : {})}
                     type='tel'
                     value={updatedUser.phoneNumber || ""}
                     onChange={(e) => {
@@ -191,7 +192,7 @@ console.log(updatedUser)
                     required
                   />
                 </label>
-                <button type="submit">Update Profile</button>
+                {editMode&&<button type="submit">Update Profile</button>}
               </form>
             </div>
             <div className="stripe_management">
