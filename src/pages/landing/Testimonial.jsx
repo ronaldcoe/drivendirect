@@ -1,15 +1,22 @@
 import React from 'react'
 import '../../styles/blocks/testimonial.css'
-import George from '../../images/george.jpg'
+import George from '../../images/george_2_100x95.jpg'
 
 export default function Testimonial() {
   return (
     <div className='testimonial'>
         <div className='testimonial__wrapper'>
             <div className='testimonial__wrapper__text'>
-            <img src={George} alt='Profile picture of George'/>
+            
 
-                <h2>Testimonial</h2>
+                <div className='testimonial__wrapper_header'>
+                  <img src={George} alt='Profile picture of George'/>
+                  <div>
+                    
+                    <h2>George Shaw</h2>
+                    <p>g.shaw@shaw.ca</p>
+                  </div> 
+                </div>
                 <p>
                 My name is George Shaw.  I started in the automotive business selling new and used vehicles in Calgary, Alberta in 1975. After having completed just a year of university, I needed to find a job so as to be able to go back to school and finish my degree, but being married with a family made things more of a dream than a reality.
                 </p>

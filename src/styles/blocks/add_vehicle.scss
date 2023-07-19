@@ -13,6 +13,7 @@
         @media screen and (max-width:$breakpoint-medium) {
             flex-direction: column;
             align-items: center;
+            padding: 0;
         }
 
         
@@ -20,6 +21,7 @@
             color: $primary-color;
         }
         .addVehicle__wrapper__description {
+            padding: 0px 20px;
             max-width: 400px;
 
             .addVehicle__wrapper__form__important {
@@ -32,6 +34,9 @@
             @include container;
             width: 360px;
            
+            @media screen and (max-width:$breakpoint-small) {
+            width: 100%;
+            }
 
             
             form {

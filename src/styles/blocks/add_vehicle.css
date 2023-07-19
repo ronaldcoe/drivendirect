@@ -13,12 +13,14 @@
   .addVehicle .addVehicle__wrapper {
     flex-direction: column;
     align-items: center;
+    padding: 0;
   }
 }
 .addVehicle .addVehicle__wrapper h1 {
   color: #080077;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__description {
+  padding: 0px 20px;
   max-width: 400px;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__description .addVehicle__wrapper__form__important {
@@ -31,6 +33,11 @@
   background-color: white;
   padding: 30px;
   width: 360px;
+}
+@media screen and (max-width: 505px) {
+  .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form {
+    width: 100%;
+  }
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form {
   display: flex;
