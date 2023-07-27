@@ -47,6 +47,7 @@
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label {
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
+  cursor: pointer;
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label p {
   font-size: 1.3rem;
@@ -67,7 +68,7 @@
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label input:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label input.valid {
   border: 1px solid green;
@@ -92,7 +93,7 @@
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label select:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label select.valid {
   border: 1px solid green;
@@ -121,7 +122,7 @@
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label textarea:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .addVehicle .addVehicle__wrapper .addVehicle__wrapper__form form label textarea.valid {
   border: 1px solid green;

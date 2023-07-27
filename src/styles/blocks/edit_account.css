@@ -20,13 +20,8 @@
   }
 }
 .edit_account .edit_account__wrapper h2 {
-  color: "Rubik", sans-serif;
+  color: #636363;
   font-size: 1.6rem;
-  border-radius: 5px;
-  background-color: white;
-  padding: 30px;
-  border-bottom: 1px solid #B6B6B6;
-  padding: 10px;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
@@ -62,16 +57,38 @@
     align-items: center;
   }
 }
-.edit_account .edit_account__wrapper .edit_account__wrapper__content .strippe_container {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-.edit_account .edit_account__wrapper .edit_account__wrapper__content .strippe_plans {
+.edit_account .edit_account__wrapper .edit_account__wrapper__content .stripe_management {
   border-radius: 5px;
   background-color: white;
   padding: 30px;
   border-bottom: 1px solid #B6B6B6;
+}
+.edit_account .edit_account__wrapper .edit_account__wrapper__content .stripe_management_subscription_details button {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: gold;
+  color: #080077;
+  margin: 10px 0px 0px;
+}
+.edit_account .edit_account__wrapper .edit_account__wrapper__content .strippe_container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  gap: 10px;
+}
+.edit_account .edit_account__wrapper .edit_account__wrapper__content .strippe_container h2 {
+  margin-top: 10px;
+  color: #636363;
+}
+.edit_account .edit_account__wrapper .edit_account__wrapper__content .strippe_plans {
+  border: 1px solid #B6B6B6;
+  padding: 15px;
+  border-radius: 5px;
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__content .strippe_plans img {
   width: 100px;
@@ -88,10 +105,12 @@
   padding: 30px;
   border-bottom: 1px solid #B6B6B6;
   margin: 0 auto;
+  height: 100%;
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label {
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
+  cursor: pointer;
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label p {
   font-size: 1.3rem;
@@ -112,7 +131,7 @@
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label input:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label input.valid {
   border: 1px solid green;
@@ -137,7 +156,7 @@
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label select:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label select.valid {
   border: 1px solid green;
@@ -166,7 +185,7 @@
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .edit_account .edit_account__wrapper .edit_account__wrapper__form form label textarea.valid {
   border: 1px solid green;
@@ -184,6 +203,6 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #080077;
-  color: white;
+  background-color: gold;
+  color: #080077;
 }/*# sourceMappingURL=edit_account.css.map */

@@ -25,7 +25,7 @@
 
         &:valid {
             border: 1px solid green;
-            background-color: rgb(246, 255, 246);
+            background-color: rgb(250, 255, 250);
         }
     }
 
@@ -76,6 +76,7 @@
     label {
         margin-bottom: 20px;
         font-family: $paragraph-font;
+        cursor: pointer;
         p {
             font-size: 1.3rem;
             color: $secondary-background-color-font;

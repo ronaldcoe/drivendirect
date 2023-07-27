@@ -12,10 +12,12 @@ import AddVehicle from './pages/add_vehicle/AddVehicle';
 import CardGrid from './shared/CarInformation/CardGrid';
 import Dashboard from './pages/dashboard/Dashboard';
 import ProtectedRoute from './shared/ProtectedRoute';
+import NotFound from './shared/NotFound';
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
 import EditAccount from './pages/account/EditAccount';
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         {/* <Firebase/>    */}
       </header>
       <main>
+        
         <ReactNotifications className='notifications' />
         <Router>
           <Routes>
@@ -35,7 +38,7 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
             <Route path='/inventory/listing' element={<CardGrid type={"listing"}/>}/>
-            
+          
             {/* ALL PROTECTED ROUTES THAT NEED SIGNIN USER */}
             <Route exact path='/dashboard' element={
               <ProtectedRoute>
@@ -58,7 +61,7 @@ function App() {
                 <EditAccount />
               </ProtectedRoute>
             } />
-           
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
         {/* <AddVehicle/> */}

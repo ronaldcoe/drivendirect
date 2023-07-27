@@ -25,6 +25,7 @@
 .vehiclecard .vehiclecard__edit_car label {
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
+  cursor: pointer;
 }
 .vehiclecard .vehiclecard__edit_car label p {
   font-size: 1.3rem;
@@ -45,7 +46,7 @@
 }
 .vehiclecard .vehiclecard__edit_car label input:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .vehiclecard .vehiclecard__edit_car label input.valid {
   border: 1px solid green;
@@ -70,7 +71,7 @@
 }
 .vehiclecard .vehiclecard__edit_car label select:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .vehiclecard .vehiclecard__edit_car label select.valid {
   border: 1px solid green;
@@ -99,7 +100,7 @@
 }
 .vehiclecard .vehiclecard__edit_car label textarea:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .vehiclecard .vehiclecard__edit_car label textarea.valid {
   border: 1px solid green;
@@ -310,6 +311,11 @@
   background-color: white;
   padding: 30px;
   border-radius: 5px;
+}
+@media screen and (max-width: 505px) {
+  .cardGrid .cardGrid__wrapper .cardGrid_table {
+    padding: 20px;
+  }
 }
 .cardGrid .cardGrid__wrapper .cardGrid_table .pagination {
   display: flex;

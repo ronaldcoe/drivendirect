@@ -1,0 +1,15 @@
+@import '../variables/variables';
+@import '../variables/mixins';
+
+.notfound {
+    @include wrapper;
+    h1 {
+        color: $primary-color;
+        margin: 10px 0px;
+    }
+    a {
+        display: block;
+        font-family: $paragraph-font;
+        margin: 10px 0px;
+    }
+}

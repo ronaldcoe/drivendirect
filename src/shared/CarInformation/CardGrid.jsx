@@ -110,7 +110,7 @@ export default function CardGrid(props) {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterData(dataVehicles).slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems)
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -126,7 +126,7 @@ export default function CardGrid(props) {
             <h1>{props.type === "trade"?"Sale":"List"} Inventory</h1>
             {props.type === "trade"?<p>This contains the vehicles that dealers are selling or Trading.
               
-               <p>You can list a vechicle here for trade or sale by clicking on your <a href='/dashboard'>Dashboard</a></p></p>:<p>This contains the list of vehicles that dealers are looking for. <p>Use this to supply the need. You can also list what you need by clicking on your <strong>Dashboard</strong></p></p>}
+               <p>You can list a vechicle here for trade or sale by clicking on your <a href='/dashboard'>Dashboard</a></p></p>:<p>This contains the list of vehicles that dealers are looking for. <p>Use this to supply the need. You can also list what you need by clicking on your <a href='/dashboard'>Dashboard</a></p></p>}
           </div>
         </div>
 
@@ -194,7 +194,7 @@ export default function CardGrid(props) {
                             <strong>Name:</strong>
                             <div>{dealerInformation.firstName} {dealerInformation.lastName}</div>
                             <strong>Business Name:</strong>
-                            <div>{dealerInformation.dealership}</div>
+                            <div>{dealerInformation.businessName}</div>
                             <strong>Phone Number:</strong>
                             <div>{dealerInformation.phoneNumber}</div>
                             <strong>Email:</strong>

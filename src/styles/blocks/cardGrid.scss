@@ -48,7 +48,9 @@
         background-color: white;
         padding: 30px; 
         border-radius: 5px;
-
+        @media screen and (max-width:$breakpoint-small) {
+          padding: 20px;
+        }
         .pagination {
           display: flex;
           justify-content: center;

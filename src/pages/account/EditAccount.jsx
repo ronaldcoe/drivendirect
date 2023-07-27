@@ -105,8 +105,9 @@ console.log(editMode)
         </div>
           <div className="edit_account__wrapper__content">
             <div className="edit_account__wrapper__form">
-              <h2>Personal Information <span onClick={()=> setEditMode(!editMode)}>Edit <img src={editIcon} alt="" /> </span></h2>
               <form onSubmit={updateUser}>
+              <h2>Personal Information <span onClick={()=> setEditMode(!editMode)}>Edit <img src={editIcon} alt="" /> </span></h2>
+
                 <label>
                   <p>First Name</p>
                   <input {...(!editMode ? { readOnly: true } : {})}
@@ -197,7 +198,7 @@ console.log(editMode)
             </div>
             <div className="stripe_management">
             {/* *************************************STRIPE STUFF****************************************************** */}
-            <div>
+            
              
               {subsciption?.map((product)=>{
                 // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
@@ -209,31 +210,34 @@ console.log(editMode)
                 const endDate = new Date(product.current_period_end.seconds * 1000);
                 const endDateString = endDate.toLocaleDateString(undefined, options)
 
-                  console.log(product)
-                  return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
-                              <h3>{product.role}</h3>
-                              <p>{product.description}</p>
+                
+                  return <div key={product.id} className="stripe_management_subscription_details">
+                              <h2>My current plan</h2>
+                              <div style={{border: "1px solid #B6B6B6", borderRadius:"5px", padding:"15px"}}>
+                                <h2>{product.role} <span>${parseFloat(product.items[0].plan.amount)/100} {product.items[0].plan.currency}</span></h2>
+                              
                               <p>Subscription Type: {product.items[0].plan.interval}ly (Recurring)</p>
                               <p>Subscription Start Date: {startDateString}</p>
                               <p>Subscription End Date: {endDateString}</p>
-                              <p>Subscription Cost: ${parseFloat(product.items[0].plan.amount)/100} {product.items[0].plan.currency}</p>
-                              <p></p>
+                          
+                        
                               <button>Manage your Subscription</button>
                               {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
+                              </div>
                           </div>
               })}
-            </div>
-            <h2>List of available Plans</h2>
+           
+            
             <div className="strippe_container" >
-              
+              <h2>Available Plans</h2>
               {products?.map((product)=>{
                 // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
-                // console.log(isCurrentPlan)
+            
                   return <div key={product.id} className="strippe_plans" >
-                              <h3>{product.name}</h3>
-                              <img src={product.images[0]} alt={product.name}/>
+                              <h2>{product.name} <span>${parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</span></h2>
+                              {/* <img src={product.images[0]} alt={product.name}/> */}
                               <p>Description: {product.description}</p>
-                              <p><strong>Price: {parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</strong></p>
+                          
                               {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
                           </div>
               })}

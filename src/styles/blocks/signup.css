@@ -30,7 +30,7 @@
   background-color: white;
   padding: 30px;
   border-bottom: 1px solid #B6B6B6;
-  max-width: 500px;
+  max-width: 400px;
   min-width: 300px;
 }
 .signup .signup__wrapper .signup__wrapper__form form {
@@ -40,6 +40,7 @@
 .signup .signup__wrapper .signup__wrapper__form form label {
   margin-bottom: 20px;
   font-family: "Rubik", sans-serif;
+  cursor: pointer;
 }
 .signup .signup__wrapper .signup__wrapper__form form label p {
   font-size: 1.3rem;
@@ -60,7 +61,7 @@
 }
 .signup .signup__wrapper .signup__wrapper__form form label input:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .signup .signup__wrapper .signup__wrapper__form form label input.valid {
   border: 1px solid green;
@@ -85,7 +86,7 @@
 }
 .signup .signup__wrapper .signup__wrapper__form form label select:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .signup .signup__wrapper .signup__wrapper__form form label select.valid {
   border: 1px solid green;
@@ -114,7 +115,7 @@
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea:required:valid {
   border: 1px solid green;
-  background-color: rgb(246, 255, 246);
+  background-color: rgb(250, 255, 250);
 }
 .signup .signup__wrapper .signup__wrapper__form form label textarea.valid {
   border: 1px solid green;
@@ -138,20 +139,46 @@
 .signup .signup__wrapper .signup__wrapper__form form .signup__wrapper__form__details.show_details {
   display: block;
 }
+.signup .signup__wrapper .signup__wrapper__form form h2 {
+  margin-bottom: 20px;
+  color: #080077;
+}
+.signup .signup__wrapper .signup__wrapper__form form .second {
+  margin-top: 30px;
+}
 .signup .signup__wrapper .signup__wrapper__form form p {
   color: #636363;
 }
 .signup .signup__wrapper .signup__wrapper__form form .business_type_container {
   display: flex;
-  gap: 30px;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
 }
 .signup .signup__wrapper .signup__wrapper__form form .business_type_container .business_type {
   display: flex;
-  flex-direction: row-reverse;
-  gap: 5px;
+  flex-direction: row;
+  gap: 20px;
   width: -moz-fit-content;
   width: fit-content;
-  padding-top: 10px;
+  align-items: start;
+  border: 1px solid #B6B6B6;
+  border-radius: 5px;
+  padding: 15px;
+}
+.signup .signup__wrapper .signup__wrapper__form form .business_type_container .business_type input[type=radio] {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.signup .signup__wrapper .signup__wrapper__form form .business_type_container .business_type input[type=radio]:checked {
+  border: 3px solid #080077;
+}
+.signup .signup__wrapper .signup__wrapper__form form .business_type_container .business_type h3 {
+  font-size: 1.3rem;
+  color: #636363;
+}
+.signup .signup__wrapper .signup__wrapper__form form .business_type_container .business_type.checked {
+  border: 1px solid green;
 }
 .signup .signup__wrapper .signup__wrapper__form form .signup_button {
   padding: 15px;
@@ -165,7 +192,8 @@
   color: white;
 }
 .signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   font-family: "Rubik", sans-serif;
   align-items: center;
   gap: 10px;
