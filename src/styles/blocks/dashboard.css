@@ -30,6 +30,14 @@
 .dashboard .dashboard__wrapper h2 {
   font-size: 2rem;
 }
+.dashboard .dashboard__wrapper .dashboard__wrapper__card_title {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.dashboard .dashboard__wrapper .dashboard__wrapper__card_title p {
+  font-size: 1.3rem;
+}
 .dashboard .dashboard__wrapper .dashboard__wrapper_col_1 {
   grid-row: 1/3;
 }

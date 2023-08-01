@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.notfound {
+  max-width: 1800px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+.notfound h1 {
+  color: #080077;
+  margin: 10px 0px;
+}
+.notfound a {
+  display: block;
+  font-family: "Rubik", sans-serif;
+  margin: 10px 0px;
+}/*# sourceMappingURL=notfound.css.map */

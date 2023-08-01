@@ -49,14 +49,14 @@ export default function Signup() {
     useEffect(()=>{
         const fetchStripeProducts = async()=>{
             const products = await getAllStripeProducts()
-            console.log(products)
+            
             setProducts(products)
         }
         fetchStripeProducts()
     }, [])
 
       /************************* */
-    console.log(country)
+ 
 
     // Function to make sure we're not sending incorrect data
     const checkData = () => {
@@ -209,39 +209,12 @@ export default function Signup() {
             <div className='signup__wrapper__description'>
                 <h1>Create an Account</h1>
                 <p>Once registered your information will be verified and an email will then be sent to you allowing you to enter a username and password.</p>
-                {!openSubscription &&
-                <div>
-                <h2>List of available Plans</h2>
-                    {products?.map((product)=>{
-                        // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
-                        // console.log(isCurrentPlan)
-                        return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
-                                    <h2>{product.name}</h2>
-                                    <img src={product.images[0]} alt={product.name}/>
-                                    <p>Description: {product.description}</p>
-                                    <p><strong>Price: {parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</strong></p>
-                                </div>
-                    })}
-                </div>}
+                
             </div>
-            {openSubscription ?
-            <div>
-                <h2>Choose Your Plan</h2>
-                    {products?.map((product)=>{
-                        // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
-                        // console.log(isCurrentPlan)
-                        return <div key={product.id} style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
-                                    <h2>{product.name}</h2>
-                                    <img src={product.images[0]} alt={product.name}/>
-                                    <p>Description: {product.description}</p>
-                                    <p><strong>Price: {parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</strong></p>
-                                    <button onClick={()=>{checkout(product.prices[0].id)}}>Subscribe</button>
-                                </div>
-                    })}
-            </div>:
             <div className='signup__wrapper__form'>
                 
                 <form onSubmit={signUp}>
+                    <h2>Personal Information</h2>
                     <label>
                         <p>First Name</p>
                         <input type='text' required value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}></input>  
@@ -265,17 +238,33 @@ export default function Signup() {
                         <input type='password' required className={password !== confirmPassword? 'invalid' : password === ''? '' : 'valid'} onChange={(e)=>{setConfirmPassword(e.target.value)}}></input>
                         {password != confirmPassword? <p className='signup__wrapper__form__details show_details'>*Passwords must match</p>: ''} 
                     </label>
+                    <h2 className='second'>Business Information</h2>
                     <p>What type of business are you?</p>
 
                     <div className='business_type_container'>
-                        <label className='business_type'>
+                    {products?.map((product, index)=>{
+                      
+                        return <label className='business_type' key={index}>
+                                    <input type="radio" value={product.name==="Basic Renter Plan"?"rental":"dealer"} name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
+                                    <div>
+                                        <h3>{product.name}</h3>
+                                        {/* <img src={product.images[0]} alt={product.name}/> */}
+                                        <p>{product.description}</p>
+                                       
+                                    </div>
+                                    <div className='price'>
+                                    <p><strong>${parseFloat(product.prices[0].unit_amount)/100 }{product.prices[0].currency}/mo</strong></p>
+                                    </div>
+                                </label>
+                    })}
+                        {/* <label className='business_type'>
                             <p>Dealer</p>
                             <input type="radio" value="dealer" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
                         </label>
                         <label className='business_type'>
                             <p>Rental</p>
                             <input type="radio" value="rental" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
-                        </label>
+                        </label> */}
                     </div>
                     <label>
                         <p>Business Name</p>
@@ -314,7 +303,7 @@ export default function Signup() {
                     </button>
                 </form>
             </div>
-            }
+            
         </div>
     </div>
   )

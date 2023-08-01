@@ -31,7 +31,7 @@
 
         .signup__wrapper__form {
             @include container;
-            max-width: 500px;
+            max-width: 400px;
             min-width: 300px;
       
            
@@ -57,20 +57,53 @@
                     }
                     
                 }
+                h2 {
+                    margin-bottom: 20px;
+                    color: $primary-color;
+
+                   
+                }
+                .second {
+                    margin-top: 30px;
+                }
                 p {
                     color: $secondary-background-color-font;
                   
                 }
                 .business_type_container {
                     display: flex;
-                    gap: 30px;
+                    flex-direction: column;
+                    
+                    width: 100%;
+                    margin-top: 20px;
 
                     .business_type {
                         display: flex;
-                        flex-direction: row-reverse;
-                        gap: 5px;
+                        flex-direction: row;
+                        gap: 20px;
                         width: fit-content;
-                        padding-top: 10px
+                        align-items: start;
+                        
+                        border: 1px solid $border-color;
+                        border-radius: 5px;
+                        padding: 15px;
+                        input[type="radio"] {
+                            width: fit-content;
+                            
+                            &:checked {
+                                border: 3px solid $primary-color;
+                            }
+                        }
+                        
+                        h3 {
+                            font-size: 1.3rem;
+                            color: $secondary-background-color-font;
+                        }
+                        &.checked {
+                            border: 1px solid green;
+                        }                    
+                    
+                        
                     }
                 }
                     
@@ -82,7 +115,8 @@
             }
 
             .signup__wrapper__form__checkbox {
-                display: flex;
+                display: grid;
+                grid-template-columns: auto 1fr;
                 font-family: $paragraph-font;
                 align-items: center;
                 gap: 10px;

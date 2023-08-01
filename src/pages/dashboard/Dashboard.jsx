@@ -6,6 +6,7 @@ import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
 import { getUserInfo, getAllInventoryByEntity, getAllStripeProducts, stripeCheckOut, getSubscription } from '../../Firebase/FirebaseStateManagement';
 import iconInfo from "../../images/icons-info.svg"
+import { Skeleton } from '@mui/material';
 
 import { firestore } from '../../Firebase/FirebaseConfig';
 
@@ -79,10 +80,11 @@ export default function Dashboard(props) {
         <div className='dashboard__wrapper'>
             <div className='dashboard__wrapper_col_1'>
                 <div className='dashboard__wrapper__profile'>
-                    <div className='dashboard__wrapper__profile__picture'>
+                    {account?<div className='dashboard__wrapper__profile__picture'>
+                        
                         {account?.firstName.slice(0,1)}{account?.lastName.slice(0,1)}
-                    </div>
-                    <div className='dashboard__wrapper__profile__info'>
+                    </div>:<Skeleton variant="circular" width={40} height={40} />}
+                    {account?<div className='dashboard__wrapper__profile__info'>
                         <h2>{account?.firstName} {account?.lastName}</h2>
                         <h3>Contact Information</h3>
                         <p>{account?.businessName}</p>
@@ -95,7 +97,17 @@ export default function Dashboard(props) {
                         <p>{account?.region}</p>
                         <p>{account?.country}</p>
                    
+                    </div>:<div style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+                        <Skeleton variant="rounded" width={200} height={20} />
+                        <Skeleton variant="rounded" width={150} height={10} />
+                        <Skeleton variant="rounded" width={100} height={10} />
+                        <Skeleton variant="rounded" width={100} height={10} />
+                        <Skeleton variant="rounded" width={150} height={10} />
+                        <Skeleton variant="rounded" width={100} height={10} />
+                        <Skeleton variant="rounded" width={100} height={10} />
                     </div>
+                    }
+                    
                     <ReactSVG src={menu} className='menu' onClick={()=>{setShowOptions(!showOptions)}}/>
                     {showOptions && (<div ref={optionsRef} className='options'>
                         <ul>
@@ -108,12 +120,17 @@ export default function Dashboard(props) {
         <div className='dashboard__wrapper_col_2'>
             <div className='dashboard__wrapper__section'>
                 <div>
-                    <h2>Tradings <span className="tradingInfoIcon" onClick={() => {setShowTradingInfo(!showTradingInfo); setShowListingInfo(false);}}> <img src={iconInfo} alt="Information about Tradings" width="15px" /></span></h2>
+                    <div className='dashboard__wrapper__card_title'>
+                        <h2>Tradings <span className="tradingInfoIcon" onClick={() => {setShowTradingInfo(!showTradingInfo); setShowListingInfo(false);}}> <img src={iconInfo} alt="Information about Tradings" width="15px" /></span></h2>
+                        <p>{trades?.length}/{account?.tradeMax}</p>
+                    </div>
                     
                     {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
                     }
                 </div>
+                {trades?"":<Skeleton variant="rounded" width={300} height={60} style={{marginTop:"20px"}} />}
                <div className='dashboard__wrapper__section__cards'>
+                
                 {trades?.map((item, key)=> {
                         return(
                             <VehicleCard car={item} key={key} type={"trade"} onUpdate={setUpdate} update={update} />
@@ -128,11 +145,17 @@ export default function Dashboard(props) {
             {account?.businessType !== "rental"&&
                 <div className='dashboard__wrapper__section'>
                 <div>
-                    <h2>Searching <span className="tradingInfoIcon" onClick={() => { setShowListingInfo(!showListingInfo); setShowTradingInfo(false)} }> <img src={iconInfo} alt="Information about Tradings" width="15px" /></span></h2>
+                    <div className='dashboard__wrapper__card_title'>
+                        <h2>Searching <span className="tradingInfoIcon" onClick={() => { setShowListingInfo(!showListingInfo); setShowTradingInfo(false)} }> <img src={iconInfo} alt="Information about Tradings" width="15px" /></span></h2>
                     
-                    {showListingInfo && <><p ref={optionsRef} className='listingInfo'>List vehicles here that you are in need of. Dealers will contact you, if they have what you need or you can search our <strong>Trading Inventory</strong>. Listings will disappear after 7 days of creation.</p></>
-                    }
+                        {showListingInfo && <><p ref={optionsRef} className='listingInfo'>List vehicles here that you are in need of. Dealers will contact you, if they have what you need or you can search our <strong>Trading Inventory</strong>. Listings will disappear after 7 days of creation.</p></>
+                        }
+                        <p>{listings?.length}/{account?.searchMax}</p>
+                        
+                    </div>
+                    
                 </div>
+                    {listings?"":<Skeleton variant="rounded" width={300} height={60} style={{marginTop:"20px"}} />}
                     {listings?.map((item, key)=> {
                     return(
                         <VehicleCard car={item} key={key} type={"listing"} onUpdate={setUpdate} update={update}/>

@@ -32,12 +32,14 @@
             form {
                 display: flex;
                 flex-direction: column;
+                @include forms;
 
                 .login__wrapper__content__eyeicon {
                     color: $border-color;
                     position: absolute;
                     transform: translateY(10px);
                     right: 44px;
+                    cursor: pointer;
 
                     @media screen and (max-width:$breakpoint-small) {
                         right: 44px;
@@ -46,6 +48,7 @@
 
                 label {
                     margin-top: 20px;
+                    margin-bottom: 0px;
 
                     p {
                         font-size: 1.3rem;

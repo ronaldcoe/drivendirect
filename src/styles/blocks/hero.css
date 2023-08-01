@@ -32,7 +32,9 @@
   padding: 40px;
 }
 .hero .hero__wrapper .hero__wrapper__banner .hero__wrapper__banner__content h3 {
-  color: #080077;
+  color: gold;
+  background-color: #080077;
+  padding: 10px;
   font-size: 4rem;
 }
 .hero .hero__wrapper .hero__wrapper__banner .hero__wrapper__banner__content p {
@@ -82,7 +84,7 @@
   cursor: pointer;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: #d72638;
+  background-color: gold;
   color: white;
   font-size: 1.8rem;
 }

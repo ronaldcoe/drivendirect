@@ -9,19 +9,14 @@
         display: flex;
         padding: 0;
         gap: 50px;
+        max-width: 800px;
+        margin: 0 auto;
         
         @media screen and (max-width: $breakpoint-medium) {
             flex-direction: column;
             padding: 0;
         }
-        img {
-            width:150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 999px;
-            margin-bottom: 40px;
-            
-        }
+        
 
         .testimonial__wrapper__text {
             background-color: white;
@@ -29,10 +24,36 @@
             border-radius: 5px;
             
 
-            h2 {
-                color: $primary-color;
-                margin-bottom: 20px;
-            }
+           .testimonial__wrapper_header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+
+                img {
+                    width:100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 999px;
+                    margin-bottom: 40px;
+                
+                }
+                h2 {
+                    color: $primary-color;
+                    
+                }
+                p {
+                    font-size: 1.2rem;
+                }
+
+           }
+
+           .testimonial__text__columns {
+            display: grid;
+            grid-template-columns: 1fr ;
+          
+            text-align: justify;
+            text-justify: inter-word;
+           }
 
             p {
                 color: $primary-paragraph-font-color;
