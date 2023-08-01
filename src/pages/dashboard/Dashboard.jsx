@@ -4,13 +4,18 @@ import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
-import { getUserInfo, getAllInventoryByEntity, getAllStripeProducts, stripeCheckOut, getSubscription } from '../../Firebase/FirebaseStateManagement';
+import { getUserInfo, getAllInventoryByEntity,getSubscription } from '../../Firebase/FirebaseStateManagement';
 import iconInfo from "../../images/icons-info.svg"
 import { Skeleton } from '@mui/material';
 
-import { firestore } from '../../Firebase/FirebaseConfig';
-
-export default function Dashboard(props) {
+/**
+ * @author : Lakeram && Ronald
+ * @description :Dashboard is only accessible to signed in users. Displays User Infomation, 
+ * user Listing or searches and gives user the abilty to add trades and searches depending on their subscription type
+ * @returns: JSX
+ * @copyright: drivendirect @ 8/1/2023
+ */
+export default function Dashboard() {
     document.title = "Dashboard"
     const [account, setAccount] = useState()
     const [trades, setTrades] = useState()
@@ -19,6 +24,7 @@ export default function Dashboard(props) {
     const [hasSubscription, setHasSubscription]  = useState(false)
     const optionsRef = useRef(null);
     const navigate = useNavigate();
+
     // These will be changed in the future
     const tradeMax = account?.tradeMax
     const listMax = account?.searchMax
@@ -30,6 +36,7 @@ export default function Dashboard(props) {
     const [showTradingInfo, setShowTradingInfo] = useState(false)
     const [showListingInfo, setShowListingInfo] = useState(false)
 
+    // Gets user information to Display on the Dashboard
     const fetchUserInfo = async ()=>{
         var userId = localStorage.getItem('userId')
         var userInfo = await getUserInfo(userId)
@@ -40,18 +47,22 @@ export default function Dashboard(props) {
     }
 
     localStorage.setItem("region", account?.region)
+
+    // Gets all the Trades that a user has to be displayed
     const fetchTrades = async ()=>{
         var userId = localStorage.getItem('userId')
         var tradeVehicles = await getAllInventoryByEntity("userId", userId, "trade")
         setTrades(tradeVehicles)
     }
 
+    // Gets all the List that a user has to be displayed
     const fetchListing = async ()=>{
         var userId = localStorage.getItem('userId')
         var listVehicles = await getAllInventoryByEntity("userId", userId, "listing")
         setListings(listVehicles)
     }
 
+    // This is done to help with the close pop-ups
     useEffect(() => {
         const handleMouseDown = (event) => {
         if (optionsRef.current && !optionsRef.current.contains(event.target)) {
@@ -60,13 +71,15 @@ export default function Dashboard(props) {
             setShowTradingInfo(false)
         }
         };
-
         document.addEventListener('mousedown', handleMouseDown);
         return () => {
         document.removeEventListener('mousedown', handleMouseDown);
         };
     }, []);
 
+    // We are getting subscriptions to have sure that the users does not
+    // have access to create listings or trade without being subscribed
+    // (this will be implemented in the backend also)
     useEffect(() => {
         const checkSubscription = async () => {
             var userId = localStorage.getItem('userId')
@@ -76,6 +89,8 @@ export default function Dashboard(props) {
     
         checkSubscription();
       }, []);
+    
+    // Usual Effect
     useEffect(()=>{
         fetchUserInfo()
         fetchTrades()
@@ -173,11 +188,8 @@ export default function Dashboard(props) {
                 
             </div>
             }
-        </div>
-    
-    
+        </div>    
     </div>
-    
     </div>
   )
 }
