@@ -37,11 +37,12 @@ export default function Signup() {
     const [tradeMax, setTradeMax] = useState()
     const [searchMax, setSearchMax] = useState()
     const [openSubscription, setOpenSubscription] = useState(false)
+    const [priceId, setPriceId] = useState(null)
 
     /**************************STRIPE *********************/
     const [products, setProducts]= useState([])
     
-    const checkout = async(priceId)=>{
+    const checkout = async()=>{
         const userId = localStorage.getItem("userId")
         await stripeCheckOut(userId, priceId)
     }
@@ -133,21 +134,8 @@ export default function Signup() {
                     website, country, region, city, phoneNumber, tradeMax, searchMax);
                 if (success) {
                     setOpenSubscription(true)
-                    // navigate("/login")
-                    // Store.addNotification({
-                    //     title: "Success",
-                    //     message: "Your account was created.",
-                    //     type: "success",
-                    //     insert: "top",
-                    //     container: "top-right",
-                    //     animationIn: ["animate__animated", "animate__fadeInDown"],
-                    //     animationOut: ["animate__animated", "animate__fadeOut"],
-                    //     dismiss: {
-                    //         duration: 5000,
-                    //         showIcon: true
-                    //     }
-                    //     });
-                    
+                    checkout()
+                                        
                 } else {
                     Store.addNotification({
                         title: "Error",
@@ -245,7 +233,10 @@ export default function Signup() {
                     {products?.map((product, index)=>{
                       
                         return <label className='business_type' key={index}>
-                                    <input type="radio" value={product.name==="Basic Renter Plan"?"rental":"dealer"} name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
+                                    <input type="radio" value={product.name==="Basic Renter Plan"?"rental":"dealer"} name="bussinesType" onChange={(e)=>{
+                                        setBusinessType(e.target.value)
+                                        setPriceId(product.prices[0].id)
+                                        }}/>
                                     <div>
                                         <h3>{product.name}</h3>
                                         {/* <img src={product.images[0]} alt={product.name}/> */}
@@ -299,8 +290,9 @@ export default function Signup() {
                         </div>
                     </label>
                     <button className="signup_button" type='submit'>
-                        Click to Choose Your Plan
+                        Register
                     </button>
+                    <p className='signup__wrapper__form__details show_details'>When you click <strong>register</strong>, you will be <strong>re-directed</strong> to our payment dashboard</p>
                 </form>
             </div>
             
