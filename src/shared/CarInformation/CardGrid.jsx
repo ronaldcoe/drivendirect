@@ -3,6 +3,7 @@ import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
 import {
   getAllInventoryBytype,
+  getSubscription,
   getUserInfo,
   getVehicles,
 } from '../../Firebase/FirebaseStateManagement';
@@ -11,7 +12,7 @@ import { Store } from 'react-notifications-component';
 
 export default function CardGrid(props) {
   document.title = "Inventory"
-
+  const[hasSubscription, setHasSubscription]= useState(false)
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
   const [regionFilter, setRegionFilter] = useState('All');
@@ -59,14 +60,32 @@ export default function CardGrid(props) {
   const fetchDealerInformation = async (vehicle) => {
     const user = auth.currentUser;
     if (user) {
-      if (selectedVehicle === vehicle && dealerInformation) {
-        setDealerInformation(null);
-        setSelectedVehicle(null);
-      } else {
-        const dealerInfo = await getUserInfo(vehicle.userId);
-        setDealerInformation(dealerInfo);
-        setSelectedVehicle(vehicle);
+      if(!hasSubscription){
+        Store.addNotification({
+          title: 'Notification',
+          message: 'You need to be subscribed or have an active subscription to view Contact Information',
+          type: 'warning',
+          insert: 'top',
+          container: 'top-right',
+          animationIn: ['animate__animated', 'animate__fadeInDown'],
+          animationOut: ['animate__animated', 'animate__fadeOut'],
+          dismiss: {
+            duration: 5000,
+            showIcon: true,
+          },
+        });
       }
+      else{
+        if (selectedVehicle === vehicle && dealerInformation) {
+          setDealerInformation(null);
+          setSelectedVehicle(null);
+        } else {
+          const dealerInfo = await getUserInfo(vehicle.userId);
+          setDealerInformation(dealerInfo);
+          setSelectedVehicle(vehicle);
+        }
+      }
+      
     } else {
       Store.addNotification({
         title: 'Notification',
@@ -83,6 +102,16 @@ export default function CardGrid(props) {
       });
     }
   };
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+        var userId = localStorage.getItem('userId')
+        const hasSubscription = await getSubscription(userId);
+        if (hasSubscription.length >= 1){setHasSubscription(true)}
+    };
+
+    checkSubscription();
+  }, []);
 
   useEffect(() => {
     fetchInventory();

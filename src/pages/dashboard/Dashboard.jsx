@@ -16,7 +16,7 @@ export default function Dashboard(props) {
     const [trades, setTrades] = useState()
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
-
+    const [hasSubscription, setHasSubscription]  = useState(false)
     const optionsRef = useRef(null);
     const navigate = useNavigate();
     // These will be changed in the future
@@ -67,7 +67,15 @@ export default function Dashboard(props) {
         };
     }, []);
 
-
+    useEffect(() => {
+        const checkSubscription = async () => {
+            var userId = localStorage.getItem('userId')
+            const hasSubscription = await getSubscription(userId);
+            if (hasSubscription.length >= 1){setHasSubscription(true)}
+        };
+    
+        checkSubscription();
+      }, []);
     useEffect(()=>{
         fetchUserInfo()
         fetchTrades()
@@ -137,8 +145,7 @@ export default function Dashboard(props) {
                         )
                     })}
                </div>
-               {trades?.length<tradeMax?<button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:""}
-
+               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>}
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>
@@ -151,7 +158,6 @@ export default function Dashboard(props) {
                         {showListingInfo && <><p ref={optionsRef} className='listingInfo'>List vehicles here that you are in need of. Dealers will contact you, if they have what you need or you can search our <strong>Trading Inventory</strong>. Listings will disappear after 7 days of creation.</p></>
                         }
                         <p>{listings?.length}/{account?.searchMax}</p>
-                        
                     </div>
                     
                 </div>
@@ -161,7 +167,9 @@ export default function Dashboard(props) {
                         <VehicleCard car={item} key={key} type={"listing"} onUpdate={setUpdate} update={update}/>
                     )
                 })}
-                    {listings?.length<listMax?<button className="dashboard__update" onClick={()=>{navigate("/search")}}> + Add Vehicle</button>:""}
+                    {listings?.length<listMax && hasSubscription?
+                    <button className="dashboard__update" onClick={()=>{navigate("/search")}}> + Add Vehicle</button>
+                    :<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>}
                 
             </div>
             }
