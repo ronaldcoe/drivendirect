@@ -1,12 +1,18 @@
 import { useEffect, useState } from "react"
 import React  from 'react'
 import "../../styles/blocks/edit_account.css"
-import { editUserInfo, getUserInfo, getSubscription, stripeCheckOut, getAllStripeProducts } from '../../Firebase/FirebaseStateManagement';
+import { editUserInfo, getUserInfo, getSubscription, getAllStripeProducts } from '../../Firebase/FirebaseStateManagement';
 import { Store } from 'react-notifications-component';
 import {useNavigate} from "react-router"
 import editIcon from "../../images/icons8-create-32.png"
-import { confirmPasswordReset } from "firebase/auth";
 
+/**
+ * @author : Ronald && Lakeram
+ * @description : Allows for the edit of user information, view available plans and allows user to manage their subscription
+ * App utilizes stripe to help customer manage their subscription
+ * @returns JSX
+ * @copyright : drivendirect @ 8/1/2023
+ */
 export default function EditAccount() {
   document.title = "Manage Account"
   const navigate = useNavigate()
@@ -33,33 +39,34 @@ export default function EditAccount() {
         const sub = await getSubscription(userId)
         setSubscription(sub)
     }
-    const checkout = async(priceId)=>{
-        const userId = localStorage.getItem("userId")
-        await stripeCheckOut(userId, priceId)
-    }
 
     useEffect(()=>{
       getallSubscribed()
-        const fetchStripeProducts = async()=>{
+      const fetchStripeProducts = async()=>{
             const products = await getAllStripeProducts()
-            console.log(products)
             setProducts(products)
         }
         fetchStripeProducts()
     }, [])
 
-    /****************************************************************************************** */
+/****************************************************************************************** */
 
   useEffect(() => {
     fetchUserInfo();
   }, []);
 
+  /**
+   * @description : function gets called when the edit button is clicked, takes the forma data
+   * and makes a firebase call to update the user info
+   * @param {*} e form
+   */
   const updateUser = async (e) => {
     e.preventDefault()
     const userId = localStorage.getItem('userId');
     const result = await editUserInfo(userId, updatedUser);
     if (result) {
-      
+
+      // Success pop-up
       Store.addNotification({
         title: "Success",
         message: "Your account was succesfully updated",
@@ -76,9 +83,8 @@ export default function EditAccount() {
 
       navigate('/dashboard')
 
-      
-    
     } else {
+      // fail pop-up
         Store.addNotification({
           title: "Error",
           message: "Your account wasn't updated",
@@ -94,7 +100,7 @@ export default function EditAccount() {
         });
     }
   };
-console.log(editMode)
+
   return (
     <div className='edit_account'>
       <div className='edit_account__wrapper'>
@@ -196,13 +202,10 @@ console.log(editMode)
                 {editMode&&<button type="submit">Update Profile</button>}
               </form>
             </div>
+            
             <div className="stripe_management">
             {/* *************************************STRIPE STUFF****************************************************** */}
-            
-             
               {subsciption?.map((product)=>{
-                // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
-                // console.log(isCurrentPlan)
                 const options = { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' };
                 const startDate = new Date(product.current_period_start.seconds * 1000);
                 const startDateString = startDate.toLocaleDateString(undefined, options)
@@ -210,7 +213,6 @@ console.log(editMode)
                 const endDate = new Date(product.current_period_end.seconds * 1000);
                 const endDateString = endDate.toLocaleDateString(undefined, options)
 
-                
                   return <div key={product.id} className="stripe_management_subscription_details">
                               <h2>My current plan</h2>
                               <div style={{border: "1px solid #B6B6B6", borderRadius:"5px", padding:"15px"}}>
@@ -220,9 +222,8 @@ console.log(editMode)
                               <p>Subscription Start Date: {startDateString}</p>
                               <p>Subscription End Date: {endDateString}</p>
                           
-                        
+                              {/* button will re direct to the stripe customer page */}
                               <button>Manage your Subscription</button>
-                              {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
                               </div>
                           </div>
               })}
@@ -230,14 +231,10 @@ console.log(editMode)
             
             <div className="strippe_container" >
               <h2>Available Plans</h2>
-              {products?.map((product)=>{
-                // const isCurrentPlan = product?.name.toLowerCase().includes(subsciption[0]?.role.toLowerCase()) && subsciption[0].status !="canceled"
-            
+              {products?.map((product)=>{            
                   return <div key={product.id} className="strippe_plans" >
                               <h2>{product.name} <span>${parseFloat(product.prices[0].unit_amount)/100 } {product.prices[0].currency}</span></h2>
-                              {/* <img src={product.images[0]} alt={product.name}/> */}
                               <p>Description: {product.description}</p>
-                          
                               {/* <button disabled= {isCurrentPlan} onClick={()=>{checkout(product.prices[0].id)}}>{isCurrentPlan? "Already Subscribed": "Subscribe"}</button> */}
                           </div>
               })}

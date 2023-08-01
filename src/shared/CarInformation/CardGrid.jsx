@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
 import {
@@ -26,6 +26,7 @@ export default function CardGrid(props) {
   const [statusFilter, setStatusfilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const optionsRef = useRef(null);
 
   const fetchInventory = async () => {
     const vehicles = await getAllInventoryBytype(props.type);
@@ -103,11 +104,27 @@ export default function CardGrid(props) {
     }
   };
 
+
+  // This is done to help with the close pop-ups
+  useEffect(() => {
+    const handleMouseDown = (event) => {
+    if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+      setDealerInformation(null);
+      setSelectedVehicle(null);
+    }
+    };
+    document.addEventListener('mousedown', handleMouseDown);
+    return () => {
+    document.removeEventListener('mousedown', handleMouseDown);
+    };
+}, []);
+
   useEffect(() => {
     const checkSubscription = async () => {
         var userId = localStorage.getItem('userId')
         const hasSubscription = await getSubscription(userId);
-        if (hasSubscription.length >= 1){setHasSubscription(true)}
+        
+        if (hasSubscription && hasSubscription.length >= 1){setHasSubscription(true)}
     };
 
     checkSubscription();
@@ -219,7 +236,7 @@ export default function CardGrid(props) {
                         
                       </td>
                       {selectedVehicle === item && dealerInformation && (
-                          <div className='dealer_info'>
+                          <div  ref={optionsRef} className='dealer_info'>
                             <strong>Name:</strong>
                             <div>{dealerInformation.firstName} {dealerInformation.lastName}</div>
                             <strong>Business Name:</strong>
