@@ -11,7 +11,10 @@
         justify-content: center;
         gap: 50px;
         margin-top: 50px;
-        
+        @media screen and (max-width:$breakpoint-medium) {
+            flex-direction: column;
+            align-items: center;
+        }
         .edit_account__wrapper__description {
             max-width: 400px;
 
