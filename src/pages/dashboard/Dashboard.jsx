@@ -160,7 +160,7 @@ export default function Dashboard() {
                         )
                     })}
                </div>
-               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>}
+               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:trades?.length<tradeMax ? <button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>:""}
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>
@@ -184,7 +184,7 @@ export default function Dashboard() {
                 })}
                     {listings?.length<listMax && hasSubscription?
                     <button className="dashboard__update" onClick={()=>{navigate("/search")}}> + Add Vehicle</button>
-                    :<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>}
+                    :listings?.length<listMax ?<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>:""}
                 
             </div>
             }
