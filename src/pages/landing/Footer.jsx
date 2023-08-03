@@ -17,6 +17,7 @@ export default function Footer() {
                     <li><a href='/faq'>FAQ</a></li>
                     <li><a href='/'>Contact us</a></li>
                     <li><a href='/privacy-policy'>Privacy Policy</a></li>
+                    <li><a href='/terms'>Terms of Service</a></li>
                 </ul>
             </div>
             <p  className='footer__wrapper__copyright'>&#169;{footerDate.getFullYear()} All rights reserved | Carznot&trade;</p>

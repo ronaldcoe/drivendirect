@@ -30,7 +30,15 @@
         h2 {
             font-size: 2rem;
         }
-    
+        
+        .dashboard__wrapper__card_title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            p {
+                font-size: 1.3rem;
+            }
+        }
         .dashboard__wrapper_col_1 {
             
             grid-row: 1/3;
@@ -219,22 +227,7 @@
                     
                     
                 }
-                // &:after {
-                    
-                //     content: ' ';
-                //     position: absolute;
-                //     width: 0;
-                //     height: 0;
-                //     left: 46px;
-           
-                //     top: -28px;
-                //     bottom: auto;
-                //     border: 14px solid;
-      
-                //     transform: rotate(180deg);
-                //     border-color: white transparent transparent;
-                
-                // }
+             
             }
           
 

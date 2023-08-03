@@ -28,25 +28,13 @@ export default function Hero() {
   return (
     <div className='hero'>
         <div className='hero__wrapper'>
-          {/* <div className='hero__call_to_action'>
-              <h1>
-              Helping Dealers
-              </h1>
-              <h1>
-              Help each other
-              </h1>
-              <button className='hero__call_to_action_primarybutton' onClick={()=>{navigate("/login")}}>Start Today</button>
-            
-          </div> */}
-
-
           {/* New Banner */}
           <Slider {...settings}>
                     <div className='hero__wrapper__banner'>
                         <div className='hero__wrapper__banner__content'>
                             <div className='hero__wrapper__banner__content__description'>
                                 
-                                <h3>List Vehicles you need!</h3>
+                                <h3>Helping Dealers Help Each Other!</h3>
                                 <p>A new and better way to find and trade vehicles.</p>
                                 
                             </div>
