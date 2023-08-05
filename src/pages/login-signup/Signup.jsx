@@ -6,6 +6,7 @@ import DropDown from '../../shared/dropdown/DropDown';
 import {useNavigate} from "react-router"
 import { Store } from 'react-notifications-component';
 import { getAllStripeProducts, stripeCheckOut } from '../../Firebase/FirebaseStateManagement';
+import LoadingAnimation from '../../shared/Loading';
 
 export default function Signup() {
     // Data for the Form
@@ -41,7 +42,7 @@ export default function Signup() {
 
     /**************************STRIPE *********************/
     const [products, setProducts]= useState([])
-    
+    const [loading, setLoading] = useState(false)
     const checkout = async()=>{
         const userId = localStorage.getItem("userId")
         await stripeCheckOut(userId, priceId)
@@ -133,6 +134,7 @@ export default function Signup() {
                     businessName, businessType,
                     website, country, region, city, phoneNumber, tradeMax, searchMax);
                 if (success) {
+                    setLoading(true)
                     setOpenSubscription(true)
                     checkout()
                                         
@@ -290,7 +292,7 @@ export default function Signup() {
                         </div>
                     </label>
                     <button className="signup_button" type='submit'>
-                        Register
+                        {loading?<><LoadingAnimation /> Processing</>:"Register"}
                     </button>
                     <p className='signup__wrapper__form__details show_details'>When you click <strong>register</strong>, you will be <strong>re-directed</strong> to our payment dashboard</p>
                 </form>

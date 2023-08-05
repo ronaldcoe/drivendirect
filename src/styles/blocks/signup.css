@@ -190,6 +190,10 @@
   margin-bottom: 20px;
   background-color: #080077;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 .signup .signup__wrapper .signup__wrapper__form .signup__wrapper__form__checkbox {
   display: grid;
