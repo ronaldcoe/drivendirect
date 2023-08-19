@@ -6,12 +6,7 @@ import { useNavigate } from 'react-router';
 import DropDown from '../../shared/dropdown/DropDown';
 import { getUserInfo } from '../../Firebase/FirebaseStateManagement';
 import { getVehicles } from '../../Firebase/FirebaseStateManagement';
-
-
 import { Store } from 'react-notifications-component';
-
-
-
 
 export default function AddVehicle(props) {
 
@@ -39,8 +34,6 @@ export default function AddVehicle(props) {
   const [otherMake, setOtherMake] = useState(false)
   const [otherModel, setOtherModel] = useState(false)
 
-
-
   // Get user info
   const fetchUserInfo = async ()=>{
     var userId = localStorage.getItem('userId')
@@ -49,7 +42,7 @@ export default function AddVehicle(props) {
         setAccount(userInfo)
         setUpdate(!update)
     }
-}
+  }
 
   // Function to make sure we're not sending incorrect data
   const checkData = () => {
@@ -86,8 +79,6 @@ export default function AddVehicle(props) {
       region: localStorage.getItem("region")
     }
 
- 
-
     let errors = checkData()
 
     if (errors) {
@@ -108,9 +99,6 @@ export default function AddVehicle(props) {
       })
     } 
     
-    
-
-      
       if(errors.length === 0){
         const res = await createInventory(vehicleObject)
         if (res) {
@@ -150,8 +138,6 @@ export default function AddVehicle(props) {
       
   }
 
-
- 
   // Get all search or trade for a user
   const fetchAllInventoryCreated = async()=>{
     const userId = localStorage.getItem("userId")
@@ -176,7 +162,6 @@ export default function AddVehicle(props) {
         navigate("/dashboard")
       }
     }
-
 
     if(type ==="listing"){
       if(listOfInventory?.length >= searchMax) {
@@ -211,11 +196,6 @@ export default function AddVehicle(props) {
     fetchdata()
     fetchUserInfo()
   },[tradeMax, searchMax])
-
-  useEffect(()=> {
-    
-  })
-  
 
   useEffect(()=> {
     if (dataVehicles) {

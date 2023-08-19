@@ -1,11 +1,13 @@
 import {auth, firestore } from "./FirebaseConfig"
-import {addDoc, collection, serverTimestamp, getDocs,getDoc, query , where, doc, updateDoc, setDoc} from "@firebase/firestore"
+import {addDoc, collection, serverTimestamp, getDocs,getDoc, query , where, doc, updateDoc, setDoc, onSnapshot} from "@firebase/firestore"
+import { loadStripe } from "@stripe/stripe-js";
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword} from 'firebase/auth'
 
 const inventoryTradeCollectionRef = collection(firestore, 'inventoryTrade');
 const inventoryListCollectionRef = collection(firestore, 'inventoryList');
 const usersCollectionRef = collection(firestore, 'users');
 const staticCollectionRef = collection(firestore, 'static data');
+const stripeProductCollectionRef = collection(firestore, 'products');
 
 
 /***********************InventoryList and Inventorytrade****************************************************** */
@@ -256,7 +258,7 @@ export const createUser = async (email, password, firstName, lastName, businessN
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCreds.user;
-    
+    localStorage.setItem("userId", user.uid)
     // Create the new user object
     const userData = {
       userId: user.uid,
@@ -350,6 +352,123 @@ export const editUserInfo = async (id, updatedUser) => {
   }
 };
 
+/************************************STRIP LOGIC*************************************************** */
+
+/*******************************************************
+ * @description Grabs all the Products on the the stripe account along with their prices
+ * @returns {Promise<object|boolean>} - A promise is resolved when all the Products along with thier prices are found and organized.
+ *******************************************/
+export const getAllStripeProducts = async () => {
+  try {
+    const q = query(
+      stripeProductCollectionRef,
+      where("active", "==", true),
+    );
+
+    const querySnapshot = await getDocs(q);
+    const allProducts = querySnapshot.docs.map(async (doc) => {
+      const productData = doc.data();
+      const productId = doc.id;
+
+      // Retrieve prices from the subcollection within the product document
+      const pricesQuerySnapshot = await getDocs(
+        collection(stripeProductCollectionRef, productId, 'prices')
+      );
+      const pricesData = pricesQuerySnapshot.docs.map((priceDoc) => ({ ...priceDoc.data(), id: priceDoc.id }));
+
+      // Merge product data with prices
+      const productWithPrices = {
+        ...productData,
+        id: pricesData.id,
+        product_id: productId,
+        prices: pricesData,
+      };
+
+      return productWithPrices;
+    });
+
+    // Wait for all product promises to resolve
+    const allProductsData = await Promise.all(allProducts);
+
+    return allProductsData;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+/*******************************************************
+ * Handles the checkout from the website to stripe
+ * @param {string} id this is the user Id used to link the user to that checkout which will create the subscription obeject and checkout object
+ * @param {string} priceId this is the obejct that holds the price object for the product, the price is a seperate object
+ * @returns {Promise<object|boolean>} - A promise is resolved when all the Products along with thier prices are found and organized.
+ *******************************************/
+export const stripeCheckOut = async (id, priceId) => {
+  try {
+    const userDocRef = doc(usersCollectionRef, id);
+    const docSnapshot = await getDoc(userDocRef);
+
+    if (docSnapshot.exists()) {
+      const userDocData = docSnapshot.data();
+
+      // Create a new document in the "checkout_sessions" subcollection of the user document
+      const checkoutSessionsCollectionRef = collection(userDocRef, 'checkout_sessions');
+      const newCheckoutSessionDocRef = await addDoc(checkoutSessionsCollectionRef, {
+        price: priceId,
+        success_url: window.location.origin,
+        cancel_url: window.location.origin,
+      });
+
+      const unsubscribe = onSnapshot(newCheckoutSessionDocRef, async (snap) => {
+        const { error, sessionId } = snap.data();
+        if (error) {
+          alert(error.message);
+        }
+        if (sessionId) {
+          const stripe = await loadStripe("pk_test_51NUI59J155flwudekbXeaqNnxVtkrsIUC4ifIH32OSpULU5Oem03xYWDajz8q4cMT5Vbe57RgoGTTqf3kepJPnTr00VN5F3tFm");
+          stripe.redirectToCheckout({ sessionId });
+        }
+      });
+
+      return unsubscribe; // Return the unsubscribe function if needed for later cleanup
+    } else {
+      console.log('User not found');
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+/*******************************************************
+ * @description Grabs all the subscription that a specific user has and retunr the active ones
+ * The subscription model is with in the user model as a collection
+ * @param {string} id this is the user Id used to link the user to check the subscription model
+ * @returns {Array} returns and array of subscription that the user has
+ *******************************************/
+export const getSubscription = async (userId) =>{
+  try {
+      const subscriptionQuerySnapshot = await getDocs(
+        collection(usersCollectionRef, userId, 'subscriptions')
+      );
+      const subscriptionDoc = subscriptionQuerySnapshot.docs.map((subDoc) => ({ ...subDoc.data(), id: subDoc.id }))
+      .filter((subscription)=>
+      {
+        return subscription.status !="canceled"
+      }
+      );
+      return subscriptionDoc
+
+  } catch (error) {
+    console.log (error)
+    return null
+  }
+}
+
+
+
+
 /****************************************************************************************** */
 
 /*************************************ENTER STATIC DATA****************
@@ -378,40 +497,39 @@ export const editUserInfo = async (id, updatedUser) => {
     }
  * enter()
  * ****************** */
-export const enterStaticData= async(data)=>{
-  await addDoc(staticCollectionRef, data)
-  return true
-}
-
-
-
-
-// Get all countries
-export const getCountries = async () => {
-  try {
-    const querySnapshot = await getDocs(staticCollectionRef);
-
-    // Map the data and extract the countries field
-    const countries = querySnapshot.docs.map((doc) => doc.data().countries);
-    return countries;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-// Get all Vehicles
-export const getVehicles = async () => {
-  try {
-    const querySnapshot = await getDocs(staticCollectionRef);
-
-    // Map the data and extract the vehicles field
-    const vehicles = querySnapshot.docs.map((doc) => doc.data().vehicles);
-    return vehicles;
-  } catch (error) {
-    console.log(error);
-    return [];
-  }
-};
-
-/*************************************************************************************** */
+    export const enterStaticData= async(data)=>{
+      await addDoc(staticCollectionRef, data)
+      return true
+    }
+    
+    
+    
+    
+    // Get all countries
+    export const getCountries = async () => {
+      try {
+        const querySnapshot = await getDocs(staticCollectionRef);
+    
+        // Map the data and extract the countries field
+        const countries = querySnapshot.docs.map((doc) => doc.data().countries);
+        return countries;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    };
+    
+    // Get all Vehicles
+    export const getVehicles = async () => {
+      try {
+        const querySnapshot = await getDocs(staticCollectionRef);
+    
+        // Map the data and extract the vehicles field
+        const vehicles = querySnapshot.docs.map((doc) => doc.data().vehicles);
+        return vehicles;
+      } catch (error) {
+        console.log(error);
+        return [];
+      }
+    };
+    

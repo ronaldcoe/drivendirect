@@ -9,6 +9,7 @@
   border-radius: 5px;
   background-color: white;
   padding: 30px;
+  border-bottom: 1px solid #B6B6B6;
   max-width: 400px;
   margin: 0 auto;
   margin-top: 50px;
@@ -28,20 +29,13 @@
 .login .login__wrapper .login__wrapper__content form {
   display: flex;
   flex-direction: column;
-}
-.login .login__wrapper .login__wrapper__content form .login__wrapper__content__eyeicon {
-  color: #B6B6B6;
-  position: absolute;
-  transform: translateY(10px);
-  right: 44px;
-}
-@media screen and (max-width: 505px) {
-  .login .login__wrapper .login__wrapper__content form .login__wrapper__content__eyeicon {
-    right: 44px;
-  }
+  display: flex;
+  flex-direction: column;
 }
 .login .login__wrapper .login__wrapper__content form label {
-  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: "Rubik", sans-serif;
+  cursor: pointer;
 }
 .login .login__wrapper .login__wrapper__content form label p {
   font-size: 1.3rem;
@@ -62,7 +56,106 @@
 }
 .login .login__wrapper .login__wrapper__content form label input:required:valid {
   border: 1px solid green;
+  background-color: rgb(250, 255, 250);
+}
+.login .login__wrapper .login__wrapper__content form label input.valid {
+  border: 1px solid green;
   background-color: rgb(246, 255, 246);
+}
+.login .login__wrapper .login__wrapper__content form label input.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.login .login__wrapper .login__wrapper__content form label select {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.login .login__wrapper .login__wrapper__content form label select:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.login .login__wrapper .login__wrapper__content form label select:required:valid {
+  border: 1px solid green;
+  background-color: rgb(250, 255, 250);
+}
+.login .login__wrapper .login__wrapper__content form label select.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.login .login__wrapper .login__wrapper__content form label select.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.login .login__wrapper .login__wrapper__content form label select option:hover {
+  color: "Rubik", sans-serif;
+}
+.login .login__wrapper .login__wrapper__content form label textarea {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+  resize: none;
+}
+.login .login__wrapper .login__wrapper__content form label textarea:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.login .login__wrapper .login__wrapper__content form label textarea:required:valid {
+  border: 1px solid green;
+  background-color: rgb(250, 255, 250);
+}
+.login .login__wrapper .login__wrapper__content form label textarea.valid {
+  border: 1px solid green;
+  background-color: rgb(246, 255, 246);
+}
+.login .login__wrapper .login__wrapper__content form label textarea.invalid {
+  border: 1px solid red;
+  background-color: rgb(255, 235, 235);
+}
+.login .login__wrapper .login__wrapper__content form .login__wrapper__content__eyeicon {
+  color: #B6B6B6;
+  position: absolute;
+  transform: translateY(10px);
+  right: 44px;
+  cursor: pointer;
+}
+@media screen and (max-width: 505px) {
+  .login .login__wrapper .login__wrapper__content form .login__wrapper__content__eyeicon {
+    right: 44px;
+  }
+}
+.login .login__wrapper .login__wrapper__content form label {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}
+.login .login__wrapper .login__wrapper__content form label p {
+  font-size: 1.3rem;
+  color: #636363;
+}
+.login .login__wrapper .login__wrapper__content form label input {
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid #B6B6B6;
+  font-family: "Rubik", sans-serif;
+  color: #36454F;
+  width: 100%;
+}
+.login .login__wrapper .login__wrapper__content form label input:focus {
+  border: 1px solid #080077;
+  outline: none;
+  transition: 0.5s;
+}
+.login .login__wrapper .login__wrapper__content form label input:required:valid {
+  border: 1px solid green;
+  background-color: rgb(250, 255, 250);
 }
 .login .login__wrapper .login__wrapper__content form label input.valid {
   border: 1px solid green;

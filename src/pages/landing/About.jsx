@@ -56,39 +56,27 @@ export default function About() {
                     <img src={ribbonIconSearch} alt="" />
                     <p>Search</p>
                 </div>
-                <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/")}>
+                {/* <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/")}>
                     <img src={ribbonIconHome} alt="" />
                     <p>Home</p>
                 </div>
                 <div className='about__wrapper__ribbon__content'>
                     <img src={ribbonIconComment} alt="" />
                     <p>Comments</p>
-                </div>
+                </div> */}
              
             </div>
             
             <div className='about__wrapper__card__container' >
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                        <h2 onClick={()=>{navigate("/inventory/trade")}}>Find what you need now!</h2>
+                        <h2 onClick={()=>{navigate("/inventory/trade")}}>Find What You Need Right Now!</h2>
                         <h3>Don't ever say "I don't have one!"</h3>
+                        
                         <p>
-                            It's like a dealer transfer for new, except on this site it's for used!
-                            Your customer is looking for a specific vehicle you don't have on your
-                            lot.
+                        It’s like a <strong>Dealer Trade</strong>, except on this website it’s for Used! Show others what you are looking for, then wait for a response. Chances are that another dealer has what you are looking for and might be willing to sell it to you, or trade for something that you have. Most importantly you maintain control, and your customer isn’t checking around with other dealers!
                         </p>
-                        <p>
-                            Registered Users can show what they are looking for right here, to find
-                            out if another dealer has or knows where you might find one! Chances are
-                            that someone has what you are looking for and might be interested in
-                            moving it from their inventory, or trading it for something you might
-                            have!
-                        </p>
-                        <p>
-                            There is a good chance that the vehicle you want is out there, and most
-                            importantly, it is you who finds it for them! As well, your customer
-                            isn't checking around with other dealers and you maintain control!
-                        </p>
+                      
                         
                     </div>
                     <div className='about__wrapper__card__img'>
@@ -97,23 +85,12 @@ export default function About() {
                 </div>
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2 onClick={()=>{navigate("/login")}}>List a vehicle to trade!</h2>
+                            <h2 onClick={()=>{navigate("/login")}}>List a Vehicle You Want to Trade!</h2>
                             <h3>Save on auction fees!</h3>
+                            
                             <p>
-                                Before you send it to an auction! List it here and let
-                                other dealers know you want to move it and it costs far
-                                less than selling it through an auction!
-                            </p>
-                            <p>
-                                Get rid of over-age inventory and off-make trades that
-                                you don't want. Remember as well that valuations can
-                                differ from one region of the country to another!
-                            </p>
-                            <p>
-                                Chances are that another dealer might be interested in
-                                what you have, or in trading something with you. You
-                                also save on freight charges! Dealers deal directly with
-                                each other free of charge!
+                            Before sending it to an auction, list it here! Let other dealers know what you have to sell.
+                            It costs less than the auction, and it’s faster! 
                             </p>
                             
                         </div>
@@ -124,8 +101,8 @@ export default function About() {
 
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2 onClick={()=>{navigate("/login")}}>Forget the black book!</h2>
-                            <h3>Find out what a trade is really worth!</h3>
+                            <h2 onClick={()=>{navigate("/login")}}>Forget About the <strong>Black Book!</strong></h2>
+                            <h3>Find Out What Another Dealer Will Pay!</h3>
                             <p>
                                 It might be a vehicle you are not familiar with but you 
                                 don't want to lose the deal! List the vehicle on the 
@@ -145,6 +122,7 @@ export default function About() {
                                 losing the deal or by paying way too much!
                             </p>
                             
+                            
                         </div>
                         <div className='about__wrapper__card__img'>
                             <img src={carTree} alt="a white honda cr - v parked in the snow" loading='lazy' />
@@ -153,28 +131,20 @@ export default function About() {
 
                 <div className='about__wrapper__card'>
                     <div className='about__wrapper__card__text'>
-                            <h2 onClick={()=>{navigate("/inventory/trade")}}>Find commercial vehicles!</h2>
-                            <h3>My customer needs a 15 passenger van!</h3>
-                            <p>
-                                Or maybe its a cube van or a flat deck truck? 
-                                Somebody wants one and you don't have anything like
-                                that! It isn't something that you carry. Do you say
-                                you can't help?? You could possibly lose a deal!
-                            </p>
-                            <p>
-                                Tell the prospect you will call them back. Then list
-                                the enquiry on the website for free, and wait for a
-                                response.
-                            </p>
-                            <p>
-                                We work as well with Leasing and Rental Companies
-                                and there's a good chance that the vehicle you want
-                                is out there, and most importantly, it is you who
-                                finds it for them! Your customer is not checking
-                                around with other dealers and you maintain control!
-                            </p>
+                        <h2 onClick={()=>{navigate("/inventory/trade")}}>Find commercial vehicles!</h2>
+                        <h3>My customer needs a 15 passenger van!</h3>
+                        
+                        <p>
+                        Maybe it’s a cube van or a flat deck truck.  A customer needs one but you don’t have one in stock. 
+                        List it here for free! Somebody likely has one, but we also deal with leasing companies and rental 
+                        companies and there’s a chance that they can help as well. 
+                        </p>
+                        <p>
+                        Or maybe its another make and its brand new? Maintain control and find it here. Don’t take chances 
+                        and lose your customer to another dealer! 
+                        </p>
                             
-                        </div>
+                    </div>
                         <div className='about__wrapper__card__img'>
                             <img src={carFour} alt="a silver van parked on the side of a road" loading='lazy'/>
                         </div>
@@ -191,7 +161,7 @@ export default function About() {
                 <img src={carFive} alt="a black car is parked in a parking lot" loading='lazy'/>
             </div>
             
-            <div className='about__wrapper__btns'>
+            {/* <div className='about__wrapper__btns'>
                 <div className='about__wrapper__btns__container' onClick={()=> navigate("/inventory/trade")}>
                     <img src={iconCar}/>
                     <h2>You need it or don't?</h2>
@@ -222,7 +192,7 @@ export default function About() {
                     <p>The best part? There are not commission fees.</p>
                     
                 </div>
-            </div>
+            </div> */}
             <Testimonial></Testimonial>
         </div>
     </div>

@@ -22,7 +22,7 @@ export default function Header() {
       }});
 
       return () => unsubscribe(); 
-  }, [])
+  }, [user])
 
   const fetchUserInfo = async ()=>{
     var userId = localStorage.getItem('userId')
@@ -38,6 +38,7 @@ export default function Header() {
       await auth.signOut();
       // Perform any additional actions or UI updates after successful logout
       console.log('User logged out successfully');
+      localStorage.clear()
     } catch (error) {
       console.log('Logout failed:', error);
       // Handle the error appropriately

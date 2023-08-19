@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import '../../styles/blocks/cardGrid.css';
 import DropDown from '../dropdown/DropDown';
 import {
   getAllInventoryBytype,
+  getSubscription,
   getUserInfo,
   getVehicles,
 } from '../../Firebase/FirebaseStateManagement';
@@ -11,7 +12,7 @@ import { Store } from 'react-notifications-component';
 
 export default function CardGrid(props) {
   document.title = "Inventory"
-
+  const[hasSubscription, setHasSubscription]= useState(false)
   const [makeFilter, setMakeFilter] = useState('All');
   const [modelFilter, setModelFilter] = useState('All');
   const [regionFilter, setRegionFilter] = useState('All');
@@ -25,6 +26,7 @@ export default function CardGrid(props) {
   const [statusFilter, setStatusfilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
+  const optionsRef = useRef(null);
 
   const fetchInventory = async () => {
     const vehicles = await getAllInventoryBytype(props.type);
@@ -59,14 +61,32 @@ export default function CardGrid(props) {
   const fetchDealerInformation = async (vehicle) => {
     const user = auth.currentUser;
     if (user) {
-      if (selectedVehicle === vehicle && dealerInformation) {
-        setDealerInformation(null);
-        setSelectedVehicle(null);
-      } else {
-        const dealerInfo = await getUserInfo(vehicle.userId);
-        setDealerInformation(dealerInfo);
-        setSelectedVehicle(vehicle);
+      if(!hasSubscription){
+        Store.addNotification({
+          title: 'Notification',
+          message: 'You need to be subscribed or have an active subscription to view Contact Information',
+          type: 'warning',
+          insert: 'top',
+          container: 'top-right',
+          animationIn: ['animate__animated', 'animate__fadeInDown'],
+          animationOut: ['animate__animated', 'animate__fadeOut'],
+          dismiss: {
+            duration: 5000,
+            showIcon: true,
+          },
+        });
       }
+      else{
+        if (selectedVehicle === vehicle && dealerInformation) {
+          setDealerInformation(null);
+          setSelectedVehicle(null);
+        } else {
+          const dealerInfo = await getUserInfo(vehicle.userId);
+          setDealerInformation(dealerInfo);
+          setSelectedVehicle(vehicle);
+        }
+      }
+      
     } else {
       Store.addNotification({
         title: 'Notification',
@@ -83,6 +103,32 @@ export default function CardGrid(props) {
       });
     }
   };
+
+
+  // This is done to help with the close pop-ups
+  useEffect(() => {
+    const handleMouseDown = (event) => {
+    if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+      setDealerInformation(null);
+      setSelectedVehicle(null);
+    }
+    };
+    document.addEventListener('mousedown', handleMouseDown);
+    return () => {
+    document.removeEventListener('mousedown', handleMouseDown);
+    };
+}, []);
+
+  useEffect(() => {
+    const checkSubscription = async () => {
+        var userId = localStorage.getItem('userId')
+        const hasSubscription = await getSubscription(userId);
+        
+        if (hasSubscription && hasSubscription.length >= 1){setHasSubscription(true)}
+    };
+
+    checkSubscription();
+  }, []);
 
   useEffect(() => {
     fetchInventory();
@@ -110,7 +156,7 @@ export default function CardGrid(props) {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filterData(dataVehicles).slice(indexOfFirstItem, indexOfLastItem);
-  console.log(currentItems)
+
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -126,7 +172,7 @@ export default function CardGrid(props) {
             <h1>{props.type === "trade"?"Sale":"List"} Inventory</h1>
             {props.type === "trade"?<p>This contains the vehicles that dealers are selling or Trading.
               
-               <p>You can list a vechicle here for trade or sale by clicking on your <strong>Dashboard</strong></p></p>:<p>This contains the list of vehicles that dealers are looking for. <p>Use this to supply the need. You can also list what you need by clicking on your <strong>Dashboard</strong></p></p>}
+               <p>You can list a vechicle here for trade or sale by clicking on your <a href='/dashboard'>Dashboard</a></p></p>:<p>This contains the list of vehicles that dealers are looking for. <p>Use this to supply the need. You can also list what you need by clicking on your <a href='/dashboard'>Dashboard</a></p></p>}
           </div>
         </div>
 
@@ -190,11 +236,11 @@ export default function CardGrid(props) {
                         
                       </td>
                       {selectedVehicle === item && dealerInformation && (
-                          <div className='dealer_info'>
+                          <div  ref={optionsRef} className='dealer_info'>
                             <strong>Name:</strong>
                             <div>{dealerInformation.firstName} {dealerInformation.lastName}</div>
                             <strong>Business Name:</strong>
-                            <div>{dealerInformation.dealership}</div>
+                            <div>{dealerInformation.businessName}</div>
                             <strong>Phone Number:</strong>
                             <div>{dealerInformation.phoneNumber}</div>
                             <strong>Email:</strong>

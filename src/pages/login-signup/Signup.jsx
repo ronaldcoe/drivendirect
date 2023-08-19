@@ -5,6 +5,8 @@ import { getCountries } from '../../Firebase/FirebaseStateManagement';
 import DropDown from '../../shared/dropdown/DropDown';
 import {useNavigate} from "react-router"
 import { Store } from 'react-notifications-component';
+import { getAllStripeProducts, stripeCheckOut } from '../../Firebase/FirebaseStateManagement';
+import LoadingAnimation from '../../shared/Loading';
 
 export default function Signup() {
     // Data for the Form
@@ -16,7 +18,6 @@ export default function Signup() {
     const fetchdata=async()=>{
         const data = await getCountries()
         setCountriesData(data[1])
-   
       }
  
     
@@ -36,8 +37,28 @@ export default function Signup() {
     const [acceptTerms, setAcceptTerms] = useState(false)
     const [tradeMax, setTradeMax] = useState()
     const [searchMax, setSearchMax] = useState()
+    const [openSubscription, setOpenSubscription] = useState(false)
+    const [priceId, setPriceId] = useState(null)
+
+    /**************************STRIPE *********************/
+    const [products, setProducts]= useState([])
+    const [loading, setLoading] = useState(false)
+    const checkout = async()=>{
+        const userId = localStorage.getItem("userId")
+        await stripeCheckOut(userId, priceId)
+    }
+
+    useEffect(()=>{
+        const fetchStripeProducts = async()=>{
+            const products = await getAllStripeProducts()
+            
+            setProducts(products)
+        }
+        fetchStripeProducts()
+    }, [])
+
+      /************************* */
  
-    console.log(country)
 
     // Function to make sure we're not sending incorrect data
     const checkData = () => {
@@ -113,23 +134,10 @@ export default function Signup() {
                     businessName, businessType,
                     website, country, region, city, phoneNumber, tradeMax, searchMax);
                 if (success) {
-                    
-                    navigate("/login")
-
-                    Store.addNotification({
-                        title: "Success",
-                        message: "Your account was created.",
-                        type: "success",
-                        insert: "top",
-                        container: "top-right",
-                        animationIn: ["animate__animated", "animate__fadeInDown"],
-                        animationOut: ["animate__animated", "animate__fadeOut"],
-                        dismiss: {
-                            duration: 5000,
-                            showIcon: true
-                        }
-                        });
-                    
+                    setLoading(true)
+                    setOpenSubscription(true)
+                    checkout()
+                                        
                 } else {
                     Store.addNotification({
                         title: "Error",
@@ -187,14 +195,16 @@ export default function Signup() {
   return (
     <div className='signup'>
         <div className='signup__wrapper'>
-            
+          
             <div className='signup__wrapper__description'>
                 <h1>Create an Account</h1>
                 <p>Once registered your information will be verified and an email will then be sent to you allowing you to enter a username and password.</p>
+                
             </div>
             <div className='signup__wrapper__form'>
                 
                 <form onSubmit={signUp}>
+                    <h2>Personal Information</h2>
                     <label>
                         <p>First Name</p>
                         <input type='text' required value={firstName} onChange={(e)=>{setFirstName(e.target.value)}}></input>  
@@ -218,17 +228,36 @@ export default function Signup() {
                         <input type='password' required className={password !== confirmPassword? 'invalid' : password === ''? '' : 'valid'} onChange={(e)=>{setConfirmPassword(e.target.value)}}></input>
                         {password != confirmPassword? <p className='signup__wrapper__form__details show_details'>*Passwords must match</p>: ''} 
                     </label>
+                    <h2 className='second'>Business Information</h2>
                     <p>What type of business are you?</p>
 
                     <div className='business_type_container'>
-                        <label className='business_type'>
+                    {products?.map((product, index)=>{
+                      
+                        return <label className='business_type' key={index}>
+                                    <input type="radio" value={product.name==="Basic Renter Plan"?"rental":"dealer"} name="bussinesType" onChange={(e)=>{
+                                        setBusinessType(e.target.value)
+                                        setPriceId(product.prices[0].id)
+                                        }}/>
+                                    <div>
+                                        <h3>{product.name}</h3>
+                                        {/* <img src={product.images[0]} alt={product.name}/> */}
+                                        <p>{product.description}</p>
+                                       
+                                    </div>
+                                    <div className='price'>
+                                    <p><strong>${parseFloat(product.prices[0].unit_amount)/100 }{product.prices[0].currency}/mo</strong></p>
+                                    </div>
+                                </label>
+                    })}
+                        {/* <label className='business_type'>
                             <p>Dealer</p>
                             <input type="radio" value="dealer" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
                         </label>
                         <label className='business_type'>
                             <p>Rental</p>
                             <input type="radio" value="rental" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
-                        </label>
+                        </label> */}
                     </div>
                     <label>
                         <p>Business Name</p>
@@ -263,10 +292,12 @@ export default function Signup() {
                         </div>
                     </label>
                     <button className="signup_button" type='submit'>
-                        Sign Up
+                        {loading?<><LoadingAnimation /> Processing</>:"Register"}
                     </button>
+                    <p className='signup__wrapper__form__details show_details'>When you click <strong>register</strong>, you will be <strong>re-directed</strong> to our payment dashboard</p>
                 </form>
             </div>
+            
         </div>
     </div>
   )
