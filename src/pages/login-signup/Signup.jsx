@@ -17,7 +17,7 @@ export default function Signup() {
     // Get Static Data
     const fetchdata=async()=>{
         const data = await getCountries()
-        setCountriesData(data)
+        setCountriesData(data[1])
       }
  
     
@@ -46,6 +46,8 @@ export default function Signup() {
     const [loading, setLoading] = useState(false)
     const checkout = async()=>{
         const userId = localStorage.getItem("userId")
+      
+        console.log(userId, priceId)
         await stripeCheckOut(userId, priceId)
     }
 
@@ -66,7 +68,7 @@ export default function Signup() {
         }
     },[businessType])
  
-    console.log(accountStatus)
+  
     // Function to make sure we're not sending incorrect data
     const checkData = () => {
 
@@ -259,14 +261,7 @@ export default function Signup() {
                                     </div>
                                 </label>
                     })}
-                        <label className='business_type'>
-                            <p>Dealer</p>
-                            <input type="radio" value="dealer" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
-                        </label>
-                        <label className='business_type'>
-                            <p>Rental</p>
-                            <input type="radio" value="rental" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
-                        </label>
+                      
                     </div>
                     <label>
                         <p>Business Name</p>

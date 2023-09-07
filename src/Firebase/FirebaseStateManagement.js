@@ -551,9 +551,11 @@ export const getSubscription = async (userId) =>{
     export const getCountries = async () => {
       try {
         const querySnapshot = await getDocs(staticCollectionRef);
-    
+
         // Map the data and extract the countries field
-        const countries = querySnapshot.docs.map((doc) => doc.data().countries);
+        const countries = querySnapshot.docs.map((doc) => 
+             doc.data().countries);
+      
         return countries;
       } catch (error) {
         console.log(error);
