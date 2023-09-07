@@ -17,7 +17,7 @@ export default function Signup() {
     // Get Static Data
     const fetchdata=async()=>{
         const data = await getCountries()
-        setCountriesData(data[1])
+        setCountriesData(data)
       }
  
     
@@ -39,6 +39,7 @@ export default function Signup() {
     const [searchMax, setSearchMax] = useState()
     const [openSubscription, setOpenSubscription] = useState(false)
     const [priceId, setPriceId] = useState(null)
+    const [accountStatus, setAccountStatus] = useState("active")
 
     /**************************STRIPE *********************/
     const [products, setProducts]= useState([])
@@ -57,9 +58,15 @@ export default function Signup() {
         fetchStripeProducts()
     }, [])
 
-      /************************* */
+    useEffect(() => {
+        if (businessType === "rental") {
+            setAccountStatus("pending")
+        } else {
+            setAccountStatus("active")
+        }
+    },[businessType])
  
-
+    console.log(accountStatus)
     // Function to make sure we're not sending incorrect data
     const checkData = () => {
 
@@ -88,11 +95,11 @@ export default function Signup() {
         let websiteError = website === ""
         websiteError && errors.push("Website can't be empty")
 
-        let countryError = country === null
-        countryError && errors.push("You need to select a country")
+        // let countryError = country === null
+        // countryError && errors.push("You need to select a country")
 
-        let regionError = region === null
-        regionError && errors.push("You need to select a region")
+        // let regionError = region === null
+        // regionError && errors.push("You need to select a region")
 
         let cityError = city === ""
         cityError && errors.push("City can't be empty")
@@ -129,10 +136,12 @@ export default function Signup() {
         }
 
         if (errors.length === 0) {
+            
             try {
+         
                 const success = await createUser(email, password, firstName, lastName,          
                     businessName, businessType,
-                    website, country, region, city, phoneNumber, tradeMax, searchMax);
+                    website, country, region, city, phoneNumber, tradeMax, searchMax, accountStatus);
                 if (success) {
                     setLoading(true)
                     setOpenSubscription(true)
@@ -250,14 +259,14 @@ export default function Signup() {
                                     </div>
                                 </label>
                     })}
-                        {/* <label className='business_type'>
+                        <label className='business_type'>
                             <p>Dealer</p>
                             <input type="radio" value="dealer" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
                         </label>
                         <label className='business_type'>
                             <p>Rental</p>
                             <input type="radio" value="rental" name="bussinesType" onChange={(e)=>{setBusinessType(e.target.value)}}/>
-                        </label> */}
+                        </label>
                     </div>
                     <label>
                         <p>Business Name</p>

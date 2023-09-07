@@ -49,7 +49,7 @@ export default function Header() {
     <div className='header'>
       <div className='header__wrapper'> 
         <div className='header__logo'>
-          <a href='/'>Carznot</a>
+          <a href='/'>DealerTrade</a>
         </div>
         <nav>
           <ul className={`header__wrapper__menu ${showMenu?"hamburger":''}`}>
@@ -58,6 +58,7 @@ export default function Header() {
                 <li><a href="/dashboard">Dashboard</a></li>
                 <li><a href="/inventory/trade">Trading Inventory</a></li>
                 <li><a href="/inventory/listing">Searching Inventory</a></li>
+                {account?.role === "admin"?<li><a href="/admin">Admin</a></li>:""}
                 
               </>
             }

@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.admin_dashboard .admin_dashboard_wrapper {
+  max-width: 1800px;
+  margin: 100px auto;
+  padding: 0 20px;
+}
+.admin_dashboard .admin_dashboard_wrapper h1 {
+  color: #080077;
+}
+.admin_dashboard .admin_dashboard_wrapper button {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #080077;
+  color: white;
+}/*# sourceMappingURL=admin_dashboard.css.map */

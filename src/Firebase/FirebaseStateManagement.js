@@ -254,7 +254,7 @@ export const updateInventoryRecord = async (inventoryId, updatedData, type) => {
  * @returns {Promise<boolean>} - A promise that resolves to true if the user is successfully created, throws an error otherwise.
  */
 export const createUser = async (email, password, firstName, lastName, businessName, 
-                                  businessType, website, country, region, city, phoneNumber, tradeMax, searchMax) => {
+                                  businessType, website, country, region, city, phoneNumber, tradeMax, searchMax, accountStatus) => {
   try {
     const userCreds = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCreds.user;
@@ -274,7 +274,8 @@ export const createUser = async (email, password, firstName, lastName, businessN
       city: city,
       phoneNumber: phoneNumber,
       tradeMax:tradeMax,
-      searchMax:searchMax
+      searchMax:searchMax,
+      accountStatus: accountStatus,
     };
 
     // Store additional fields in Firestore and create the user collection
@@ -352,7 +353,48 @@ export const editUserInfo = async (id, updatedUser) => {
   }
 };
 
-/************************************STRIP LOGIC*************************************************** */
+/**********************ADMIN****************/
+
+export const getRentalUsers = async () => {
+  try {
+    const q = query(
+      usersCollectionRef, where("businessType", "==", "rental")
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    const rentalUsers = [];
+    querySnapshot.forEach((doc) => {
+      if (doc.exists()) {
+        const user = doc.data();
+        rentalUsers.push(user);
+      }
+    });
+    console.log(rentalUsers)
+    return rentalUsers;
+  } catch (error) {
+    console.log(error);
+    return [];
+  }
+};
+
+export const approveRental = async (userId, status) => {
+  try {
+    // Get a reference to the user document
+    const userDocRef = doc(usersCollectionRef, userId);
+
+    // Update the status field to "approved"
+    await updateDoc(userDocRef, { accountStatus: status });
+
+    return true; // Indicate success
+  } catch (error) {
+    console.log(error);
+    return false; // Indicate failure
+  }
+};
+
+
+/************************************STRIPE LOGIC*************************************************** */
 
 /*******************************************************
  * @description Grabs all the Products on the the stripe account along with their prices

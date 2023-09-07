@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+.rental_approval {
+  font-family: "Rubik", sans-serif;
+}
+.rental_approval h1 {
+  color: #080077;
+}
+.rental_approval .rental_approval__wrapper {
+  max-width: 1800px;
+  margin: 100px auto;
+  padding: 0 20px;
+  background-color: white;
+  padding: 40px;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table {
+  margin-top: 40px;
+  border-collapse: collapse;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table thead {
+  background-color: #F3F3F3;
+}
+@media screen and (max-width: 1180px) {
+  .rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table thead {
+    display: none;
+  }
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table thead td {
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #636363;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table tbody {
+  padding: 10px;
+}
+@media screen and (max-width: 1180px) {
+  .rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table tbody tr {
+    display: flex;
+    flex-direction: column;
+    background-color: #F3F3F3;
+  }
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending table tbody tr td {
+  padding: 10px;
+  color: #636363;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending .rental_approval__wrapper__pending__item {
+  padding: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending .rental_approval__wrapper__pending__item .action_buttons {
+  display: flex;
+  gap: 10px;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending .rental_approval__wrapper__pending__item .deny {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: #fff7f6;
+  padding: 5px;
+  color: red;
+  margin: 0;
+  border: 1px solid red;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending .rental_approval__wrapper__pending__item .approve {
+  padding: 15px;
+  border: none;
+  font-family: "Rubik", sans-serif;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(243, 255, 243);
+  padding: 5px;
+  color: green;
+  margin: 0;
+  border: 1px solid green;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending .rental_approval__wrapper__pending__item .confirm_option {
+  position: absolute;
+  z-index: 99;
+  background-color: white;
+  padding: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  gap: 10px;
+}
+.rental_approval .rental_approval__wrapper .rental_approval__wrapper__pending .rental_approval__wrapper__pending__item .approve_container {
+  position: relative;
+}/*# sourceMappingURL=rental_approval.css.map */

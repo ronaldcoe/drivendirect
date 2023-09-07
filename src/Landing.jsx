@@ -8,6 +8,7 @@ import LandingInventory from './pages/landing/LandingInventory';
 
 
 function App() {
+  document.title = "Home - DealerTrade"
   return (
     <div className="App">
       

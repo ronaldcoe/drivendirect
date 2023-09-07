@@ -1,0 +1,16 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+
+.admin_dashboard {
+    .admin_dashboard_wrapper {
+        @include wrapper;
+
+        h1 {
+            color: $primary-color
+        }
+        button {
+            @include buttons($primary-color);
+            color: white;
+        }
+    }
+}

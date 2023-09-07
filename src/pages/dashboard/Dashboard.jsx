@@ -42,7 +42,7 @@ export default function Dashboard() {
         var userInfo = await getUserInfo(userId)
         if (userInfo){
             setAccount(userInfo)
-            console.log(account?.region)
+            
         }
     }
 
@@ -148,7 +148,7 @@ export default function Dashboard() {
                         <p>{trades?.length}/{account?.tradeMax}</p>
                     </div>
                     
-                    {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
+                    {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
                     }
                 </div>
                 {trades?"":<Skeleton variant="rounded" width={300} height={60} style={{marginTop:"20px"}} />}

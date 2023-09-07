@@ -15,7 +15,7 @@ export default function Footer() {
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href='/faq'>FAQ</a></li>
-                    <li><a href='/'>Contact us</a></li>
+                    <li><a href='/contact'>Contact us</a></li>
                     <li><a href='/privacy-policy'>Privacy Policy</a></li>
                     <li><a href='/terms'>Terms of Service</a></li>
                 </ul>

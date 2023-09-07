@@ -1,0 +1,16 @@
+@import "../variables/_variables";
+@import "../variables/_mixins";
+
+.Contact {
+
+    .contact__wrapper {
+        @include wrapper;
+
+        h1 {
+            color: $primary-color;
+        }
+        p {
+            color: $primary-paragraph-font-color;
+        }
+    }
+}
