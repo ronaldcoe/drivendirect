@@ -22,6 +22,7 @@ export default function Dashboard() {
     const [listings, setListings] = useState()
     const [showOptions, setShowOptions] = useState(false)
     const [hasSubscription, setHasSubscription]  = useState(false)
+    const[accountStatus, setAccountStatus] = useState(false)
     const optionsRef = useRef(null);
     const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ export default function Dashboard() {
         var userInfo = await getUserInfo(userId)
         if (userInfo){
             setAccount(userInfo)
-            console.log(account?.region)
+            
         }
     }
 
@@ -148,7 +149,7 @@ export default function Dashboard() {
                         <p>{trades?.length}/{account?.tradeMax}</p>
                     </div>
                     
-                    {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you, if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
+                    {showTradingInfo && (<p ref={optionsRef} className='tradingInfo'>List vehicles here that you are selling or trading. Dealers will contact you if you have what they need or you can search our <strong>Searching Inventory</strong>. Listings will disappear after 7 days of creation.</p>)
                     }
                 </div>
                 {trades?"":<Skeleton variant="rounded" width={300} height={60} style={{marginTop:"20px"}} />}
@@ -160,7 +161,7 @@ export default function Dashboard() {
                         )
                     })}
                </div>
-               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:trades?.length<tradeMax ? <button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>:""}
+               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:account?.accountStatus==="approved"?<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>:<button className="dashboard__update">Your account is pending approval</button>}
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>

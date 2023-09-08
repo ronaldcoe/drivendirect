@@ -1,0 +1,95 @@
+@import '../variables/_variables';
+@import '../variables/_mixins';
+
+.rental_approval {
+    font-family: $paragraph-font;
+    h1 {
+        color: $primary-color
+    }
+    .rental_approval__wrapper {
+        @include wrapper;
+        background-color: white;
+        padding: 40px;
+        .rental_approval__wrapper__pending {
+            table {
+                margin-top: 40px;
+                border-collapse: collapse;
+                thead {
+                    background-color: $secondary-background-color;
+
+                    @media screen and (max-width:1180px) {
+                        display: none;
+                    }
+                    td {
+                        padding: 10px;
+                        font-weight: bold;
+                        font-size: 1.3rem;
+                        color: $secondary-background-color-font;
+                    }
+                }
+                tbody {
+                    tr {
+
+                        @media screen and (max-width:1180px) {
+                            display: flex;
+                            flex-direction: column;
+                            background-color: $secondary-background-color;
+                        }
+                        td {
+                            padding: 10px;
+                            color: $secondary-background-color-font;
+                        }
+                    }
+                    padding: 10px;    
+                }
+            }
+            .rental_approval__wrapper__pending__item {
+                padding: 10px;
+                width:fit-content;
+
+                .action_buttons {
+                    display: flex;
+                    gap: 10px;
+                }
+                .deny {
+                    @include buttons(#fff7f6);
+                    padding: 5px;
+                    color: red;
+                    margin: 0;
+                    border: 1px solid red                   
+                    
+                }
+                .approve {
+                    @include buttons(rgb(243, 255, 243));
+                    padding: 5px;
+                    color: green;
+                    margin: 0;
+                    border: 1px solid green;
+                }
+                .confirm_option {
+                    position: absolute;
+                    z-index: 99;
+                    background-color: white;
+                    padding: 10px;
+                    @include shadow;
+                    border-radius: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    width: 150px;
+                    gap: 10px;
+                  
+                }
+                .approve_container {
+                    position: relative;
+
+
+                    
+                    
+                }
+            }
+        }
+    }
+    
+
+
+}

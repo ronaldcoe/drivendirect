@@ -14,7 +14,9 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "animate.css": "^4.1.1",
+    "buffer": "^6.0.3",
     "firebase": "^9.22.1",
+    "firebase-admin": "^11.10.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-notifications-component": "^4.0.1",
@@ -24,6 +26,8 @@
     "react-slick": "^0.29.0",
     "react-svg": "^16.1.17",
     "slick-carousel": "^1.8.1",
+    "stream": "^0.0.2",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

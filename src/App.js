@@ -19,6 +19,12 @@ import 'react-notifications-component/dist/theme.css';
 import 'animate.css/animate.min.css';
 import EditAccount from './pages/account/EditAccount';
 import LoadingAnimation from './shared/Loading';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import RentalApproval from './pages/admin/RentalApproval';
+import Contact from './pages/contact/Contact';
+
+
+
 
 
 function App() {
@@ -40,8 +46,18 @@ function App() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/inventory/trade' element={<CardGrid type={"trade"}/>}/>
             <Route path='/inventory/listing' element={<CardGrid type={"listing"}/>}/>
-          
+            <Route path='/contact' element={<Contact />} />
             {/* ALL PROTECTED ROUTES THAT NEED SIGNIN USER */}
+            <Route exact path='/admin' element={
+              <ProtectedRoute>
+                <AdminDashboard title="Dashboard"/>
+              </ProtectedRoute>
+            } />
+            <Route exact path='/admin/rental-approval' element={
+              <ProtectedRoute>
+                <RentalApproval title="Dashboard"/>
+              </ProtectedRoute>
+            } />
             <Route exact path='/dashboard' element={
               <ProtectedRoute>
                 <Dashboard title="Dashboard"/>

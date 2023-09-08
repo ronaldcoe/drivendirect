@@ -32,21 +32,7 @@ export default function Faq() {
                 <h2 id='contact'>8. What should I do if I encounter an issue or need support?</h2>
                 <p>If you encounter any issues or require support, please reach out to our customer support team. You can find our contact information on the "Contact Us" page. Our dedicated support team will be happy to assist you with any queries or concerns you may have.</p>
             </div>
-            <div className='privacy__wrap__tablecontent'>
-                <div className='privacy__wrap__tablecontent__sticky'>
-                    <h3>Table of Content</h3>
-                    <ul>
-                        <li><a href="#information">1. Information Collection</a></li>
-                        <li><a href="#use">2. Use of Information</a></li>
-                        <li><a href="#sharing">3. Information Sharing</a></li>
-                        <li><a href="#data">4. Data Security</a></li>
-                        <li><a href="#thirdparty">5. Third-Party Links</a></li>
-                        <li><a href="#childrenpolicy">6. Children's Privacy</a></li>
-                        <li><a href="#updates">7. Updates to the Privacy Policy</a></li>
-                        <li><a href="#contact">8. Contact Information</a></li>
-                    </ul>
-                </div>
-            </div>
+            
         </div>
     </div>
   )

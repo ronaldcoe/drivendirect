@@ -70,7 +70,7 @@
                 
 
                 button {
-                    @include buttons(gold);
+                    @include buttons($primary-color);
                     color: $primary-color;
                     margin: 10px 0px 0px;
 

@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { auth } from '../Firebase/FirebaseConfig';
 // import { useLocation } from 'react-router';
-import { getSubscription } from '../Firebase/FirebaseStateManagement';
+import { getSubscription, getUserInfo } from '../Firebase/FirebaseStateManagement';
 
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [hasSubscription, setHasSubscription] = useState(false);
+  const [account, setAccount] = useState(null)
   const location = useLocation();
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -21,6 +22,22 @@ const ProtectedRoute = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+
+  // Admin Protected routes
+  const fetchUserInfo = async () => {
+  const userId = localStorage.getItem('userId')
+  const userInfo = await getUserInfo(userId)
+
+  if (userInfo) {
+    setAccount(userInfo)
+  }
+
+  }
+   
+  useEffect(()=> {
+    fetchUserInfo()
+   },[])
 
   useEffect(() => {
     const checkSubscription = async () => {
@@ -41,6 +58,18 @@ const ProtectedRoute = ({ children }) => {
      // Redirect the user or handle access for /trade without subscription
      return <div>Access Denied: You need a subscription to access this route.</div>;
    }
+
+
+
+   const isAdminDashboardRoute = location.pathname === '/admin'
+   const isAdminDashboardRentalApprovalRoute = location.pathname === '/admin/rental-approval'
+   if (isAdminDashboardRoute && account?.role !== "admin") {
+    return(<p>Access Denied: You don't have permissions to acces this page.</p>)
+   }
+   if (isAdminDashboardRentalApprovalRoute && account?.role !== "admin") {
+    return(<p>Access Denied: You don't have permissions to acces this page.</p>)
+   }
+
 
   if (user) {
     return children;
