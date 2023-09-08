@@ -289,6 +289,61 @@ export const createUser = async (email, password, firstName, lastName, businessN
   }
 };
 
+
+// Find Plan based on the user
+export const planPerUser = async (userId) => {
+  try {
+    // Get the user document
+    const userDocRef = doc(usersCollectionRef, userId);
+    const docSnapshot = await getDoc(userDocRef);
+
+    if (!docSnapshot.exists()) {
+      console.log('User not found');
+      return false;
+    }
+
+    const user = docSnapshot.data();
+    const userType = user.businessType;
+
+    // Get the products and their prices
+    const querySnapshot = await getDocs(stripeProductCollectionRef);
+    const productList = await Promise.all(querySnapshot.docs.map(async (doc) => {
+      const product = doc.data();
+
+      // Assuming 'price' is a subcollection
+      const priceCollectionRef = collection(doc.ref, 'prices');
+      const priceQuerySnapshot = await getDocs(priceCollectionRef);
+      const prices = priceQuerySnapshot.docs.map(priceDoc => ({ ...priceDoc.data(), id: priceDoc.id }));
+
+      return { product, prices };
+    }));
+
+    // Find the matching price ID based on user's businessType
+    let userPriceId = null;
+
+    for (const product of productList) {
+      const productType = product.product.name.toLowerCase();
+      console.log(productType)
+      console.log(userType)
+      if (productType.includes(userType.toLowerCase())) {
+        userPriceId = product.prices[0].id;
+        break; // Stop searching when a match is found
+      }
+    }
+
+    if (userPriceId !== null) {
+      console.log(`Matching price found with ID: ${userPriceId}`);
+      return userPriceId;
+    } else {
+      console.log('No matching price found');
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
 /********************************************
  * Logs in a user with the provided email and password.
  * @param {string} email - The email address of the user.
@@ -576,4 +631,6 @@ export const getSubscription = async (userId) =>{
         return [];
       }
     };
+    
+    // Find the Plan for a user
     

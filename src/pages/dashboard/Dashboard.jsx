@@ -4,10 +4,10 @@ import VehicleCard from './VehicleCard'
 import { useNavigate } from 'react-router';
 import menu from '../../images/menu_dots.svg'
 import { ReactSVG } from 'react-svg';
-import { getUserInfo, getAllInventoryByEntity,getSubscription } from '../../Firebase/FirebaseStateManagement';
+import { getUserInfo, stripeCheckOut, getAllInventoryByEntity,getSubscription ,planPerUser} from '../../Firebase/FirebaseStateManagement';
 import iconInfo from "../../images/icons-info.svg"
 import { Skeleton } from '@mui/material';
-
+import LoadingAnimation from '../../shared/Loading';
 /**
  * @author : Lakeram && Ronald
  * @description :Dashboard is only accessible to signed in users. Displays User Infomation, 
@@ -23,6 +23,8 @@ export default function Dashboard() {
     const [showOptions, setShowOptions] = useState(false)
     const [hasSubscription, setHasSubscription]  = useState(false)
     const[accountStatus, setAccountStatus] = useState(false)
+    const[priceId, setPriceId] = useState(null)
+    const [loading, setLoading] = useState(false)
     const optionsRef = useRef(null);
     const navigate = useNavigate();
 
@@ -42,8 +44,7 @@ export default function Dashboard() {
         var userId = localStorage.getItem('userId')
         var userInfo = await getUserInfo(userId)
         if (userInfo){
-            setAccount(userInfo)
-            
+            setAccount(userInfo)            
         }
     }
 
@@ -78,6 +79,14 @@ export default function Dashboard() {
         };
     }, []);
 
+    // This is the checkout to stripe if the user does not have a subscription
+    const checkOut = async()=>{
+        setLoading(true)
+        const userId = localStorage.getItem("userId")
+        const priceId = await planPerUser(userId)
+        await stripeCheckOut(userId, priceId)
+        
+    }
     // We are getting subscriptions to have sure that the users does not
     // have access to create listings or trade without being subscribed
     // (this will be implemented in the backend also)
@@ -161,7 +170,10 @@ export default function Dashboard() {
                         )
                     })}
                </div>
-               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>:account?.accountStatus==="approved"?<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>:<button className="dashboard__update">Your account is pending approval</button>}
+               {trades?.length<tradeMax && hasSubscription? <button className="dashboard__update" onClick={()=>{navigate('/trade');}}> + Add Vehicle</button>
+                :trades?.length<tradeMax && (account?.accountStatus==="approved" || account?.businessType!=="renter")
+                ?<button className="dashboard__update" onClick={checkOut}>{loading?<><LoadingAnimation /> Processing</>:<><p>You need to Subscribe to a plan to enable feature. <strong>Click to Subscribe</strong></p></>}</button>
+                :trades?.length<tradeMax?<button className="dashboard__update">Your account is pending approval</button>:""}
             </div>
         </div>
         <div className='dashboard__wrapper_col_3'>
@@ -185,7 +197,7 @@ export default function Dashboard() {
                 })}
                     {listings?.length<listMax && hasSubscription?
                     <button className="dashboard__update" onClick={()=>{navigate("/search")}}> + Add Vehicle</button>
-                    :listings?.length<listMax ?<button className="dashboard__update">You need to Subscribe to a Plan to enable feature to <strong>ADD TRADE</strong></button>:""}
+                    :listings?.length<listMax ?<button className="dashboard__update" onClick={checkOut}>{loading?<><LoadingAnimation /> Processing</>:<><p>You need to Subscribe to a plan to enable feature. <strong>Click to Subscribe</strong></p></>}</button>:""}
                 
             </div>
             }
