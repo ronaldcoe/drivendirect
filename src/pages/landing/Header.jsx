@@ -14,7 +14,7 @@ export default function Header() {
   useEffect(()=>{
     
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
+      if (user && localStorage.getItem('isSignedIn')) {
         fetchUserInfo()
         // User is signed in
         setUser(user);

@@ -22,21 +22,34 @@ const ProtectedRoute = ({ children }) => {
 
     return () => unsubscribe();
   }, []);
+
+
+  // Admin Protected routes
+  const fetchUserInfo = async () => {
+  const userId = localStorage.getItem('userId')
+  const userInfo = await getUserInfo(userId)
+
+  if (userInfo) {
+    setAccount(userInfo)
+  }
+
+  }
+   
   useEffect(()=> {
     fetchUserInfo()
    },[])
 
-  // useEffect(() => {
-  //   const checkSubscription = async () => {
-  //     if (user) {
-  //       const hasSubscription = await getSubscription(user.uid);
-  //       if (hasSubscription.length >= 1){setHasSubscription(true);}
+  useEffect(() => {
+    const checkSubscription = async () => {
+      if (user) {
+        const hasSubscription = await getSubscription(user.uid);
+        if (hasSubscription.length >= 1){setHasSubscription(true);}
         
-  //     }
-  //   };
+      }
+    };
 
-  //   checkSubscription();
-  // }, [user]);
+    checkSubscription();
+  }, [user]);
 
    // Check if the current route is /trade
    const isTradeRoute = location.pathname === '/trade';
@@ -46,17 +59,7 @@ const ProtectedRoute = ({ children }) => {
      return <div>Access Denied: You need a subscription to access this route.</div>;
    }
 
-   // Admin Protected routes
-   const fetchUserInfo = async () => {
-    const userId = localStorage.getItem('userId')
-    const userInfo = await getUserInfo(userId)
 
-    if (userInfo) {
-      setAccount(userInfo)
-    }
-
-   }
- 
 
    const isAdminDashboardRoute = location.pathname === '/admin'
    const isAdminDashboardRentalApprovalRoute = location.pathname === '/admin/rental-approval'

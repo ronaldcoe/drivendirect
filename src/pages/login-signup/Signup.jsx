@@ -145,9 +145,27 @@ export default function Signup() {
                     businessName, businessType,
                     website, country, region, city, phoneNumber, tradeMax, searchMax, accountStatus);
                 if (success) {
-                    setLoading(true)
-                    setOpenSubscription(true)
-                    checkout()
+                    if(businessType !== "rental") {
+                        setLoading(true)
+                        setOpenSubscription(true)
+                        checkout()
+                    }
+                    else {
+                        navigate("/dashboard")
+                        Store.addNotification({
+                            title: "Success",
+                            message: "Your account was succesfully created. It's in the approval stage. Once approved, you will recieve an email.",
+                            type: "success",
+                            insert: "top",
+                            container: "top-right",
+                            animationIn: ["animate__animated", "animate__fadeInDown"],
+                            animationOut: ["animate__animated", "animate__fadeOut"],
+                            dismiss: {
+                                duration: 0,
+                                showIcon: true
+                            }
+                        })
+                    }
                                         
                 } else {
                     Store.addNotification({
