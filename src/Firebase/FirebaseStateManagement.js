@@ -522,6 +522,7 @@ export const stripeCheckOut = async (id, priceId) => {
           alert(error.message);
         }
         if (sessionId) {
+          // Place key in .ENV files
           const stripe = await loadStripe("pk_test_51NUI59J155flwudekbXeaqNnxVtkrsIUC4ifIH32OSpULU5Oem03xYWDajz8q4cMT5Vbe57RgoGTTqf3kepJPnTr00VN5F3tFm");
           stripe.redirectToCheckout({ sessionId });
         }
@@ -632,5 +633,5 @@ export const getSubscription = async (userId) =>{
       }
     };
     
-    // Find the Plan for a user
+
     
