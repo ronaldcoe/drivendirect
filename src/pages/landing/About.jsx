@@ -39,7 +39,39 @@ export default function About() {
     <div className='about'>
         
         <div className='about__wrapper'>
-            <div className='about__wrapper__ribbon'>
+        <div className='about__wrapper__btns'>
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/inventory/trade")}>
+                    <img src={iconCar}/>
+                    <h2>You need it or don't?</h2>
+                    <p>Find cars that you need or Sell cars that you don't need.</p>
+                    
+                    
+                </div>
+                
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
+                    <img src={iconSearch}/>
+                    <h2>Search or list it</h2>
+                    <p>Check the inventory or list the vehicle you want to sell.</p>
+                    
+                    
+                </div>
+                
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
+                    <img src={iconPrice}/>
+                    <h2>Make or get offers</h2>
+                    <p>You found the car you need? Contact the seller.</p>
+                    
+                    
+                </div>
+                
+                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
+                    <img src={iconDeal}/>
+                    <h2>Close the deal</h2>
+                    <p>The best part? There are not commission fees.</p>
+                    
+                </div>
+            </div>
+            {/* <div className='about__wrapper__ribbon'>
                 <div className='about__wrapper__ribbon__content' onClick={()=> navigate("/inventory/listing")}>
                     <img src={ribbonIconCar} alt="" />
                     <p>What other dealers want</p>
@@ -63,9 +95,9 @@ export default function About() {
                 <div className='about__wrapper__ribbon__content'>
                     <img src={ribbonIconComment} alt="" />
                     <p>Comments</p>
-                </div> */}
+                </div> 
              
-            </div>
+            </div> */}
             
             <div className='about__wrapper__card__container' >
                 <div className='about__wrapper__card'>
@@ -161,39 +193,8 @@ export default function About() {
                 <img src={carFive} alt="a black car is parked in a parking lot" loading='lazy'/>
             </div>
             
-            {/* <div className='about__wrapper__btns'>
-                <div className='about__wrapper__btns__container' onClick={()=> navigate("/inventory/trade")}>
-                    <img src={iconCar}/>
-                    <h2>You need it or don't?</h2>
-                    <p>Find cars that you need or Sell cars that you don't need.</p>
-                    
-                    
-                </div>
-                
-                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
-                    <img src={iconSearch}/>
-                    <h2>Search or list it</h2>
-                    <p>Check the inventory or list the vehicle you want to sell.</p>
-                    
-                    
-                </div>
-                
-                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
-                    <img src={iconPrice}/>
-                    <h2>Make or get offers</h2>
-                    <p>You found the car you need? Contact the seller.</p>
-                    
-                    
-                </div>
-                
-                <div className='about__wrapper__btns__container' onClick={()=> navigate("/login")}>
-                    <img src={iconDeal}/>
-                    <h2>Close the deal</h2>
-                    <p>The best part? There are not commission fees.</p>
-                    
-                </div>
-            </div> */}
-            <Testimonial></Testimonial>
+            
+            {/* <Testimonial></Testimonial> */}
         </div>
     </div>
   )

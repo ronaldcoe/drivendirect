@@ -49,7 +49,7 @@ export default function Header() {
     <div className='header'>
       <div className='header__wrapper'> 
         <div className='header__logo'>
-          <a href='/'>DealerTrade</a>
+          <a href='/'>DrivenDirect</a>
         </div>
         <nav>
           <ul className={`header__wrapper__menu ${showMenu?"hamburger":''}`}>

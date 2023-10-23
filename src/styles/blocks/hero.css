@@ -19,7 +19,7 @@
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
   align-items: center;
-  background-color: white;
+  background-color: #080077;
 }
 @media screen and (max-width: 820px) {
   .hero .hero__wrapper .hero__wrapper__banner .hero__wrapper__banner__content {
@@ -38,7 +38,7 @@
   font-size: 4rem;
 }
 .hero .hero__wrapper .hero__wrapper__banner .hero__wrapper__banner__content p {
-  color: #080077;
+  color: white;
   padding: 10px 0px;
   font-size: 2rem;
 }

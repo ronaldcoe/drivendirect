@@ -523,7 +523,7 @@ export const stripeCheckOut = async (id, priceId) => {
         }
         if (sessionId) {
           // Place key in .ENV files
-          const stripe = await loadStripe("pk_test_51NUI59J155flwudekbXeaqNnxVtkrsIUC4ifIH32OSpULU5Oem03xYWDajz8q4cMT5Vbe57RgoGTTqf3kepJPnTr00VN5F3tFm");
+          const stripe = await loadStripe("pk_test_51NzOaILLKNiF7pTaYY0wRpZg66o21yxqn6Wb8K3hxbHsydvBgfoReuTRJjVf3uSab6oEtVurfeaXhP1Gjx6Nv0uj00piBmPrlc");
           stripe.redirectToCheckout({ sessionId });
         }
       });
@@ -569,36 +569,38 @@ export const getSubscription = async (userId) =>{
 
 /****************************************************************************************** */
 
-/*************************************ENTER STATIC DATA****************
- *  const data ={
-      countries:{
-        USA :[
-          'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
-          'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
-          'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-          'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
-          'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
-          'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
-          'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
-          'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
-          'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-        ],
-        Canada : [
-        'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
-        'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
-        'Quebec', 'Saskatchewan', 'Yukon'
-        ]
-      }
-    }
-    const enter =async()=>{
-      await enterStaticData(data)
-    }
- * enter()
- * ****************** */
-    export const enterStaticData= async(data)=>{
-      await addDoc(staticCollectionRef, data)
-      return true
-    }
+//  const data ={
+//       countries:{
+//         USA :[
+//           'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado',
+//           'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho',
+//           'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
+//           'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
+//           'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey',
+//           'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio',
+//           'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina',
+//           'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
+//           'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+//         ],
+//         Canada : [
+//         'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador',
+//         'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Ontario', 'Prince Edward Island',
+//         'Quebec', 'Saskatchewan', 'Yukon'
+//         ]
+//       }
+//     }
+
+//     export const enterStaticData= async(data)=>{
+//       await addDoc(staticCollectionRef, data)
+//       return true
+//     }
+
+//     const enter =async()=>{
+//       await enterStaticData(data)
+//     }
+//   enter()
+
+    
     
     
     

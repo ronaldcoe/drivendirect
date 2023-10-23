@@ -11,7 +11,7 @@
     .hero__wrapper {
         @include wrapper;
         
-   
+        
   
         gap: 30px;
        
@@ -23,7 +23,7 @@
                 grid-template-columns: 1fr 1fr;
                 justify-content: space-between;
                 align-items: center;
-                background-color: white;
+                background-color: $primary-color;
 
                 @media screen and (max-width:$breakpoint-medium) {
                     grid-template-columns: 1fr;
@@ -40,7 +40,7 @@
                     font-size: 4rem;
                 }
                 p {
-                    color: $primary-color;
+                    color: white;
                     padding: 10px 0px;
                     font-size: 2rem;
                 }

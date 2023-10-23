@@ -20,7 +20,7 @@ export default function Footer() {
                     <li><a href='/terms'>Terms of Service</a></li>
                 </ul>
             </div>
-            <p  className='footer__wrapper__copyright'>&#169;{footerDate.getFullYear()} All rights reserved | Carznot&trade;</p>
+            <p  className='footer__wrapper__copyright'>&#169;{footerDate.getFullYear()} All rights reserved | DrivenDirect&trade;</p>
             
 
         </div>

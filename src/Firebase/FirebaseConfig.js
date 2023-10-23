@@ -12,14 +12,13 @@ import {getAuth} from "firebase/auth"
 
 //  Place in Keys in .ENV Files
 const firebaseConfig = {
-  apiKey: "AIzaSyA9t6Ui5OnzjIxJht7GJm57-hop0335v5U",
-  authDomain: "drivendirect-c0645.firebaseapp.com",
-  databaseURL: "https://drivendirect-c0645-default-rtdb.firebaseio.com",
-  projectId: "drivendirect-c0645",
-  storageBucket: "drivendirect-c0645.appspot.com",
-  messagingSenderId: "285508548627",
-  appId: "1:285508548627:web:b5120082100088ac3527e6",
-  measurementId: "G-4QJCQD4EKB"
+  apiKey: "AIzaSyBS9CpW7NVb6Qfraga8yPbjlq4iKnH6MXs",
+  authDomain: "driven-direct.firebaseapp.com",
+  projectId: "driven-direct",
+  storageBucket: "driven-direct.appspot.com",
+  messagingSenderId: "912928589315",
+  appId: "1:912928589315:web:12ed01c60912b9ad903036",
+  measurementId: "G-L6QESKC1B4"
 };
 
 
