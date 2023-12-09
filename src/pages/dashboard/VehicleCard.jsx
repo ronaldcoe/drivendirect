@@ -17,6 +17,7 @@ export default function Card({
   update,
 }) {
 
+  
   const [showOptions, setShowOptions] = useState(false);
   const optionsRef = useRef(null);
 

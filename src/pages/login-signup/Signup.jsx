@@ -299,6 +299,7 @@ export default function Signup() {
 
                     </label>
                     <label>
+                        
                         <p>City</p>
                         <input type='text' onChange={(e)=>{setCity(e.target.value)}}  required minLength="2"></input>  
                     </label>

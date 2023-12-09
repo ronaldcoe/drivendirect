@@ -50,6 +50,7 @@ export default function Dashboard() {
 
     localStorage.setItem("region", account?.region)
 
+    
     // Gets all the Trades that a user has to be displayed
     const fetchTrades = async ()=>{
         var userId = localStorage.getItem('userId')
